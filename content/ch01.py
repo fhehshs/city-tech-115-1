@@ -781,14 +781,13 @@ SLIDES = [
       <ul style='color:#cffafe;font-size:.85rem;padding-left:16px;'>
         <li>電腦基本規格截圖</li>
         <li>工作管理員效能截圖</li>
-        <li>儲存空間使用圓餅圖</li>
         <li>與同組同學的規格比較表</li>
         <li>改善建議（加 RAM？換 SSD？）</li>
       </ul>
     </div>
     <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:8px;'>
       <p style='color:#fff;font-size:.85rem;font-weight:700;margin-bottom:4px;'>🗓️ 繳交方式</p>
-      <p style='color:#cffafe;font-size:.82rem;margin:0;'>Google 簡報（每組 5 頁以上）上傳至 Google Classroom</p>
+      <p style='color:#cffafe;font-size:.82rem;margin:0;'>Google 文件上傳至 Google Classroom</p>
     </div>
   </div>
 </div>"""
