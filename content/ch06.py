@@ -1,0 +1,1078 @@
+# -*- coding: utf-8 -*-
+# Week 6: 網際網路運作原理
+
+CHAPTERS = [
+    {'name': '封面', 'start': 1},
+    {'name': '第一章：網路基礎概念', 'start': 2},
+    {'name': '第二章：TCP/IP 與位址', 'start': 8},
+    {'name': '第三章：DNS 與 HTTP/HTTPS', 'start': 14},
+    {'name': '第四章：無線網路與 5G', 'start': 19},
+    {'name': '分組實作', 'start': 23},
+]
+
+QUIZZES = {
+    'q1': {
+        'title': '第一章 隨堂測驗',
+        'questions': [
+            {
+                'q': '下列哪個描述最能說明「封包交換」的運作方式？',
+                'options': ['整條通訊線路在傳輸期間被獨佔，不分享', '資料切成小封包，各自選最佳路由，到達後重組', '所有封包必須走相同路徑才能保持順序', '封包在傳送前必須先建立永久連線'],
+                'answer': 1,
+                'explain': '封包交換讓每個封包獨立選路，有效利用網路頻寬，是網際網路的核心技術。'
+            },
+            {
+                'q': '台灣國際網路主要透過哪種基礎設施連接至全球？',
+                'options': ['衛星通訊', '地面微波', '海底電纜', '無線電廣播'],
+                'answer': 2,
+                'explain': '台灣約 99% 的國際頻寬來自海底電纜，2006 年台灣地震曾造成多條海纜斷裂，影響亞洲網路。'
+            },
+        ]
+    },
+    'q2': {
+        'title': '第二章 隨堂測驗',
+        'questions': [
+            {
+                'q': 'IPv6 的主要優勢是什麼？',
+                'options': ['傳輸速度比 IPv4 快 100 倍', '完全向下相容所有 IPv4 設備', '不需要路由器即可運作', '幾乎無限的位址空間（128 位元）'],
+                'answer': 3,
+                'explain': 'IPv6 使用 128 位元，可提供 2^128 個位址，解決 IPv4（32 位元，約 43 億個）耗盡的問題。'
+            },
+            {
+                'q': 'TCP 與 UDP 最主要的差異是什麼？',
+                'options': ['TCP 確保資料到達（可靠），UDP 追求速度（不可靠）', 'TCP 速度比 UDP 快 10 倍', 'UDP 用於網頁瀏覽，TCP 用於影音串流', 'TCP 只能傳文字，UDP 可傳影片'],
+                'answer': 0,
+                'explain': 'TCP 有握手、確認、重送機制，保證資料正確到達。UDP 省去這些步驟，適合直播/遊戲等對延遲敏感的應用。'
+            },
+        ]
+    },
+    'q3': {
+        'title': '第三章 隨堂測驗',
+        'questions': [
+            {
+                'q': 'HTTPS 相較於 HTTP 多了什麼保護？',
+                'options': ['傳輸速度提升 10 倍', '伺服器不需要處理加密，效能更好', 'SSL/TLS 加密，防止資料在傳輸中被竊聽', '完全防止網站被駭客攻擊'],
+                'answer': 2,
+                'explain': 'HTTPS = HTTP + TLS 加密。瀏覽器與伺服器之間的資料被加密，即使被攔截也看不懂內容。'
+            },
+            {
+                'q': '你在瀏覽器輸入 www.ntpc.edu.tw，DNS 的工作是什麼？',
+                'options': ['加密你的網路流量', '將網域名稱轉換為 IP 位址', '決定網頁顯示的語言', '驗證網站的安全性'],
+                'answer': 1,
+                'explain': 'DNS（Domain Name System）是網際網路的「電話簿」，將人類易記的網域名稱翻譯成機器使用的 IP 位址。'
+            },
+        ]
+    },
+    'q4': {
+        'title': '第四章 隨堂測驗',
+        'questions': [
+            {
+                'q': '5G 相較於 4G 最顯著的技術提升是？',
+                'options': ['更低延遲（低於 1ms）、更高速度、可同時連接更多設備', '通訊距離增加為 4G 的 10 倍', '完全不需要基地台，直接衛星傳輸', '僅提升手機通話品質'],
+                'answer': 0,
+                'explain': '5G 的關鍵優勢：速度達 20Gbps（4G 約 1Gbps）、延遲低至 1ms、每平方公里支援 100 萬個設備連接。'
+            },
+            {
+                'q': '在命令提示字元輸入 ping 8.8.8.8 主要測試什麼？',
+                'options': ['下載目標網站的所有資料', '查詢目標 IP 的擁有者', '測試 DNS 解析是否正常', '本機到目標伺服器的網路連通性與延遲'],
+                'answer': 3,
+                'explain': 'ping 發送 ICMP Echo 封包，測試目標是否可達，並回報往返時間（RTT）。8.8.8.8 是 Google 的公共 DNS 伺服器。'
+            },
+        ]
+    },
+}
+
+SLIDES = [
+    {
+        'id': 1,
+        'chapter': '封面',
+        'title': '網際網路運作原理',
+        'bg': 'navy',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<div style='text-align:center;padding:30px 20px;'>
+  <div style='font-size:72px;margin-bottom:20px;'>🌐</div>
+  <h1 style='font-size:2.8rem;font-weight:900;color:#fff;margin-bottom:12px;'>網際網路運作原理</h1>
+  <h2 style='font-size:1.5rem;font-weight:400;color:#93c5fd;margin-bottom:30px;'>How the Internet Works</h2>
+  <div style='display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:30px;'>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🔌 TCP/IP 協定</span>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📍 IP 位址</span>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🌏 DNS 解析</span>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🔒 HTTP/HTTPS</span>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📡 5G 技術</span>
+  </div>
+  <p style='color:#bfdbfe;font-size:1.1rem;'>城市科技 — 第六週</p>
+</div>"""
+    },
+    {
+        'id': 2,
+        'chapter': '第一章：網路基礎概念',
+        'title': '什麼是網際網路？',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>什麼是網際網路？</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#eff6ff;border-left:4px solid #2563eb;padding:15px;border-radius:8px;margin-bottom:15px;'>
+      <h3 style='color:#1e40af;font-size:1.1rem;margin-bottom:8px;'>📌 定義</h3>
+      <p style='color:#374151;font-size:0.95rem;'>網際網路是由數十億台設備相互連接，遵循共同協定（Protocol）傳遞資訊的<strong>全球網路</strong>。</p>
+    </div>
+    <div style='background:#f0fdf4;border-left:4px solid #16a34a;padding:15px;border-radius:8px;'>
+      <h3 style='color:#15803d;font-size:1.1rem;margin-bottom:8px;'>📦 封包交換</h3>
+      <p style='color:#374151;font-size:0.95rem;'>資料被切割成小「封包」，各自在網路中選最佳路由，到達後再重組。就像快遞拆包裝分批送達！</p>
+    </div>
+  </div>
+  <div>
+    <div style='background:#f5f3ff;border-left:4px solid #7c3aed;padding:15px;border-radius:8px;margin-bottom:15px;'>
+      <h3 style='color:#6d28d9;font-size:1.1rem;margin-bottom:8px;'>🌏 台灣網路現況</h3>
+      <ul style='color:#374151;font-size:0.9rem;margin:0;padding-left:18px;'>
+        <li>固網寬頻普及率 <strong>98%</strong></li>
+        <li>行動上網用戶超過 <strong>2,800 萬</strong></li>
+        <li>國際頻寬 99% 靠 <strong>海底電纜</strong></li>
+        <li>2006 年地震曾造成亞洲斷網</li>
+      </ul>
+    </div>
+    <div style='background:#fff7ed;border-left:4px solid #ea580c;padding:12px;border-radius:8px;'>
+      <p style='color:#9a3412;font-size:0.9rem;margin:0;'>💡 <strong>你知道嗎？</strong> 每天全球傳輸約 <strong>4.4 艾位元組（EB）</strong>的資料，相當於 44 億部 1GB 的電影！</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 3,
+        'chapter': '第一章：網路基礎概念',
+        'title': '網路拓樸與設備',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>網路拓樸與設備</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <h3 style='color:#1e40af;font-size:1.1rem;margin-bottom:12px;'>🔧 關鍵網路設備</h3>
+    <table style='width:100%;border-collapse:collapse;font-size:0.9rem;'>
+      <tr style='background:#1e40af;color:#fff;'>
+        <th style='padding:8px;text-align:left;'>設備</th>
+        <th style='padding:8px;text-align:left;'>功能</th>
+      </tr>
+      <tr style='background:#eff6ff;'>
+        <td style='padding:8px;color:#1e40af;font-weight:700;'>路由器 Router</td>
+        <td style='padding:8px;color:#374151;'>在不同網路間轉送封包，選擇最佳路徑</td>
+      </tr>
+      <tr style='background:#fff;'>
+        <td style='padding:8px;color:#1e40af;font-weight:700;'>交換器 Switch</td>
+        <td style='padding:8px;color:#374151;'>連接同一網路內的設備，依 MAC 位址轉發</td>
+      </tr>
+      <tr style='background:#eff6ff;'>
+        <td style='padding:8px;color:#1e40af;font-weight:700;'>集線器 Hub</td>
+        <td style='padding:8px;color:#374151;'>廣播訊號給所有連接設備（已逐漸淘汰）</td>
+      </tr>
+      <tr style='background:#fff;'>
+        <td style='padding:8px;color:#1e40af;font-weight:700;'>數據機 Modem</td>
+        <td style='padding:8px;color:#374151;'>將數位訊號轉為類比（或光）訊號傳輸</td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <h3 style='color:#16a34a;font-size:1.1rem;margin-bottom:12px;'>🗺️ 常見拓樸結構</h3>
+    <div style='display:flex;flex-direction:column;gap:10px;'>
+      <div style='background:#f0fdf4;padding:10px;border-radius:8px;border:1px solid #86efac;'>
+        <strong style='color:#15803d;'>⭐ 星狀拓樸（Star）</strong>
+        <p style='color:#374151;font-size:0.85rem;margin:4px 0 0;'>所有設備連到中央交換器，最常見於企業/學校</p>
+      </div>
+      <div style='background:#eff6ff;padding:10px;border-radius:8px;border:1px solid #93c5fd;'>
+        <strong style='color:#1e40af;'>🕸️ 網狀拓樸（Mesh）</strong>
+        <p style='color:#374151;font-size:0.85rem;margin:4px 0 0;'>每節點相互連接，骨幹網路採用，高容錯</p>
+      </div>
+      <div style='background:#fdf4ff;padding:10px;border-radius:8px;border:1px solid #d8b4fe;'>
+        <strong style='color:#7c3aed;'>🔗 總線拓樸（Bus）</strong>
+        <p style='color:#374151;font-size:0.85rem;margin:4px 0 0;'>共享一條主幹，早期乙太網路使用</p>
+      </div>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 4,
+        'chapter': '第一章：網路基礎概念',
+        'title': 'OSI 七層模型',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>OSI 七層模型</h2>
+<p style='color:#374151;font-size:0.95rem;margin-bottom:15px;'>OSI 模型將網路通訊分為 7 層，每層各司其職，就像寄信的流程：寫信→封信→貼郵票→投郵筒→郵局→配送→收信</p>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:15px;'>
+  <div>
+    <div style='background:#fef2f2;border:1px solid #fca5a5;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
+      <span style='background:#dc2626;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>7</span>
+      <span style='font-weight:700;color:#991b1b;'>應用層</span><span style='color:#374151;font-size:0.85rem;'>HTTP, FTP, SMTP</span>
+    </div>
+    <div style='background:#fff7ed;border:1px solid #fdba74;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
+      <span style='background:#ea580c;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>6</span>
+      <span style='font-weight:700;color:#9a3412;'>表現層</span><span style='color:#374151;font-size:0.85rem;'>加密、格式轉換</span>
+    </div>
+    <div style='background:#fefce8;border:1px solid #fde047;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
+      <span style='background:#ca8a04;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>5</span>
+      <span style='font-weight:700;color:#854d0e;'>會議層</span><span style='color:#374151;font-size:0.85rem;'>建立/管理連線</span>
+    </div>
+    <div style='background:#f0fdf4;border:1px solid #86efac;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
+      <span style='background:#16a34a;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>4</span>
+      <span style='font-weight:700;color:#15803d;'>傳輸層</span><span style='color:#374151;font-size:0.85rem;'>TCP / UDP</span>
+    </div>
+  </div>
+  <div>
+    <div style='background:#eff6ff;border:1px solid #93c5fd;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
+      <span style='background:#2563eb;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>3</span>
+      <span style='font-weight:700;color:#1e40af;'>網路層</span><span style='color:#374151;font-size:0.85rem;'>IP 位址、路由</span>
+    </div>
+    <div style='background:#fdf4ff;border:1px solid #d8b4fe;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
+      <span style='background:#7c3aed;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>2</span>
+      <span style='font-weight:700;color:#6d28d9;'>資料鏈結層</span><span style='color:#374151;font-size:0.85rem;'>MAC 位址、乙太網路</span>
+    </div>
+    <div style='background:#f1f5f9;border:1px solid #94a3b8;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
+      <span style='background:#475569;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>1</span>
+      <span style='font-weight:700;color:#334155;'>實體層</span><span style='color:#374151;font-size:0.85rem;'>電纜、光纖、無線</span>
+    </div>
+    <div style='background:#fef2f2;padding:10px;border-radius:8px;margin-top:10px;'>
+      <p style='color:#dc2626;font-size:0.85rem;margin:0;'>💡 實務上常用 <strong>TCP/IP 四層模型</strong>（應用、傳輸、網路、鏈結），是 OSI 的簡化版本。</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 5,
+        'chapter': '第一章：網路基礎概念',
+        'title': '台灣網路基礎設施',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': {'url': 'https://www.youtube.com/embed/AEaKrq3SpW8', 'title': '網際網路如何運作', 'desc': '深入了解封包如何在全球網路中傳遞'},
+        'html': """
+<h2 class='slide-title'>台灣網路基礎設施</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🔌 台灣主要 ISP</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;'>
+        <div style='background:#fff;padding:8px;border-radius:6px;display:flex;justify-content:space-between;'>
+          <span style='color:#374151;font-size:0.9rem;'>中華電信 HiNet</span><span style='color:#1e40af;font-weight:700;font-size:0.9rem;'>市佔 ~40%</span>
+        </div>
+        <div style='background:#fff;padding:8px;border-radius:6px;display:flex;justify-content:space-between;'>
+          <span style='color:#374151;font-size:0.9rem;'>台灣大哥大 TWM</span><span style='color:#1e40af;font-weight:700;font-size:0.9rem;'>市佔 ~20%</span>
+        </div>
+        <div style='background:#fff;padding:8px;border-radius:6px;display:flex;justify-content:space-between;'>
+          <span style='color:#374151;font-size:0.9rem;'>遠傳電信</span><span style='color:#1e40af;font-weight:700;font-size:0.9rem;'>市佔 ~18%</span>
+        </div>
+      </div>
+    </div>
+    <div style='background:#fff7ed;padding:12px;border-radius:8px;border:1px solid #fdba74;'>
+      <p style='color:#9a3412;font-size:0.9rem;margin:0;'>🌊 <strong>2006 年台灣大地震事件</strong><br>12 月 26 日南海海底電纜斷裂，亞洲多國網速驟降，示範了海纜的重要性。</p>
+    </div>
+  </div>
+  <div style='background:#f9fafb;padding:15px;border-radius:10px;'>
+    <h3 style='color:#374151;font-size:1rem;margin-bottom:10px;'>📊 台灣網路速度排名</h3>
+    <p style='color:#6b7280;font-size:0.85rem;margin-bottom:10px;'>根據 Speedtest Global Index 2024</p>
+    <div style='display:flex;flex-direction:column;gap:8px;'>
+      <div>
+        <div style='display:flex;justify-content:space-between;margin-bottom:3px;'>
+          <span style='color:#374151;font-size:0.85rem;'>固網中位數下載（全球前段班）</span>
+          <span style='color:#1e40af;font-weight:700;'>286 Mbps</span>
+        </div>
+        <div style='background:#dbeafe;border-radius:4px;height:10px;'><div style='background:#2563eb;width:95%;height:10px;border-radius:4px;'></div></div>
+      </div>
+      <div>
+        <div style='display:flex;justify-content:space-between;margin-bottom:3px;'>
+          <span style='color:#374151;font-size:0.85rem;'>行動網路中位數下載</span>
+          <span style='color:#16a34a;font-weight:700;'>98 Mbps</span>
+        </div>
+        <div style='background:#dcfce7;border-radius:4px;height:10px;'><div style='background:#16a34a;width:75%;height:10px;border-radius:4px;'></div></div>
+      </div>
+    </div>
+    <p style='color:#6b7280;font-size:0.8rem;margin-top:12px;'>台灣固網寬頻速度位居亞洲前列，光纖普及率超過 90%</p>
+  </div>
+</div>"""
+    },
+    {
+        'id': 6,
+        'chapter': '第一章：網路基礎概念',
+        'title': '🎯 第一章 隨堂測驗',
+        'bg': 'purple',
+        'quiz': 'q1',
+        'chart': None,
+        'video': None,
+        'html': """
+<div style='text-align:center;padding:20px;'>
+  <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
+  <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第一章 隨堂測驗</h2>
+  <p style='color:#e9d5ff;font-size:1.1rem;'>網路基礎概念 ── 2 道題目，點擊作答！</p>
+</div>"""
+    },
+    {
+        'id': 7,
+        'chapter': '第二章：TCP/IP 與位址',
+        'title': 'TCP vs UDP',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>TCP vs UDP</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div style='background:#eff6ff;padding:15px;border-radius:10px;'>
+    <h3 style='color:#1e40af;font-size:1.1rem;margin-bottom:12px;text-align:center;'>🔒 TCP（傳輸控制協定）</h3>
+    <ul style='color:#374151;font-size:0.9rem;padding-left:18px;'>
+      <li><strong>三向交握</strong>：SYN → SYN-ACK → ACK</li>
+      <li><strong>確認機制</strong>：確保每個封包被收到</li>
+      <li><strong>重送機制</strong>：遺失封包自動重傳</li>
+      <li><strong>有序傳輸</strong>：保持封包順序</li>
+    </ul>
+    <div style='background:#dbeafe;padding:8px;border-radius:6px;margin-top:10px;'>
+      <p style='color:#1e40af;font-size:0.85rem;margin:0;text-align:center;'>✅ 適用：網頁、電子郵件、檔案傳輸</p>
+    </div>
+  </div>
+  <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
+    <h3 style='color:#15803d;font-size:1.1rem;margin-bottom:12px;text-align:center;'>⚡ UDP（用戶資料報協定）</h3>
+    <ul style='color:#374151;font-size:0.9rem;padding-left:18px;'>
+      <li><strong>無連線</strong>：直接發送，不握手</li>
+      <li><strong>不確認</strong>：發出後不管是否到達</li>
+      <li><strong>低延遲</strong>：省去確認/重送時間</li>
+      <li><strong>輕量</strong>：封包標頭小，效率高</li>
+    </ul>
+    <div style='background:#dcfce7;padding:8px;border-radius:6px;margin-top:10px;'>
+      <p style='color:#15803d;font-size:0.85rem;margin:0;text-align:center;'>✅ 適用：直播、視訊通話、線上遊戲</p>
+    </div>
+  </div>
+</div>
+<div style='background:#fef9c3;padding:12px;border-radius:8px;margin-top:15px;border:1px solid #fde047;'>
+  <p style='color:#854d0e;font-size:0.9rem;margin:0;'>🎮 <strong>生活例子</strong>：打電動（UDP）——掉幾個封包沒關係，但要低延遲。看 Netflix（TCP）——需要完整資料，稍微緩衝可以接受。</p>
+</div>"""
+    },
+    {
+        'id': 8,
+        'chapter': '第二章：TCP/IP 與位址',
+        'title': 'IPv4 位址',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>IPv4 位址</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📍 IPv4 格式</h3>
+      <div style='background:#fff;padding:12px;border-radius:8px;text-align:center;'>
+        <p style='font-size:1.3rem;font-weight:800;color:#1e40af;letter-spacing:2px;'>192.168.1.100</p>
+        <p style='color:#6b7280;font-size:0.8rem;'>4 組十進位數字，每組 0-255，共 32 位元</p>
+      </div>
+    </div>
+    <div style='background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px;'>
+      <h3 style='color:#374151;font-size:0.95rem;margin-bottom:8px;'>🏠 私有 IP vs 公有 IP</h3>
+      <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
+        <tr style='background:#f1f5f9;'>
+          <th style='padding:6px;text-align:left;color:#374151;'>類型</th>
+          <th style='padding:6px;text-align:left;color:#374151;'>範圍</th>
+        </tr>
+        <tr>
+          <td style='padding:6px;color:#1e40af;font-weight:600;'>A 類私有</td>
+          <td style='padding:6px;color:#374151;'>10.0.0.0 – 10.255.255.255</td>
+        </tr>
+        <tr style='background:#f8fafc;'>
+          <td style='padding:6px;color:#1e40af;font-weight:600;'>B 類私有</td>
+          <td style='padding:6px;color:#374151;'>172.16.0.0 – 172.31.255.255</td>
+        </tr>
+        <tr>
+          <td style='padding:6px;color:#1e40af;font-weight:600;'>C 類私有</td>
+          <td style='padding:6px;color:#374151;'>192.168.0.0 – 192.168.255.255</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div>
+    <div style='background:#fef2f2;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#dc2626;font-size:1rem;margin-bottom:8px;'>⚠️ IPv4 耗盡危機</h3>
+      <p style='color:#374151;font-size:0.9rem;'>IPv4 最多提供 <strong>2³² ≈ 43 億</strong>個位址。</p>
+      <p style='color:#374151;font-size:0.9rem;margin-top:6px;'>IANA（國際位址分配機構）已於 <strong>2011 年</strong>宣告 IPv4 位址耗盡！</p>
+      <div style='background:#fee2e2;padding:8px;border-radius:6px;margin-top:8px;'>
+        <p style='color:#991b1b;font-size:0.85rem;margin:0;'>NAT（網路位址轉譯）讓多台設備共用一個公有 IP，延長了 IPv4 使用壽命</p>
+      </div>
+    </div>
+    <div style='background:#f0fdf4;padding:12px;border-radius:8px;'>
+      <p style='color:#15803d;font-size:0.9rem;margin:0;'>💡 <strong>你家的 IP</strong>：路由器有一個公有 IP，家中每台設備得到路由器分配的私有 IP（如 192.168.1.x）</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 9,
+        'chapter': '第二章：TCP/IP 與位址',
+        'title': 'IPv6 — 下一代位址',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>IPv6 — 下一代位址</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>🆕 IPv6 格式</h3>
+      <div style='background:#fff;padding:12px;border-radius:8px;text-align:center;'>
+        <p style='font-size:0.95rem;font-weight:800;color:#15803d;letter-spacing:1px;word-break:break-all;'>2001:0db8:85a3:0000:<br>0000:8a2e:0370:7334</p>
+        <p style='color:#6b7280;font-size:0.8rem;'>8 組十六進位，共 128 位元</p>
+      </div>
+    </div>
+    <div style='background:#eff6ff;padding:12px;border-radius:8px;'>
+      <h3 style='color:#1e40af;font-size:0.95rem;margin-bottom:8px;'>📊 比較</h3>
+      <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
+        <tr style='background:#1e40af;color:#fff;'>
+          <th style='padding:6px;'>項目</th><th style='padding:6px;'>IPv4</th><th style='padding:6px;'>IPv6</th>
+        </tr>
+        <tr><td style='padding:6px;color:#374151;'>長度</td><td style='padding:6px;color:#374151;'>32 位元</td><td style='padding:6px;color:#374151;'>128 位元</td></tr>
+        <tr style='background:#f8fafc;'><td style='padding:6px;color:#374151;'>位址數量</td><td style='padding:6px;color:#374151;'>43 億</td><td style='padding:6px;color:#374151;'>2¹²⁸ ≈ 無窮</td></tr>
+        <tr><td style='padding:6px;color:#374151;'>標頭大小</td><td style='padding:6px;color:#374151;'>20 bytes</td><td style='padding:6px;color:#374151;'>40 bytes（固定）</td></tr>
+      </table>
+    </div>
+  </div>
+  <div>
+    <div style='background:#fdf4ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#7c3aed;font-size:1rem;margin-bottom:10px;'>✨ IPv6 新特性</h3>
+      <ul style='color:#374151;font-size:0.9rem;padding-left:18px;'>
+        <li>無需 NAT，設備直接擁有全球唯一 IP</li>
+        <li>內建 IPSec 安全性</li>
+        <li>自動設定位址（SLAAC）</li>
+        <li>更有效率的路由</li>
+        <li>支援多播（Multicast）</li>
+      </ul>
+    </div>
+    <div style='background:#fff7ed;padding:12px;border-radius:8px;border:1px solid #fdba74;'>
+      <p style='color:#9a3412;font-size:0.9rem;margin:0;'>🇹🇼 <strong>台灣現況</strong>：NCC 要求 ISP 2025 年前 IPv6 普及率達 80%，中華電信已全面支援。IoT 裝置的爆炸性成長讓 IPv6 更加迫切。</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 10,
+        'chapter': '第二章：TCP/IP 與位址',
+        'title': '路由器如何選擇路徑？',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>路由器如何選擇路徑？</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🗺️ 路由決策</h3>
+      <p style='color:#374151;font-size:0.9rem;margin-bottom:8px;'>路由器維護一張<strong>路由表</strong>，根據目的地 IP 決定下一跳（Next Hop）。</p>
+      <div style='background:#fff;padding:10px;border-radius:6px;font-family:monospace;font-size:0.8rem;color:#374151;'>
+        <p style='margin:2px 0;'>目的網路 → 下一跳</p>
+        <p style='margin:2px 0;color:#1e40af;'>140.92.0.0/16 → 203.72.1.1</p>
+        <p style='margin:2px 0;color:#1e40af;'>8.8.8.0/24 → 203.72.1.254</p>
+        <p style='margin:2px 0;color:#6b7280;'>0.0.0.0/0 → 預設閘道</p>
+      </div>
+    </div>
+    <div style='background:#f0fdf4;padding:12px;border-radius:8px;'>
+      <h3 style='color:#15803d;font-size:0.95rem;margin-bottom:8px;'>⚡ 動態路由協定</h3>
+      <ul style='color:#374151;font-size:0.9rem;padding-left:18px;margin:0;'>
+        <li><strong>RIP</strong>：距離向量，小型網路</li>
+        <li><strong>OSPF</strong>：連結狀態，企業常用</li>
+        <li><strong>BGP</strong>：ISP 間的骨幹路由協定</li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <div style='background:#fef9c3;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#854d0e;font-size:1rem;margin-bottom:10px;'>🎯 生活比喻</h3>
+      <p style='color:#374151;font-size:0.9rem;'>路由器就像一個<strong>智慧導航系統</strong>：</p>
+      <ul style='color:#374151;font-size:0.9rem;padding-left:18px;margin-top:8px;'>
+        <li>目的地 = 目標 IP</li>
+        <li>道路 = 網路連線</li>
+        <li>塞車 = 頻寬擁塞</li>
+        <li>改道 = 動態路由更新</li>
+      </ul>
+    </div>
+    <div style='background:#fdf4ff;padding:12px;border-radius:8px;'>
+      <p style='color:#7c3aed;font-size:0.9rem;margin:0;'>🔍 <strong>tracert / traceroute</strong> 指令可以看到你的封包經過哪些路由器（跳點），從台灣連到美國通常要經過 15-20 個跳點！</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 11,
+        'chapter': '第二章：TCP/IP 與位址',
+        'title': '埠號與常見服務',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>埠號（Port）與常見服務</h2>
+<p style='color:#374151;font-size:0.95rem;margin-bottom:15px;'>IP 位址找到電腦，埠號（Port）指定電腦上的服務。就像公寓大樓：IP = 門牌號碼，Port = 幾號房。</p>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <table style='width:100%;border-collapse:collapse;font-size:0.9rem;'>
+      <tr style='background:#1e40af;color:#fff;'>
+        <th style='padding:8px;text-align:left;'>埠號</th>
+        <th style='padding:8px;text-align:left;'>服務</th>
+        <th style='padding:8px;text-align:left;'>用途</th>
+      </tr>
+      <tr style='background:#eff6ff;'><td style='padding:8px;font-weight:700;color:#1e40af;'>80</td><td style='padding:8px;color:#374151;'>HTTP</td><td style='padding:8px;color:#374151;'>網頁瀏覽</td></tr>
+      <tr><td style='padding:8px;font-weight:700;color:#1e40af;'>443</td><td style='padding:8px;color:#374151;'>HTTPS</td><td style='padding:8px;color:#374151;'>加密網頁</td></tr>
+      <tr style='background:#eff6ff;'><td style='padding:8px;font-weight:700;color:#1e40af;'>25</td><td style='padding:8px;color:#374151;'>SMTP</td><td style='padding:8px;color:#374151;'>寄送電子郵件</td></tr>
+      <tr><td style='padding:8px;font-weight:700;color:#1e40af;'>110</td><td style='padding:8px;color:#374151;'>POP3</td><td style='padding:8px;color:#374151;'>收取電子郵件</td></tr>
+      <tr style='background:#eff6ff;'><td style='padding:8px;font-weight:700;color:#1e40af;'>21</td><td style='padding:8px;color:#374151;'>FTP</td><td style='padding:8px;color:#374151;'>檔案傳輸</td></tr>
+      <tr><td style='padding:8px;font-weight:700;color:#1e40af;'>22</td><td style='padding:8px;color:#374151;'>SSH</td><td style='padding:8px;color:#374151;'>遠端安全連線</td></tr>
+      <tr style='background:#eff6ff;'><td style='padding:8px;font-weight:700;color:#1e40af;'>53</td><td style='padding:8px;color:#374151;'>DNS</td><td style='padding:8px;color:#374151;'>網域名稱解析</td></tr>
+    </table>
+  </div>
+  <div>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:8px;'>🔢 埠號範圍</h3>
+      <ul style='color:#374151;font-size:0.9rem;padding-left:18px;'>
+        <li><strong>0-1023</strong>：知名埠（Well-known），系統保留</li>
+        <li><strong>1024-49151</strong>：已登記埠，應用程式使用</li>
+        <li><strong>49152-65535</strong>：動態/私有埠，暫時分配</li>
+      </ul>
+    </div>
+    <div style='background:#fff7ed;padding:12px;border-radius:8px;'>
+      <p style='color:#9a3412;font-size:0.9rem;margin:0;'>🔒 <strong>防火牆</strong>根據 IP + Port 規則決定是否允許流量通過。例如：只開放 80/443 給外部訪問，其他 Port 一律封鎖。</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 12,
+        'chapter': '第二章：TCP/IP 與位址',
+        'title': '🎯 第二章 隨堂測驗',
+        'bg': 'purple',
+        'quiz': 'q2',
+        'chart': None,
+        'video': None,
+        'html': """
+<div style='text-align:center;padding:20px;'>
+  <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
+  <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第二章 隨堂測驗</h2>
+  <p style='color:#e9d5ff;font-size:1.1rem;'>TCP/IP 與 IP 位址 ── 2 道題目，點擊作答！</p>
+</div>"""
+    },
+    {
+        'id': 13,
+        'chapter': '第三章：DNS 與 HTTP/HTTPS',
+        'title': 'DNS — 網路的電話簿',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>DNS — 網路的電話簿</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🔍 DNS 解析流程</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;'>
+        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
+          <span style='color:#1e40af;font-size:0.8rem;font-weight:700;'>1</span>
+          <span style='color:#374151;font-size:0.85rem;'> 瀏覽器查詢本機 DNS 快取</span>
+        </div>
+        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
+          <span style='color:#1e40af;font-size:0.8rem;font-weight:700;'>2</span>
+          <span style='color:#374151;font-size:0.85rem;'> 查詢 ISP 的 DNS 解析器</span>
+        </div>
+        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
+          <span style='color:#1e40af;font-size:0.8rem;font-weight:700;'>3</span>
+          <span style='color:#374151;font-size:0.85rem;'> 詢問根 DNS 伺服器（. / Root）</span>
+        </div>
+        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
+          <span style='color:#1e40af;font-size:0.8rem;font-weight:700;'>4</span>
+          <span style='color:#374151;font-size:0.85rem;'> 詢問頂層域名（.com / .tw）伺服器</span>
+        </div>
+        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
+          <span style='color:#1e40af;font-size:0.8rem;font-weight:700;'>5</span>
+          <span style='color:#374151;font-size:0.85rem;'> 取得 IP，快取結果並回傳瀏覽器</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>🌐 常用公共 DNS</h3>
+      <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
+        <tr style='background:#15803d;color:#fff;'>
+          <th style='padding:6px;'>提供者</th><th style='padding:6px;'>IP</th>
+        </tr>
+        <tr><td style='padding:6px;color:#374151;'>Google</td><td style='padding:6px;color:#374151;font-weight:700;'>8.8.8.8 / 8.8.4.4</td></tr>
+        <tr style='background:#f8fafc;'><td style='padding:6px;color:#374151;'>Cloudflare</td><td style='padding:6px;color:#374151;font-weight:700;'>1.1.1.1 / 1.0.0.1</td></tr>
+        <tr><td style='padding:6px;color:#374151;'>台灣學術網路</td><td style='padding:6px;color:#374151;font-weight:700;'>168.95.1.1</td></tr>
+      </table>
+    </div>
+    <div style='background:#fef2f2;padding:12px;border-radius:8px;'>
+      <p style='color:#dc2626;font-size:0.9rem;margin:0;'>⚠️ <strong>DNS 污染攻擊</strong>：駭客偽造 DNS 回應，把正確域名指向惡意 IP，誘騙用戶連到假網站（釣魚網站）。</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 14,
+        'chapter': '第三章：DNS 與 HTTP/HTTPS',
+        'title': 'HTTP vs HTTPS',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': {'url': 'https://www.youtube.com/embed/hExRDVZHhig', 'title': 'HTTPS 如何運作', 'desc': '了解 SSL/TLS 加密保護你的網路流量'},
+        'html': """
+<h2 class='slide-title'>HTTP vs HTTPS</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div style='background:#fef2f2;padding:15px;border-radius:10px;'>
+    <h3 style='color:#dc2626;font-size:1.1rem;margin-bottom:10px;text-align:center;'>🔓 HTTP（不安全）</h3>
+    <ul style='color:#374151;font-size:0.9rem;padding-left:18px;'>
+      <li>明文傳輸，資料未加密</li>
+      <li>中間人可攔截、竄改</li>
+      <li>預設使用 Port 80</li>
+      <li>瀏覽器顯示「不安全」</li>
+    </ul>
+    <div style='background:#fee2e2;padding:8px;border-radius:6px;margin-top:10px;text-align:center;'>
+      <p style='color:#991b1b;font-size:0.85rem;margin:0;'>🚨 不應在 HTTP 輸入密碼！</p>
+    </div>
+  </div>
+  <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
+    <h3 style='color:#15803d;font-size:1.1rem;margin-bottom:10px;text-align:center;'>🔒 HTTPS（安全）</h3>
+    <ul style='color:#374151;font-size:0.9rem;padding-left:18px;'>
+      <li>TLS/SSL 加密傳輸</li>
+      <li>伺服器身份驗證（憑證）</li>
+      <li>預設使用 Port 443</li>
+      <li>瀏覽器顯示「🔒」鎖頭</li>
+    </ul>
+    <div style='background:#dcfce7;padding:8px;border-radius:6px;margin-top:10px;text-align:center;'>
+      <p style='color:#15803d;font-size:0.85rem;margin:0;'>✅ 網路銀行、購物必備</p>
+    </div>
+  </div>
+</div>
+<div style='background:#eff6ff;padding:12px;border-radius:8px;margin-top:15px;'>
+  <h3 style='color:#1e40af;font-size:0.95rem;margin-bottom:8px;'>🤝 TLS 握手流程（簡化）</h3>
+  <div style='display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;'>
+    <span style='background:#2563eb;color:#fff;padding:5px 12px;border-radius:6px;font-size:0.85rem;'>1. Client Hello</span>
+    <span style='color:#1e40af;'>→</span>
+    <span style='background:#2563eb;color:#fff;padding:5px 12px;border-radius:6px;font-size:0.85rem;'>2. Server 送憑證</span>
+    <span style='color:#1e40af;'>→</span>
+    <span style='background:#2563eb;color:#fff;padding:5px 12px;border-radius:6px;font-size:0.85rem;'>3. 協商加密金鑰</span>
+    <span style='color:#1e40af;'>→</span>
+    <span style='background:#16a34a;color:#fff;padding:5px 12px;border-radius:6px;font-size:0.85rem;'>4. 加密通訊開始！</span>
+  </div>
+</div>"""
+    },
+    {
+        'id': 15,
+        'chapter': '第三章：DNS 與 HTTP/HTTPS',
+        'title': 'HTTP 請求與回應',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>HTTP 請求與回應</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#f1f5f9;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#374151;font-size:1rem;margin-bottom:8px;'>📤 HTTP 方法</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;'>
+        <div style='background:#dcfce7;padding:8px;border-radius:6px;'>
+          <span style='color:#15803d;font-weight:700;font-size:0.9rem;'>GET</span>
+          <span style='color:#374151;font-size:0.85rem;'> — 取得資源（瀏覽網頁）</span>
+        </div>
+        <div style='background:#dbeafe;padding:8px;border-radius:6px;'>
+          <span style='color:#1e40af;font-weight:700;font-size:0.9rem;'>POST</span>
+          <span style='color:#374151;font-size:0.85rem;'> — 送出資料（填表單）</span>
+        </div>
+        <div style='background:#fef9c3;padding:8px;border-radius:6px;'>
+          <span style='color:#854d0e;font-weight:700;font-size:0.9rem;'>PUT</span>
+          <span style='color:#374151;font-size:0.85rem;'> — 更新資源</span>
+        </div>
+        <div style='background:#fee2e2;padding:8px;border-radius:6px;'>
+          <span style='color:#dc2626;font-weight:700;font-size:0.9rem;'>DELETE</span>
+          <span style='color:#374151;font-size:0.85rem;'> — 刪除資源</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div style='background:#fff;border:1px solid #e5e7eb;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#374151;font-size:1rem;margin-bottom:8px;'>📊 常見狀態碼</h3>
+      <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
+        <tr><td style='padding:6px;'><span style='background:#dcfce7;color:#15803d;padding:2px 8px;border-radius:4px;font-weight:700;'>200</span></td><td style='padding:6px;color:#374151;'>OK — 成功</td></tr>
+        <tr><td style='padding:6px;'><span style='background:#dbeafe;color:#1e40af;padding:2px 8px;border-radius:4px;font-weight:700;'>301</span></td><td style='padding:6px;color:#374151;'>永久重導向</td></tr>
+        <tr><td style='padding:6px;'><span style='background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:4px;font-weight:700;'>404</span></td><td style='padding:6px;color:#374151;'>找不到頁面</td></tr>
+        <tr><td style='padding:6px;'><span style='background:#fee2e2;color:#dc2626;padding:2px 8px;border-radius:4px;font-weight:700;'>500</span></td><td style='padding:6px;color:#374151;'>伺服器錯誤</td></tr>
+        <tr><td style='padding:6px;'><span style='background:#fdf4ff;color:#7c3aed;padding:2px 8px;border-radius:4px;font-weight:700;'>403</span></td><td style='padding:6px;color:#374151;'>禁止存取</td></tr>
+      </table>
+    </div>
+    <div style='background:#fff7ed;padding:10px;border-radius:8px;'>
+      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>💡 REST API 就是遵循 HTTP 規範設計的程式介面，Google Maps、LINE 等服務的 API 都使用 HTTP 方法傳遞資料。</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 16,
+        'chapter': '第三章：DNS 與 HTTP/HTTPS',
+        'title': '網路安全新聞事件',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>網路安全新聞事件</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div style='display:flex;flex-direction:column;gap:12px;'>
+    <div style='background:#fef2f2;padding:14px;border-radius:10px;border-left:4px solid #dc2626;'>
+      <h3 style='color:#dc2626;font-size:0.95rem;margin-bottom:6px;'>📰 2023 台積電供應商遭勒索</h3>
+      <p style='color:#374151;font-size:0.85rem;margin:0;'>駭客組織 LockBit 入侵台積電供應商 Kinmax，竊取並威脅公開 70GB 技術資料。事件凸顯「供應鏈資安」的重要性——供應商被駭，客戶機密也可能外洩。</p>
+    </div>
+    <div style='background:#fff7ed;padding:14px;border-radius:10px;border-left:4px solid #ea580c;'>
+      <h3 style='color:#ea580c;font-size:0.95rem;margin-bottom:6px;'>📰 2016 一銀 ATM 盜領事件</h3>
+      <p style='color:#374151;font-size:0.85rem;margin:0;'>國際駭客集團入侵第一銀行內部網路，遠端植入惡意程式讓 41 台 ATM 自動吐鈔，盜領 8,300 多萬元，是台灣史上最大 ATM 竊案，最終靠監視器與民眾報案破案。</p>
+    </div>
+  </div>
+  <div style='display:flex;flex-direction:column;gap:12px;'>
+    <div style='background:#eff6ff;padding:14px;border-radius:10px;border-left:4px solid #2563eb;'>
+      <h3 style='color:#1e40af;font-size:0.95rem;margin-bottom:6px;'>🛡️ 防禦措施</h3>
+      <ul style='color:#374151;font-size:0.85rem;padding-left:16px;margin:0;'>
+        <li>確認網址使用 HTTPS 🔒</li>
+        <li>使用 DNS over HTTPS（DoH）</li>
+        <li>啟用 VPN 在公共 Wi-Fi</li>
+        <li>定期更新系統與憑證</li>
+      </ul>
+    </div>
+    <div style='background:#f0fdf4;padding:14px;border-radius:10px;border-left:4px solid #16a34a;'>
+      <h3 style='color:#15803d;font-size:0.95rem;margin-bottom:6px;'>✅ 辨識安全網站</h3>
+      <ul style='color:#374151;font-size:0.85rem;padding-left:16px;margin:0;'>
+        <li>瀏覽器鎖頭圖示 🔒</li>
+        <li>網址列開頭是 https://</li>
+        <li>憑證有效期未過期</li>
+        <li>憑證由可信 CA 簽發</li>
+      </ul>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 17,
+        'chapter': '第三章：DNS 與 HTTP/HTTPS',
+        'title': '🎯 第三章 隨堂測驗',
+        'bg': 'purple',
+        'quiz': 'q3',
+        'chart': None,
+        'video': None,
+        'html': """
+<div style='text-align:center;padding:20px;'>
+  <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
+  <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第三章 隨堂測驗</h2>
+  <p style='color:#e9d5ff;font-size:1.1rem;'>DNS 與 HTTP/HTTPS ── 2 道題目，點擊作答！</p>
+</div>"""
+    },
+    {
+        'id': 18,
+        'chapter': '第四章：無線網路與 5G',
+        'title': 'Wi-Fi 標準演進',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>Wi-Fi 標準演進</h2>
+<div style='overflow-x:auto;'>
+  <table style='width:100%;border-collapse:collapse;font-size:0.9rem;'>
+    <tr style='background:#1e40af;color:#fff;'>
+      <th style='padding:10px;'>標準</th>
+      <th style='padding:10px;'>年份</th>
+      <th style='padding:10px;'>頻段</th>
+      <th style='padding:10px;'>最高速率</th>
+      <th style='padding:10px;'>特色</th>
+    </tr>
+    <tr style='background:#f8fafc;'><td style='padding:8px;text-align:center;font-weight:700;color:#374151;'>802.11g</td><td style='padding:8px;text-align:center;color:#374151;'>2003</td><td style='padding:8px;text-align:center;color:#374151;'>2.4 GHz</td><td style='padding:8px;text-align:center;color:#374151;'>54 Mbps</td><td style='padding:8px;color:#374151;'>普及化 Wi-Fi</td></tr>
+    <tr><td style='padding:8px;text-align:center;font-weight:700;color:#1e40af;'>802.11n<br><span style='font-size:0.75rem;'>(Wi-Fi 4)</span></td><td style='padding:8px;text-align:center;color:#374151;'>2009</td><td style='padding:8px;text-align:center;color:#374151;'>2.4/5 GHz</td><td style='padding:8px;text-align:center;color:#374151;'>600 Mbps</td><td style='padding:8px;color:#374151;'>MIMO 多天線</td></tr>
+    <tr style='background:#f8fafc;'><td style='padding:8px;text-align:center;font-weight:700;color:#7c3aed;'>802.11ac<br><span style='font-size:0.75rem;'>(Wi-Fi 5)</span></td><td style='padding:8px;text-align:center;color:#374151;'>2013</td><td style='padding:8px;text-align:center;color:#374151;'>5 GHz</td><td style='padding:8px;text-align:center;color:#374151;'>6.9 Gbps</td><td style='padding:8px;color:#374151;'>MU-MIMO</td></tr>
+    <tr><td style='padding:8px;text-align:center;font-weight:700;color:#15803d;'>802.11ax<br><span style='font-size:0.75rem;'>(Wi-Fi 6)</span></td><td style='padding:8px;text-align:center;color:#374151;'>2019</td><td style='padding:8px;text-align:center;color:#374151;'>2.4/5/6 GHz</td><td style='padding:8px;text-align:center;color:#374151;'>9.6 Gbps</td><td style='padding:8px;color:#374151;'>OFDMA、高密度</td></tr>
+    <tr style='background:#fef9c3;'><td style='padding:8px;text-align:center;font-weight:700;color:#854d0e;'>802.11be<br><span style='font-size:0.75rem;'>(Wi-Fi 7)</span></td><td style='padding:8px;text-align:center;color:#374151;'>2024</td><td style='padding:8px;text-align:center;color:#374151;'>2.4/5/6 GHz</td><td style='padding:8px;text-align:center;color:#374151;'>46 Gbps</td><td style='padding:8px;color:#374151;'>Multi-Link、極低延遲</td></tr>
+  </table>
+</div>
+<div style='background:#eff6ff;padding:10px;border-radius:8px;margin-top:12px;'>
+  <p style='color:#1e40af;font-size:0.9rem;margin:0;'>💡 家用路由器上的「5 GHz」是 Wi-Fi 頻段，不是 5G 行動網路！兩者是不同的技術，記得分辨。</p>
+</div>"""
+    },
+    {
+        'id': 19,
+        'chapter': '第四章：無線網路與 5G',
+        'title': '4G → 5G → 6G',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>4G → 5G → 6G 行動通訊演進</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;'>
+  <div style='background:#eff6ff;padding:14px;border-radius:10px;text-align:center;'>
+    <div style='font-size:2rem;margin-bottom:8px;'>📱</div>
+    <h3 style='color:#1e40af;font-size:1.1rem;margin-bottom:10px;'>4G LTE</h3>
+    <ul style='color:#374151;font-size:0.85rem;list-style:none;padding:0;text-align:left;'>
+      <li>⚡ 速度：1 Gbps</li>
+      <li>⏱️ 延遲：30-50ms</li>
+      <li>📅 商用：2009 年</li>
+      <li>✅ 用途：手機上網、影音</li>
+    </ul>
+  </div>
+  <div style='background:#f0fdf4;padding:14px;border-radius:10px;text-align:center;border:2px solid #16a34a;'>
+    <div style='font-size:2rem;margin-bottom:8px;'>🚀</div>
+    <h3 style='color:#15803d;font-size:1.1rem;margin-bottom:10px;'>5G ✨現在</h3>
+    <ul style='color:#374151;font-size:0.85rem;list-style:none;padding:0;text-align:left;'>
+      <li>⚡ 速度：20 Gbps</li>
+      <li>⏱️ 延遲：低於 1ms</li>
+      <li>📅 商用：2019 年</li>
+      <li>✅ 用途：IoT、自駕車、AR</li>
+    </ul>
+  </div>
+  <div style='background:#fdf4ff;padding:14px;border-radius:10px;text-align:center;'>
+    <div style='font-size:2rem;margin-bottom:8px;'>🌌</div>
+    <h3 style='color:#7c3aed;font-size:1.1rem;margin-bottom:10px;'>6G 未來</h3>
+    <ul style='color:#374151;font-size:0.85rem;list-style:none;padding:0;text-align:left;'>
+      <li>⚡ 速度：1 Tbps（預估）</li>
+      <li>⏱️ 延遲：低於 0.1ms</li>
+      <li>📅 商用：約 2030 年</li>
+      <li>✅ 用途：數位孿生、腦機介面</li>
+    </ul>
+  </div>
+</div>
+<div style='background:#fff7ed;padding:12px;border-radius:8px;margin-top:15px;border:1px solid #fdba74;'>
+  <p style='color:#9a3412;font-size:0.9rem;margin:0;'>🇹🇼 <strong>台灣 5G 現況（2024）</strong>：中華電信、台灣大、遠傳、台星、亞太均已開台，全台 5G 覆蓋率達 <strong>92%</strong>。台積電苗栗廠、彰化縣政府等已導入 5G 私網應用。</p>
+</div>"""
+    },
+    {
+        'id': 20,
+        'chapter': '第四章：無線網路與 5G',
+        'title': '5G 改變了什麼？',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>5G 改變了什麼？台灣應用案例</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div style='display:flex;flex-direction:column;gap:12px;'>
+    <div style='background:#f0fdf4;padding:14px;border-radius:10px;border-left:4px solid #16a34a;'>
+      <h3 style='color:#15803d;font-size:0.95rem;margin-bottom:6px;'>🏭 智慧工廠</h3>
+      <p style='color:#374151;font-size:0.85rem;margin:0;'>台積電導入 5G 私網，AGV 自動搬運車透過 5G 精準定位，替代有線纜線束縛，生產效率提升 20%。</p>
+    </div>
+    <div style='background:#eff6ff;padding:14px;border-radius:10px;border-left:4px solid #2563eb;'>
+      <h3 style='color:#1e40af;font-size:0.95rem;margin-bottom:6px;'>🏥 遠距醫療</h3>
+      <p style='color:#374151;font-size:0.85rem;margin:0;'>成大醫院與台南偏鄉診所合作，外科醫師在台南市遠端指導手術，5G 低延遲讓影像傳輸近乎即時。</p>
+    </div>
+    <div style='background:#fdf4ff;padding:14px;border-radius:10px;border-left:4px solid #7c3aed;'>
+      <h3 style='color:#7c3aed;font-size:0.95rem;margin-bottom:6px;'>🚗 自動駕駛</h3>
+      <p style='color:#374151;font-size:0.85rem;margin:0;'>桃園機場園區試行 5G 自動接駁車，運用 5G 低延遲感測數據，實現安全的無人駕駛。</p>
+    </div>
+  </div>
+  <div>
+    <div style='background:#fef9c3;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#854d0e;font-size:1rem;margin-bottom:10px;'>📊 5G 三大應用場景（ITU）</h3>
+      <div style='display:flex;flex-direction:column;gap:8px;'>
+        <div style='background:#fff;padding:10px;border-radius:6px;'>
+          <strong style='color:#854d0e;font-size:0.85rem;'>eMBB</strong>
+          <p style='color:#374151;font-size:0.8rem;margin:2px 0 0;'>超高頻寬 — 8K 影音、VR/AR</p>
+        </div>
+        <div style='background:#fff;padding:10px;border-radius:6px;'>
+          <strong style='color:#854d0e;font-size:0.85rem;'>mMTC</strong>
+          <p style='color:#374151;font-size:0.8rem;margin:2px 0 0;'>大規模機器連線 — 智慧城市、農業</p>
+        </div>
+        <div style='background:#fff;padding:10px;border-radius:6px;'>
+          <strong style='color:#854d0e;font-size:0.85rem;'>URLLC</strong>
+          <p style='color:#374151;font-size:0.8rem;margin:2px 0 0;'>超可靠低延遲 — 遠距手術、自駕車</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 21,
+        'chapter': '第四章：無線網路與 5G',
+        'title': '衛星網路 — Starlink 在台灣',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>衛星網路 — Starlink 與台灣</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#0f172a;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#38bdf8;font-size:1rem;margin-bottom:10px;'>🛸 SpaceX Starlink</h3>
+      <ul style='color:#e2e8f0;font-size:0.85rem;padding-left:16px;'>
+        <li>低軌道衛星（LEO）：550公里高度</li>
+        <li>全球已部署 <strong>6,000+</strong> 顆衛星</li>
+        <li>下載速度：50-200 Mbps</li>
+        <li>延遲：20-60ms（遠優於傳統衛星）</li>
+        <li>覆蓋偏遠山區、海上、災區</li>
+      </ul>
+    </div>
+    <div style='background:#fef2f2;padding:12px;border-radius:8px;'>
+      <p style='color:#dc2626;font-size:0.85rem;margin:0;'>⚠️ <strong>太空垃圾問題</strong>：大量衛星增加碰撞風險（Kessler 效應），各國正在制定太空交通管理法規。</p>
+    </div>
+  </div>
+  <div>
+    <div style='background:#fff7ed;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#ea580c;font-size:1rem;margin-bottom:10px;'>🇹🇼 Starlink 台灣應用</h3>
+      <ul style='color:#374151;font-size:0.85rem;padding-left:16px;'>
+        <li>2022 年正式在台灣開通服務</li>
+        <li>花東偏遠學校數位落差問題解決</li>
+        <li>海巡署船隻即時通訊</li>
+        <li>2023 年颱風後緊急通訊備援</li>
+        <li>台灣山屋、離島地區普及</li>
+      </ul>
+    </div>
+    <div style='background:#f0fdf4;padding:12px;border-radius:8px;'>
+      <p style='color:#15803d;font-size:0.9rem;margin:0;'>🏔️ <strong>教育意義</strong>：台灣 57% 土地是山地，地面基礎設施難以覆蓋，衛星網路正彌補數位落差，讓每個孩子都能上網學習。</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 22,
+        'chapter': '第四章：無線網路與 5G',
+        'title': '🎯 第四章 隨堂測驗',
+        'bg': 'purple',
+        'quiz': 'q4',
+        'chart': None,
+        'video': None,
+        'html': """
+<div style='text-align:center;padding:20px;'>
+  <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
+  <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第四章 隨堂測驗</h2>
+  <p style='color:#e9d5ff;font-size:1.1rem;'>無線網路與 5G ── 2 道題目，點擊作答！</p>
+</div>"""
+    },
+    {
+        'id': 23,
+        'chapter': '分組實作',
+        'title': '分組實作：網路指令探索',
+        'bg': 'teal',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>🖥️ 分組實作：網路指令探索</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div style='background:rgba(255,255,255,0.15);padding:18px;border-radius:12px;'>
+    <h3 style='color:#fff;font-size:1rem;margin-bottom:14px;'>📋 實作任務（共 4 項）</h3>
+    <div style='display:flex;flex-direction:column;gap:10px;'>
+      <div style='background:rgba(255,255,255,0.2);padding:10px;border-radius:8px;'>
+        <p style='color:#fff;font-weight:700;font-size:0.9rem;margin:0 0 4px;'>① ping 測試</p>
+        <p style='color:#cffafe;font-size:0.8rem;margin:0;font-family:monospace;'>ping google.com<br>ping 8.8.8.8</p>
+        <p style='color:#a5f3fc;font-size:0.8rem;margin:4px 0 0;'>→ 記錄平均延遲（RTT）</p>
+      </div>
+      <div style='background:rgba(255,255,255,0.2);padding:10px;border-radius:8px;'>
+        <p style='color:#fff;font-weight:700;font-size:0.9rem;margin:0 0 4px;'>② nslookup 查詢</p>
+        <p style='color:#cffafe;font-size:0.8rem;margin:0;font-family:monospace;'>nslookup ntpc.gov.tw<br>nslookup youtube.com</p>
+        <p style='color:#a5f3fc;font-size:0.8rem;margin:4px 0 0;'>→ 找出 IP 位址</p>
+      </div>
+      <div style='background:rgba(255,255,255,0.2);padding:10px;border-radius:8px;'>
+        <p style='color:#fff;font-weight:700;font-size:0.9rem;margin:0 0 4px;'>③ tracert 路由追蹤</p>
+        <p style='color:#cffafe;font-size:0.8rem;margin:0;font-family:monospace;'>tracert google.com</p>
+        <p style='color:#a5f3fc;font-size:0.8rem;margin:4px 0 0;'>→ 數一數經過幾個跳點</p>
+      </div>
+      <div style='background:rgba(255,255,255,0.2);padding:10px;border-radius:8px;'>
+        <p style='color:#fff;font-weight:700;font-size:0.9rem;margin:0 0 4px;'>④ ipconfig 查詢</p>
+        <p style='color:#cffafe;font-size:0.8rem;margin:0;font-family:monospace;'>ipconfig /all</p>
+        <p style='color:#a5f3fc;font-size:0.8rem;margin:4px 0 0;'>→ 找出自己的 IP 與 DNS</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div style='background:rgba(255,255,255,0.15);padding:15px;border-radius:12px;margin-bottom:12px;'>
+      <h3 style='color:#fff;font-size:1rem;margin-bottom:10px;'>📊 觀察記錄表</h3>
+      <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
+        <tr style='background:rgba(255,255,255,0.2);'>
+          <th style='padding:6px;color:#fff;text-align:left;'>網站</th>
+          <th style='padding:6px;color:#fff;text-align:left;'>IP 位址</th>
+          <th style='padding:6px;color:#fff;text-align:left;'>延遲 ms</th>
+          <th style='padding:6px;color:#fff;text-align:left;'>跳點數</th>
+        </tr>
+        <tr style='background:rgba(255,255,255,0.08);'>
+          <td style='padding:6px;color:#cffafe;'>google.com</td><td style='padding:6px;color:#e2e8f0;'>___________</td><td style='padding:6px;color:#e2e8f0;'>___</td><td style='padding:6px;color:#e2e8f0;'>___</td>
+        </tr>
+        <tr>
+          <td style='padding:6px;color:#cffafe;'>youtube.com</td><td style='padding:6px;color:#e2e8f0;'>___________</td><td style='padding:6px;color:#e2e8f0;'>___</td><td style='padding:6px;color:#e2e8f0;'>___</td>
+        </tr>
+        <tr style='background:rgba(255,255,255,0.08);'>
+          <td style='padding:6px;color:#cffafe;'>ntpc.gov.tw</td><td style='padding:6px;color:#e2e8f0;'>___________</td><td style='padding:6px;color:#e2e8f0;'>___</td><td style='padding:6px;color:#e2e8f0;'>___</td>
+        </tr>
+      </table>
+    </div>
+    <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:10px;'>
+      <h3 style='color:#fff;font-size:0.9rem;margin-bottom:8px;'>🏆 評分標準（100 分）</h3>
+      <ul style='color:#cffafe;font-size:0.85rem;padding-left:16px;margin:0;'>
+        <li>完成 4 項指令操作 <strong style='color:#fff;'>40 分</strong></li>
+        <li>正確記錄觀察資料 <strong style='color:#fff;'>30 分</strong></li>
+        <li>分析：為何台灣 ping 國外較慢？<strong style='color:#fff;'>20 分</strong></li>
+        <li>延伸：找一個有趣的 IP 並說明 <strong style='color:#fff;'>10 分</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 24,
+        'chapter': '分組實作',
+        'title': '本週重點回顧',
+        'bg': 'navy',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>📖 Week 6 重點回顧</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:15px;'>
+  <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:10px;'>
+    <h3 style='color:#93c5fd;font-size:1rem;margin-bottom:10px;'>第一章 網路基礎</h3>
+    <ul style='color:#e2e8f0;font-size:0.85rem;padding-left:16px;margin:0;'>
+      <li>封包交換是網際網路核心</li>
+      <li>OSI 七層 / TCP/IP 四層模型</li>
+      <li>台灣固網速度全球前三</li>
+    </ul>
+  </div>
+  <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:10px;'>
+    <h3 style='color:#93c5fd;font-size:1rem;margin-bottom:10px;'>第二章 TCP/IP 與位址</h3>
+    <ul style='color:#e2e8f0;font-size:0.85rem;padding-left:16px;margin:0;'>
+      <li>TCP 可靠傳輸 vs UDP 低延遲</li>
+      <li>IPv4 耗盡，IPv6 解決問題</li>
+      <li>埠號識別不同網路服務</li>
+    </ul>
+  </div>
+  <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:10px;'>
+    <h3 style='color:#93c5fd;font-size:1rem;margin-bottom:10px;'>第三章 DNS 與 HTTPS</h3>
+    <ul style='color:#e2e8f0;font-size:0.85rem;padding-left:16px;margin:0;'>
+      <li>DNS 將網域翻譯為 IP</li>
+      <li>HTTPS = HTTP + TLS 加密</li>
+      <li>鎖頭圖示 🔒 確認安全網站</li>
+    </ul>
+  </div>
+  <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:10px;'>
+    <h3 style='color:#93c5fd;font-size:1rem;margin-bottom:10px;'>第四章 5G 與新興</h3>
+    <ul style='color:#e2e8f0;font-size:0.85rem;padding-left:16px;margin:0;'>
+      <li>Wi-Fi 頻段 ≠ 5G 行動網路</li>
+      <li>5G 三場景：eMBB/mMTC/URLLC</li>
+      <li>Starlink 解決偏鄉落差</li>
+    </ul>
+  </div>
+</div>
+<div style='background:rgba(255,255,255,0.1);padding:12px;border-radius:8px;margin-top:15px;text-align:center;'>
+  <p style='color:#bfdbfe;font-size:0.95rem;margin:0;'>下週預告：<strong style='color:#fff;'>新興科技應用</strong> ── 物聯網、AIoT、雲端運算、量子電腦</p>
+</div>"""
+    }
+]
