@@ -753,17 +753,17 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 23, 'chapter': '分組實作', 'title': '分組實作：我的電腦健診報告',
+        'id': 23, 'chapter': '分組實作', 'title': '分組實作：載具健診報告',
         'bg': 'teal', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>🔬 分組實作：我的電腦健診報告</h2>
+<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>🔬 分組實作：載具健診報告</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div style='background:rgba(255,255,255,0.15);padding:18px;border-radius:12px;'>
     <h3 style='color:#fff;font-size:1rem;margin-bottom:14px;'>📋 實作任務</h3>
     <div style='display:flex;flex-direction:column;gap:10px;'>
       <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
         <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務一：硬體規格調查</p>
-        <p style='color:#cffafe;font-size:.8rem;margin:0;'>查詢目前使用的電腦/平板：CPU、RAM、儲存空間、作業系統版本</p>
+        <p style='color:#cffafe;font-size:.8rem;margin:0;'>查詢目前使用的載具(電腦/平板..)：CPU、RAM、儲存空間、作業系統版本</p>
       </div>
       <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
         <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務二：效能分析</p>
