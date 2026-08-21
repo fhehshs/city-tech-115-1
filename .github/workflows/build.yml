@@ -1,0 +1,54 @@
+name: Build & Deploy to GitHub Pages
+
+# 觸發時機：每次推送到 main 分支就自動跑
+on:
+  push:
+    branches: [main]
+  # 也允許手動從 Actions 頁面點按鈕觸發
+  workflow_dispatch:
+
+# 需要寫入 pages 的權限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 一次只跑一個 build，如果推很快只跑最新那次
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 下載程式碼
+        uses: actions/checkout@v4
+
+      - name: 設定 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 安裝相依套件
+        run: pip install -r requirements.txt
+
+      - name: 執行 make_static.py 產生 docs/
+        run: python make_static.py
+
+      - name: 上傳靜態網站作為 Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
