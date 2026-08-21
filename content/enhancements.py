@@ -169,13 +169,81 @@ _ch01 = {
             "<p style='font-size:.75rem;color:#6b7280;margin:8px 0 0;'>NVMe SSD 比傳統 HDD 快 <strong>46 倍</strong>，開機時間從 60 秒縮短到 5 秒</p>"
         ),
     },
-    11: {  # 主機板與連接介面（新增互動）
-        'html_append': _quiz_click(
+    8: {  # 電腦硬體架構（新增：電腦內部實體圖）
+        'html_append': """
+<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>
+  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 10px;'>🖥️ 補充圖：拆開機殼看電腦內部長這樣</h4>
+  <img src='static/img/computer_inside.jpg' alt='電腦機殼內部各元件位置'
+    style='width:100%;max-width:600px;display:block;margin:0 auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.15);'/>
+  <p style='font-size:.78rem;color:#374151;text-align:center;margin:8px 0 0;line-height:1.5;'>
+    圖中可看到：<strong>電源供應器</strong>、<strong>光碟機/燒錄機</strong>、<strong>風扇</strong>、
+    <strong>CPU</strong>、<strong>記憶體</strong>、<strong>主機板</strong>、<strong>磁碟機/硬碟</strong>、
+    <strong>顯示卡</strong> 的實際位置與外觀。
+  </p>
+</div>"""
+    },
+    11: {  # 主機板與連接介面（新增互動題 + 主機板實體圖）
+        'html_append': """
+<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>
+  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 10px;'>🔌 補充圖：主機板上的各種插槽</h4>
+  <img src='static/img/motherboard.jpg' alt='主機板各插槽標示'
+    style='width:100%;max-width:640px;display:block;margin:0 auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.15);'/>
+  <p style='font-size:.78rem;color:#374151;text-align:center;margin:8px 0 0;line-height:1.5;'>
+    <strong>CPU 插槽</strong>接處理器、<strong>記憶體插槽</strong>插 RAM、
+    <strong>PCI-E x16</strong> 通常接顯示卡、<strong>PCI-E x1</strong> 接較小的擴充卡、
+    <strong>PCI</strong> 是舊型擴充槽、<strong>SATA</strong> 接硬碟與光碟機。
+  </p>
+</div>""" + _quiz_click(
             "你買了一台新的 4K 螢幕，準備接到筆電上。下列哪個連接介面「不能」傳輸影像？",
             ["HDMI", "USB-C（DisplayPort 模式）", "USB-A", "Thunderbolt 4"],
             2,
             "USB-A 是舊型接口，只能傳資料。要接螢幕請認明 HDMI、DisplayPort、USB-C 或 Thunderbolt。"
         ),
+    },
+    14: {  # 儲存單位換算（新增：M/G/T 換算表）
+        'html_append': """
+<div style='background:linear-gradient(135deg,#faf5ff,#ede9fe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #8b5cf6;'>
+  <h4 style='color:#6d28d9;font-size:.85rem;font-weight:700;margin:0 0 10px;'>🔍 深度探索：常聽到「幾咪」「幾 G」「幾 T」是什麼意思？</h4>
+  <div style='overflow-x:auto;'>
+  <table style='width:100%;border-collapse:collapse;font-size:.82rem;background:#fff;border-radius:8px;overflow:hidden;'>
+    <thead>
+      <tr style='background:#8b5cf6;color:#fff;'>
+        <th style='padding:8px 10px;text-align:left;'>口語</th>
+        <th style='padding:8px 10px;text-align:left;'>意指</th>
+        <th style='padding:8px 10px;text-align:left;'>意義</th>
+        <th style='padding:8px 10px;text-align:left;'>常見應用</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style='border-bottom:1px solid #e5e7eb;'>
+        <td style='padding:8px 10px;font-weight:700;color:#6d28d9;'>咪</td>
+        <td style='padding:8px 10px;'>Mega</td>
+        <td style='padding:8px 10px;'>百萬、2<sup>20</sup>、10<sup>6</sup></td>
+        <td style='padding:8px 10px;' rowspan='3'>
+          ① <strong>CPU 運算頻率</strong>，如 3.2 GHz（Hz 指赫茲）<br>
+          ② <strong>記憶體容量</strong>，如 16 GB（B 指 Byte）<br>
+          ③ <strong>網路傳輸速率</strong>，如 256 Mbps（bps 指 bit per second，每秒位元數）<br>
+          ④ <strong>硬碟容量</strong>，如 8 TB（B 指 Byte）
+        </td>
+      </tr>
+      <tr style='border-bottom:1px solid #e5e7eb;background:#faf5ff;'>
+        <td style='padding:8px 10px;font-weight:700;color:#6d28d9;'>G</td>
+        <td style='padding:8px 10px;'>Giga</td>
+        <td style='padding:8px 10px;'>十億、2<sup>30</sup>、10<sup>9</sup></td>
+      </tr>
+      <tr>
+        <td style='padding:8px 10px;font-weight:700;color:#6d28d9;'>T</td>
+        <td style='padding:8px 10px;'>Tera</td>
+        <td style='padding:8px 10px;'>兆、2<sup>40</sup>、10<sup>12</sup></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p style='font-size:.75rem;color:#6b7280;margin:8px 0 0;'>
+    💡 小訣竅：<strong>大寫 B = Byte</strong>（位元組，8 個 bit）、<strong>小寫 b = bit</strong>（位元）。
+    網路速度用 bps，檔案大小用 B。買 100 Mbps 網路，實際下載速度大約 12.5 MB/s。
+  </p>
+</div>"""
     },
     19: {  # 手機的硬體
         'html_append': _innov('未來的晶片技術',
