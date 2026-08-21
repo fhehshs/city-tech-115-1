@@ -777,7 +777,7 @@ SLIDES = [
   </div>
   <div>
     <div style='background:rgba(255,255,255,0.15);padding:15px;border-radius:12px;margin-bottom:12px;'>
-      <h3 style='color:#fff;font-size:1rem;margin-bottom:10px;'>📊 報告格式</h3>
+      <h3 style='color:#fff;font-size:1rem;margin-bottom:10px;'>📊 報告格式(範例建議)</h3>
       <ul style='color:#cffafe;font-size:.85rem;padding-left:16px;'>
         <li>電腦基本規格截圖</li>
         <li>工作管理員效能截圖</li>
