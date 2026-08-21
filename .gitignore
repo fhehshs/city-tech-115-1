@@ -1,0 +1,13 @@
+*.egg-info/
+*.pyc
+*.pyo
+.DS_Store
+.env
+Thumbs.db
+__pycache__/
+dist/
+test_write.txt
+
+# 教學圖 PNG 原檔（過大），只用壓縮後的 .jpg
+static/img/*.png
+_舊檔備份/

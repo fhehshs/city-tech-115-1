@@ -12,6 +12,14 @@ def main():
     os.makedirs(os.path.join(OUT, 'data'), exist_ok=True)
     client = app.test_client()
 
+    # 複製 static/ 到 docs/static/（圖片等資源），排除大檔 .png（我們用 .jpg 版本）
+    static_src = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+    static_dst = os.path.join(OUT, 'static')
+    if os.path.isdir(static_src):
+        shutil.rmtree(static_dst, ignore_errors=True)
+        shutil.copytree(static_src, static_dst,
+                        ignore=shutil.ignore_patterns('*.png', '.DS_Store', 'Thumbs.db'))
+
     # 首頁
     html = client.get('/').get_data(as_text=True)
     html = re.sub(r'href="/ch/\$\{ch\.n\}"', 'href="ch${ch.n}.html"', html)
