@@ -697,7 +697,7 @@ SLIDES = [
   </div>
 </div>
 <div style='background:#fef9c3;padding:10px;border-radius:8px;'>
-  <p style='color:#854d0e;font-size:.85rem;margin:0;'>💡 <strong>學生建議</strong>：M 系列 MacBook Air（Apple Silicon，台積電製造）效能/電池/重量俱佳，是很多學生的首選。</p>
+  <p style='color:#854d0e;font-size:.85rem;margin:0;'>💡 <strong>近期價格飛漲</strong>：由於 AI 應用快速發展，記憶體缺貨導致價格大漲。</p>
 </div>"""
     },
     {
