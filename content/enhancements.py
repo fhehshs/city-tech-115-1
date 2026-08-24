@@ -342,7 +342,7 @@ _ch02 = {
         ),
     },
     11: {  # 選對格式
-        'html_append': _life('學校老師常見錯誤',
+        'html_append': _life('常見錯誤',
             "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
             "<div style='background:#fef2f2;padding:8px 10px;border-radius:8px;margin-bottom:6px;border-left:3px solid #ef4444;'>"
             "<p style='color:#dc2626;font-weight:700;margin:0 0 3px;'>❌ 用 Word (.docx) 傳給不同版本電腦 → 排版跑掉</p>"
@@ -372,7 +372,7 @@ _ch02 = {
             "<p style='margin:0 0 8px;'>AI 早就不只是 ChatGPT！你打開的這些 App 也在偷偷用 AI：</p>"
             "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;'>"
             "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #ec4899;'>"
-            "<p style='font-weight:700;color:#be185d;margin:0 0 3px;'>📱 CapCut / 剪映</p>"
+            "<p style='font-weight:700;color:#be185d;margin:0 0 3px;'>手機內建圖片、影片剪接功能</p>"
             "<p style='margin:0;font-size:.75rem;'>自動去背景、AI 上字幕、一鍵美顏，都是 AI 在幕後跑</p></div>"
             "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #f59e0b;'>"
             "<p style='font-weight:700;color:#b45309;margin:0 0 3px;'>🎵 Suno AI</p>"
