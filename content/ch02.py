@@ -217,146 +217,137 @@ SLIDES = [
 {
   'id': 5,
   'chapter': '第一章：數位語言基礎',
-  'title': '系統平台四層架構',
+  'title': '從編碼到儲存：資料如何進入電腦',
   'bg': 'white',
   'quiz': None, 'chart': None, 'video': None,
   'html': """
 <div class='slide-inner'>
-  <h2 class='slide-title'>🏗️ 系統平台四層架構</h2>
-  <p class='slide-desc'>從硬體到使用者，每一層都有明確的職責</p>
-  <div class='layer-stack'>
-    <div class='layer layer-user'>
-      <div class='layer-num' style='background:#7c3aed;color:#fff'>4</div>
-      <div>
-        <div class='layer-name'>使用者（User）</div>
-        <div class='layer-detail'>操作裝置的人，透過應用程式完成各種數位任務。常見裝置：電腦、智慧型手機、平板、雲端伺服器</div>
+  <h2 class='slide-title'>🔄 從編碼到儲存：資料如何進入電腦</h2>
+  <p class='slide-desc'>剛剛學了文字如何編碼成數字，那這些數字又怎麼被電腦「記住」？</p>
+
+  <!-- 流程圖：資料 → 數字 → 二進位 → 儲存 -->
+  <div style='background:linear-gradient(135deg,#eff6ff,#faf5ff);border:1px solid #c7d2fe;border-radius:12px;padding:14px;margin-bottom:12px;'>
+    <div style='display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:6px;align-items:center;font-size:.78rem;'>
+      <div style='background:#fff;border:2px solid #3b82f6;border-radius:10px;padding:8px;text-align:center;'>
+        <div style='font-size:1.4rem;'>📝</div>
+        <div style='font-weight:700;color:#1e40af;margin-top:2px;'>你看到的資料</div>
+        <div style='color:#6b7280;font-size:.68rem;'>文字/圖片/聲音</div>
       </div>
-    </div>
-    <div class='layer-arrow'>↑ 互動</div>
-    <div class='layer layer-app'>
-      <div class='layer-num' style='background:#0d9488;color:#fff'>3</div>
-      <div>
-        <div class='layer-name'>應用程式（Application）</div>
-        <div class='layer-detail'>瀏覽器、LINE、遊戲等軟體，透過作業系統使用硬體功能。</div>
+      <div style='font-size:1.2rem;color:#8b5cf6;font-weight:700;'>→</div>
+      <div style='background:#fff;border:2px solid #22c55e;border-radius:10px;padding:8px;text-align:center;'>
+        <div style='font-size:1.4rem;'>🔤</div>
+        <div style='font-weight:700;color:#15803d;margin-top:2px;'>編碼成數字</div>
+        <div style='color:#6b7280;font-size:.68rem;'>ASCII / Unicode</div>
       </div>
-    </div>
-    <div class='layer-arrow'>↑ 呼叫</div>
-    <div class='layer layer-os'>
-      <div class='layer-num' style='background:#d97706;color:#fff'>2</div>
-      <div>
-        <div class='layer-name'>作業系統（OS）</div>
-        <div class='layer-detail'>Windows、macOS、Linux、Android，負責管理硬體資源並提供介面。</div>
+      <div style='font-size:1.2rem;color:#8b5cf6;font-weight:700;'>→</div>
+      <div style='background:#fff;border:2px solid #f59e0b;border-radius:10px;padding:8px;text-align:center;'>
+        <div style='font-size:1.4rem;'>0️⃣1️⃣</div>
+        <div style='font-weight:700;color:#b45309;margin-top:2px;'>轉成二進位</div>
+        <div style='color:#6b7280;font-size:.68rem;'>只有 0 和 1</div>
       </div>
-    </div>
-    <div class='layer-arrow'>↑ 管理</div>
-    <div class='layer layer-hw'>
-      <div class='layer-num' style='background:#dc2626;color:#fff'>1</div>
-      <div>
-        <div class='layer-name'>硬體（Hardware）</div>
-        <div class='layer-detail'>CPU、記憶體、硬碟、螢幕等實體元件，是所有運算的基礎。</div>
+      <div style='font-size:1.2rem;color:#8b5cf6;font-weight:700;'>→</div>
+      <div style='background:#fff;border:2px solid #ec4899;border-radius:10px;padding:8px;text-align:center;'>
+        <div style='font-size:1.4rem;'>💾</div>
+        <div style='font-weight:700;color:#be185d;margin-top:2px;'>存入硬體</div>
+        <div style='color:#6b7280;font-size:.68rem;'>記憶體/硬碟</div>
       </div>
     </div>
   </div>
-  <div class='tip-box' style='margin-top:8px'>💡 這四層架構讓同一款 App 可以在不同品牌的硬體上執行！</div>
+
+  <!-- 具體實例對照表 -->
+  <div style='font-size:.8rem;font-weight:700;color:#1E3A5F;margin-bottom:6px;'>💡 三個實例：一個字元完整走完這個流程</div>
+  <table class='info-table' style='font-size:.78rem;'>
+    <thead class='table-header'>
+      <tr>
+        <th style='width:14%;'>你打的字</th>
+        <th style='width:26%;'>編碼（Unicode）</th>
+        <th style='width:44%;'>存進電腦的樣子（二進位）</th>
+        <th style='width:16%;'>佔多少空間</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style='text-align:center;font-size:1.1rem;font-weight:700;'>A</td>
+        <td style='font-family:monospace;'>U+0041 (=十進位 65)</td>
+        <td style='font-family:monospace;font-size:.72rem;'>0100 0001</td>
+        <td style='text-align:center;color:#16a34a;font-weight:700;'>1 Byte</td>
+      </tr>
+      <tr class='tr-highlight'>
+        <td style='text-align:center;font-size:1.1rem;font-weight:700;'>好</td>
+        <td style='font-family:monospace;'>U+597D (=十進位 22909)</td>
+        <td style='font-family:monospace;font-size:.72rem;'>11100101 10100101 10111101</td>
+        <td style='text-align:center;color:#d97706;font-weight:700;'>3 Bytes</td>
+      </tr>
+      <tr>
+        <td style='text-align:center;font-size:1.1rem;'>😀</td>
+        <td style='font-family:monospace;'>U+1F600</td>
+        <td style='font-family:monospace;font-size:.72rem;'>11110000 10011111 10011000 10000000</td>
+        <td style='text-align:center;color:#dc2626;font-weight:700;'>4 Bytes</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class='tip-box' style='margin-top:10px;'>
+    💡 <strong>發現了嗎？</strong>中文比英文佔 3 倍空間、Emoji 佔 4 倍！這也是為什麼中文檔案通常比英文檔案「肥」。
+    <br>🔜 <strong>下一張</strong>要來學：<code>Byte</code>、<code>KB</code>、<code>MB</code>、<code>GB</code> 這些單位怎麼換算，以及電腦為什麼要用二進位。
+  </div>
 </div>"""
 },
 
 {
   'id': 6,
   'chapter': '第一章：數位語言基礎',
-  'title': '儲存單位與進位系統',
+  'title': '儲存單位 × 電腦為什麼只懂 0 和 1',
   'bg': 'white',
   'quiz': None, 'chart': None,
-  'video': {'type': 'search', 'query': '二進位 十六進位 電腦儲存 教學 動畫', 'title': '🔢 進位系統動畫解說', 'desc': '搜尋二進位與進位系統教學影片'},
+  'video': {'type': 'search', 'query': '二進位 電腦 為什麼 教學 動畫 中文', 'title': '🔢 電腦為什麼只懂 0 和 1？', 'desc': '搜尋二進位系統教學影片'},
   'html': """
 <div class='slide-inner'>
-  <h2 class='slide-title'>📦 儲存單位 × 進位系統</h2>
+  <h2 class='slide-title'>📦 儲存單位 × 為什麼電腦只懂 0 和 1</h2>
+
   <div class='card-grid-2' style='margin-bottom:12px'>
+    <!-- 左：儲存單位換算 -->
     <div>
       <div style='font-size:.8rem;font-weight:700;color:#1E3A5F;margin-bottom:8px'>📦 儲存單位換算</div>
       <div class='units-grid'>
         <div class='unit-row unit-small'><span class='unit-name'>1 bit（位元）</span><span class='unit-eq'>最小單位，0 或 1</span></div>
         <div class='unit-row unit-small'><span class='unit-name'>1 Byte（位元組）</span><span class='unit-eq'>= 8 bits</span></div>
-        <div class='unit-row'><span class='unit-name'>1 KB（千位元組）</span><span class='unit-eq'>= 1,024 Bytes</span></div>
-        <div class='unit-row'><span class='unit-name'>1 MB（百萬位元組）</span><span class='unit-eq'>= 1,024 KB</span></div>
-        <div class='unit-row'><span class='unit-name'>1 GB（十億位元組）</span><span class='unit-eq'>= 1,024 MB</span></div>
-        <div class='unit-row unit-large'><span class='unit-name'>1 TB（兆位元組）</span><span class='unit-eq'>= 1,024 GB</span></div>
+        <div class='unit-row'><span class='unit-name'>1 KB</span><span class='unit-eq'>= 1,024 Bytes</span></div>
+        <div class='unit-row'><span class='unit-name'>1 MB</span><span class='unit-eq'>= 1,024 KB</span></div>
+        <div class='unit-row'><span class='unit-name'>1 GB</span><span class='unit-eq'>= 1,024 MB</span></div>
+        <div class='unit-row unit-large'><span class='unit-name'>1 TB</span><span class='unit-eq'>= 1,024 GB</span></div>
       </div>
-    </div>
-    <div>
-      <div style='font-size:.8rem;font-weight:700;color:#1E3A5F;margin-bottom:8px'>🔢 進位系統比較</div>
-      <table class='info-table'>
-        <thead class='table-header'><tr><th>進位</th><th>使用符號</th><th>用途</th></tr></thead>
-        <tbody>
-          <tr><td><strong>2 進位</strong></td><td>0, 1</td><td>電腦底層語言</td></tr>
-          <tr class='tr-highlight'><td><strong>8 進位</strong></td><td>0–7</td><td>早期程式設計</td></tr>
-          <tr><td><strong>10 進位</strong></td><td>0–9</td><td>日常生活</td></tr>
-          <tr class='tr-highlight'><td><strong>16 進位</strong></td><td>0–9, A–F</td><td>顏色碼、記憶體位址</td></tr>
-        </tbody>
-      </table>
-      <div style='margin-top:8px;padding:8px 10px;background:#fffbeb;border-radius:8px;font-size:.78rem;color:#92400e'>
-        💡 一個英文字母 = 1 Byte<br>
+      <div style='margin-top:8px;padding:8px 10px;background:#fffbeb;border-radius:8px;font-size:.75rem;color:#92400e;line-height:1.5'>
+        💡 一封 LINE 訊息 ≈ 100 Bytes<br>
         一首 MP3 歌曲 ≈ 3–5 MB<br>
         一部 4K 電影 ≈ 50–100 GB
       </div>
     </div>
-  </div>
-  <div id='video-section-6' class='video-section'></div>
-</div>"""
-},
 
-{
-  'id': 7,
-  'chapter': '第一章：數位語言基礎',
-  'title': '電腦只懂 0 和 1',
-  'bg': 'navy',
-  'quiz': None, 'chart': None, 'video': None,
-  'html': """
-<div class='slide-inner'>
-  <h2 class='slide-title' style='color:#fff'>💡 數字系統與位元：電腦如何表達全世界？</h2>
-  <div style='display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px'>
+    <!-- 右：為什麼是 0 和 1 -->
     <div>
-      <div class='bit-demo'>
-        <div style='display:flex;gap:8px;justify-content:center;margin-bottom:14px'>
-          <div class='bit-box bit-off'>OFF = 0</div>
-          <div class='bit-box bit-on'>ON = 1</div>
-        </div>
-        <div style='text-align:center;color:rgba(255,255,255,.7);font-size:.8rem;margin-bottom:8px'>
-          1 bit → 8 bits = 1 Byte（256 種組合）
-        </div>
-        <div style='background:rgba(255,255,255,.08);border-radius:10px;padding:10px 12px;font-size:.78rem'>
-          <div style='color:#94a3b8;margin-bottom:6px'>英文字母 A：</div>
-          <div style='color:#5eead4;font-family:monospace;letter-spacing:2px;font-size:1rem'>01000001</div>
-          <div style='color:#94a3b8;margin-top:6px;margin-bottom:6px'>中文「好」：</div>
-          <div style='color:#fcd34d;font-family:monospace;font-size:.72rem'>11100101 10100101 10111101</div>
-          <div style='color:#94a3b8;font-size:.72rem;margin-top:4px'>英文 1 Byte，中文（UTF-8）3 Bytes</div>
-        </div>
+      <div style='font-size:.8rem;font-weight:700;color:#1E3A5F;margin-bottom:8px'>💡 為什麼電腦只用 0 和 1？</div>
+      <div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-size:.78rem;color:#374151;line-height:1.7;margin-bottom:8px'>
+        電腦裡到處都是<strong>電晶體</strong>，就像小小的開關 —<br>
+        <span style='display:inline-block;background:#fef2f2;color:#dc2626;padding:1px 8px;border-radius:6px;font-weight:700;'>OFF = 0</span>
+        <span style='display:inline-block;background:#f0fdf4;color:#16a34a;padding:1px 8px;border-radius:6px;font-weight:700;'>ON = 1</span><br>
+        只有兩種狀態 → 最不容易「認錯」 → 電腦超級可靠。<br>
+        8 個開關組合起來 = <strong>1 Byte</strong>，共 256 種變化，剛好可以表示一個英文字母。
       </div>
-    </div>
-    <div>
-      <div style='font-size:.82rem;font-weight:700;color:var(--gold);margin-bottom:10px'>🎨 顏色的數位表示</div>
-      <div style='background:rgba(255,255,255,.08);border-radius:10px;padding:14px;font-size:.8rem'>
-        <div style='display:flex;align-items:center;gap:12px;margin-bottom:10px'>
-          <div style='width:36px;height:36px;border-radius:8px;background:#E60023;flex-shrink:0'></div>
-          <div>
-            <div style='color:var(--gold);font-weight:700'>重點紅</div>
-            <div style='color:rgba(255,255,255,.6);font-size:.72rem'>#E60023</div>
-          </div>
-        </div>
-        <table style='width:100%;font-size:.75rem;color:rgba(255,255,255,.8)'>
-          <tr><td style='color:#94a3b8;padding:3px 0'>Hex（16進位）</td><td><code style='color:#fcd34d'>#E60023</code></td></tr>
-          <tr><td style='color:#94a3b8;padding:3px 0'>RGB（10進位）</td><td><code>R:230, G:0, B:35</code></td></tr>
-          <tr><td style='color:#94a3b8;padding:3px 0'>Binary（2進位）</td><td style='font-size:.68rem;font-family:monospace'>11100110 00000000 00100011</td></tr>
-        </table>
-      </div>
-      <div class='tip-box' style='margin-top:10px'>
-        🖥️ 螢幕上每個像素由 RGB 三色組成，各 0–255，共 24 位元 = 1,677 萬種顏色！
+      <div style='background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px 12px;font-size:.75rem;color:#1e3a8a;line-height:1.6'>
+        <div style='font-weight:700;color:#1e40af;margin-bottom:4px;'>🧠 生活對比：</div>
+        想像你要用手電筒傳暗號 —— 只有「亮/暗」兩種狀態，卻能拼出任何訊息（就像摩斯密碼）。電腦用 0 和 1 也是同樣道理，只是速度快了幾十億倍。
       </div>
     </div>
   </div>
+
+  <div class='tip-box'>
+    🔜 <strong>下一張</strong>會來實際看：一張照片、一首歌，是怎麼被拆成幾百萬個 0 和 1 存起來的。
+  </div>
+
+  <div id='video-section-6' class='video-section' style='margin-top:8px'></div>
 </div>"""
 },
-
 
 {
   'id': 8,
@@ -1355,48 +1346,83 @@ SLIDES = [
 {
   'id': 29,
   'chapter': '第三章：創作責任',
-  'title': '創用 CC 授權介紹（二）',
+  'title': '創用 CC 授權（二）：授權光譜 × 選擇指南',
   'bg': 'white',
   'quiz': None, 'chart': None, 'video': None,
   'html': """
 <div class='slide-inner'>
-  <h2 class='slide-title'>📋 創用 CC 授權介紹（二）：授權光譜</h2>
-  <p class='slide-desc'>從最開放到最嚴格的授權組合</p>
-  <div style='display:flex;flex-direction:column;gap:6px;margin-bottom:12px'>
-    <div style='background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:12px'>
-      <div style='font-size:.72rem;font-weight:700;color:#166534;min-width:80px'>CC0（公眾領域）</div>
-      <div style='flex:1;height:6px;border-radius:3px;background:linear-gradient(90deg,#22c55e,#f3f4f6);position:relative'>
-        <div style='position:absolute;left:0%;top:50%;transform:translateY(-50%);width:14px;height:14px;border-radius:50%;background:#22c55e;border:2px solid #fff;box-shadow:0 0 0 2px #22c55e'></div>
+  <h2 class='slide-title'>📋 CC 授權光譜 × 該怎麼選？</h2>
+
+  <div style='display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-bottom:10px'>
+    <!-- 左：授權光譜 + 比較表 -->
+    <div>
+      <div style='font-size:.78rem;font-weight:700;color:#1E3A5F;margin-bottom:6px'>從最開放到最嚴格</div>
+      <div style='display:flex;flex-direction:column;gap:4px;margin-bottom:8px;'>
+        <div style='background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:6px 10px;display:flex;align-items:center;gap:8px;'>
+          <div style='font-size:.7rem;font-weight:700;color:#166534;min-width:82px'>CC0</div>
+          <div style='font-size:.72rem;color:#15803d;flex:1;'>完全放棄著作權，任何人可自由使用</div>
+        </div>
+        <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:8px;padding:6px 10px;display:flex;align-items:center;gap:8px;'>
+          <div style='font-size:.7rem;font-weight:700;color:#1e40af;min-width:82px'>CC BY</div>
+          <div style='font-size:.72rem;color:#1e40af;flex:1;'>最寬鬆，僅需標示作者</div>
+        </div>
+        <div style='background:#faf5ff;border:1px solid #c4b5fd;border-radius:8px;padding:6px 10px;display:flex;align-items:center;gap:8px;'>
+          <div style='font-size:.7rem;font-weight:700;color:#7c3aed;min-width:82px'>CC BY-SA</div>
+          <div style='font-size:.72rem;color:#7c3aed;flex:1;'>需標示，衍生須同授權</div>
+        </div>
+        <div style='background:#fff7ed;border:1px solid #fdba74;border-radius:8px;padding:6px 10px;display:flex;align-items:center;gap:8px;'>
+          <div style='font-size:.7rem;font-weight:700;color:#ea580c;min-width:82px'>CC BY-NC</div>
+          <div style='font-size:.72rem;color:#ea580c;flex:1;'>需標示，禁止商業用途</div>
+        </div>
+        <div style='background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:6px 10px;display:flex;align-items:center;gap:8px;'>
+          <div style='font-size:.7rem;font-weight:700;color:#b91c1c;min-width:82px'>CC BY-ND</div>
+          <div style='font-size:.72rem;color:#b91c1c;flex:1;'>需標示，禁止改作</div>
+        </div>
+        <div style='background:#fff1f2;border:2px solid #f43f5e;border-radius:8px;padding:6px 10px;display:flex;align-items:center;gap:8px;'>
+          <div style='font-size:.7rem;font-weight:700;color:#be123c;min-width:82px'>CC BY-NC-ND</div>
+          <div style='font-size:.72rem;color:#be123c;flex:1;'>⚠️ 限制最多，禁止商用+改作</div>
+        </div>
       </div>
-      <div style='font-size:.75rem;color:#15803d;min-width:120px'>完全放棄著作權，任何人可自由使用</div>
+
+      <!-- 精華比較表 -->
+      <table class='info-table' style='font-size:.74rem;'>
+        <thead class='table-header'>
+          <tr><th>授權</th><th>可商用</th><th>可改作</th><th>需同授權</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CC BY</td><td class='td-center'>✅</td><td class='td-center'>✅</td><td class='td-center'>❌</td></tr>
+          <tr class='tr-highlight'><td>CC BY-SA</td><td class='td-center'>✅</td><td class='td-center'>✅</td><td class='td-center'>✅</td></tr>
+          <tr><td>CC BY-NC</td><td class='td-center'>❌</td><td class='td-center'>✅</td><td class='td-center'>❌</td></tr>
+          <tr class='tr-highlight'><td>CC BY-ND</td><td class='td-center'>✅</td><td class='td-center'>❌</td><td class='td-center'>—</td></tr>
+          <tr><td>CC BY-NC-ND</td><td class='td-center'>❌</td><td class='td-center'>❌</td><td class='td-center'>—</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:12px'>
-      <div style='font-size:.72rem;font-weight:700;color:#1e40af;min-width:80px'>CC BY</div>
-      <div style='flex:1;height:6px;border-radius:3px;background:linear-gradient(90deg,#f3f4f6,#3b82f6,#f3f4f6)'></div>
-      <div style='font-size:.75rem;color:#1e40af;min-width:120px'>最寬鬆，僅需標示作者</div>
-    </div>
-    <div style='background:#faf5ff;border:1px solid #c4b5fd;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:12px'>
-      <div style='font-size:.72rem;font-weight:700;color:#7c3aed;min-width:80px'>CC BY-SA</div>
-      <div style='flex:1;height:6px;border-radius:3px;background:#a78bfa'></div>
-      <div style='font-size:.75rem;color:#7c3aed;min-width:120px'>需標示，衍生須同授權</div>
-    </div>
-    <div style='background:#fff7ed;border:1px solid #fdba74;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:12px'>
-      <div style='font-size:.72rem;font-weight:700;color:#ea580c;min-width:80px'>CC BY-NC</div>
-      <div style='flex:1;height:6px;border-radius:3px;background:#fb923c'></div>
-      <div style='font-size:.75rem;color:#ea580c;min-width:120px'>需標示，禁止商業用途</div>
-    </div>
-    <div style='background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:12px'>
-      <div style='font-size:.72rem;font-weight:700;color:#b91c1c;min-width:80px'>CC BY-ND</div>
-      <div style='flex:1;height:6px;border-radius:3px;background:#f87171'></div>
-      <div style='font-size:.75rem;color:#b91c1c;min-width:120px'>需標示，禁止改作</div>
-    </div>
-    <div style='background:#fff1f2;border:2px solid #f43f5e;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:12px'>
-      <div style='font-size:.72rem;font-weight:700;color:#be123c;min-width:80px'>CC BY-NC-ND</div>
-      <div style='flex:1;height:6px;border-radius:3px;background:#f43f5e'></div>
-      <div style='font-size:.75rem;color:#be123c;min-width:120px'>⚠️ 限制最多，禁止商用+改作</div>
+
+    <!-- 右：三個選擇問題 -->
+    <div>
+      <div style='font-size:.78rem;font-weight:700;color:#1E3A5F;margin-bottom:6px'>🤔 選擇授權的 3 個問題</div>
+      <div style='display:flex;flex-direction:column;gap:6px'>
+        <div style='background:#eff6ff;border-radius:10px;padding:8px 10px;font-size:.78rem'>
+          <div style='font-weight:700;color:#1e40af;margin-bottom:2px'>❶ 允許他人商業使用嗎？</div>
+          <div style='color:#374151;font-size:.72rem;'>可以 → 不含 NC<br>不行 → 加 NC</div>
+        </div>
+        <div style='background:#f0fdf4;border-radius:10px;padding:8px 10px;font-size:.78rem'>
+          <div style='font-weight:700;color:#166534;margin-bottom:2px'>❷ 允許他人修改嗎？</div>
+          <div style='color:#374151;font-size:.72rem;'>可以 → 不含 ND<br>不行 → 加 ND</div>
+        </div>
+        <div style='background:#faf5ff;border-radius:10px;padding:8px 10px;font-size:.78rem'>
+          <div style='font-weight:700;color:#7c3aed;margin-bottom:2px'>❸ 衍生作品要同授權嗎？</div>
+          <div style='color:#374151;font-size:.72rem;'>是 → 加 SA<br>否 → 不加</div>
+        </div>
+        <div style='background:#fffbeb;border:1px dashed #f59e0b;border-radius:10px;padding:8px 10px;font-size:.72rem;color:#92400e;line-height:1.5;'>
+          🌐 Google 圖片可篩選 CC 授權：<br>圖片 → 工具 → 使用權
+        </div>
+      </div>
     </div>
   </div>
-  <div class='tip-box'>⚠️ <strong>重點提醒</strong>：授權一旦釋出即<strong>無法撤回</strong>，選擇前請審慎考量創作用途與分享目的。</div>
+
+  <div class='tip-box'>⚠️ 授權一旦釋出<strong>無法撤回</strong>！選擇前請想清楚。</div>
 </div>"""
 },
 
@@ -1504,53 +1530,6 @@ SLIDES = [
 </div>"""
 },
 
-
-{
-  'id': 32,
-  'chapter': '第三章：創作責任',
-  'title': '創用 CC 授權介紹（三）',
-  'bg': 'white',
-  'quiz': None, 'chart': None, 'video': None,
-  'html': """
-<div class='slide-inner'>
-  <h2 class='slide-title'>📋 創用 CC 授權介紹（三）：選擇授權</h2>
-  <div style='display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px'>
-    <div>
-      <div style='font-size:.8rem;font-weight:700;color:#1E3A5F;margin-bottom:8px'>不同授權限制比較</div>
-      <table class='info-table'>
-        <thead class='table-header'>
-          <tr><th>授權</th><th>可商用</th><th>可改作</th><th>需同授權</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>CC BY</td><td class='td-center'>✅</td><td class='td-center'>✅</td><td class='td-center'>❌</td></tr>
-          <tr class='tr-highlight'><td>CC BY-SA</td><td class='td-center'>✅</td><td class='td-center'>✅</td><td class='td-center'>✅</td></tr>
-          <tr><td>CC BY-NC</td><td class='td-center'>❌</td><td class='td-center'>✅</td><td class='td-center'>❌</td></tr>
-          <tr class='tr-highlight'><td>CC BY-ND</td><td class='td-center'>✅</td><td class='td-center'>❌</td><td class='td-center'>—</td></tr>
-          <tr><td>CC BY-NC-ND</td><td class='td-center'>❌</td><td class='td-center'>❌</td><td class='td-center'>—</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div>
-      <div style='font-size:.8rem;font-weight:700;color:#1E3A5F;margin-bottom:8px'>選擇授權的關鍵問題</div>
-      <div style='display:flex;flex-direction:column;gap:8px'>
-        <div style='background:#eff6ff;border-radius:10px;padding:10px 12px;font-size:.8rem'>
-          <div style='font-weight:700;color:#1e40af;margin-bottom:4px'>❓ 你允許他人商業使用嗎？</div>
-          <div style='color:#374151'>有 → 不含 NC；否 → 加 NC</div>
-        </div>
-        <div style='background:#f0fdf4;border-radius:10px;padding:10px 12px;font-size:.8rem'>
-          <div style='font-weight:700;color:#166534;margin-bottom:4px'>❓ 你允許他人修改作品嗎？</div>
-          <div style='color:#374151'>有 → 不含 ND；否 → 加 ND</div>
-        </div>
-        <div style='background:#faf5ff;border-radius:10px;padding:10px 12px;font-size:.8rem'>
-          <div style='font-weight:700;color:#7c3aed;margin-bottom:4px'>❓ 你要求衍生作品同授權嗎？</div>
-          <div style='color:#374151'>有 → 加 SA；否 → 不含 SA</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class='tip-box'>🌐 查詢/搜尋授權圖片：Google 圖片 → 工具 → 使用權 → 創用 CC 授權</div>
-</div>"""
-},
 
 {
   'id': 33,

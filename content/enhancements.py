@@ -296,7 +296,7 @@ _ch02 = {
             "所以中文檔案比英文檔案佔更多空間。"
         ),
     },
-    6: {  # 儲存單位與進位系統
+    6: {  # 儲存單位 × 為什麼電腦只懂 0 和 1（合併原 slide 6 + slide 7 的互動）
         'video': _vid_search('二進位 十六進位 轉換 教學 中文 動畫',
                              '▶ 二進位、十六進位怎麼算？',
                              '5 分鐘搞懂進位系統'),
@@ -308,11 +308,8 @@ _ch02 = {
              "一份 Word 報告（約 200 KB）"],
             2,
             "1 GB ≈ 1,024 MB。影片是最大宗——這也是為什麼手機容量常常不夠用。"
-        ),
-    },
-    7: {  # 電腦只懂 0 和 1
-        'html_append': _reveal(
-            "8 位元的二進位數 1010 1010 換算成十進位是多少？",
+        ) + _reveal(
+            "動動腦：8 位元的二進位數 1010 1010 換算成十進位是多少？",
             "從右邊起，位元權重是 1, 2, 4, 8, 16, 32, 64, 128",
             "1010 1010 = 128 + 32 + 8 + 2 = <strong>170</strong>。"
             "電腦裡所有資料（文字、圖片、音樂）最終都被拆成這樣的 0/1 序列。"
@@ -370,6 +367,25 @@ _ch02 = {
                 ('🎨', '2025 主流工具', '影片、3D、可控細節', '#16a34a'),
                 ('🚀', '2026', '即時對話式生成、可編輯', '#8b5cf6'),
             )
+        ) + _life('其實你每天都在用 AI',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<p style='margin:0 0 8px;'>AI 早就不只是 ChatGPT！你打開的這些 App 也在偷偷用 AI：</p>"
+            "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;'>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #ec4899;'>"
+            "<p style='font-weight:700;color:#be185d;margin:0 0 3px;'>📱 CapCut / 剪映</p>"
+            "<p style='margin:0;font-size:.75rem;'>自動去背景、AI 上字幕、一鍵美顏，都是 AI 在幕後跑</p></div>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #f59e0b;'>"
+            "<p style='font-weight:700;color:#b45309;margin:0 0 3px;'>🎵 Suno AI</p>"
+            "<p style='margin:0;font-size:.75rem;'>打一句話 → 5 分鐘產出一整首歌（含歌詞、旋律、演唱）</p></div>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #8b5cf6;'>"
+            "<p style='font-weight:700;color:#6d28d9;margin:0 0 3px;'>📸 IG / Snapchat 濾鏡</p>"
+            "<p style='margin:0;font-size:.75rem;'>把你臉變成小狗、變年輕變老，都是 AI 臉部辨識</p></div>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #16a34a;'>"
+            "<p style='font-weight:700;color:#15803d;margin:0 0 3px;'>🔐 iPhone Face ID</p>"
+            "<p style='margin:0;font-size:.75rem;'>用臉解鎖手機，也是 AI 神經網路即時比對</p></div>"
+            "</div>"
+            "<p style='margin:10px 0 0;color:#dc2626;font-weight:600;font-size:.78rem;'>💡 想試試 AI 做音樂？打開 <a href='https://suno.com/' target='_blank' style='color:#dc2626;'>suno.com</a>，免費註冊，一節課能做出 5 首歌！</p>"
+            "</div>"
         ),
     },
     16: {  # AI 擴散模型原理
@@ -383,11 +399,22 @@ _ch02 = {
         ),
     },
     18: {  # AI 模型作品比較
-        'html_append': _ref('主流 AI 生圖平台試用連結', [
+        'html_append': _quiz_click(
+            "🕵️ AI 圖片猜謎：下列哪一項「最常出現」在 AI 生成的圖片中，可以幫你辨識真偽？",
+            ["手指數量不對（6 隻手指、融在一起）",
+             "光影方向完全一致、非常自然",
+             "頭髮絲根根分明、非常寫實",
+             "背景每個字都清楚正確"],
+            0,
+            "AI 目前最不擅長：① 手指細節（常出現多指/融合）② 文字（招牌、書本上的字常變亂碼）"
+            "③ 對稱性（耳環、眼鏡兩邊不對稱）④ 反射細節（鏡子、水面）。下次看到懷疑是 AI 的圖，"
+            "先看手和文字最容易找破綻！"
+        ) + _ref('主流 AI 生圖平台試用連結（可讓學生實作比較）', [
             ('🎨', 'Microsoft Designer（免費）', 'https://designer.microsoft.com/', '無需付費、支援中文'),
             ('🖌️', 'Adobe Firefly（免費額度）', 'https://firefly.adobe.com/', '訓練資料為授權素材、商用較安全'),
             ('🌈', 'Bing Image Creator（免費）', 'https://www.bing.com/create', 'DALL·E 3 引擎、中文提示可用'),
             ('🖼️', 'Google ImageFX（免費）', 'https://labs.google/fx/tools/image-fx', 'Google Imagen 引擎'),
+            ('🎵', 'Suno AI（音樂生成）', 'https://suno.com/', '免費一天 10 首歌'),
         ]),
     },
     20: {  # AI 幻覺
