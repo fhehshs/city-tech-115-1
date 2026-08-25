@@ -432,6 +432,16 @@ _ch02 = {
             "</div>"
         ),
     },
+    21: {  # AI Agent 介紹（新增：李宏毅老師講座）
+        # ✅ 已驗證：台大李宏毅老師「一堂課搞懂 AI Agent 的原理」(2025)
+        'video': _vid_both(
+            'M2Yg1kwPpts',
+            'AI Agent 是什麼 原理 教學 中文',
+            '一堂課搞懂 AI Agent 的原理（台大李宏毅，2025）',
+            desc='想看更多 AI Agent 介紹？',
+            search_title='▶ 更多 AI Agent 中文教學',
+        ),
+    },
     22: {  # AI 正在改變哪些職業
         'html_append': _data('AI 對台灣職場的影響（2025 世界經濟論壇）',
             _mini_cards(
