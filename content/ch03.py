@@ -758,11 +758,11 @@ SLIDES = [
           </tr>
         </thead>
         <tbody>
-          <tr><td style='padding:5px 6px;'>任務完成度（三個任務）</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>60</td></tr>
+          <tr><td style='padding:5px 6px;'>任務完成度</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>60</td></tr>
           <tr><td style='padding:5px 6px;'>內容深度與正確性</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>15</td></tr>
           <tr><td style='padding:5px 6px;'>簡報美觀與邏輯</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>10</td></tr>
           <tr><td style='padding:5px 6px;'>組員分工合作</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>10</td></tr>
-         """ <tr><td style='padding:5px 6px;'>挑戰任務（加分）</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#a7f3d0;'>+5</td></tr>"""
+         
         </tbody>
       </table>
     </div>
