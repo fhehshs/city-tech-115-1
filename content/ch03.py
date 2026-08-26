@@ -714,7 +714,7 @@ SLIDES = [
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;'>
   <!-- 左：三難度任務 -->
   <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:12px;'>
-    <h3 style='color:#fff;font-size:.95rem;margin-bottom:10px;'>📋 任務清單（選 3 個）</h3>
+    <h3 style='color:#fff;font-size:.95rem;margin-bottom:10px;'>📋 任務清單</h3>
 
     <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:10px 12px;border-radius:6px;margin-bottom:6px;'>
       <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>🟢 必選 · 個資自我稽查</p>
@@ -735,7 +735,7 @@ SLIDES = [
       <p style='color:#dbeafe;font-size:.72rem;margin:0;'>用 <strong>bitwarden.com/password-strength</strong> 測 5 組不同強度密碼，做出對照表。</p>
     </div>
 
-    <p style='color:#fbcfe8;font-size:.72rem;margin:8px 0 4px;font-weight:700;'>🟣 挑戰任務（選 1，加分）：</p>
+    <p style='color:#fbcfe8;font-size:.72rem;margin:8px 0 4px;font-weight:700;'>🟣 挑戰任務（選 1）：</p>
     <div style='background:rgba(168,85,247,0.25);border-left:3px solid #d8b4fe;padding:8px 10px;border-radius:6px;margin-bottom:4px;'>
       <p style='color:#fff;font-weight:700;font-size:.8rem;margin:0 0 2px;'>🎬 D. 資安短片</p>
       <p style='color:#f3e8ff;font-size:.72rem;margin:0;'>拍一支 30-60 秒短片（IG Reels 格式），教家人辨識<strong>一種</strong>常見詐騙（假網拍、假客服、假中獎…）。</p>
@@ -762,7 +762,7 @@ SLIDES = [
           <tr><td style='padding:5px 6px;'>內容深度與正確性</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>15</td></tr>
           <tr><td style='padding:5px 6px;'>簡報美觀與邏輯</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>10</td></tr>
           <tr><td style='padding:5px 6px;'>組員分工合作</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>10</td></tr>
-          <tr><td style='padding:5px 6px;'>挑戰任務（加分）</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#a7f3d0;'>+5</td></tr>
+         """ <tr><td style='padding:5px 6px;'>挑戰任務（加分）</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#a7f3d0;'>+5</td></tr>"""
         </tbody>
       </table>
     </div>
@@ -770,18 +770,17 @@ SLIDES = [
     <div style='background:rgba(255,255,255,0.12);padding:12px;border-radius:10px;margin-bottom:8px;'>
       <p style='color:#fff;font-size:.85rem;font-weight:700;margin:0 0 4px;'>📑 繳交格式</p>
       <p style='color:#cffafe;font-size:.78rem;margin:0;line-height:1.5;'>
-        Google 簡報 <strong>8-12 頁</strong>：<br>
-        ① 封面（組員名） ② 每個任務一頁以上（含截圖）<br>
-        ③ 心得反思一頁 ④ 資料來源
+         簡報 <strong></strong>：<br>
+        ① 封面（組員名） ② 每個任務一頁以上 <br>
+        ③ 個人心得反思   ④ 資料來源
       </p>
     </div>
 
     <div style='background:rgba(255,255,255,0.12);padding:12px;border-radius:10px;'>
       <p style='color:#fff;font-size:.85rem;font-weight:700;margin:0 0 4px;'>🗓️ 時程</p>
       <p style='color:#cffafe;font-size:.78rem;margin:0;line-height:1.5;'>
-        第 1 節：分組討論、選任務、開始執行<br>
-        第 2 節：完成報告、每組 3 分鐘簡短分享<br>
-        <strong>繳交</strong>：上傳 Google Classroom
+        <br>
+        <strong>繳交</strong>：下周上課前完成，並上台分享
       </p>
     </div>
   </div>
