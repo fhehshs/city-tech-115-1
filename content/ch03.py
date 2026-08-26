@@ -708,38 +708,81 @@ SLIDES = [
         'id': 23, 'chapter': '分組實作', 'title': '分組實作：個資保護行動計畫',
         'bg': 'teal', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>🛡️ 分組實作：個資保護行動計畫</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div style='background:rgba(255,255,255,0.15);padding:18px;border-radius:12px;'>
-    <h3 style='color:#fff;font-size:1rem;margin-bottom:14px;'>📋 實作任務</h3>
-    <div style='display:flex;flex-direction:column;gap:10px;'>
-      <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務一：個資稽查</p>
-        <p style='color:#cffafe;font-size:.8rem;margin:0;'>列出你曾在哪些網站/App 填寫個人資料，評估哪些有過度蒐集的問題</p>
-      </div>
-      <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務二：密碼安全評估</p>
-        <p style='color:#cffafe;font-size:.8rem;margin:0;'>使用 haveibeenpwned.com 查詢班級同學（自願者）email 是否外洩</p>
-      </div>
-      <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務三：假訊息偵測</p>
-        <p style='color:#cffafe;font-size:.8rem;margin:0;'>選取 3 則 LINE 群組訊息，用事實查核方法驗證真偽，記錄過程</p>
-      </div>
+<h2 style='font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:14px;text-align:center;'>🛡️ 分組實作：個資保護行動計畫</h2>
+<p style='color:#cffafe;text-align:center;font-size:.9rem;margin-bottom:14px;'>4-5 人一組，選 <strong>必選 1 + 進階/挑戰任意 2</strong> 共 3 個任務完成</p>
+
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;'>
+  <!-- 左：三難度任務 -->
+  <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:12px;'>
+    <h3 style='color:#fff;font-size:.95rem;margin-bottom:10px;'>📋 任務清單（選 3 個）</h3>
+
+    <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:10px 12px;border-radius:6px;margin-bottom:6px;'>
+      <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>🟢 必選 · 個資自我稽查</p>
+      <p style='color:#dcfce7;font-size:.75rem;margin:0;line-height:1.5;'>列 5 個你最常用的 App/網站，記錄它們蒐集了哪些個資、有沒有過度蒐集。並到 <strong>haveibeenpwned.com</strong> 查你的 email 有沒有外洩。</p>
+    </div>
+
+    <p style='color:#fde68a;font-size:.72rem;margin:8px 0 4px;font-weight:700;'>🔵 進階任務（選 1）：</p>
+    <div style='background:rgba(59,130,246,0.25);border-left:3px solid #93c5fd;padding:8px 10px;border-radius:6px;margin-bottom:4px;'>
+      <p style='color:#fff;font-weight:700;font-size:.8rem;margin:0 0 2px;'>📱 A. 假訊息獵人</p>
+      <p style='color:#dbeafe;font-size:.72rem;margin:0;'>選 3 則 LINE 群組/IG 轉發訊息，用「台灣事實查核中心」等工具驗證真偽並記錄。</p>
+    </div>
+    <div style='background:rgba(59,130,246,0.25);border-left:3px solid #93c5fd;padding:8px 10px;border-radius:6px;margin-bottom:4px;'>
+      <p style='color:#fff;font-weight:700;font-size:.8rem;margin:0 0 2px;'>🎣 B. 釣魚郵件標本</p>
+      <p style='color:#dbeafe;font-size:.72rem;margin:0;'>蒐集 2 封釣魚 email（垃圾信匣找）截圖，標示 5 個可疑點（寄件人、連結、錯字…）。</p>
+    </div>
+    <div style='background:rgba(59,130,246,0.25);border-left:3px solid #93c5fd;padding:8px 10px;border-radius:6px;margin-bottom:8px;'>
+      <p style='color:#fff;font-weight:700;font-size:.8rem;margin:0 0 2px;'>🔐 C. 密碼健檢報告</p>
+      <p style='color:#dbeafe;font-size:.72rem;margin:0;'>用 <strong>bitwarden.com/password-strength</strong> 測 5 組不同強度密碼，做出對照表。</p>
+    </div>
+
+    <p style='color:#fbcfe8;font-size:.72rem;margin:8px 0 4px;font-weight:700;'>🟣 挑戰任務（選 1，加分）：</p>
+    <div style='background:rgba(168,85,247,0.25);border-left:3px solid #d8b4fe;padding:8px 10px;border-radius:6px;margin-bottom:4px;'>
+      <p style='color:#fff;font-weight:700;font-size:.8rem;margin:0 0 2px;'>🎬 D. 資安短片</p>
+      <p style='color:#f3e8ff;font-size:.72rem;margin:0;'>拍一支 30-60 秒短片（IG Reels 格式），教家人辨識<strong>一種</strong>常見詐騙（假網拍、假客服、假中獎…）。</p>
+    </div>
+    <div style='background:rgba(168,85,247,0.25);border-left:3px solid #d8b4fe;padding:8px 10px;border-radius:6px;'>
+      <p style='color:#fff;font-weight:700;font-size:.8rem;margin:0 0 2px;'>👵 E. 跨代教學</p>
+      <p style='color:#f3e8ff;font-size:.72rem;margin:0;'>幫家中長輩上 5 分鐘資安小課（如「LINE 詐騙常見手法」），錄影 or 拍紀錄照上傳。</p>
     </div>
   </div>
+
+  <!-- 右：評分規準 + 繳交方式 -->
   <div>
-    <div style='background:rgba(255,255,255,0.15);padding:15px;border-radius:12px;margin-bottom:12px;'>
-      <h3 style='color:#fff;font-size:1rem;margin-bottom:10px;'>📊 報告格式</h3>
-      <ul style='color:#cffafe;font-size:.85rem;padding-left:16px;'>
-        <li>個資蒐集清單（截圖）</li>
-        <li>密碼安全評估報告</li>
-        <li>假訊息查核過程紀錄</li>
-        <li>個人/小組的改善計畫</li>
-      </ul>
+    <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:12px;margin-bottom:10px;'>
+      <h3 style='color:#fff;font-size:.95rem;margin-bottom:8px;'>📊 評分規準（100 分）</h3>
+      <table style='width:100%;font-size:.75rem;color:#e0f7fa;border-collapse:collapse;'>
+        <thead>
+          <tr style='background:rgba(255,255,255,0.15);'>
+            <th style='padding:5px 6px;text-align:left;'>項目</th>
+            <th style='padding:5px 6px;text-align:center;'>配分</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style='padding:5px 6px;'>任務完成度（三個任務）</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>60</td></tr>
+          <tr><td style='padding:5px 6px;'>內容深度與正確性</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>15</td></tr>
+          <tr><td style='padding:5px 6px;'>簡報美觀與邏輯</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>10</td></tr>
+          <tr><td style='padding:5px 6px;'>組員分工合作</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>10</td></tr>
+          <tr><td style='padding:5px 6px;'>挑戰任務（加分）</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#a7f3d0;'>+5</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:8px;'>
-      <p style='color:#fff;font-size:.85rem;font-weight:700;margin-bottom:4px;'>🗓️ 繳交方式</p>
-      <p style='color:#cffafe;font-size:.82rem;margin:0;'>Google 簡報（每組 6 頁以上）上傳至 Google Classroom</p>
+
+    <div style='background:rgba(255,255,255,0.12);padding:12px;border-radius:10px;margin-bottom:8px;'>
+      <p style='color:#fff;font-size:.85rem;font-weight:700;margin:0 0 4px;'>📑 繳交格式</p>
+      <p style='color:#cffafe;font-size:.78rem;margin:0;line-height:1.5;'>
+        Google 簡報 <strong>8-12 頁</strong>：<br>
+        ① 封面（組員名） ② 每個任務一頁以上（含截圖）<br>
+        ③ 心得反思一頁 ④ 資料來源
+      </p>
+    </div>
+
+    <div style='background:rgba(255,255,255,0.12);padding:12px;border-radius:10px;'>
+      <p style='color:#fff;font-size:.85rem;font-weight:700;margin:0 0 4px;'>🗓️ 時程</p>
+      <p style='color:#cffafe;font-size:.78rem;margin:0;line-height:1.5;'>
+        第 1 節：分組討論、選任務、開始執行<br>
+        第 2 節：完成報告、每組 3 分鐘簡短分享<br>
+        <strong>繳交</strong>：上傳 Google Classroom
+      </p>
     </div>
   </div>
 </div>"""

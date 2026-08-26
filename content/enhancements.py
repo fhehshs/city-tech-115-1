@@ -511,6 +511,21 @@ _ch02 = {
 # ── Ch03：個人資料保護與資訊倫理 ────────────────────────────────────────────
 
 _ch03 = {
+    2: {  # 什麼是個人資料（新增：快問快答互動 + 個資法二分類）
+        'html_append': _quiz_click(
+            "🕵️ 快問快答：以下哪一項「不是」台灣個資法保護的個人資料？",
+            ["身分證字號",
+             "血型與健康紀錄",
+             "IG 帳號的公開昵稱",
+             "生日、電話、地址"],
+            2,
+            "個資法只保護「可識別特定個人」且「非任意公開」的資料。"
+            "IG 公開昵稱是你自己公開的，通常不受個資法特別保護。"
+            "另補充：台灣個資法把個資分兩類 —— "
+            "① <strong>一般個資</strong>（姓名、電話、地址、學經歷）; "
+            "② <strong>特種個資</strong>（病歷、犯罪紀錄、生物特徵等，保護更嚴格）。"
+        ),
+    },
     3: {  # Cookie 是什麼
         'video': _vid_search('Cookie 瀏覽器 是什麼 追蹤 隱私 教學', '▶ Cookie 如何追蹤你？', '了解 Cookie 是怎麼記錄你的行為'),
         'html_append': _life('你每天被追蹤幾次？',
@@ -547,20 +562,64 @@ _ch03 = {
             "<p style='font-size:.75rem;color:#374151;margin:8px 0 0;'>來源：IBM Cost of a Data Breach Report 2024</p>"
         ),
     },
-    13: {  # 常見資安攻擊
-        'video': _vid_search('釣魚攻擊 社交工程 資安 詐騙 教學 辨識', '▶ 釣魚攻擊真實案例解析', '學會辨識常見的社交工程攻擊手法'),
-    },
-    14: {  # 深偽技術
-        'video': _vid_search('Deepfake 深偽技術 如何運作 危害 AI 換臉', '▶ Deepfake 如何以假亂真？', '了解 AI 深偽技術的原理與風險'),
-        'html_append': _life('身邊的 Deepfake 案例',
+    8: {  # 台灣個資法（新增：2023 個資會成立）
+        'html_append': _innov('2023 台灣個資法大更新',
             "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
-            "<div style='background:#fef2f2;padding:10px;border-radius:8px;margin-bottom:8px;border-left:3px solid #ef4444;'>"
-            "<p style='font-weight:700;color:#dc2626;margin:0 0 4px;'>🚨 2024 台灣真實案例</p>"
-            "<p style='margin:0;'>以「知名主播林某某」Deepfake 影片詐騙，受害者以為是真人推薦投資，損失逾 <strong>3,000 萬元</strong></p></div>"
-            "<div style='background:#fef9c3;padding:10px;border-radius:8px;border-left:3px solid #f59e0b;'>"
-            "<p style='font-weight:700;color:#92400e;margin:0 0 4px;'>🛡️ 如何辨識</p>"
-            "<p style='margin:0;'>注意眨眼頻率異常、嘴型對不上聲音、背景模糊邊緣，使用 Deepware Scanner 工具檢測</p></div>"
+            "<p style='margin:0 0 6px;'>🏛️ <strong>個人資料保護委員會（PDPC）</strong>於 2023 年正式成立，是台灣第一個專責個資的政府機關。</p>"
+            "<p style='margin:0 0 6px;color:#dc2626;'>💰 <strong>罰則加重</strong>：企業違法蒐集使用個資，最高可罰 <strong>1,500 萬元</strong>（原本只罰 20 萬）</p>"
+            "<p style='margin:0;'>📌 例如 2023 年 iRent、和泰車聯網外洩 40 萬筆個資，被處以高額罰款並要求改善。</p>"
             "</div>"
+        ),
+    },
+    13: {  # 常見資安攻擊（新增：釣魚 email 辨識練習題）
+        'video': _vid_search('釣魚攻擊 社交工程 資安 詐騙 教學 辨識', '▶ 釣魚攻擊真實案例解析', '學會辨識常見的社交工程攻擊手法'),
+        'html_append': _quiz_click(
+            "🎣 這封 email 有 4 個釣魚特徵，哪個「最明顯」是詐騙？<br>"
+            "<span style='display:block;background:#f8fafc;border:1px solid #cbd5e1;padding:8px 10px;border-radius:6px;margin-top:6px;font-size:.75rem;'>"
+            "<strong>寄件人</strong>：service@apple-support-tw.help<br>"
+            "<strong>主旨</strong>：您的 Apple ID 帳號已被鎖定！請立即驗證<br>"
+            "<strong>內文</strong>：親愛的用戶您好，請於 24 小時內點擊下方連結重新驗證，逾期帳號將永久停用。"
+            "</span>",
+            ["主旨用「立即」「驗證」等急迫用語",
+             "寄件人網域 apple-support-tw.help 不是 apple.com",
+             "威脅「逾期帳號將停用」製造恐懼",
+             "以上都是釣魚特徵"],
+            3,
+            "🎯 釣魚 email 四大特徵全都命中：<br>"
+            "① 假冒官方網域（真正 Apple 是 @apple.com）<br>"
+            "② 製造急迫感（24 小時內）<br>"
+            "③ 威脅性語氣（帳號停用）<br>"
+            "④ 引誘點擊未知連結<br>"
+            "🛡️ 收到疑似 email → 直接開瀏覽器打官方網址檢查，別點信裡連結！"
+        ),
+    },
+    14: {  # 深偽技術（更新：2025 韓國校園 Deepfake 事件）
+        'video': _vid_search('Deepfake 深偽技術 如何運作 危害 AI 換臉', '▶ Deepfake 如何以假亂真？', '了解 AI 深偽技術的原理與風險'),
+        'html_append': _life('身邊的 Deepfake 案例（2024-2025 更新）',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<div style='background:#fef2f2;padding:10px;border-radius:8px;margin-bottom:6px;border-left:3px solid #ef4444;'>"
+            "<p style='font-weight:700;color:#dc2626;margin:0 0 4px;'>🚨 2024 台灣主播 Deepfake 詐騙</p>"
+            "<p style='margin:0;'>以「知名主播」Deepfake 影片推薦假投資平台，多名受害者共損失逾 <strong>3,000 萬元</strong></p></div>"
+            "<div style='background:#fff1f2;padding:10px;border-radius:8px;margin-bottom:6px;border-left:3px solid #f43f5e;'>"
+            "<p style='font-weight:700;color:#be123c;margin:0 0 4px;'>😢 2024 韓國校園 Deepfake 事件</p>"
+            "<p style='margin:0;'>加害者將女學生照片合成裸照散布在 Telegram 群組，"
+            "受害者遍布數百所學校，震驚全球。多國隨後修法將「製作/散布 Deepfake 猥褻圖」入罪。</p></div>"
+            "<div style='background:#fef9c3;padding:10px;border-radius:8px;border-left:3px solid #f59e0b;'>"
+            "<p style='font-weight:700;color:#92400e;margin:0 0 4px;'>🛡️ 高中生自保 3 招</p>"
+            "<p style='margin:0;'>① IG/FB 少放正面清晰照 → 用側臉/背影更安全<br>"
+            "② 遇到疑似 Deepfake 立即截圖存證，告訴家人與老師<br>"
+            "③ 台灣 2023 已修《性侵害犯罪防治法》，散布性 Deepfake 最重判 5 年</p></div>"
+            "</div>"
+        ) + _quiz_click(
+            "🕵️ 你看到一支「同學說爆料某位老師」的影片在 IG 瘋傳，怎麼做最正確？",
+            ["立刻轉發給同學說「這超扯」",
+             "先不轉發，找兩個以上獨立來源查證",
+             "留言批評影片裡的人",
+             "封鎖傳給你影片的人"],
+            1,
+            "📌 面對可疑影片，第一動作永遠是 <strong>停 → 查 → 不轉</strong>。"
+            "Deepfake 現在幾分鐘就能做出以假亂真的內容，"
+            "轉發等於幫忙散布假訊息，可能觸犯《社會秩序維護法》妨害名譽。"
         ),
     },
     19: {  # AI 與倫理
@@ -569,6 +628,21 @@ _ch03 = {
             "<p style='margin:0 0 6px;'>🇪🇺 <strong>EU AI Act（2024）</strong>：全球首部 AI 法規，要求 AI 系統標示、禁止操控性 AI</p>"
             "<p style='margin:0 0 6px;'>🇹🇼 <strong>台灣 AI 基本法（2025 草案）</strong>：規範 AI 生成內容需標示、保護勞工不被 AI 取代</p>"
             "<p style='margin:0;'>🤖 <strong>你的作業</strong>：使用 AI 寫報告要標示「AI 輔助」，未來可能成為學術誠信的基本要求</p>"
+            "</div>"
+        ) + _life('AI 對高中生的 3 個直接影響',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #3b82f6;margin-bottom:6px;'>"
+            "<p style='font-weight:700;color:#1e40af;margin:0 0 3px;'>📝 用 AI 寫作業會被抓嗎？</p>"
+            "<p style='margin:0;font-size:.78rem;'>會！GPTZero、Turnitin AI 偵測器準確率 80%+。"
+            "台大、政大等已明訂：完全用 AI 生成的作業視同抄襲，可能被記過。</p></div>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #ef4444;margin-bottom:6px;'>"
+            "<p style='font-weight:700;color:#dc2626;margin:0 0 3px;'>🎭 你的照片可能被拿去做 Deepfake</p>"
+            "<p style='margin:0;font-size:.78rem;'>公開的 IG 照片可能被抓來訓練 AI 或做深偽。建議 IG 帳號設「不公開」、"
+            "少放正面清晰照。</p></div>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #16a34a;'>"
+            "<p style='font-weight:700;color:#15803d;margin:0 0 3px;'>🎓 未來大學/職場都要會用 AI</p>"
+            "<p style='margin:0;font-size:.78rem;'>2025 起 104 人力銀行熱門職缺 6 成要求「熟 AI 工具」。"
+            "會用 AI 不是加分而是基本，重點是要有能力判斷 AI 是否正確。</p></div>"
             "</div>"
         ),
     },
