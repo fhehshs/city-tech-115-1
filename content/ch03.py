@@ -772,7 +772,7 @@ SLIDES = [
       <p style='color:#cffafe;font-size:.78rem;margin:0;line-height:1.5;'>
          簡報 <strong></strong>：<br>
         ① 封面（組員名） ② 每個任務一頁以上 <br>
-        ③ 個人心得反思   ④ 資料來源
+        ③ 個人心得反思 ④ 資料來源
       </p>
     </div>
 
@@ -780,7 +780,7 @@ SLIDES = [
       <p style='color:#fff;font-size:.85rem;font-weight:700;margin:0 0 4px;'>🗓️ 時程</p>
       <p style='color:#cffafe;font-size:.78rem;margin:0;line-height:1.5;'>
         <br>
-        <strong>繳交</strong>：下周上課前完成，並上台分享
+        <strong>繳交</strong>：下週上課前完成，並全組上台分享
       </p>
     </div>
   </div>
