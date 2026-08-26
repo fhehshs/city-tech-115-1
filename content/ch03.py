@@ -709,38 +709,38 @@ SLIDES = [
         'bg': 'teal', 'quiz': None, 'chart': None, 'video': None,
         'html': """
 <h2 style='font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:14px;text-align:center;'>🛡️ 分組實作：個資保護行動計畫</h2>
-<p style='color:#cffafe;text-align:center;font-size:.9rem;margin-bottom:14px;'>4-5 人一組，選 <strong>必選 1 + 進階/挑戰任意 2</strong> 共 3 個任務完成</p>
+<p style='color:#cffafe;text-align:center;font-size:.9rem;margin-bottom:14px;'>4 人一組，選 <strong>必選 1 + 進階/挑戰任意 2</strong> 共 3 個任務完成</p>
 
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;'>
   <!-- 左：三難度任務 -->
   <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:12px;'>
     <h3 style='color:#fff;font-size:.95rem;margin-bottom:10px;'>📋 任務清單</h3>
 
-    <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:10px 12px;border-radius:6px;margin-bottom:6px;'>
+    <div style='background:rgba(34,197,94,0.12);border-left:3px solid #86efac;padding:10px 12px;border-radius:6px;margin-bottom:6px;'>
       <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>🟢 必選 · 個資自我稽查</p>
       <p style='color:#dcfce7;font-size:.75rem;margin:0;line-height:1.5;'>列 5 個你最常用的 App/網站，記錄它們蒐集了哪些個資、有沒有過度蒐集。並到 <strong>haveibeenpwned.com</strong> 查你的 email 有沒有外洩。</p>
     </div>
 
     <p style='color:#fde68a;font-size:.72rem;margin:8px 0 4px;font-weight:700;'>🔵 進階任務（選 1）：</p>
-    <div style='background:rgba(59,130,246,0.25);border-left:3px solid #93c5fd;padding:8px 10px;border-radius:6px;margin-bottom:4px;'>
+    <div style='background:rgba(59,130,246,0.12);border-left:3px solid #93c5fd;padding:8px 10px;border-radius:6px;margin-bottom:4px;'>
       <p style='color:#fff;font-weight:700;font-size:.8rem;margin:0 0 2px;'>📱 A. 假訊息獵人</p>
       <p style='color:#dbeafe;font-size:.72rem;margin:0;'>選 3 則 LINE 群組/IG 轉發訊息，用「台灣事實查核中心」等工具驗證真偽並記錄。</p>
     </div>
-    <div style='background:rgba(59,130,246,0.25);border-left:3px solid #93c5fd;padding:8px 10px;border-radius:6px;margin-bottom:4px;'>
+    <div style='background:rgba(59,130,246,0.12);border-left:3px solid #93c5fd;padding:8px 10px;border-radius:6px;margin-bottom:4px;'>
       <p style='color:#fff;font-weight:700;font-size:.8rem;margin:0 0 2px;'>🎣 B. 釣魚郵件標本</p>
       <p style='color:#dbeafe;font-size:.72rem;margin:0;'>蒐集 2 封釣魚 email（垃圾信匣找）截圖，標示 5 個可疑點（寄件人、連結、錯字…）。</p>
     </div>
-    <div style='background:rgba(59,130,246,0.25);border-left:3px solid #93c5fd;padding:8px 10px;border-radius:6px;margin-bottom:8px;'>
+    <div style='background:rgba(59,130,246,0.12);border-left:3px solid #93c5fd;padding:8px 10px;border-radius:6px;margin-bottom:8px;'>
       <p style='color:#fff;font-weight:700;font-size:.8rem;margin:0 0 2px;'>🔐 C. 密碼健檢報告</p>
       <p style='color:#dbeafe;font-size:.72rem;margin:0;'>用 <strong>bitwarden.com/password-strength</strong> 測 5 組不同強度密碼，做出對照表。</p>
     </div>
 
     <p style='color:#fbcfe8;font-size:.72rem;margin:8px 0 4px;font-weight:700;'>🟣 挑戰任務（選 1）：</p>
-    <div style='background:rgba(168,85,247,0.25);border-left:3px solid #d8b4fe;padding:8px 10px;border-radius:6px;margin-bottom:4px;'>
+    <div style='background:rgba(168,85,247,0.12);border-left:3px solid #d8b4fe;padding:8px 10px;border-radius:6px;margin-bottom:4px;'>
       <p style='color:#fff;font-weight:700;font-size:.8rem;margin:0 0 2px;'>🎬 D. 資安短片</p>
       <p style='color:#f3e8ff;font-size:.72rem;margin:0;'>拍一支 30-60 秒短片（IG Reels 格式），教家人辨識<strong>一種</strong>常見詐騙（假網拍、假客服、假中獎…）。</p>
     </div>
-    <div style='background:rgba(168,85,247,0.25);border-left:3px solid #d8b4fe;padding:8px 10px;border-radius:6px;'>
+    <div style='background:rgba(168,85,247,0.12);border-left:3px solid #d8b4fe;padding:8px 10px;border-radius:6px;'>
       <p style='color:#fff;font-weight:700;font-size:.8rem;margin:0 0 2px;'>👵 E. 跨代教學</p>
       <p style='color:#f3e8ff;font-size:.72rem;margin:0;'>幫家中長輩上 5 分鐘資安小課（如「LINE 詐騙常見手法」），錄影 or 拍紀錄照上傳。</p>
     </div>
@@ -759,7 +759,7 @@ SLIDES = [
         </thead>
         <tbody>
           <tr><td style='padding:5px 6px;'>任務完成度</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>60</td></tr>
-          <tr><td style='padding:5px 6px;'>內容深度與正確性</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>15</td></tr>
+          <tr><td style='padding:5px 6px;'>內容深度與正確性</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>20</td></tr>
           <tr><td style='padding:5px 6px;'>簡報美觀與邏輯</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>10</td></tr>
           <tr><td style='padding:5px 6px;'>組員分工合作</td><td style='padding:5px 6px;text-align:center;font-weight:700;color:#fde68a;'>10</td></tr>
          
