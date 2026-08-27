@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ch04 個人實作 · Word 作業即時評分</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  :root {
+    --navy: #1E3A5F; --teal: #0D9488; --gold: #F59E0B;
+    --green: #16a34a; --red: #dc2626; --purple: #6b3fa0;
+    --bg: #0f172a; --card: #1e293b; --border: rgba(255,255,255,.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Noto Sans TC', sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    color: #e2e8f0; min-height: 100vh; padding: 24px 16px;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+
+  header { text-align: center; margin-bottom: 24px; }
+  header h1 { font-size: 1.8rem; color: #fff; margin-bottom: 8px; }
+  header p { color: #94a3b8; font-size: .95rem; }
+  header .back {
+    display: inline-block; color: #93c5fd; text-decoration: none;
+    font-size: .85rem; margin-bottom: 12px;
+  }
+  header .back:hover { color: #fff; }
+
+  /* 拖曳區 */
+  .drop {
+    background: rgba(255,255,255,.06); border: 3px dashed rgba(255,255,255,.2);
+    border-radius: 16px; padding: 40px 24px; text-align: center;
+    cursor: pointer; transition: all .2s; margin-bottom: 20px;
+  }
+  .drop:hover, .drop.dragover {
+    border-color: var(--teal); background: rgba(13,148,136,.08);
+    transform: translateY(-2px);
+  }
+  .drop .icon { font-size: 48px; margin-bottom: 12px; }
+  .drop h2 { font-size: 1.2rem; color: #fff; margin-bottom: 6px; }
+  .drop p { color: #94a3b8; font-size: .85rem; }
+  .drop input { display: none; }
+
+  /* 提示 */
+  .hint {
+    background: rgba(245,158,11,.1); border-left: 4px solid var(--gold);
+    border-radius: 8px; padding: 12px 16px; margin-bottom: 20px;
+    font-size: .85rem; color: #fde68a; line-height: 1.6;
+  }
+  .hint strong { color: #fef3c7; }
+
+  /* 結果卡 */
+  .result-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 20px; margin-bottom: 16px;
+  }
+  .file-info {
+    display: flex; align-items: center; gap: 12px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .file-info .fname { flex: 1; }
+  .file-info .fname .name { color: #fff; font-weight: 700; font-size: .95rem; }
+  .file-info .fname .size { color: #94a3b8; font-size: .75rem; margin-top: 2px; }
+
+  /* 分數大字 */
+  .score-hero { text-align: center; padding: 20px 0; }
+  .score-hero .num {
+    font-size: 4rem; font-weight: 900; line-height: 1;
+    background: linear-gradient(135deg, #22c55e, #14b8a6);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .score-hero .num.mid {
+    background: linear-gradient(135deg, #f59e0b, #eab308);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .score-hero .num.low {
+    background: linear-gradient(135deg, #ef4444, #f97316);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .score-hero .max { color: #64748b; font-size: 1.2rem; margin-top: -8px; }
+  .score-hero .msg { color: #fbbf24; font-size: .95rem; margin-top: 6px; font-weight: 600; }
+
+  /* 評分項目列表 */
+  .items { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+  .item {
+    display: grid; grid-template-columns: 32px 1fr auto;
+    gap: 10px; align-items: start;
+    padding: 10px 12px; border-radius: 8px;
+    background: rgba(255,255,255,.04);
+    border-left: 4px solid #64748b;
+  }
+  .item.pass { border-left-color: var(--green); background: rgba(34,197,94,.08); }
+  .item.partial { border-left-color: var(--gold); background: rgba(245,158,11,.08); }
+  .item.fail { border-left-color: var(--red); background: rgba(239,68,68,.08); }
+  .item .status { font-size: 1.2rem; text-align: center; }
+  .item .body .name { color: #fff; font-weight: 600; font-size: .88rem; margin-bottom: 2px; }
+  .item .body .detail { color: #94a3b8; font-size: .78rem; line-height: 1.5; }
+  .item .points {
+    font-family: monospace; font-weight: 700; font-size: .85rem;
+    color: #cbd5e1; white-space: nowrap; padding-top: 2px;
+  }
+  .item.pass .points { color: #86efac; }
+  .item.partial .points { color: #fcd34d; }
+  .item.fail .points { color: #fca5a5; }
+
+  /* 動作按鈕 */
+  .actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+  .btn {
+    padding: 10px 20px; border-radius: 8px; border: none;
+    font-size: .88rem; font-weight: 600; cursor: pointer;
+    transition: all .15s; font-family: inherit;
+  }
+  .btn-primary { background: var(--teal); color: #fff; }
+  .btn-primary:hover { background: #0b7a70; }
+  .btn-secondary { background: #334155; color: #cbd5e1; }
+  .btn-secondary:hover { background: #475569; }
+
+  /* 錯誤 */
+  .error {
+    background: rgba(239,68,68,.15); border-left: 4px solid var(--red);
+    padding: 12px 16px; border-radius: 8px; margin-bottom: 16px;
+    color: #fecaca; font-size: .85rem;
+  }
+
+  /* 檢核表 */
+  details { margin-top: 20px; }
+  details summary {
+    cursor: pointer; padding: 10px 14px; background: rgba(255,255,255,.05);
+    border-radius: 8px; color: #93c5fd; font-size: .88rem; font-weight: 600;
+    user-select: none;
+  }
+  details[open] summary { margin-bottom: 8px; }
+  .checklist {
+    background: rgba(255,255,255,.04); border-radius: 8px;
+    padding: 12px 16px; color: #cbd5e1; font-size: .8rem; line-height: 1.8;
+  }
+
+  footer {
+    text-align: center; margin-top: 30px; padding: 16px;
+    color: #475569; font-size: .75rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <a href="../ch4.html" class="back">← 返回 Ch04 課程</a>
+  <h1>📝 Ch04 個人實作 · Word 作業評分器</h1>
+  <p>拖曳你的 .docx 檔案上去，立刻看到分數與詳細評分</p>
+</header>
+
+<div class="hint">
+  💡 <strong>使用說明</strong>：本工具在你的瀏覽器內即時分析檔案，<strong>不會上傳到伺服器</strong>。看到分數後可反覆修正到滿意再交作業。<br>
+  ⚠️ <strong>限制</strong>：僅支援 <code>.docx</code>（不支援舊版 .doc 或 PDF）。使用 Google Docs 者請先 <strong>「檔案 → 下載 → Word 文件 (.docx)」</strong>。
+</div>
+
+<div style="background:rgba(107,63,160,.15);border-left:4px solid #a78bfa;border-radius:8px;padding:14px 16px;margin-bottom:20px;">
+  <div style="color:#e9d5ff;font-weight:700;margin-bottom:10px;font-size:.95rem;">📦 題目範本下載</div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;">
+    <a href="templates/丙級術科模擬_原稿.docx" download
+       style="background:#7c3aed;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:600;">
+      📄 下載原稿（未排版）
+    </a>
+    <a href="templates/丙級術科模擬_範本.docx" download
+       style="background:#0d9488;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:600;">
+      🎯 下載範本（完成品範例，可先測評分器）
+    </a>
+  </div>
+  <p style="color:#cbd5e1;font-size:.78rem;margin:10px 0 0;line-height:1.6;">
+    ① 下載<strong>原稿</strong>後照裡面的 10 項要求排版<br>
+    ② 想知道成品長什麼樣？下載<strong>範本</strong>參考（也可以直接把範本上傳來測評分器，應該接近滿分）
+  </p>
+</div>
+
+<label class="drop" id="drop">
+  <div class="icon">📎</div>
+  <h2>拖曳 .docx 檔到這裡，或點擊選檔</h2>
+  <p>支援 Word 2007 以上格式</p>
+  <input type="file" id="file" accept=".docx">
+</label>
+
+<div id="output"></div>
+
+<details>
+  <summary>📋 看評分規準（點開）</summary>
+  <div class="checklist">
+    ① <strong>標題 1 樣式</strong>（10 分）：有段落套用「標題 1」或 Heading 1<br>
+    ② <strong>標題 2 樣式</strong>（5 分）：有段落套用「標題 2」或 Heading 2<br>
+    ③ <strong>目錄 TOC</strong>（10 分）：文件內有插入自動目錄欄位<br>
+    ④ <strong>頁首</strong>（10 分）：頁首有內容<br>
+    ⑤ <strong>頁碼</strong>（10 分）：頁尾有 PAGE 欄位<br>
+    ⑥ <strong>表格</strong>（10 分）：至少 1 個表格<br>
+    ⑦ <strong>圖片</strong>（10 分）：至少 1 張圖片<br>
+    ⑧ <strong>項目符號 / 編號</strong>（10 分）：有使用列表格式<br>
+    ⑨ <strong>字型</strong>（10 分）：中文用細明體/新細明體、英文用 Times New Roman<br>
+    ⑩ <strong>字級 12pt</strong>（8 分）：主要內文字級是 12pt<br>
+    ⑪ <strong>行距 1.5</strong>（7 分）：主要內文行距是 1.5<br>
+    <strong style="color:#fbbf24;">總分 100 分 · 80+ 優 · 60+ 及格</strong>
+  </div>
+</details>
+
+<footer>城市科技 · 芳和實驗中學 · 許惠淑老師</footer>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// 拖曳處理
+// ═══════════════════════════════════════════════
+const drop = document.getElementById('drop');
+const fileInput = document.getElementById('file');
+const output = document.getElementById('output');
+
+drop.addEventListener('dragover', e => {
+  e.preventDefault();
+  drop.classList.add('dragover');
+});
+drop.addEventListener('dragleave', () => drop.classList.remove('dragover'));
+drop.addEventListener('drop', e => {
+  e.preventDefault();
+  drop.classList.remove('dragover');
+  if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', e => {
+  if (e.target.files.length) handleFile(e.target.files[0]);
+});
+
+async function handleFile(file) {
+  if (!file.name.toLowerCase().endsWith('.docx')) {
+    showError(`❌ 只支援 .docx 檔案（你選的是「${file.name}」）。<br>如果你用 Google Docs，請先「檔案 → 下載 → Word 文件 (.docx)」再上傳。`);
+    return;
+  }
+  try {
+    const buf = await file.arrayBuffer();
+    const zip = await JSZip.loadAsync(buf);
+    const result = await gradeDocx(zip);
+    render(file, result);
+  } catch (err) {
+    showError(`❌ 讀取檔案失敗：${err.message}<br>檔案可能損毀或不是有效的 .docx。`);
+    console.error(err);
+  }
+}
+
+function showError(msg) {
+  output.innerHTML = `<div class="error">${msg}</div>`;
+}
+
+// ═══════════════════════════════════════════════
+// 主評分邏輯
+// ═══════════════════════════════════════════════
+async function gradeDocx(zip) {
+  // 取得所有相關 XML
+  const docXml = await getFile(zip, 'word/document.xml');
+  const stylesXml = await getFile(zip, 'word/styles.xml');
+  const numberingXml = await getFile(zip, 'word/numbering.xml');
+
+  // 找 header/footer 檔案
+  const headerFiles = Object.keys(zip.files).filter(n => /^word\/header\d+\.xml$/.test(n));
+  const footerFiles = Object.keys(zip.files).filter(n => /^word\/footer\d+\.xml$/.test(n));
+  const headersXml = await Promise.all(headerFiles.map(n => zip.files[n].async('string')));
+  const footersXml = await Promise.all(footerFiles.map(n => zip.files[n].async('string')));
+
+  const items = [];
+
+  // ① 標題 1 樣式 (10 分)
+  const hasH1 = /<w:pStyle w:val="(Heading1|標題1|1)"\/>/.test(docXml)
+             || /<w:pStyle w:val="Heading1"/.test(docXml)
+             || /<w:pStyle w:val="標題1"/.test(docXml);
+  items.push(mkItem(
+    '① 標題 1 樣式',
+    hasH1 ? '有段落套用「標題 1」樣式' : '沒偵測到「標題 1」樣式（把大章名選起來 → 按「標題 1」樣式）',
+    hasH1 ? 10 : 0, 10
+  ));
+
+  // ② 標題 2 樣式 (5 分)
+  const hasH2 = /<w:pStyle w:val="Heading2"/.test(docXml)
+             || /<w:pStyle w:val="標題2"/.test(docXml);
+  items.push(mkItem(
+    '② 標題 2 樣式',
+    hasH2 ? '有段落套用「標題 2」樣式' : '沒偵測到「標題 2」樣式',
+    hasH2 ? 5 : 0, 5
+  ));
+
+  // ③ 目錄 TOC (10 分)
+  const hasTOC = /TOC\s+\\o/.test(docXml)
+             || /<w:sdtPr>[\s\S]*?<w:docPartGallery w:val="Table of Contents"/.test(docXml)
+             || /<w:instrText[^>]*>\s*TOC/.test(docXml);
+  items.push(mkItem(
+    '③ 目錄 TOC',
+    hasTOC ? '有插入自動目錄' : '沒有偵測到自動目錄（插入 → 目錄）',
+    hasTOC ? 10 : 0, 10
+  ));
+
+  // ④ 頁首 (10 分)
+  let headerText = '';
+  headersXml.forEach(h => {
+    const textMatch = h.match(/<w:t[^>]*>([^<]+)<\/w:t>/g) || [];
+    textMatch.forEach(t => headerText += t.replace(/<[^>]+>/g, ''));
+  });
+  const hasHeader = headersXml.length > 0 && headerText.trim().length > 0;
+  items.push(mkItem(
+    '④ 頁首',
+    hasHeader ? `頁首有內容：「${headerText.trim().substring(0, 30)}${headerText.length > 30 ? '...' : ''}」` : '頁首是空的或未設定',
+    hasHeader ? 10 : 0, 10
+  ));
+
+  // ⑤ 頁碼 (10 分)
+  const footerText = footersXml.join('');
+  const hasPageNum = /<w:instrText[^>]*>\s*PAGE/.test(footerText)
+                  || /<w:fldSimple w:instr="[^"]*PAGE/.test(footerText)
+                  || /<w:instrText[^>]*>\s*PAGE/.test(docXml);
+  items.push(mkItem(
+    '⑤ 頁碼',
+    hasPageNum ? '偵測到頁碼欄位' : '沒偵測到頁碼（插入 → 頁碼）',
+    hasPageNum ? 10 : 0, 10
+  ));
+
+  // ⑥ 表格 (10 分)
+  const tableCount = (docXml.match(/<w:tbl>/g) || []).length;
+  items.push(mkItem(
+    '⑥ 表格',
+    tableCount > 0 ? `文件內有 ${tableCount} 個表格` : '沒有表格',
+    tableCount > 0 ? 10 : 0, 10
+  ));
+
+  // ⑦ 圖片 (10 分)
+  const drawingCount = (docXml.match(/<w:drawing>/g) || []).length;
+  const picCount = (docXml.match(/<pic:pic\s/g) || []).length;
+  const totalImg = drawingCount + picCount;
+  items.push(mkItem(
+    '⑦ 圖片',
+    totalImg > 0 ? `文件內有 ${totalImg > drawingCount ? totalImg : drawingCount} 張圖片` : '沒有圖片',
+    totalImg > 0 ? 10 : 0, 10
+  ));
+
+  // ⑧ 項目符號 / 編號 (10 分)
+  const hasNumbering = /<w:numPr>/.test(docXml);
+  items.push(mkItem(
+    '⑧ 項目符號 / 編號',
+    hasNumbering ? '有使用項目符號或編號清單' : '沒有使用列表格式',
+    hasNumbering ? 10 : 0, 10
+  ));
+
+  // ⑨ 字型 (10 分) — 檢查中文細明體、英文 Times New Roman
+  const fontInfo = analyzeFonts(docXml, stylesXml);
+  let fontScore = 0;
+  let fontDetail = [];
+  if (fontInfo.hasMing) { fontScore += 5; fontDetail.push('✓ 中文細明/新細明'); }
+  else fontDetail.push('✗ 中文非細明體');
+  if (fontInfo.hasTimes) { fontScore += 5; fontDetail.push('✓ 英文 Times New Roman'); }
+  else fontDetail.push('✗ 英文非 Times New Roman');
+  items.push(mkItem(
+    '⑨ 字型（中細明/英 Times）',
+    fontDetail.join(' · ') + (fontInfo.mainFont ? `<br>偵測到主要字型：${fontInfo.mainFont}` : ''),
+    fontScore, 10
+  ));
+
+  // ⑩ 字級 12pt (8 分) — <w:sz w:val="24"/> (值 = pt × 2)
+  const sizeInfo = analyzeSize(docXml, stylesXml);
+  const sizeOk = sizeInfo.mainSize === 12;
+  items.push(mkItem(
+    '⑩ 字級 12pt',
+    sizeOk ? '主要字級是 12pt' : `主要字級是 ${sizeInfo.mainSize}pt（應為 12pt）`,
+    sizeOk ? 8 : 0, 8
+  ));
+
+  // ⑪ 行距 1.5 (7 分) — <w:spacing w:line="360" w:lineRule="auto"/>
+  const lineInfo = analyzeLineSpacing(docXml, stylesXml);
+  const lineOk = lineInfo.main === '1.5';
+  items.push(mkItem(
+    '⑪ 行距 1.5',
+    lineOk ? '主要行距是 1.5' : `主要行距是 ${lineInfo.main}（應為 1.5）`,
+    lineOk ? 7 : 0, 7
+  ));
+
+  const total = items.reduce((s, i) => s + i.got, 0);
+  const max = items.reduce((s, i) => s + i.max, 0);
+  return { items, total, max };
+}
+
+// ═══════════════════════════════════════════════
+// 輔助
+// ═══════════════════════════════════════════════
+async function getFile(zip, path) {
+  if (!zip.files[path]) return '';
+  return await zip.files[path].async('string');
+}
+
+function mkItem(name, detail, got, max) {
+  return { name, detail, got, max };
+}
+
+function analyzeFonts(docXml, stylesXml) {
+  // 找所有 w:rFonts 標籤
+  const fontMatches = [
+    ...docXml.matchAll(/<w:rFonts[^\/]*w:ascii="([^"]+)"[^\/]*w:eastAsia="([^"]*)"[^\/]*\/?>/g),
+    ...stylesXml.matchAll(/<w:rFonts[^\/]*w:ascii="([^"]+)"[^\/]*w:eastAsia="([^"]*)"[^\/]*\/?>/g)
+  ];
+  let mingCount = 0, timesCount = 0;
+  let allFonts = new Set();
+  fontMatches.forEach(m => {
+    const ascii = m[1] || '';
+    const eastAsia = m[2] || '';
+    if (ascii) allFonts.add(ascii);
+    if (eastAsia) allFonts.add(eastAsia);
+    if (/細明體|新細明體|PMingLiU|MingLiU|Ming/i.test(eastAsia)) mingCount++;
+    if (/Times New Roman/i.test(ascii)) timesCount++;
+  });
+  return {
+    hasMing: mingCount > 0,
+    hasTimes: timesCount > 0,
+    mainFont: [...allFonts].slice(0, 3).join(', ')
+  };
+}
+
+function analyzeSize(docXml, stylesXml) {
+  // 找 <w:sz w:val="XX"/> — 值除以 2 = pt
+  const sizes = [];
+  [docXml, stylesXml].forEach(xml => {
+    const ms = xml.matchAll(/<w:sz w:val="(\d+)"/g);
+    for (const m of ms) sizes.push(parseInt(m[1]) / 2);
+  });
+  if (!sizes.length) return { mainSize: '未知' };
+  // 統計出現最多的字級（排除 heading 常見大字級）
+  const count = {};
+  sizes.filter(s => s >= 9 && s <= 16).forEach(s => count[s] = (count[s] || 0) + 1);
+  const main = Object.entries(count).sort((a, b) => b[1] - a[1])[0];
+  return { mainSize: main ? parseFloat(main[0]) : sizes[0] };
+}
+
+function analyzeLineSpacing(docXml, stylesXml) {
+  // <w:spacing w:line="360" w:lineRule="auto"/> — 240=1.0, 360=1.5, 480=2.0
+  const spacings = [];
+  [docXml, stylesXml].forEach(xml => {
+    const ms = xml.matchAll(/<w:spacing[^\/]*w:line="(\d+)"[^\/]*(?:w:lineRule="auto")?/g);
+    for (const m of ms) spacings.push(parseInt(m[1]));
+  });
+  if (!spacings.length) return { main: '未知' };
+  const count = {};
+  spacings.forEach(s => count[s] = (count[s] || 0) + 1);
+  const main = Object.entries(count).sort((a, b) => b[1] - a[1])[0];
+  const val = main ? parseInt(main[0]) : 240;
+  const label = val === 240 ? '1.0' : val === 360 ? '1.5' : val === 480 ? '2.0' : (val / 240).toFixed(2);
+  return { main: label };
+}
+
+// ═══════════════════════════════════════════════
+// 渲染結果
+// ═══════════════════════════════════════════════
+function render(file, result) {
+  const { items, total, max } = result;
+  const pct = (total / max) * 100;
+  const scoreClass = pct >= 80 ? '' : pct >= 60 ? 'mid' : 'low';
+  const msg = pct >= 90 ? '🎉 太棒了！近乎完美'
+           : pct >= 80 ? '👍 優等，繼續加油'
+           : pct >= 60 ? '⚠️ 及格但還有進步空間'
+           : '❌ 需要再修正一些項目';
+
+  const sizeKB = (file.size / 1024).toFixed(1);
+  const itemsHtml = items.map(i => {
+    const cls = i.got === i.max ? 'pass' : i.got > 0 ? 'partial' : 'fail';
+    const icon = i.got === i.max ? '✓' : i.got > 0 ? '⚠️' : '✗';
+    return `
+      <div class="item ${cls}">
+        <div class="status">${icon}</div>
+        <div class="body">
+          <div class="name">${i.name}</div>
+          <div class="detail">${i.detail}</div>
+        </div>
+        <div class="points">${i.got} / ${i.max}</div>
+      </div>`;
+  }).join('');
+
+  output.innerHTML = `
+    <div class="result-card">
+      <div class="file-info">
+        <div style="font-size: 2rem;">📄</div>
+        <div class="fname">
+          <div class="name">${file.name}</div>
+          <div class="size">${sizeKB} KB · ${new Date().toLocaleString('zh-TW')}</div>
+        </div>
+      </div>
+
+      <div class="score-hero">
+        <div class="num ${scoreClass}">${total}</div>
+        <div class="max">/ ${max} 分</div>
+        <div class="msg">${msg}</div>
+      </div>
+
+      <div class="items">${itemsHtml}</div>
+
+      <div class="actions">
+        <button class="btn btn-primary" onclick="location.reload()">🔄 重新評分</button>
+        <button class="btn btn-secondary" onclick="downloadReport(${total}, ${max}, ${JSON.stringify(items).replace(/"/g, '&quot;')}, '${file.name}')">📥 下載評分報告</button>
+      </div>
+    </div>
+  `;
+}
+
+function downloadReport(total, max, items, fname) {
+  const lines = [
+    'Ch04 個人實作 Word 作業評分報告',
+    '━━━━━━━━━━━━━━━━━━━━━━━━',
+    `檔案：${fname}`,
+    `時間：${new Date().toLocaleString('zh-TW')}`,
+    `分數：${total} / ${max}`,
+    '',
+    '評分明細：',
+    ...items.map(i => `  [${i.got === i.max ? '✓' : i.got > 0 ? '⚠' : '✗'}] ${i.name}  ${i.got}/${i.max}\n      ${i.detail.replace(/<br>/g, '\n      ')}`),
+    '',
+    '━━━━━━━━━━━━━━━━━━━━━━━━',
+    '芳和實驗中學 城市科技 · 許惠淑老師'
+  ];
+  const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = fname.replace(/\.docx$/, '') + '_評分報告.txt';
+  a.click();
+}
+</script>
+</body>
+</html>
