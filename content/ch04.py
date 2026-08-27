@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
-# Ch.4: Google Workspace 文書應用
+# Ch.4: 文書工具 × 小論文寫作
+#   目標：Google Docs 與 Microsoft Word 雙軌，聚焦「產出一份合格小論文」
 
 CHAPTERS = [
     {'name': '封面', 'start': 1},
-    {'name': '第一章：Google Workspace 概覽', 'start': 2},
-    {'name': '第二章：Google 文件進階排版', 'start': 8},
-    {'name': '第三章：共同編輯與版本控制', 'start': 14},
-    {'name': '第四章：雲端辦公應用', 'start': 19},
-    {'name': '分組實作', 'start': 23},
+    {'name': '第一章：文書工具巡禮', 'start': 2},
+    {'name': '第二章：文書進階排版（寫論文必備）', 'start': 6},
+    {'name': '第三章：共同編輯與版本控制', 'start': 11},
+    {'name': '第四章：小論文寫作實戰', 'start': 15},
+    {'name': '第五章：電腦軟體應用丙級', 'start': 22},
+    {'name': '個人實作', 'start': 24},
 ]
 
 QUIZZES = {
@@ -15,16 +17,26 @@ QUIZZES = {
         'title': '第一章 隨堂測驗',
         'questions': [
             {
-                'q': 'Google Workspace 的最大優勢是什麼？',
-                'options': ['比 Microsoft Office 功能更強大', '多人可同時在同一份文件上即時協作', '完全免費，沒有任何限制', '只能在 Chrome 瀏覽器使用'],
-                'answer': 1,
-                'explain': 'Google Workspace 最核心的優勢是「即時多人協作」：多位使用者可以同時編輯同一份文件，看到彼此的游標和修改，不需要來回傳送檔案。這改變了團隊合作的方式。'
+                'q': '關於 Google Docs 和 Microsoft Word，下列敘述何者「錯誤」？',
+                'options': [
+                    '兩者都支援即時多人協作',
+                    'Google Docs 完全免費、Word 需買 Office 365 或授權',
+                    '兩者互相不能開啟對方的檔案',
+                    '學生用學校 email 通常可以免費申請 Office 365'
+                ],
+                'answer': 2,
+                'explain': 'Word 可以開啟 .docx 也可以開啟 Google Docs 匯出的檔案；Google Docs 也可以匯入 .docx。兩者其實高度相容——這是為什麼你要「兩個都會用」的原因。'
             },
             {
-                'q': 'Google 雲端硬碟的免費儲存空間是多少？',
-                'options': ['100 GB', '無限制', '5 GB', '15 GB（共享 Gmail、雲端硬碟、相片）'],
-                'answer': 3,
-                'explain': 'Google 帳號免費提供 15 GB 儲存空間，由 Gmail、Google 雲端硬碟和 Google 相片共用。需要更多空間可購買 Google One 方案（100GB 約 NT$65/月）。'
+                'q': '你要寫小論文（10 頁 A4），電腦教室桌機沒裝 Word 但可上網，最實際的做法是？',
+                'options': [
+                    '請老師買一台裝有 Word 的筆電',
+                    '直接用瀏覽器打開 Google Docs 或 Word Online 寫',
+                    '把文件寫在記事本再套 Word 排版',
+                    '手寫掃描'
+                ],
+                'answer': 1,
+                'explain': 'Google Docs 和 Word 都有網頁版，任何有瀏覽器的電腦都能用，寫完直接匯出 PDF 上傳投稿。學校 Google 帳號和 Office 365 學生帳號都免費。'
             },
         ]
     },
@@ -32,16 +44,26 @@ QUIZZES = {
         'title': '第二章 隨堂測驗',
         'questions': [
             {
-                'q': 'Google 文件中，「段落樣式」最主要的用途是什麼？',
-                'options': ['改變字體顏色', '插入圖片', '快速套用一致的格式，並自動產生目錄', '加入頁碼'],
-                'answer': 2,
-                'explain': '段落樣式（標題1、標題2、內文等）有兩個主要功能：(1) 讓全文格式一致，改一個樣式全文同步更新；(2) 自動產生目錄功能會掃描這些標題樣式。這是專業文件排版的核心技巧。'
+                'q': '為什麼寫小論文一定要用「段落樣式」（如標題 1、標題 2）？',
+                'options': [
+                    '只是讓字比較大',
+                    '之後才能自動產生目錄、也讓格式全文一致',
+                    '沒有一定要用',
+                    '樣式只是裝飾用途'
+                ],
+                'answer': 1,
+                'explain': '段落樣式有兩個關鍵作用：① 一改樣式，全文標題同步更新，不用一個個手動改；② 自動目錄只認得「套過樣式」的段落，沒有樣式就沒有目錄。'
             },
             {
-                'q': '在 Google 文件插入目錄，以下敘述何者正確？',
-                'options': ['插入目錄後，若文章標題有修改，需手動更新目錄', '目錄插入後永遠不需要更新', '目錄只能放在文件開頭', '手動輸入的段落也會自動出現在目錄'],
-                'answer': 0,
-                'explain': '插入目錄後，如果你修改了標題文字或新增段落，目錄不會即時自動更新。需要點擊目錄旁的「更新」按鈕或從選單更新。只有套用了「標題」樣式的段落才會出現在目錄中。'
+                'q': '小論文比賽規定「全篇要有頁首」，最正確的做法是？',
+                'options': [
+                    '在每一頁最上方手動輸入篇名',
+                    '插入頁首功能一次設定，每頁自動顯示',
+                    '把篇名放在文件開頭',
+                    '不用頁首，讀者自己會看標題'
+                ],
+                'answer': 1,
+                'explain': '「頁首」是專門的功能：Word「插入 → 頁首」、Google Docs「插入 → 頁首和頁尾」，設定一次全文自動套用。手動輸入既費時又容易在編輯時跑掉。'
             },
         ]
     },
@@ -49,778 +71,1085 @@ QUIZZES = {
         'title': '第三章 隨堂測驗',
         'questions': [
             {
-                'q': 'Google 文件的「建議模式」功能主要用於？',
-                'options': ['讓修改以追蹤方式顯示，方便審閱者接受或拒絕', '自動糾正文法錯誤', '提供 AI 撰寫建議', '自動備份文件到雲端'],
-                'answer': 0,
-                'explain': '建議模式（Suggestion mode）類似 Word 的「追蹤修訂」：你的每個修改都以彩色標示，原作者可以選擇「接受」或「拒絕」各項建議。適合多人審閱文件時使用。'
+                'q': '小組 3 人共寫小論文，最推薦的協作方式是？',
+                'options': [
+                    'A 寫完 email 給 B，B 改完再傳 C，C 統整',
+                    '用 Google Docs 共用，3 人同時線上編輯',
+                    '3 人分別寫在自己電腦，最後由組長剪貼合併',
+                    '用 LINE 傳文字給組長彙整'
+                ],
+                'answer': 1,
+                'explain': '共用 Google Docs（或 Word Online）可同時編輯、看到彼此游標與修改、有版本歷史。傳來傳去的檔案版本會很混亂，也容易漏改。'
             },
             {
-                'q': '共用 Google 文件時，設定為「可以檢視」的使用者能做什麼？',
-                'options': ['可以留言但不能直接編輯', '只能閱讀，無法修改或留言', '可以完整編輯', '可以刪除他人的修改'],
-                'answer': 1,
-                'explain': 'Google 文件有三種共用權限：「可以檢視」（只能讀）、「可以留言」（可加留言但不能直接修改文字）、「可以編輯」（完整編輯權限）。選擇正確的權限對文件安全很重要。'
+                'q': '不小心刪掉了辛苦寫的一整段，存檔後才發現，最快的救援方式？',
+                'options': [
+                    '重新回想寫過的內容',
+                    'Ctrl+Z（但已存檔可能沒用）',
+                    '檔案 → 版本歷史，找到刪除前的版本還原',
+                    '重灌電腦'
+                ],
+                'answer': 2,
+                'explain': 'Google Docs 和 Word Online 都有「版本歷史」，會自動保留每次修改的紀錄。找到刪除前的版本一鍵還原，這是雲端文書相對本機檔案最大的優勢之一。'
             },
         ]
     },
     'q4': {
-        'title': '第四章 隨堂測驗',
+        'title': '第四章 隨堂測驗（小論文重點）',
         'questions': [
             {
-                'q': 'Google 試算表中，VLOOKUP 函數的功能是什麼？',
-                'options': ['計算一組數字的平均值', '統計儲存格中的數字個數', '將文字轉換為大寫', '在指定範圍中搜尋特定值，並回傳同一列中對應欄的資料'],
-                'answer': 3,
-                'explain': 'VLOOKUP（垂直查找）是試算表最重要的函數之一：在第一欄搜尋你指定的值，找到後回傳同一列中你想要的欄位資料。例如輸入學號，自動找到對應的學生姓名。語法：=VLOOKUP(搜尋值, 範圍, 欄數, 0)'
+                'q': '關於小論文的「六大架構」，下列哪一項「不是」正確順序？',
+                'options': [
+                    '前言 → 文獻探討 → 研究方法 → 分析結果 → 結論建議 → 參考文獻',
+                    '文獻探討 → 前言 → 研究方法 → 結論 → 分析結果 → 參考文獻',
+                    '研究是為了回答「前言的問題」，所以前言擺最前',
+                    '參考文獻永遠是最後一章'
+                ],
+                'answer': 1,
+                'explain': '正確順序：壹.前言 → 貳.文獻探討 → 參.研究方法 → 肆.研究分析與結果 → 伍.研究結論與建議 → 陸.參考文獻。順序錯或缺任何一項都會被退件。'
             },
             {
-                'q': 'Google 簡報中，「主題」（Theme）的作用是什麼？',
-                'options': ['限制簡報只能使用特定的版面配置', '自動播放簡報', '套用統一的配色、字體和背景設計，讓整份簡報風格一致', '加入動畫效果'],
-                'answer': 2,
-                'explain': '主題（Theme）讓你一鍵套用設計師預設的配色、字體和背景，確保整份簡報視覺一致。改主題後，所有投影片都會同步更新。這比逐張修改格式節省大量時間。'
+                'q': '關於小論文比賽的「AI 使用界線」，下列何者正確？',
+                'options': [
+                    'AI 生成的文字只要重寫過就可以用',
+                    'AI 可以用來「發想主題」，但摘要、改寫、圖表都禁止 AI 生成',
+                    '整篇用 ChatGPT 寫，改幾個字就沒問題',
+                    '只要不被抓到都可以'
+                ],
+                'answer': 1,
+                'explain': '115 學年比賽規則明訂：可用 AI 進行主題發想，但文章內容（含摘要、改寫、圖表等）不得由 AI 生成。違規會被取消資格並下屆停權。'
             },
         ]
     },
 }
 
+
+# ═══════════════════════════════════════════════════════════════════════
+# SLIDES
+# ═══════════════════════════════════════════════════════════════════════
+
 SLIDES = [
-    {
-        'id': 1, 'chapter': '封面', 'title': 'Google Workspace 文書應用',
-        'bg': 'navy', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
+
+# ─── 1. 封面 ───
+{
+    'id': 1, 'chapter': '封面', 'title': '文書工具 × 小論文寫作',
+    'bg': 'navy', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
 <div style='text-align:center;padding:30px 20px;'>
   <div style='font-size:72px;margin-bottom:20px;'>📝</div>
-  <h1 style='font-size:2.8rem;font-weight:900;color:#fff;margin-bottom:12px;'>Google Workspace<br>文書應用</h1>
-  <h2 style='font-size:1.5rem;font-weight:400;color:#93c5fd;margin-bottom:30px;'>Productivity &amp; Collaboration Tools</h2>
-  <div style='display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:30px;'>
-    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📄 文件排版</span>
-    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🤝 共同協作</span>
-    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>☁️ 雲端辦公</span>
+  <h1 style='font-size:2.6rem;font-weight:900;color:#fff;margin-bottom:12px;'>文書工具 × 小論文寫作</h1>
+  <h2 style='font-size:1.4rem;font-weight:400;color:#93c5fd;margin-bottom:26px;'>Google Docs · Microsoft Word · 全國小論文比賽</h2>
+  <div style='display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:24px;'>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📄 雙軌對照</span>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🎓 小論文六大架構</span>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🏆 挑戰全國比賽</span>
   </div>
-  <p style='color:#bfdbfe;font-size:1.1rem;'>城市科技 — 第四章</p>
+  <p style='color:#bfdbfe;font-size:1.05rem;'>城市科技 — 第四章</p>
 </div>"""
-    },
-    {
-        'id': 2, 'chapter': '第一章：Google Workspace 概覽', 'title': 'Google Workspace 是什麼？',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>Google Workspace：雲端辦公室</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🌐 核心應用</h3>
-      <div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;'>
-        <div style='background:#fff;padding:10px;border-radius:8px;text-align:center;'>
-          <div style='font-size:1.8rem;'>📄</div>
-          <p style='color:#374151;font-size:.8rem;margin-top:4px;font-weight:600;'>Google 文件</p>
-          <p style='color:#6b7280;font-size:.7rem;'>文字處理</p>
-        </div>
-        <div style='background:#fff;padding:10px;border-radius:8px;text-align:center;'>
-          <div style='font-size:1.8rem;'>📊</div>
-          <p style='color:#374151;font-size:.8rem;margin-top:4px;font-weight:600;'>Google 試算表</p>
-          <p style='color:#6b7280;font-size:.7rem;'>資料分析</p>
-        </div>
-        <div style='background:#fff;padding:10px;border-radius:8px;text-align:center;'>
-          <div style='font-size:1.8rem;'>📑</div>
-          <p style='color:#374151;font-size:.8rem;margin-top:4px;font-weight:600;'>Google 簡報</p>
-          <p style='color:#6b7280;font-size:.7rem;'>投影片製作</p>
-        </div>
-        <div style='background:#fff;padding:10px;border-radius:8px;text-align:center;'>
-          <div style='font-size:1.8rem;'>📝</div>
-          <p style='color:#374151;font-size:.8rem;margin-top:4px;font-weight:600;'>Google 表單</p>
-          <p style='color:#6b7280;font-size:.7rem;'>問卷調查</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>✨ 最大優勢</h3>
-      <div style='display:flex;flex-direction:column;gap:8px;font-size:.85rem;'>
-        <div style='background:#dcfce7;padding:8px;border-radius:6px;color:#15803d;'>🤝 多人即時協作，看見彼此游標</div>
-        <div style='background:#dcfce7;padding:8px;border-radius:6px;color:#15803d;'>☁️ 雲端儲存，任何裝置開啟</div>
-        <div style='background:#dcfce7;padding:8px;border-radius:6px;color:#15803d;'>🔄 自動儲存，不怕當機遺失</div>
-        <div style='background:#dcfce7;padding:8px;border-radius:6px;color:#15803d;'>📋 版本歷史，可還原任何時間點</div>
-        <div style='background:#dcfce7;padding:8px;border-radius:6px;color:#15803d;'>🆓 免費使用（15GB 儲存空間）</div>
-      </div>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 3, 'chapter': '第一章：Google Workspace 概覽', 'title': 'Google vs Microsoft Office',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>Google Workspace vs Microsoft 365</h2>
-<div style='overflow-x:auto;'>
-  <table style='width:100%;border-collapse:collapse;font-size:.85rem;'>
-    <thead>
-      <tr style='background:#1e293b;color:#fff;'>
-        <th style='padding:10px;text-align:left;'>比較項目</th>
-        <th style='padding:10px;text-align:center;'>📝 Google Workspace</th>
-        <th style='padding:10px;text-align:center;'>💙 Microsoft 365</th>
+},
+
+# ═══ 第一章：文書工具巡禮 ═══
+
+{
+    'id': 2, 'chapter': '第一章：文書工具巡禮', 'title': 'Google Docs vs Microsoft Word',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>📄 Google Docs vs Microsoft Word</h2>
+  <p class='slide-desc'>兩大主流文書工具——高中要會用，未來職場也離不開</p>
+
+  <table class='info-table' style='margin-bottom:12px;font-size:.82rem;'>
+    <thead class='table-header'>
+      <tr>
+        <th>比較項目</th>
+        <th style='background:#dbeafe;color:#1e40af;'>Google Docs</th>
+        <th style='background:#fef3c7;color:#92400e;'>Microsoft Word</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td style='padding:9px;color:#374151;font-weight:600;'>費用</td>
-        <td style='padding:9px;text-align:center;color:#15803d;font-weight:700;'>個人免費（15GB）</td>
-        <td style='padding:9px;text-align:center;color:#374151;'>個人版 約 NT$219/月</td>
-      </tr>
-      <tr style='background:#f8fafc;'>
-        <td style='padding:9px;color:#374151;font-weight:600;'>協作功能</td>
-        <td style='padding:9px;text-align:center;color:#15803d;font-weight:700;'>即時多人協作 ⭐⭐⭐⭐⭐</td>
-        <td style='padding:9px;text-align:center;color:#374151;'>需 SharePoint ⭐⭐⭐</td>
-      </tr>
-      <tr>
-        <td style='padding:9px;color:#374151;font-weight:600;'>離線使用</td>
-        <td style='padding:9px;text-align:center;color:#374151;'>需設定</td>
-        <td style='padding:9px;text-align:center;color:#15803d;font-weight:700;'>原生支援 ✅</td>
-      </tr>
-      <tr style='background:#f8fafc;'>
-        <td style='padding:9px;color:#374151;font-weight:600;'>功能完整度</td>
-        <td style='padding:9px;text-align:center;color:#374151;'>基礎~中階</td>
-        <td style='padding:9px;text-align:center;color:#15803d;font-weight:700;'>功能最完整 ✅</td>
-      </tr>
-      <tr>
-        <td style='padding:9px;color:#374151;font-weight:600;'>學校/企業採用</td>
-        <td style='padding:9px;text-align:center;color:#374151;'>教育界廣泛使用</td>
-        <td style='padding:9px;text-align:center;color:#374151;'>企業主流</td>
-      </tr>
+      <tr><td><strong>取得方式</strong></td><td>Google 帳號 · 完全免費</td><td>買授權 or 學生 Office 365 免費</td></tr>
+      <tr class='tr-highlight'><td><strong>使用平台</strong></td><td>瀏覽器（任何電腦、平板、手機）</td><td>Windows/Mac 桌機 + 網頁版 + App</td></tr>
+      <tr><td><strong>離線編輯</strong></td><td>需先開離線模式</td><td>桌機版天生就是離線編輯</td></tr>
+      <tr class='tr-highlight'><td><strong>即時協作</strong></td><td>✅ 業界最強</td><td>✅ Word Online / OneDrive</td></tr>
+      <tr><td><strong>檔案格式</strong></td><td>.gdoc / 可匯出 .docx .pdf</td><td>.docx（業界標準）· 可存 .pdf</td></tr>
+      <tr class='tr-highlight'><td><strong>台灣市占</strong></td><td>78% 高中職愛用</td><td>85% 企業標準</td></tr>
     </tbody>
   </table>
-</div>
-<div style='background:#fef9c3;padding:10px;border-radius:8px;margin-top:10px;'>
-  <p style='color:#854d0e;font-size:.85rem;margin:0;'>💡 <strong>建議</strong>：學校作業用 Google Workspace（協作方便），職場文件用 Microsoft 365（功能最完整）。兩種都要會！</p>
-</div>"""
-    },
-    {
-        'id': 4, 'chapter': '第一章：Google Workspace 概覽', 'title': 'Google 雲端硬碟',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>Google 雲端硬碟：整理你的數位空間</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📁 有效率的整理方式</h3>
-      <div style='background:#f8fafc;padding:12px;border-radius:8px;font-family:monospace;font-size:.8rem;color:#374151;'>
-        <p style='margin:0;'>📁 我的雲端硬碟</p>
-        <p style='margin:0;padding-left:16px;'>📁 學校作業</p>
-        <p style='margin:0;padding-left:32px;'>📁 一年級</p>
-        <p style='margin:0;padding-left:48px;'>📄 城市科技期末報告</p>
-        <p style='margin:0;padding-left:48px;'>📊 資料分析作業</p>
-        <p style='margin:0;padding-left:32px;'>📁 二年級</p>
-        <p style='margin:0;padding-left:16px;'>📁 課外活動</p>
-        <p style='margin:0;padding-left:32px;'>📸 社團照片</p>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>⚡ 常用技巧</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'><strong style='color:#15803d;'>搜尋功能</strong>：支援 OCR，可搜尋圖片和 PDF 中的文字</div>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'><strong style='color:#15803d;'>分享連結</strong>：設定「任何人都可以檢視」快速分享</div>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'><strong style='color:#15803d;'>加星號</strong>：重要文件加星號方便快速找到</div>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'><strong style='color:#15803d;'>右鍵轉換</strong>：上傳 Word 檔後右鍵可轉為 Google 文件</div>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'><strong style='color:#15803d;'>鍵盤快捷鍵</strong>：N 新建資料夾、/ 搜尋</div>
-      </div>
-    </div>
+
+  <div class='tip-box'>
+    💡 <strong>結論</strong>：兩個都會用，未來走到哪都不怕。它們互相相容——Word 可以開啟 Google 匯出的 .docx，Google Docs 也可以上傳 Word 檔繼續編輯。
   </div>
 </div>"""
-    },
-    {
-        'id': 5, 'chapter': '第一章：Google Workspace 概覽', 'title': 'Google 帳號安全設定',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>Google 帳號安全管理</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#fef2f2;padding:15px;border-radius:10px;border:1px solid #fecaca;margin-bottom:12px;'>
-      <h3 style='color:#dc2626;font-size:1rem;margin-bottom:10px;'>⚠️ 常見安全威脅</h3>
-      <ul style='color:#374151;font-size:.85rem;padding-left:16px;'>
-        <li>帳號被盜後，雲端硬碟資料也被存取</li>
-        <li>在他人電腦登入後忘記登出</li>
-        <li>在公用電腦儲存密碼</li>
-        <li>被釣魚網站騙走帳密</li>
-      </ul>
+},
+
+{
+    'id': 3, 'chapter': '第一章：文書工具巡禮', 'title': 'Office 365 學生帳號免費申請',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>🎓 Office 365 學生帳號怎麼領？</h2>
+  <p class='slide-desc'>只要有學校 email，Microsoft 送你完整的 Office 一整套</p>
+
+  <div class='card-grid-2' style='margin-bottom:12px;'>
+    <div style='background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fbbf24;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#78350f;font-size:.95rem;margin-bottom:8px;'>📥 3 步驟取得帳號</div>
+      <div style='font-size:.82rem;color:#78350f;line-height:1.7;'>
+        <strong>①</strong> 去 <a href='https://www.microsoft.com/zh-tw/education/products/office' target='_blank' style='color:#c2410c;'>Microsoft 教育版申請頁</a><br>
+        <strong>②</strong> 輸入你的<strong>學校 email</strong>（如 s1234@school.edu.tw）<br>
+        <strong>③</strong> 收信、驗證 → 完成！
+      </div>
+      <p style='font-size:.75rem;color:#92400e;margin-top:10px;'>
+        💡 沒收到驗證信？先確認學校 email 是否已啟用，或問資訊組。
+      </p>
+    </div>
+
+    <div style='background:linear-gradient(135deg,#dbeafe,#bfdbfe);border:1px solid #60a5fa;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.95rem;margin-bottom:8px;'>🎁 學生方案免費包含</div>
+      <div style='font-size:.82rem;color:#1e3a8a;line-height:1.6;'>
+        ✅ Word / Excel / PowerPoint / OneNote<br>
+        ✅ OneDrive <strong>1 TB</strong> 雲端空間<br>
+        ✅ Teams 視訊會議<br>
+        ✅ 電腦、平板、手機各 5 台裝置
+      </div>
+      <p style='font-size:.75rem;color:#1e40af;margin-top:10px;'>
+        💰 一般成人授權每年約 NT$2,190，學生 <strong>0 元</strong>！
+      </p>
     </div>
   </div>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>🛡️ 安全強化步驟</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'>① 前往 myaccount.google.com 進行安全檢查</div>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'>② 啟用兩步驟驗證（2FA）</div>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'>③ 查看「帳號活動」確認有無異常登入</div>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'>④ 定期清除已授權的第三方應用程式</div>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'>⑤ 使用 Gmail 的「機密模式」傳送敏感郵件</div>
-      </div>
-    </div>
+
+  <div class='tip-box'>
+    🏫 <strong>電腦教室桌機</strong>通常已裝好 Word，直接用即可；<strong>自己筆電</strong>建議申請學生 Office 365 或用 Google Docs 都好。
   </div>
 </div>"""
-    },
-    {
-        'id': 6, 'chapter': '第一章：Google Workspace 概覽', 'title': 'Gmail 進階使用',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>Gmail 進階使用技巧</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🔍 Gmail 搜尋語法</h3>
-      <div style='display:flex;flex-direction:column;gap:5px;font-size:.82rem;'>
-        <div style='background:#fff;padding:7px;border-radius:5px;border-left:3px solid #2563eb;'><code style='color:#1e40af;'>from:teacher@school.edu</code><span style='color:#6b7280;'> — 來自特定寄件人</span></div>
-        <div style='background:#fff;padding:7px;border-radius:5px;border-left:3px solid #2563eb;'><code style='color:#1e40af;'>has:attachment</code><span style='color:#6b7280;'> — 含附件</span></div>
-        <div style='background:#fff;padding:7px;border-radius:5px;border-left:3px solid #2563eb;'><code style='color:#1e40af;'>is:unread</code><span style='color:#6b7280;'> — 未讀郵件</span></div>
-        <div style='background:#fff;padding:7px;border-radius:5px;border-left:3px solid #2563eb;'><code style='color:#1e40af;'>after:2024/1/1</code><span style='color:#6b7280;'> — 特定日期後</span></div>
-        <div style='background:#fff;padding:7px;border-radius:5px;border-left:3px solid #2563eb;'><code style='color:#1e40af;'>larger:5m</code><span style='color:#6b7280;'> — 大於5MB</span></div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>⚡ Gmail 快捷鍵</h3>
-      <div style='display:flex;flex-direction:column;gap:5px;font-size:.82rem;'>
-        <div style='display:flex;justify-content:space-between;background:#fff;padding:7px;border-radius:5px;'><code style='color:#15803d;'>C</code><span style='color:#374151;'>撰寫新郵件</span></div>
-        <div style='display:flex;justify-content:space-between;background:#f0fdf4;padding:7px;border-radius:5px;'><code style='color:#15803d;'>R</code><span style='color:#374151;'>回覆</span></div>
-        <div style='display:flex;justify-content:space-between;background:#fff;padding:7px;border-radius:5px;'><code style='color:#15803d;'>A</code><span style='color:#374151;'>全部回覆</span></div>
-        <div style='display:flex;justify-content:space-between;background:#f0fdf4;padding:7px;border-radius:5px;'><code style='color:#15803d;'>E</code><span style='color:#374151;'>封存</span></div>
-        <div style='display:flex;justify-content:space-between;background:#fff;padding:7px;border-radius:5px;'><code style='color:#15803d;'>/ </code><span style='color:#374151;'>搜尋</span></div>
-      </div>
-      <p style='color:#6b7280;font-size:.75rem;margin-top:8px;'>需先在設定中啟用鍵盤快捷鍵</p>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 7, 'chapter': '第一章：Google Workspace 概覽', 'title': '🎯 第一章 隨堂測驗',
-        'bg': 'purple', 'quiz': 'q1', 'chart': None, 'video': None,
-        'html': """
-<div style='text-align:center;padding:20px;'>
-  <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
-  <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第一章 隨堂測驗</h2>
-  <p style='color:#e9d5ff;font-size:1.1rem;'>Google Workspace 概覽 ── 2 道題目，點擊作答！</p>
-</div>"""
-    },
-    {
-        'id': 8, 'chapter': '第二章：Google 文件進階排版', 'title': '段落樣式',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>段落樣式：專業排版的關鍵</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📐 樣式層次</h3>
-      <div style='display:flex;flex-direction:column;gap:5px;'>
-        <div style='background:#1e3a5f;color:#fff;padding:10px;border-radius:6px;font-size:1.1rem;font-weight:900;'>標題（文件名稱）</div>
-        <div style='background:#2563eb;color:#fff;padding:8px;border-radius:6px;font-size:.95rem;font-weight:700;padding-left:20px;'>標題 1（大章節）</div>
-        <div style='background:#3b82f6;color:#fff;padding:7px;border-radius:6px;font-size:.85rem;font-weight:600;padding-left:32px;'>標題 2（小節）</div>
-        <div style='background:#93c5fd;color:#1e3a5f;padding:6px;border-radius:6px;font-size:.8rem;padding-left:44px;'>標題 3（子節）</div>
-        <div style='background:#f1f5f9;color:#374151;padding:6px;border-radius:6px;font-size:.78rem;padding-left:44px;border:1px solid #e2e8f0;'>內文（正文）</div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>✨ 使用樣式的好處</h3>
-      <ul style='color:#374151;font-size:.85rem;padding-left:16px;'>
-        <li>一鍵套用，格式全文一致</li>
-        <li>修改樣式後全文同步更新</li>
-        <li>自動產生目錄</li>
-        <li>文件導覽窗格可快速跳頁</li>
-        <li>方便閱讀，結構清晰</li>
-      </ul>
-    </div>
-    <div style='background:#fef9c3;padding:10px;border-radius:8px;'>
-      <p style='color:#854d0e;font-size:.85rem;margin:0;'>💡 使用方式：格式 → 段落樣式，或用工具列左側下拉選單</p>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 9, 'chapter': '第二章：Google 文件進階排版', 'title': '自動目錄',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>自動目錄：讓文件更專業</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📋 插入目錄步驟</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
-        <div style='background:#dbeafe;padding:7px;border-radius:5px;display:flex;gap:8px;align-items:center;'><span style='background:#2563eb;color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;'>1</span><span style='color:#374151;'>先用「段落樣式」套用標題</span></div>
-        <div style='background:#dbeafe;padding:7px;border-radius:5px;display:flex;gap:8px;align-items:center;'><span style='background:#2563eb;color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;'>2</span><span style='color:#374151;'>將游標放到要插入目錄的位置</span></div>
-        <div style='background:#dbeafe;padding:7px;border-radius:5px;display:flex;gap:8px;align-items:center;'><span style='background:#2563eb;color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;'>3</span><span style='color:#374151;'>插入 → 目錄，選擇帶頁碼或帶連結</span></div>
-        <div style='background:#dbeafe;padding:7px;border-radius:5px;display:flex;gap:8px;align-items:center;'><span style='background:#2563eb;color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;'>4</span><span style='color:#374151;'>標題修改後，按目錄上的「更新」按鈕</span></div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div style='background:#f8fafc;border:2px solid #e2e8f0;padding:15px;border-radius:10px;'>
-      <h3 style='color:#374151;font-size:.9rem;margin-bottom:10px;'>📖 目錄範例預覽</h3>
-      <div style='font-size:.82rem;color:#374151;'>
-        <div style='display:flex;justify-content:space-between;border-bottom:1px dotted #e2e8f0;padding:4px 0;font-weight:700;color:#1e40af;'>第一章　城市科技概覽<span>1</span></div>
-        <div style='display:flex;justify-content:space-between;border-bottom:1px dotted #e2e8f0;padding:4px 0;padding-left:12px;'>1.1 什麼是城市科技<span>2</span></div>
-        <div style='display:flex;justify-content:space-between;border-bottom:1px dotted #e2e8f0;padding:4px 0;padding-left:12px;'>1.2 台灣科技產業現況<span>5</span></div>
-        <div style='display:flex;justify-content:space-between;border-bottom:1px dotted #e2e8f0;padding:4px 0;font-weight:700;color:#1e40af;'>第二章　數位工具應用<span>8</span></div>
-        <div style='display:flex;justify-content:space-between;padding:4px 0;padding-left:12px;'>2.1 Google Workspace<span>9</span></div>
-      </div>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 10, 'chapter': '第二章：Google 文件進階排版', 'title': '頁首頁尾與頁碼',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>頁首、頁尾與頁碼</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📃 頁首頁尾設定</h3>
-      <p style='color:#374151;font-size:.88rem;margin-bottom:8px;'>插入 → 頁首與頁尾</p>
-      <ul style='color:#374151;font-size:.83rem;padding-left:16px;'>
-        <li>頁首：通常放文件標題或學校名稱</li>
-        <li>頁尾：通常放頁碼</li>
-        <li>可設定第一頁不同（封面不顯示頁碼）</li>
-        <li>奇偶頁可設定不同頁首頁尾</li>
-      </ul>
-    </div>
-    <div style='background:#f0fdf4;padding:10px;border-radius:8px;'>
-      <h3 style='color:#15803d;font-size:.9rem;margin-bottom:6px;'>🔢 插入頁碼</h3>
-      <p style='color:#374151;font-size:.83rem;margin:0;'>插入 → 頁碼，可選擇位置（左/中/右）和格式（阿拉伯數字/羅馬數字）</p>
-    </div>
-  </div>
-  <div>
-    <div style='background:#f8fafc;border:2px solid #e2e8f0;padding:0;border-radius:10px;overflow:hidden;'>
-      <div style='background:#dbeafe;padding:8px 12px;border-bottom:1px solid #e2e8f0;text-align:center;font-size:.78rem;color:#1e40af;font-weight:600;'>頁首示範</div>
-      <div style='padding:15px;'>
-        <div style='display:flex;justify-content:space-between;font-size:.78rem;color:#94a3b8;border-bottom:1px solid #e2e8f0;padding-bottom:6px;margin-bottom:10px;'>
-          <span>芳和實驗中學</span>
-          <span>城市科技期末報告</span>
-        </div>
-        <p style='color:#374151;font-size:.83rem;line-height:1.6;'>在數位時代，科技改變了我們生活的每個層面。從早晨起床查看手機通知，到晚上使用串流服務觀看影片...</p>
-        <div style='display:flex;justify-content:center;font-size:.78rem;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:6px;margin-top:10px;'>第 1 頁</div>
-      </div>
-      <div style='background:#dcfce7;padding:6px 12px;border-top:1px solid #e2e8f0;text-align:center;font-size:.78rem;color:#15803d;font-weight:600;'>頁尾示範</div>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 11, 'chapter': '第二章：Google 文件進階排版', 'title': '表格與圖片排版',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>表格與圖片的專業排版</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📊 表格使用技巧</h3>
-      <ul style='color:#374151;font-size:.85rem;padding-left:16px;'>
-        <li>插入 → 表格，選擇欄/列數</li>
-        <li>可合併儲存格（選取後右鍵）</li>
-        <li>表格樣式：格式 → 段落樣式</li>
-        <li>表格寬度：拖曳邊框調整</li>
-        <li>固定欄寬：右鍵 → 表格屬性</li>
-      </ul>
-    </div>
-    <div style='background:#f0fdf4;padding:10px;border-radius:8px;'>
-      <h3 style='color:#15803d;font-size:.9rem;margin-bottom:6px;'>🖼️ 圖片排版選項</h3>
-      <ul style='color:#374151;font-size:.82rem;padding-left:14px;'>
-        <li>與文字一起：圖片在文字行內</li>
-        <li>文繞圖：文字環繞圖片四周</li>
-        <li>突破文字：圖片蓋在文字上</li>
-      </ul>
-    </div>
-  </div>
-  <div>
-    <div style='background:#fef9c3;padding:15px;border-radius:10px;'>
-      <h3 style='color:#854d0e;font-size:1rem;margin-bottom:10px;'>💡 常用快捷鍵</h3>
-      <div style='display:flex;flex-direction:column;gap:5px;font-size:.82rem;'>
-        <div style='display:flex;justify-content:space-between;background:#fff;padding:7px;border-radius:5px;'><code style='color:#854d0e;'>Ctrl+B</code><span style='color:#374151;'>粗體</span></div>
-        <div style='display:flex;justify-content:space-between;background:#fef9c3;padding:7px;border-radius:5px;'><code style='color:#854d0e;'>Ctrl+I</code><span style='color:#374151;'>斜體</span></div>
-        <div style='display:flex;justify-content:space-between;background:#fff;padding:7px;border-radius:5px;'><code style='color:#854d0e;'>Ctrl+U</code><span style='color:#374151;'>底線</span></div>
-        <div style='display:flex;justify-content:space-between;background:#fef9c3;padding:7px;border-radius:5px;'><code style='color:#854d0e;'>Ctrl+Z</code><span style='color:#374151;'>復原</span></div>
-        <div style='display:flex;justify-content:space-between;background:#fff;padding:7px;border-radius:5px;'><code style='color:#854d0e;'>Ctrl+Shift+C</code><span style='color:#374151;'>複製格式</span></div>
-        <div style='display:flex;justify-content:space-between;background:#fef9c3;padding:7px;border-radius:5px;'><code style='color:#854d0e;'>Ctrl+Shift+V</code><span style='color:#374151;'>貼上格式</span></div>
-      </div>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 12, 'chapter': '第二章：Google 文件進階排版', 'title': '🎯 第二章 隨堂測驗',
-        'bg': 'purple', 'quiz': 'q2', 'chart': None, 'video': None,
-        'html': """
-<div style='text-align:center;padding:20px;'>
-  <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
-  <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第二章 隨堂測驗</h2>
-  <p style='color:#e9d5ff;font-size:1.1rem;'>Google 文件排版 ── 2 道題目，點擊作答！</p>
-</div>"""
-    },
-    {
-        'id': 13, 'chapter': '第三章：共同編輯與版本控制', 'title': '即時協作',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>即時協作：一起工作的革命</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🔄 傳統 vs 雲端協作</h3>
-      <div style='display:flex;flex-direction:column;gap:8px;font-size:.83rem;'>
-        <div style='background:#fef2f2;padding:10px;border-radius:8px;border-left:3px solid #dc2626;'>
-          <p style='color:#dc2626;font-weight:700;margin:0 0 3px;'>❌ 傳統方式</p>
-          <p style='color:#374151;margin:0;'>A 存檔 → 傳給 B → B 修改 → 傳回 A → A 修改……版本混亂，哪個是最新版？</p>
-        </div>
-        <div style='background:#f0fdf4;padding:10px;border-radius:8px;border-left:3px solid #16a34a;'>
-          <p style='color:#15803d;font-weight:700;margin:0 0 3px;'>✅ Google 文件</p>
-          <p style='color:#374151;margin:0;'>所有人同時在同一份文件上編輯，看到彼此游標，永遠只有一個版本。</p>
+},
+
+{
+    'id': 4, 'chapter': '第一章：文書工具巡禮', 'title': '雲端硬碟：Google Drive vs OneDrive',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>☁️ 雲端硬碟：Google Drive vs OneDrive</h2>
+
+  <div class='card-grid-2' style='margin-bottom:12px;'>
+    <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:12px;padding:14px;'>
+      <div style='display:flex;align-items:center;gap:10px;margin-bottom:8px;'>
+        <span style='font-size:1.5rem;'>🗂️</span>
+        <div>
+          <div style='font-weight:700;color:#1e40af;font-size:.95rem;'>Google Drive</div>
+          <div style='font-size:.72rem;color:#6b7280;'>drive.google.com</div>
         </div>
       </div>
-    </div>
-  </div>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>💬 協作功能</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'><strong style='color:#15803d;'>留言（Comment）</strong>：選取文字 → 右鍵 → 加入留言</div>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'><strong style='color:#15803d;'>建議（Suggesting）</strong>：工具列切換編輯模式</div>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'><strong style='color:#15803d;'>@提及</strong>：留言中 @同學名字，他會收到通知</div>
-        <div style='background:#dcfce7;padding:7px;border-radius:6px;color:#374151;'><strong style='color:#15803d;'>即時聊天</strong>：右上角聊天圖示，不需切換 LINE</div>
-      </div>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 14, 'chapter': '第三章：共同編輯與版本控制', 'title': '版本歷史',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>版本歷史：時光機功能</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>⏰ 版本歷史功能</h3>
-      <p style='color:#374151;font-size:.88rem;margin-bottom:8px;'>Google 文件會自動儲存每次修改的快照，你可以：</p>
-      <ul style='color:#374151;font-size:.83rem;padding-left:16px;'>
-        <li>查看任何時間點的文件狀態</li>
-        <li>還原到過去某個版本</li>
-        <li>查看是誰做了哪些修改（不同顏色標示）</li>
-        <li>為重要版本命名（如「定稿版」）</li>
+      <ul style='font-size:.8rem;color:#1e3a8a;line-height:1.7;padding-left:16px;margin:0;'>
+        <li>免費 <strong>15 GB</strong>（含 Gmail、Photos）</li>
+        <li>學校版 <strong>100 GB+</strong>（依學校方案）</li>
+        <li>自動同步 Google Docs / Sheets / Slides</li>
+        <li>檔案共用：連結加權限一鍵搞定</li>
       </ul>
-      <div style='background:#dbeafe;padding:8px;border-radius:6px;margin-top:8px;'>
-        <p style='color:#1e40af;font-size:.8rem;margin:0;'>操作：檔案 → 版本歷史 → 查看版本歷史</p>
-      </div>
     </div>
-  </div>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>🛡️ 共用權限設定</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
-        <div style='background:#dcfce7;padding:8px;border-radius:6px;'>
-          <p style='color:#15803d;font-weight:700;margin:0 0 2px;'>擁有者</p>
-          <p style='color:#374151;margin:0;'>完整控制，可以刪除文件、轉移擁有權</p>
-        </div>
-        <div style='background:#dcfce7;padding:8px;border-radius:6px;'>
-          <p style='color:#15803d;font-weight:700;margin:0 0 2px;'>編輯者</p>
-          <p style='color:#374151;margin:0;'>可以修改文件，也可以邀請他人</p>
-        </div>
-        <div style='background:#dcfce7;padding:8px;border-radius:6px;'>
-          <p style='color:#15803d;font-weight:700;margin:0 0 2px;'>加入留言</p>
-          <p style='color:#374151;margin:0;'>可以留言但不能直接修改文字</p>
-        </div>
-        <div style='background:#dcfce7;padding:8px;border-radius:6px;'>
-          <p style='color:#15803d;font-weight:700;margin:0 0 2px;'>檢視者</p>
-          <p style='color:#374151;margin:0;'>只能閱讀，無法任何修改</p>
+
+    <div style='background:#fef3c7;border:1px solid #fbbf24;border-radius:12px;padding:14px;'>
+      <div style='display:flex;align-items:center;gap:10px;margin-bottom:8px;'>
+        <span style='font-size:1.5rem;'>☁️</span>
+        <div>
+          <div style='font-weight:700;color:#92400e;font-size:.95rem;'>Microsoft OneDrive</div>
+          <div style='font-size:.72rem;color:#6b7280;'>onedrive.live.com</div>
         </div>
       </div>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 15, 'chapter': '第三章：共同編輯與版本控制', 'title': '建議模式',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>建議模式：讓修改更透明</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>✏️ 三種編輯模式</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
-        <div style='background:#fff;padding:8px;border-radius:6px;border:2px solid #2563eb;'>
-          <p style='color:#1e40af;font-weight:700;margin:0 0 2px;'>✏️ 編輯模式</p>
-          <p style='color:#374151;margin:0;'>直接修改，適合自己的文件</p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border:2px solid #16a34a;'>
-          <p style='color:#15803d;font-weight:700;margin:0 0 2px;'>💡 建議模式</p>
-          <p style='color:#374151;margin:0;'>修改以彩色標示，作者可接受/拒絕</p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border:2px solid #6b7280;'>
-          <p style='color:#6b7280;font-weight:700;margin:0 0 2px;'>👁️ 檢視模式</p>
-          <p style='color:#374151;margin:0;'>只能閱讀，無法做任何修改</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div style='background:#f8fafc;border:2px solid #e2e8f0;padding:15px;border-radius:10px;'>
-      <h3 style='color:#374151;font-size:.9rem;margin-bottom:10px;'>📄 建議模式示範</h3>
-      <div style='background:#fff;padding:12px;border-radius:8px;font-size:.85rem;line-height:1.8;border:1px solid #e2e8f0;'>
-        <span style='color:#374151;'>台灣是</span>
-        <span style='background:#fef2f2;color:#dc2626;text-decoration:line-through;'>全球最重要的</span>
-        <span style='background:#f0fdf4;color:#15803d;'>半導體產業</span>
-        <span style='color:#374151;'>重要的科技中心</span>
-        <span style='background:#f0fdf4;color:#15803d;'>，台積電佔全球先進晶片代工超過 60%</span>
-        <span style='color:#374151;'>。</span>
-      </div>
-      <div style='display:flex;gap:8px;margin-top:8px;font-size:.78rem;'>
-        <span style='background:#f0fdf4;color:#15803d;padding:3px 8px;border-radius:4px;'>綠色：新增</span>
-        <span style='background:#fef2f2;color:#dc2626;padding:3px 8px;border-radius:4px;'>紅底：刪除</span>
-      </div>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 16, 'chapter': '第三章：共同編輯與版本控制', 'title': '🎯 第三章 隨堂測驗',
-        'bg': 'purple', 'quiz': 'q3', 'chart': None, 'video': None,
-        'html': """
-<div style='text-align:center;padding:20px;'>
-  <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
-  <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第三章 隨堂測驗</h2>
-  <p style='color:#e9d5ff;font-size:1.1rem;'>共同編輯與版本控制 ── 2 道題目，點擊作答！</p>
-</div>"""
-    },
-    {
-        'id': 17, 'chapter': '第四章：雲端辦公應用', 'title': 'Google 試算表',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>Google 試算表：常用函數</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📊 基礎函數</h3>
-      <table style='width:100%;border-collapse:collapse;font-size:.8rem;'>
-        <tr style='background:#1e40af;color:#fff;'><th style='padding:6px;'>函數</th><th style='padding:6px;'>功能</th><th style='padding:6px;'>範例</th></tr>
-        <tr><td style='padding:5px;color:#374151;font-family:monospace;'>SUM</td><td style='padding:5px;color:#374151;'>加總</td><td style='padding:5px;color:#1e40af;font-family:monospace;font-size:.75rem;'>=SUM(A1:A10)</td></tr>
-        <tr style='background:#f0f9ff;'><td style='padding:5px;color:#374151;font-family:monospace;'>AVERAGE</td><td style='padding:5px;color:#374151;'>平均</td><td style='padding:5px;color:#1e40af;font-family:monospace;font-size:.75rem;'>=AVERAGE(B1:B5)</td></tr>
-        <tr><td style='padding:5px;color:#374151;font-family:monospace;'>COUNT</td><td style='padding:5px;color:#374151;'>計數</td><td style='padding:5px;color:#1e40af;font-family:monospace;font-size:.75rem;'>=COUNT(C1:C20)</td></tr>
-        <tr style='background:#f0f9ff;'><td style='padding:5px;color:#374151;font-family:monospace;'>IF</td><td style='padding:5px;color:#374151;'>條件判斷</td><td style='padding:5px;color:#1e40af;font-family:monospace;font-size:.75rem;'>=IF(A1>60,"及格","不及格")</td></tr>
-        <tr><td style='padding:5px;color:#374151;font-family:monospace;'>VLOOKUP</td><td style='padding:5px;color:#374151;'>垂直查找</td><td style='padding:5px;color:#1e40af;font-family:monospace;font-size:.75rem;'>=VLOOKUP(A1,D:F,2,0)</td></tr>
-      </table>
-    </div>
-  </div>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:8px;'>📈 製作圖表</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
-        <div style='background:#dcfce7;padding:7px;border-radius:5px;display:flex;gap:6px;align-items:center;'><span style='background:#15803d;color:#fff;width:18px;height:18px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;'>1</span><span style='color:#374151;'>選取要圖表化的資料範圍</span></div>
-        <div style='background:#dcfce7;padding:7px;border-radius:5px;display:flex;gap:6px;align-items:center;'><span style='background:#15803d;color:#fff;width:18px;height:18px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;'>2</span><span style='color:#374151;'>插入 → 圖表</span></div>
-        <div style='background:#dcfce7;padding:7px;border-radius:5px;display:flex;gap:6px;align-items:center;'><span style='background:#15803d;color:#fff;width:18px;height:18px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;'>3</span><span style='color:#374151;'>選擇圖表類型（柱狀、折線、圓餅）</span></div>
-        <div style='background:#dcfce7;padding:7px;border-radius:5px;display:flex;gap:6px;align-items:center;'><span style='background:#15803d;color:#fff;width:18px;height:18px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;'>4</span><span style='color:#374151;'>調整標題、顏色等外觀設定</span></div>
-      </div>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 18, 'chapter': '第四章：雲端辦公應用', 'title': 'Google 簡報',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>Google 簡報：有效的視覺呈現</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🎨 好簡報的設計原則</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
-        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'><strong style='color:#1e40af;'>少即是多</strong>：每頁一個重點，文字精簡</div>
-        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'><strong style='color:#1e40af;'>大字原則</strong>：字體至少 24pt，讓後排看得清楚</div>
-        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'><strong style='color:#1e40af;'>對比色</strong>：深底淺字或淺底深字，提高可讀性</div>
-        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'><strong style='color:#1e40af;'>一致性</strong>：整份簡報套用同一主題</div>
-        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'><strong style='color:#1e40af;'>圖像優先</strong>：一張好圖片勝過一段文字</div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>⚡ 實用功能</h3>
-      <ul style='color:#374151;font-size:.85rem;padding-left:16px;'>
-        <li>主題（Theme）：一鍵統一設計</li>
-        <li>母片（Slide master）：統一版面配置</li>
-        <li>動畫與轉場效果</li>
-        <li>演講者備忘稿</li>
-        <li>發表模式（全螢幕）</li>
-        <li>分享為 PDF 或 PowerPoint 格式</li>
+      <ul style='font-size:.8rem;color:#78350f;line-height:1.7;padding-left:16px;margin:0;'>
+        <li>免費 <strong>5 GB</strong></li>
+        <li>學生 Office 365 <strong>1 TB</strong>（超大！）</li>
+        <li>自動同步 Word / Excel / PowerPoint</li>
+        <li>整合 Windows 檔案總管</li>
       </ul>
     </div>
   </div>
-</div>"""
-    },
-    {
-        'id': 19, 'chapter': '第四章：雲端辦公應用', 'title': 'Google Calendar 與 Meet',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>Google Calendar 與 Meet</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📅 Google Calendar</h3>
-      <ul style='color:#374151;font-size:.85rem;padding-left:16px;'>
-        <li>建立並邀請他人參加活動</li>
-        <li>設定提醒（Email 或手機通知）</li>
-        <li>與同學、老師共享行事曆</li>
-        <li>自動同步到手機</li>
-        <li>整合 Google Meet 視訊連結</li>
-      </ul>
-    </div>
+
+  <div style='background:#f0fdf4;border:1px dashed #22c55e;border-radius:10px;padding:10px 14px;font-size:.85rem;color:#15803d;'>
+    💡 <strong>寫小論文的實務建議</strong>：主檔放雲端（任何電腦都能開）+ 完成時另存 PDF 上傳投稿系統。<strong>絕對不要只存本機硬碟</strong>——電腦壞掉就沒了！
   </div>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>🎥 Google Meet</h3>
-      <ul style='color:#374151;font-size:.85rem;padding-left:16px;'>
-        <li>免費視訊會議（最多 100 人）</li>
-        <li>即時字幕（支援英文）</li>
-        <li>螢幕分享</li>
-        <li>分組討論室（Breakout rooms）</li>
-        <li>錄製會議（需 Google Workspace）</li>
-      </ul>
-      <div style='background:#dcfce7;padding:8px;border-radius:6px;margin-top:10px;'>
-        <p style='color:#15803d;font-size:.8rem;margin:0;'>💡 學生可以用 Meet 進行線上分組討論</p>
+</div>"""
+},
+
+{
+    'id': 5, 'chapter': '第一章：文書工具巡禮', 'title': '🎯 第一章 隨堂測驗',
+    'bg': 'teal', 'quiz': 'q1', 'chart': None, 'video': None,
+    'html': """
+<div style='text-align:center;padding:40px 20px;'>
+  <div style='font-size:64px;margin-bottom:20px;'>🎯</div>
+  <h1 style='font-size:2rem;font-weight:900;color:#fff;margin-bottom:12px;'>第一章 隨堂測驗</h1>
+  <h2 style='font-size:1.1rem;font-weight:400;color:#a7f3d0;margin-bottom:24px;'>文書工具巡禮</h2>
+  <p style='color:#e0f7fa;font-size:1rem;'>2 道題目，按「下一頁」開始作答！</p>
+</div>"""
+},
+
+# ═══ 第二章：文書進階排版 ═══
+
+{
+    'id': 6, 'chapter': '第二章：文書進階排版（寫論文必備）', 'title': '段落樣式：一切自動化的起點',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>🏷️ 段落樣式：一切自動化的起點</h2>
+  <p class='slide-desc'>套用「標題 1、標題 2」不只讓字變大——是後面所有自動化功能的基礎</p>
+
+  <div class='card-grid-2' style='margin-bottom:12px;'>
+    <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.9rem;margin-bottom:8px;'>📄 Microsoft Word</div>
+      <div style='font-size:.8rem;color:#1e3a8a;line-height:1.6;'>
+        <strong>路徑</strong>：常用 → 樣式區<br>
+        <strong>快捷鍵</strong>：<br>
+        &nbsp;&nbsp;<code style='background:#fff;padding:1px 6px;border-radius:4px;'>Ctrl + Alt + 1</code> → 標題 1<br>
+        &nbsp;&nbsp;<code style='background:#fff;padding:1px 6px;border-radius:4px;'>Ctrl + Alt + 2</code> → 標題 2<br>
+        &nbsp;&nbsp;<code style='background:#fff;padding:1px 6px;border-radius:4px;'>Ctrl + Shift + N</code> → 內文
+      </div>
+    </div>
+
+    <div style='background:#fef3c7;border:1px solid #fbbf24;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#92400e;font-size:.9rem;margin-bottom:8px;'>📗 Google Docs</div>
+      <div style='font-size:.8rem;color:#78350f;line-height:1.6;'>
+        <strong>路徑</strong>：工具列「一般文字」下拉選單<br>
+        <strong>快捷鍵</strong>：<br>
+        &nbsp;&nbsp;<code style='background:#fff;padding:1px 6px;border-radius:4px;'>Ctrl + Alt + 1</code> → 標題 1<br>
+        &nbsp;&nbsp;<code style='background:#fff;padding:1px 6px;border-radius:4px;'>Ctrl + Alt + 2</code> → 標題 2<br>
+        &nbsp;&nbsp;<code style='background:#fff;padding:1px 6px;border-radius:4px;'>Ctrl + Alt + 0</code> → 內文
       </div>
     </div>
   </div>
-</div>"""
-    },
-    {
-        'id': 20, 'chapter': '第四章：雲端辦公應用', 'title': 'Google 協作平台',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>Google 協作平台與 Classroom</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🏫 Google Classroom</h3>
-      <ul style='color:#374151;font-size:.85rem;padding-left:16px;'>
-        <li>老師發布作業、通知</li>
-        <li>學生提交作業（可直接提交 Google 文件）</li>
-        <li>老師線上批改、評分、留言</li>
-        <li>作業截止時間提醒</li>
-        <li>整合 Meet 視訊連結</li>
-      </ul>
-    </div>
+
+  <div style='background:#f0fdf4;border-left:4px solid #22c55e;padding:10px 14px;border-radius:8px;font-size:.85rem;color:#15803d;'>
+    ✨ <strong>神奇之處</strong>：全文所有「標題 1」外觀可以一次改（改樣式定義即可）；<strong>而且</strong>之後「自動目錄」會抓出所有標題，不套樣式就不會被抓到！
   </div>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>🌐 Google 協作平台</h3>
-      <p style='color:#374151;font-size:.88rem;margin-bottom:8px;'>類似學校/班級的網站：</p>
-      <ul style='color:#374151;font-size:.85rem;padding-left:16px;'>
-        <li>建立班級或社團的共用網站</li>
-        <li>嵌入 Google 試算表、文件、YouTube</li>
-        <li>不需要寫程式即可建立網頁</li>
-        <li>可公開或只限校內人員檢視</li>
-      </ul>
-    </div>
+
+  <div class='tip-box' style='margin-top:10px;'>
+    💡 <strong>小論文六大架構每一章都用「標題 1」</strong>，之後只要按「插入目錄」，目錄就自動長出來。
   </div>
 </div>"""
-    },
-    {
-        'id': 21, 'chapter': '第四章：雲端辦公應用', 'title': '生產力工作流程',
-        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 class='slide-title'>打造高效的雲端工作流程</h2>
-<div style='background:#1e293b;padding:20px;border-radius:12px;margin-bottom:16px;'>
-  <h3 style='color:#94a3b8;font-size:.85rem;text-align:center;margin-bottom:16px;letter-spacing:.05em;'>分組報告的最佳實踐流程</h3>
-  <div style='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;'>
-    <div style='background:#0f172a;padding:12px;border-radius:8px;text-align:center;border-bottom:3px solid #3b82f6;'>
-      <div style='font-size:1.6rem;'>📋</div>
-      <p style='color:#93c5fd;font-size:.7rem;margin-top:4px;'>①計畫<br>Calendar 排程</p>
-    </div>
-    <div style='background:#0f172a;padding:12px;border-radius:8px;text-align:center;border-bottom:3px solid #22c55e;'>
-      <div style='font-size:1.6rem;'>📄</div>
-      <p style='color:#86efac;font-size:.7rem;margin-top:4px;'>②協作<br>文件共同編輯</p>
-    </div>
-    <div style='background:#0f172a;padding:12px;border-radius:8px;text-align:center;border-bottom:3px solid #f59e0b;'>
-      <div style='font-size:1.6rem;'>📊</div>
-      <p style='color:#fcd34d;font-size:.7rem;margin-top:4px;'>③分析<br>試算表整理</p>
-    </div>
-    <div style='background:#0f172a;padding:12px;border-radius:8px;text-align:center;border-bottom:3px solid #f472b6;'>
-      <div style='font-size:1.6rem;'>📑</div>
-      <p style='color:#f9a8d4;font-size:.7rem;margin-top:4px;'>④呈現<br>簡報製作</p>
-    </div>
-    <div style='background:#0f172a;padding:12px;border-radius:8px;text-align:center;border-bottom:3px solid #a78bfa;'>
-      <div style='font-size:1.6rem;'>🎥</div>
-      <p style='color:#c4b5fd;font-size:.7rem;margin-top:4px;'>⑤分享<br>Meet 發表</p>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 22, 'chapter': '第四章：雲端辦公應用', 'title': '🎯 第四章 隨堂測驗',
-        'bg': 'purple', 'quiz': 'q4', 'chart': None, 'video': None,
-        'html': """
-<div style='text-align:center;padding:20px;'>
-  <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
-  <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第四章 隨堂測驗</h2>
-  <p style='color:#e9d5ff;font-size:1.1rem;'>雲端辦公應用 ── 2 道題目，點擊作答！</p>
-</div>"""
-    },
-    {
-        'id': 23, 'chapter': '分組實作', 'title': '分組實作：雲端協作報告',
-        'bg': 'teal', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>☁️ 分組實作：雲端協作報告</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div style='background:rgba(255,255,255,0.15);padding:18px;border-radius:12px;'>
-    <h3 style='color:#fff;font-size:1rem;margin-bottom:14px;'>📋 實作任務</h3>
-    <div style='display:flex;flex-direction:column;gap:10px;'>
-      <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務一：共同編輯文件</p>
-        <p style='color:#cffafe;font-size:.8rem;margin:0;'>小組成員同時在 Google 文件撰寫「台灣科技產業調查報告」，使用標題樣式和自動目錄</p>
+},
+
+{
+    'id': 7, 'chapter': '第二章：文書進階排版（寫論文必備）', 'title': '自動目錄：0.1 秒生成',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>📑 自動目錄：0.1 秒生成</h2>
+
+  <div class='card-grid-2' style='margin-bottom:12px;'>
+    <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.9rem;margin-bottom:8px;'>📄 Word</div>
+      <div style='font-size:.8rem;color:#1e3a8a;line-height:1.7;'>
+        <strong>步驟</strong>：<br>
+        ① 游標點到要插入目錄的位置<br>
+        ② 「<strong>參考資料</strong>」分頁 →「目錄」→ 選樣式<br>
+        ③ 完成！
       </div>
-      <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務二：試算表分析</p>
-        <p style='color:#cffafe;font-size:.8rem;margin:0;'>用 Google 試算表整理調查數據，加入 IF 函數和圖表視覺化</p>
+      <div style='background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:8px 10px;margin-top:8px;font-size:.72rem;color:#6b7280;'>
+        📌 修改標題後：右鍵目錄 → 更新功能變數
       </div>
-      <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務三：簡報製作</p>
-        <p style='color:#cffafe;font-size:.8rem;margin:0;'>製作 8 張以上 Google 簡報，套用主題，展示調查結果</p>
+    </div>
+
+    <div style='background:#fef3c7;border:1px solid #fbbf24;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#92400e;font-size:.9rem;margin-bottom:8px;'>📗 Google Docs</div>
+      <div style='font-size:.8rem;color:#78350f;line-height:1.7;'>
+        <strong>步驟</strong>：<br>
+        ① 游標點到要插入目錄的位置<br>
+        ② 「<strong>插入</strong>」→「目錄」→ 選樣式<br>
+        ③ 完成！
+      </div>
+      <div style='background:#fff;border:1px solid #fde68a;border-radius:8px;padding:8px 10px;margin-top:8px;font-size:.72rem;color:#6b7280;'>
+        📌 修改標題後：點目錄旁的「重新整理」小圖示
       </div>
     </div>
   </div>
-  <div>
-    <div style='background:rgba(255,255,255,0.15);padding:15px;border-radius:12px;margin-bottom:12px;'>
-      <h3 style='color:#fff;font-size:1rem;margin-bottom:10px;'>📊 評分標準</h3>
-      <ul style='color:#cffafe;font-size:.85rem;padding-left:16px;'>
-        <li>文件：標題樣式、目錄、格式（30分）</li>
-        <li>試算表：函數、圖表（20分）</li>
-        <li>簡報：設計、內容（30分）</li>
-        <li>協作過程：版本歷史、留言（20分）</li>
-      </ul>
+
+  <div style='background:#fef2f2;border-left:4px solid #ef4444;padding:10px 14px;border-radius:8px;font-size:.85rem;color:#991b1b;'>
+    ⚠️ <strong>常見錯誤</strong>：目錄空空的？→ 你沒套「標題 1、標題 2」樣式，只是把字放大。修：把每章章名選起來 → 點樣式「標題 1」。
+  </div>
+</div>"""
+},
+
+{
+    'id': 8, 'chapter': '第二章：文書進階排版（寫論文必備）', 'title': '頁首、頁尾與頁碼（小論文必要！）',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>📌 頁首、頁尾與頁碼</h2>
+  <p class='slide-desc'>115 小論文比賽規則明訂：<strong>全篇需有頁首</strong>，且與投稿篇名一致</p>
+
+  <div class='card-grid-2' style='margin-bottom:12px;'>
+    <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.9rem;margin-bottom:8px;'>📄 Word</div>
+      <div style='font-size:.8rem;color:#1e3a8a;line-height:1.7;'>
+        <strong>頁首</strong>：插入 → 頁首 → 選樣式 → 打篇名<br>
+        <strong>頁碼</strong>：插入 → 頁碼 → 頁面底端 → 置中<br>
+        <br>
+        💡 <strong>技巧</strong>：首頁不同（封面不編碼）：<br>
+        版面配置 → 版面設定 → 首頁不同
+      </div>
     </div>
-    <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:8px;'>
-      <p style='color:#fff;font-size:.85rem;font-weight:700;margin-bottom:4px;'>🗓️ 繳交方式</p>
-      <p style='color:#cffafe;font-size:.82rem;margin:0;'>共用連結上傳至 Google Classroom，確認權限為「任何人可以留言」</p>
+
+    <div style='background:#fef3c7;border:1px solid #fbbf24;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#92400e;font-size:.9rem;margin-bottom:8px;'>📗 Google Docs</div>
+      <div style='font-size:.8rem;color:#78350f;line-height:1.7;'>
+        <strong>頁首</strong>：插入 → 頁首和頁尾 → 頁首<br>
+        <strong>頁碼</strong>：插入 → 頁碼 → 選位置<br>
+        <br>
+        💡 <strong>技巧</strong>：不同首頁：<br>
+        頁首中點「選項」→ 勾「不同首頁」
+      </div>
+    </div>
+  </div>
+
+  <div style='background:#f3e8ff;border:1px dashed #8b5cf6;border-radius:10px;padding:10px 14px;font-size:.83rem;color:#6d28d9;'>
+    🏆 <strong>小論文比賽退件常見原因 (5)</strong>：全篇無頁首、學生報名的篇名跟內文頁首篇名不一致（14 條退件中的 2 條！）。
+  </div>
+</div>"""
+},
+
+{
+    'id': 9, 'chapter': '第二章：文書進階排版（寫論文必備）', 'title': '表格、圖片、圖說編號',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>🖼️ 表格、圖片、圖說編號</h2>
+
+  <div class='card-grid-2' style='margin-bottom:10px;'>
+    <div style='background:#f0fdf4;border:1px solid #86efac;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#166534;font-size:.9rem;margin-bottom:8px;'>📊 表格：什麼時候用？</div>
+      <div style='font-size:.8rem;color:#14532d;line-height:1.6;'>
+        比較多項目、呈現數據時用。<br>
+        <strong>操作</strong>：Word/Docs 都是「插入 → 表格 → 選欄列數」。<br>
+        小論文中：研究方法列步驟、結果列數字。
+      </div>
+    </div>
+
+    <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.9rem;margin-bottom:8px;'>🖼️ 圖片：怎麼配文字？</div>
+      <div style='font-size:.8rem;color:#1e3a8a;line-height:1.6;'>
+        Word：插入圖片後選「文繞圖」→ 上下型或緊密型<br>
+        Docs：插入圖片後選「內嵌／文字環繞／隔行」<br>
+        小論文常用「上下型」較不會版面跑掉。
+      </div>
+    </div>
+  </div>
+
+  <div style='background:#fff7ed;border:1px solid #fdba74;border-radius:12px;padding:12px 14px;font-size:.85rem;color:#9a3412;line-height:1.6;'>
+    <div style='font-weight:700;margin-bottom:6px;'>📌 圖說 & 表格編號（學術寫作標準）</div>
+    <div>
+      • 表格上方標「<strong>表 1</strong>：實驗組別分配」<br>
+      • 圖片下方標「<strong>圖 1</strong>：實驗流程示意」<br>
+      • 內文引用時要寫「（如表 1 所示）」——這樣讀者才知道你在講哪個圖表。
+    </div>
+    <div style='margin-top:6px;font-size:.75rem;color:#78350f;'>
+      💡 Word 有「參考資料 → 插入標號」自動編號功能，比手動輸入好用。
     </div>
   </div>
 </div>"""
-    },
-    {
-        'id': 24, 'chapter': '分組實作', 'title': '雲端改變了工作方式',
-        'bg': 'navy', 'quiz': None, 'chart': None, 'video': None,
-        'html': """
-<div style='text-align:center;padding:30px 20px;'>
-  <div style='font-size:64px;margin-bottom:20px;'>☁️</div>
-  <h1 style='font-size:2.2rem;font-weight:900;color:#fff;margin-bottom:12px;'>雲端讓合作沒有距離</h1>
-  <h2 style='font-size:1.2rem;font-weight:400;color:#93c5fd;margin-bottom:24px;'>任何裝置、任何地點、任何時間，一起工作</h2>
-  <div style='background:rgba(255,255,255,0.1);padding:18px;border-radius:12px;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto;'>
-    <p style='color:#e2e8f0;font-size:1rem;font-style:italic;line-height:1.7;margin:0;'>
-      「The future of work is not about where you work, it's about how you collaborate.」
+},
+
+{
+    'id': 10, 'chapter': '第二章：文書進階排版（寫論文必備）', 'title': '🎯 第二章 隨堂測驗',
+    'bg': 'teal', 'quiz': 'q2', 'chart': None, 'video': None,
+    'html': """
+<div style='text-align:center;padding:40px 20px;'>
+  <div style='font-size:64px;margin-bottom:20px;'>🎯</div>
+  <h1 style='font-size:2rem;font-weight:900;color:#fff;margin-bottom:12px;'>第二章 隨堂測驗</h1>
+  <h2 style='font-size:1.1rem;font-weight:400;color:#a7f3d0;margin-bottom:24px;'>文書進階排版</h2>
+  <p style='color:#e0f7fa;font-size:1rem;'>2 道題目，按「下一頁」開始作答！</p>
+</div>"""
+},
+
+# ═══ 第三章：共同編輯與版本控制 ═══
+
+{
+    'id': 11, 'chapter': '第三章：共同編輯與版本控制', 'title': '即時協作：3 人同編一份文件',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>👥 即時協作：3 人同編一份文件</h2>
+  <p class='slide-desc'>小組小論文寫作的救星——不再有「哪個是最新版」的困擾</p>
+
+  <div style='background:#fef2f2;padding:10px 14px;border-radius:10px;margin-bottom:8px;border-left:4px solid #ef4444;'>
+    <p style='color:#991b1b;font-weight:700;margin:0 0 4px;font-size:.85rem;'>😫 舊方法（傳統 Word 檔案傳來傳去）</p>
+    <p style='color:#7f1d1d;font-size:.8rem;margin:0;'>小明改完傳給小華 → 小華改完再傳小美 → 最後搞不清楚「論文_v3_final_真的最終.docx」是哪一份 → 花 2 小時合併</p>
+  </div>
+
+  <div style='background:#f0fdf4;padding:10px 14px;border-radius:10px;margin-bottom:10px;border-left:4px solid #22c55e;'>
+    <p style='color:#166534;font-weight:700;margin:0 0 4px;font-size:.85rem;'>✅ 新方法（Google Docs / Word Online 共用）</p>
+    <p style='color:#14532d;font-size:.8rem;margin:0;'>3 人同時在同一份文件編輯，看到彼此游標顏色、留言討論、只有一份最新檔</p>
+  </div>
+
+  <div class='card-grid-2' style='margin-bottom:8px;'>
+    <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:10px;padding:12px;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.85rem;margin-bottom:6px;'>📗 Google Docs 共用</div>
+      <div style='font-size:.78rem;color:#1e3a8a;line-height:1.6;'>
+        右上「共用」按鈕 → 加 email 或用連結<br>
+        3 種權限：<strong>檢視 / 留言 / 編輯</strong>
+      </div>
+    </div>
+    <div style='background:#fef3c7;border:1px solid #fbbf24;border-radius:10px;padding:12px;'>
+      <div style='font-weight:700;color:#92400e;font-size:.85rem;margin-bottom:6px;'>📄 Word（要先存到 OneDrive）</div>
+      <div style='font-size:.78rem;color:#78350f;line-height:1.6;'>
+        右上「共用」按鈕 → 加 email 或連結<br>
+        3 種權限：<strong>可檢視 / 可留言 / 可編輯</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class='tip-box'>
+    💡 <strong>共用給老師時</strong>選「可留言」而不是「可編輯」——老師能給建議但不會不小心動到你的原稿。
+  </div>
+</div>"""
+},
+
+{
+    'id': 12, 'chapter': '第三章：共同編輯與版本控制', 'title': '版本歷史：救回誤刪的救命功能',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>🕰️ 版本歷史：救回誤刪的救命功能</h2>
+
+  <div style='background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:12px 14px;margin-bottom:10px;'>
+    <p style='color:#991b1b;font-weight:700;margin:0 0 4px;font-size:.88rem;'>📖 真實情境</p>
+    <p style='color:#7f1d1d;font-size:.82rem;margin:0;line-height:1.6;'>
+      期末小論文寫到一半，不小心選取整段刪掉、按了 Ctrl+S 儲存 → 5 秒後才發現 → 崩潰...
+      沒關係，<strong>版本歷史</strong>可以救你！
     </p>
   </div>
-  <div style='display:flex;justify-content:center;gap:12px;flex-wrap:wrap;'>
-    <span style='background:rgba(255,255,255,0.12);color:#e0f2fe;padding:8px 18px;border-radius:20px;font-size:.9rem;'>掌握 Workspace ✅</span>
-    <span style='background:rgba(255,255,255,0.12);color:#e0f2fe;padding:8px 18px;border-radius:20px;font-size:.9rem;'>學會協作 ✅</span>
-    <span style='background:rgba(255,255,255,0.12);color:#e0f2fe;padding:8px 18px;border-radius:20px;font-size:.9rem;'>下一章見 👋</span>
+
+  <div class='card-grid-2' style='margin-bottom:10px;'>
+    <div style='background:#fef3c7;border:1px solid #fbbf24;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#92400e;font-size:.9rem;margin-bottom:6px;'>📄 Word（雲端版）</div>
+      <div style='font-size:.8rem;color:#78350f;line-height:1.7;'>
+        <strong>路徑</strong>：檔案 → 資訊 → 版本歷程記錄<br>
+        <strong>特色</strong>：Word Online 每次自動存版本<br>
+        <strong>限制</strong>：桌機純本機檔沒有此功能
+      </div>
+    </div>
+
+    <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.9rem;margin-bottom:6px;'>📗 Google Docs</div>
+      <div style='font-size:.8rem;color:#1e3a8a;line-height:1.7;'>
+        <strong>路徑</strong>：檔案 → 版本記錄 → 查看版本記錄<br>
+        <strong>特色</strong>：每幾分鐘自動存一次<br>
+        <strong>優點</strong>：可命名重要版本、還原一鍵完成
+      </div>
+    </div>
+  </div>
+
+  <div class='tip-box'>
+    💡 <strong>寫完前建議</strong>：每完成一個章節，右鍵「命名此版本」，例如「文獻探討 v1 完成」——之後方便找回特定版本。
   </div>
 </div>"""
-    },
+},
+
+{
+    'id': 13, 'chapter': '第三章：共同編輯與版本控制', 'title': '建議模式 vs 追蹤修訂（老師改稿神器）',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>✏️ 建議模式 vs 追蹤修訂</h2>
+  <p class='slide-desc'>老師改你的論文時，你想不想知道「他改了哪些字」？</p>
+
+  <div class='card-grid-2' style='margin-bottom:12px;'>
+    <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.9rem;margin-bottom:8px;'>📗 Google Docs：建議模式</div>
+      <div style='font-size:.8rem;color:#1e3a8a;line-height:1.7;'>
+        右上角<strong>「編輯 → 建議」</strong>模式切換<br>
+        修改文字會以 <span style='background:#fef3c7;padding:1px 4px;'>綠色建議</span> 顯示<br>
+        原作者可 <strong>接受✓ / 拒絕✗</strong> 各項建議
+      </div>
+    </div>
+
+    <div style='background:#fef3c7;border:1px solid #fbbf24;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#92400e;font-size:.9rem;margin-bottom:8px;'>📄 Word：追蹤修訂</div>
+      <div style='font-size:.8rem;color:#78350f;line-height:1.7;'>
+        「<strong>校閱</strong>」分頁 →「追蹤修訂」<br>
+        修改內容以 <span style='background:#fee2e2;padding:1px 4px;'>紅色標記</span> 顯示<br>
+        接受/拒絕修訂功能一模一樣
+      </div>
+    </div>
+  </div>
+
+  <div style='background:#f0fdf4;border-left:4px solid #22c55e;padding:10px 14px;border-radius:8px;font-size:.85rem;color:#15803d;'>
+    💡 <strong>寫小論文時的最佳流程</strong>：
+    <br>① 你自己寫初稿 → ② 開啟建議模式，共用給老師/同學 → ③ 他們給建議、你接受或拒絕 → ④ 全部處理完關閉建議模式，送出投稿。
+  </div>
+</div>"""
+},
+
+{
+    'id': 14, 'chapter': '第三章：共同編輯與版本控制', 'title': '🎯 第三章 隨堂測驗',
+    'bg': 'teal', 'quiz': 'q3', 'chart': None, 'video': None,
+    'html': """
+<div style='text-align:center;padding:40px 20px;'>
+  <div style='font-size:64px;margin-bottom:20px;'>🎯</div>
+  <h1 style='font-size:2rem;font-weight:900;color:#fff;margin-bottom:12px;'>第三章 隨堂測驗</h1>
+  <h2 style='font-size:1.1rem;font-weight:400;color:#a7f3d0;margin-bottom:24px;'>共同編輯與版本控制</h2>
+  <p style='color:#e0f7fa;font-size:1rem;'>2 道題目，按「下一頁」開始作答！</p>
+</div>"""
+},
+
+# ═══ 第四章：小論文寫作實戰 ═══
+
+{
+    'id': 15, 'chapter': '第四章：小論文寫作實戰', 'title': '認識全國小論文比賽',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>🏆 認識 115 學年度全國高中小論文寫作比賽</h2>
+
+  <div class='card-grid-3' style='margin-bottom:10px;'>
+    <div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;border-radius:12px;padding:12px;'>
+      <div style='font-size:1.5rem;margin-bottom:6px;text-align:center;'>📅</div>
+      <div style='font-weight:700;color:#1e40af;text-align:center;font-size:.88rem;margin-bottom:4px;'>投稿時程</div>
+      <div style='font-size:.75rem;color:#1e3a8a;line-height:1.6;'>
+        <strong>第一學期</strong>：<br>115.09.01 – 10.15 中午 12 時<br>
+        <strong>第二學期</strong>：<br>116.02.01 – 03.15 中午 12 時
+      </div>
+    </div>
+
+    <div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;border-radius:12px;padding:12px;'>
+      <div style='font-size:1.5rem;margin-bottom:6px;text-align:center;'>🎓</div>
+      <div style='font-weight:700;color:#166534;text-align:center;font-size:.88rem;margin-bottom:4px;'>21 個主題</div>
+      <div style='font-size:.72rem;color:#14532d;line-height:1.6;'>
+        工程技術、化學、文學、史地、生物、地球科學、法政、物理、英文寫作、家事、健康與護理、商業、國防、教育、資訊、農業、數學、藝術、體育、觀光餐旅、海事水產
+      </div>
+    </div>
+
+    <div style='background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fbbf24;border-radius:12px;padding:12px;'>
+      <div style='font-size:1.5rem;margin-bottom:6px;text-align:center;'>🏅</div>
+      <div style='font-weight:700;color:#92400e;text-align:center;font-size:.88rem;margin-bottom:4px;'>獎勵</div>
+      <div style='font-size:.75rem;color:#78350f;line-height:1.6;'>
+        依<strong>年級評分</strong>（高一有高一組）<br>
+        分 <strong>特優 / 優等 / 甲等</strong><br>
+        頒發獎狀，適合放學習歷程！
+      </div>
+    </div>
+  </div>
+
+  <div class='tip-box'>
+    🌐 投稿網站：<a href='https://www.shs.edu.tw' target='_blank' style='color:#0d9488;font-weight:700;'>中學生網站 shs.edu.tw</a>　·　個人或小組（1–3 人同校同年級）皆可
+  </div>
+</div>"""
+},
+
+{
+    'id': 16, 'chapter': '第四章：小論文寫作實戰', 'title': '小論文六大架構（必背！）',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>🏗️ 小論文六大架構（順序不能錯）</h2>
+  <p class='slide-desc'>比賽退件的最常見原因之一：<strong>沒按六大架構、順序寫錯</strong></p>
+
+  <div style='display:flex;flex-direction:column;gap:6px;margin-bottom:10px;'>
+    <div style='background:#eff6ff;border-left:4px solid #3b82f6;border-radius:6px;padding:8px 12px;'>
+      <div style='display:flex;align-items:center;gap:10px;'>
+        <div style='background:#3b82f6;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;'>壹</div>
+        <div style='flex:1;'>
+          <div style='font-weight:700;color:#1e40af;font-size:.85rem;'>前言</div>
+          <div style='font-size:.75rem;color:#374151;'>研究動機、研究目的、待答問題（<strong>Why 我要研究這個？</strong>）</div>
+        </div>
+      </div>
+    </div>
+
+    <div style='background:#f0fdf4;border-left:4px solid #22c55e;border-radius:6px;padding:8px 12px;'>
+      <div style='display:flex;align-items:center;gap:10px;'>
+        <div style='background:#22c55e;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;'>貳</div>
+        <div style='flex:1;'>
+          <div style='font-weight:700;color:#166534;font-size:.85rem;'>文獻探討</div>
+          <div style='font-size:.75rem;color:#374151;'>別人做過的相關研究、目前知識現況（<strong>What 我知道什麼？</strong>）</div>
+        </div>
+      </div>
+    </div>
+
+    <div style='background:#fef3c7;border-left:4px solid #f59e0b;border-radius:6px;padding:8px 12px;'>
+      <div style='display:flex;align-items:center;gap:10px;'>
+        <div style='background:#f59e0b;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;'>參</div>
+        <div style='flex:1;'>
+          <div style='font-weight:700;color:#92400e;font-size:.85rem;'>研究方法</div>
+          <div style='font-size:.75rem;color:#374151;'>你怎麼做這個研究：實驗/問卷/訪談/文獻分析（<strong>How 我怎麼做？</strong>）</div>
+        </div>
+      </div>
+    </div>
+
+    <div style='background:#faf5ff;border-left:4px solid #8b5cf6;border-radius:6px;padding:8px 12px;'>
+      <div style='display:flex;align-items:center;gap:10px;'>
+        <div style='background:#8b5cf6;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;'>肆</div>
+        <div style='flex:1;'>
+          <div style='font-weight:700;color:#6b21a8;font-size:.85rem;'>研究分析與結果</div>
+          <div style='font-size:.75rem;color:#374151;'>資料整理、圖表呈現、找出模式（<strong>What 我發現了什麼？</strong>）</div>
+        </div>
+      </div>
+    </div>
+
+    <div style='background:#fef2f2;border-left:4px solid #ef4444;border-radius:6px;padding:8px 12px;'>
+      <div style='display:flex;align-items:center;gap:10px;'>
+        <div style='background:#ef4444;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;'>伍</div>
+        <div style='flex:1;'>
+          <div style='font-weight:700;color:#991b1b;font-size:.85rem;'>研究結論與建議</div>
+          <div style='font-size:.75rem;color:#374151;'>回答前言的問題、給後續研究建議（<strong>So What 這代表什麼？</strong>）</div>
+        </div>
+      </div>
+    </div>
+
+    <div style='background:#f1f5f9;border-left:4px solid #64748b;border-radius:6px;padding:8px 12px;'>
+      <div style='display:flex;align-items:center;gap:10px;'>
+        <div style='background:#64748b;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;'>陸</div>
+        <div style='flex:1;'>
+          <div style='font-weight:700;color:#334155;font-size:.85rem;'>參考文獻</div>
+          <div style='font-size:.75rem;color:#374151;'>列出所有引用過的資料，<strong>至少 3 篇</strong>（<strong>Who 我參考了誰？</strong>）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style='background:#fef2f2;border:1px solid #fca5a5;padding:8px 12px;border-radius:8px;font-size:.8rem;color:#991b1b;'>
+    ⚠️ <strong>順序錯誤或缺一項</strong> → 校內初選就會被刪除，連參賽資格都沒有！
+  </div>
+</div>"""
+},
+
+{
+    'id': 17, 'chapter': '第四章：小論文寫作實戰', 'title': '格式規範一覽',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>📐 格式規範一覽（看仔細！）</h2>
+
+  <table class='info-table' style='font-size:.82rem;margin-bottom:10px;'>
+    <thead class='table-header'>
+      <tr><th style='width:26%;'>項目</th><th>規定</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>紙張</strong></td><td>A4 直式</td></tr>
+      <tr class='tr-highlight'><td><strong>篇幅</strong></td><td><strong>4–10 頁</strong>（少於 4 頁或多於 10 頁都退件）</td></tr>
+      <tr><td><strong>檔案格式</strong></td><td><strong>PDF</strong>（Word/Docs 寫完匯出）</td></tr>
+      <tr class='tr-highlight'><td><strong>檔案大小</strong></td><td><strong>不超過 5 MB</strong>（含圖檔）</td></tr>
+      <tr><td><strong>封面</strong></td><td><strong>不做封面頁！</strong>（上傳作品「不含」封面）</td></tr>
+      <tr class='tr-highlight'><td><strong>頁首</strong></td><td>全篇要有頁首，且與投稿篇名<strong>一致</strong></td></tr>
+      <tr><td><strong>語言</strong></td><td>中文或英文皆可（英文請用 I. Introduction 等六大架構）</td></tr>
+      <tr class='tr-highlight'><td><strong>參與者</strong></td><td>個人 or 小組（1–3 人，須同校同年級）</td></tr>
+      <tr><td><strong>身分揭露</strong></td><td>題目、內文、附錄<strong>不得</strong>出現作者姓名、學號（校名 OK）</td></tr>
+      <tr class='tr-highlight'><td><strong>每人上限</strong></td><td>每人每次限投稿 <strong>1 篇</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div style='background:#fff7ed;border:1px solid #fdba74;border-radius:8px;padding:8px 12px;font-size:.8rem;color:#9a3412;'>
+    💡 <strong>技巧</strong>：Word 有「檢查文件」功能可以自動找出格式問題；投稿前務必<strong>用 PDF 開一次</strong>確認頁首/頁碼/字體正確顯示。
+  </div>
+</div>"""
+},
+
+{
+    'id': 18, 'chapter': '第四章：小論文寫作實戰', 'title': '引註與 APA 參考文獻格式',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>📚 引註與 APA 參考文獻格式</h2>
+
+  <div class='card-grid-2' style='margin-bottom:10px;'>
+    <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:10px;padding:12px;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.88rem;margin-bottom:6px;'>✅ 可以引用</div>
+      <ul style='font-size:.78rem;color:#1e3a8a;line-height:1.7;padding-left:16px;margin:0;'>
+        <li>學術期刊論文</li>
+        <li>學位論文（碩博士）</li>
+        <li>正式出版書籍</li>
+        <li>政府機關研究報告</li>
+        <li>新聞媒體、專業網站</li>
+      </ul>
+    </div>
+    <div style='background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:12px;'>
+      <div style='font-weight:700;color:#991b1b;font-size:.88rem;margin-bottom:6px;'>❌ 禁止引用</div>
+      <ul style='font-size:.78rem;color:#7f1d1d;line-height:1.7;padding-left:16px;margin:0;'>
+        <li>PTT、Dcard 等討論區</li>
+        <li>Yahoo 知識家等問答網站</li>
+        <li>LINE 群組、聊天訊息</li>
+        <li>ChatGPT 對話內容</li>
+        <li>維基百科（可引用其「參考資料」）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style='background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:10px 14px;font-size:.78rem;color:#14532d;margin-bottom:8px;'>
+    <div style='font-weight:700;color:#166534;margin-bottom:6px;'>📖 APA 格式範例（參考文獻至少 3 篇）</div>
+    <div style='background:#fff;padding:8px 10px;border-radius:6px;margin-bottom:4px;font-family:monospace;font-size:.7rem;line-height:1.6;'>
+      <strong>期刊</strong>：陳志明（2023）。生成式 AI 對高中生學習的影響。<em>教育研究月刊</em>，350，1-15。
+    </div>
+    <div style='background:#fff;padding:8px 10px;border-radius:6px;margin-bottom:4px;font-family:monospace;font-size:.7rem;line-height:1.6;'>
+      <strong>書籍</strong>：林秀華（2022）。<em>資訊素養教學實務</em>。台北：五南。
+    </div>
+    <div style='background:#fff;padding:8px 10px;border-radius:6px;font-family:monospace;font-size:.7rem;line-height:1.6;'>
+      <strong>網頁</strong>：教育部（2024）。<em>115 學年度小論文比賽實施計畫</em>。取自 https://www.shs.edu.tw
+    </div>
+  </div>
+
+  <div class='tip-box'>
+    💡 <strong>內文引註</strong>：寫「陳志明（2023）指出...」或「有研究發現...（陳志明，2023）」——把作者和年份標出來。
+  </div>
+</div>"""
+},
+
+{
+    'id': 19, 'chapter': '第四章：小論文寫作實戰', 'title': 'AI 使用界線（重要！）',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>🤖 AI 使用界線</h2>
+  <p class='slide-desc'>115 學年比賽明訂：<strong>文章內容不得由 AI 生成</strong>，違規會被停權</p>
+
+  <div class='card-grid-2' style='margin-bottom:10px;'>
+    <div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid #22c55e;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#166534;font-size:.95rem;margin-bottom:8px;'>✅ 可以用 AI 做這些</div>
+      <ul style='font-size:.82rem;color:#14532d;line-height:1.8;padding-left:16px;margin:0;'>
+        <li><strong>發想主題</strong>：「請給我 5 個關於水質檢測的研究方向」</li>
+        <li><strong>找關鍵字</strong>幫你搜文獻</li>
+        <li><strong>解釋概念</strong>：不懂的專業詞問 AI</li>
+        <li><strong>檢查文法錯字</strong>（不含改寫段落）</li>
+      </ul>
+    </div>
+
+    <div style='background:linear-gradient(135deg,#fef2f2,#fee2e2);border:2px solid #ef4444;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#991b1b;font-size:.95rem;margin-bottom:8px;'>❌ 絕對禁止用 AI</div>
+      <ul style='font-size:.82rem;color:#7f1d1d;line-height:1.8;padding-left:16px;margin:0;'>
+        <li>AI 生成<strong>摘要</strong>、內文段落</li>
+        <li>AI <strong>改寫</strong>你的文字（洗稿）</li>
+        <li>AI 生成<strong>圖表、圖片</strong></li>
+        <li>AI 生成<strong>參考文獻</strong>（會編假的）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style='background:#fff7ed;border:1px solid #fdba74;border-radius:10px;padding:10px 14px;font-size:.82rem;color:#9a3412;'>
+    <div style='font-weight:700;color:#7c2d12;margin-bottom:4px;'>🚨 違規後果</div>
+    <div style='line-height:1.6;'>
+      1. 校內初選就會被刪除，無法參加全國賽<br>
+      2. 得獎後被發現 → 取消得獎資格、追回獎狀<br>
+      3. 累積 <strong>2 次違規 → 永久停權</strong>（未來所有屆都不能投稿）<br>
+      4. 學校可能記過處分
+    </div>
+  </div>
+</div>"""
+},
+
+{
+    'id': 20, 'chapter': '第四章：小論文寫作實戰', 'title': '14 條常見退件原因',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>⚠️ 14 條常見退件原因（附件 1 摘要）</h2>
+  <p class='slide-desc'>投稿前用這個清單自我檢查——很多同學就是因為這些小地方被刷掉！</p>
+
+  <div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;font-size:.75rem;'>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 1. 檔案無法開啟</div>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 2. 作者資料錯（超過 3 人 or 不同年級）</div>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 3. 年級錯誤</div>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 4. 上傳作品含封面頁</div>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 5. 全篇無頁首</div>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 6. 報名篇名與內文頁首不一致</div>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 7. 沒按六大架構順序寫</div>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 8. 一人投稿超過 1 篇</div>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 9. 篇幅少於 4 頁 or 超過 10 頁</div>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 10. 參考文獻少於 3 篇</div>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 11. 已在校外出版、獲獎、一稿多投</div>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 12. 內容由 AI 工具生成</div>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 13. 涉及抄襲</div>
+    <div style='background:#fef2f2;padding:6px 10px;border-radius:6px;border-left:3px solid #ef4444;'>❌ 14. 出現作者身分資料（含照片，校名例外）</div>
+  </div>
+
+  <div class='tip-box'>
+    💡 用「校內初選檢核表」逐條打勾，投稿前一定要自己確認過一遍！
+  </div>
+</div>"""
+},
+
+{
+    'id': 21, 'chapter': '第四章：小論文寫作實戰', 'title': '🎯 第四章 隨堂測驗',
+    'bg': 'teal', 'quiz': 'q4', 'chart': None, 'video': None,
+    'html': """
+<div style='text-align:center;padding:40px 20px;'>
+  <div style='font-size:64px;margin-bottom:20px;'>🎯</div>
+  <h1 style='font-size:2rem;font-weight:900;color:#fff;margin-bottom:12px;'>第四章 隨堂測驗</h1>
+  <h2 style='font-size:1.1rem;font-weight:400;color:#a7f3d0;margin-bottom:24px;'>小論文寫作重點</h2>
+  <p style='color:#e0f7fa;font-size:1rem;'>2 道題目，按「下一頁」開始作答！</p>
+</div>"""
+},
+
+# ═══ 第五章：電腦軟體應用丙級 ═══
+
+{
+    'id': 22, 'chapter': '第五章：電腦軟體應用丙級', 'title': '電腦軟體應用丙級是什麼？',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>🏅 電腦軟體應用丙級技術士</h2>
+  <p class='slide-desc'>勞動部發的<strong>國家級證照</strong>，高中生就能考、通過率約 60-70%</p>
+
+  <div class='card-grid-3' style='margin-bottom:10px;'>
+    <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:12px;padding:12px;'>
+      <div style='font-size:1.5rem;margin-bottom:6px;text-align:center;'>📚</div>
+      <div style='font-weight:700;color:#1e40af;text-align:center;font-size:.88rem;margin-bottom:4px;'>考什麼</div>
+      <div style='font-size:.72rem;color:#1e3a8a;line-height:1.6;'>
+        <strong>學科</strong>：80 題選擇題（80 分及格）<br>
+        &nbsp;&nbsp;· 電腦基本知識<br>
+        &nbsp;&nbsp;· 資訊倫理與安全<br>
+        &nbsp;&nbsp;· Office 操作原理<br>
+        <strong>術科</strong>：4 題實作（60 分及格）<br>
+        &nbsp;&nbsp;· Windows 操作<br>
+        &nbsp;&nbsp;· Word 排版<br>
+        &nbsp;&nbsp;· Excel 試算<br>
+        &nbsp;&nbsp;· PowerPoint 簡報
+      </div>
+    </div>
+
+    <div style='background:#f0fdf4;border:1px solid #86efac;border-radius:12px;padding:12px;'>
+      <div style='font-size:1.5rem;margin-bottom:6px;text-align:center;'>💰</div>
+      <div style='font-weight:700;color:#166534;text-align:center;font-size:.88rem;margin-bottom:4px;'>報名資訊</div>
+      <div style='font-size:.72rem;color:#14532d;line-height:1.6;'>
+        <strong>報名費</strong>：約 NT$ 1,470<br>
+        <strong>年紀限制</strong>：無（國中以上都可）<br>
+        <strong>報名網址</strong>：<br>
+        技能檢定中心 <a href='https://skill.tcte.edu.tw/' target='_blank' style='color:#166534;font-size:.72rem;'>skill.tcte.edu.tw</a><br>
+        <strong>考試日期</strong>：<br>
+        每年 3 月、7 月、11 月<br>
+        <strong>成績公告</strong>：<br>
+        考後約 4-6 週
+      </div>
+    </div>
+
+    <div style='background:#fef3c7;border:1px solid #fbbf24;border-radius:12px;padding:12px;'>
+      <div style='font-size:1.5rem;margin-bottom:6px;text-align:center;'>🎯</div>
+      <div style='font-weight:700;color:#92400e;text-align:center;font-size:.88rem;margin-bottom:4px;'>對高中生的價值</div>
+      <div style='font-size:.72rem;color:#78350f;line-height:1.6;'>
+        ✅ <strong>學習歷程檔案</strong>加分項<br>
+        ✅ <strong>四技二專推甄</strong>證照可加分<br>
+        ✅ <strong>統測</strong>資訊類考試打底<br>
+        ✅ <strong>履歷</strong>基本標配<br>
+        ✅ 打工也用得到<br>
+        <br>
+        📈 全國每年考生<br>&nbsp;&nbsp;<strong>超過 4 萬人</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class='tip-box'>
+    💡 <strong>好消息</strong>：Ch04 你已經學了 Word 段落樣式、頁首頁碼、目錄——這些都是丙級 Word 術科的必考技能！接下來看看實際題型長什麼樣。
+  </div>
+</div>"""
+},
+
+{
+    'id': 23, 'chapter': '第五章：電腦軟體應用丙級', 'title': '丙級術科 Word 題型範例',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>📝 丙級術科 Word 題型範例</h2>
+  <p class='slide-desc'>術科題目會給你一份文件檔和範本圖，要你在時間內排出跟範本一模一樣的文件</p>
+
+  <div class='card-grid-2' style='margin-bottom:10px;'>
+    <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.9rem;margin-bottom:8px;'>🎯 常見要求（要能做到）</div>
+      <ul style='font-size:.78rem;color:#1e3a8a;line-height:1.7;padding-left:18px;margin:0;'>
+        <li>指定<strong>字型、字級、行距</strong>（中/英文分別設定）</li>
+        <li>套用<strong>段落樣式</strong>（標題 1、標題 2）</li>
+        <li>插入<strong>頁首、頁尾與頁碼</strong></li>
+        <li>製作<strong>自動目錄</strong>（含更新）</li>
+        <li>插入<strong>表格</strong>並套用格式</li>
+        <li>插入<strong>圖片</strong>與文繞圖設定</li>
+        <li>插入<strong>頁次分隔</strong>與<strong>分欄</strong></li>
+        <li>使用<strong>項目符號</strong>或編號清單</li>
+      </ul>
+    </div>
+
+    <div style='background:#fef3c7;border:1px solid #fbbf24;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#92400e;font-size:.9rem;margin-bottom:8px;'>⏱️ 考試技巧</div>
+      <ul style='font-size:.78rem;color:#78350f;line-height:1.7;padding-left:18px;margin:0;'>
+        <li>術科每題約 <strong>30-40 分鐘</strong>，時間很緊</li>
+        <li>熟記<strong>常用快捷鍵</strong>（Ctrl+B/I/U/S、Ctrl+Alt+1/2）</li>
+        <li>先做好<strong>樣式定義</strong>，全文才會一致</li>
+        <li>先套目錄樣式再做其他，最後更新目錄</li>
+        <li><strong>存檔頻繁！</strong>Ctrl+S 每 5 分鐘按一次</li>
+        <li>邊做邊<strong>對照範本圖</strong>（不要漏做任何一項）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style='background:linear-gradient(135deg,#faf5ff,#ede9fe);border:1px solid #c4b5fd;border-radius:10px;padding:10px 14px;font-size:.82rem;color:#6d28d9;'>
+    📚 <strong>術科題目公開！</strong>技能檢定中心會公布歷屆題目，可到
+    <a href='https://skill.tcte.edu.tw/' target='_blank' style='color:#6d28d9;font-weight:700;'>skill.tcte.edu.tw</a>
+    的「學/術科題庫」下載練習。<strong>術科題目考前就會公開範圍</strong>，準備得夠熟就能過。
+  </div>
+
+  <div class='tip-box'>
+    🎓 <strong>加分挑戰</strong>：這學期把 Word 部分練熟 → 期末大報告用得到 → 高一結束後暑假報名 3 月考試 → 高二上手拿證書！
+  </div>
+</div>"""
+},
+
+# ═══ 個人實作 ═══
+
+{
+    'id': 24, 'chapter': '個人實作', 'title': '個人實作：丙級 Word 術科模擬',
+    'bg': 'teal', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<h2 style='font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:10px;text-align:center;'>📝 個人實作：丙級 Word 術科模擬題</h2>
+<p style='color:#cffafe;text-align:center;font-size:.88rem;margin-bottom:12px;'>
+  每人獨立完成一份 Word 排版作品（3-4 頁）· 用 <strong>電腦教室桌機 Word</strong> 或自己的 <strong>Office 365 / Google Docs</strong> 都可
+</p>
+
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px;'>
+  <div style='background:rgba(255,255,255,0.12);padding:12px;border-radius:12px;'>
+    <h3 style='color:#fff;font-size:.92rem;margin-bottom:8px;'>📋 題目：仿照範本排版</h3>
+    <p style='color:#cffafe;font-size:.75rem;margin:0 0 8px;line-height:1.5;'>
+      老師會發一份「原始文字檔」+「範本 PDF」，你要把文字檔排成跟範本一模一樣。
+    </p>
+
+    <p style='color:#fde68a;font-size:.75rem;margin:6px 0 4px;font-weight:700;'>🎯 必做項目（每項都要有）：</p>
+    <div style='display:flex;flex-direction:column;gap:4px;font-size:.72rem;'>
+      <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:6px 9px;border-radius:5px;color:#fff;'>① 標題套「<strong>標題 1</strong>」樣式</div>
+      <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:6px 9px;border-radius:5px;color:#fff;'>② 次標題套「<strong>標題 2</strong>」樣式</div>
+      <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:6px 9px;border-radius:5px;color:#fff;'>③ 插入<strong>自動目錄</strong>於首頁</div>
+      <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:6px 9px;border-radius:5px;color:#fff;'>④ 加<strong>頁首</strong>（打自己的名字或指定文字）</div>
+      <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:6px 9px;border-radius:5px;color:#fff;'>⑤ 加<strong>頁碼</strong>（頁底置中）</div>
+      <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:6px 9px;border-radius:5px;color:#fff;'>⑥ 至少 1 個<strong>表格</strong>（3 欄 3 列以上）</div>
+      <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:6px 9px;border-radius:5px;color:#fff;'>⑦ 至少 1 張<strong>圖片</strong>（含圖說）</div>
+      <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:6px 9px;border-radius:5px;color:#fff;'>⑧ 使用<strong>項目符號</strong>或<strong>編號清單</strong></div>
+      <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:6px 9px;border-radius:5px;color:#fff;'>⑨ 中文<strong>細明體 12pt</strong>、英文 <strong>Times New Roman 12pt</strong>、行距 1.5</div>
+      <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:6px 9px;border-radius:5px;color:#fff;'>⑩ 匯出為 <strong>PDF</strong> 上傳</div>
+    </div>
+  </div>
+
+  <div>
+    <div style='background:rgba(255,255,255,0.12);padding:12px;border-radius:12px;margin-bottom:8px;'>
+      <h3 style='color:#fff;font-size:.92rem;margin-bottom:6px;'>📊 評分規準（100 分）</h3>
+      <table style='width:100%;font-size:.72rem;color:#e0f7fa;border-collapse:collapse;'>
+        <tr style='background:rgba(255,255,255,0.15);'><th style='padding:4px 6px;text-align:left;'>項目</th><th style='padding:4px 6px;text-align:center;'>配分</th></tr>
+        <tr><td style='padding:4px 6px;'>段落樣式 + 目錄</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>25</td></tr>
+        <tr><td style='padding:4px 6px;'>頁首 + 頁碼</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>15</td></tr>
+        <tr><td style='padding:4px 6px;'>表格 + 圖片圖說</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>20</td></tr>
+        <tr><td style='padding:4px 6px;'>字型/字級/行距正確</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>15</td></tr>
+        <tr><td style='padding:4px 6px;'>項目符號/清單</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>10</td></tr>
+        <tr><td style='padding:4px 6px;'>PDF 匯出正確</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>10</td></tr>
+        <tr><td style='padding:4px 6px;'>整體版面美觀</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>5</td></tr>
+        <tr><td style='padding:4px 6px;'>加分：小論文主題發想單</td><td style='padding:4px 6px;text-align:center;color:#a7f3d0;font-weight:700;'>+5</td></tr>
+      </table>
+    </div>
+
+    <div style='background:rgba(255,255,255,0.12);padding:10px 12px;border-radius:10px;font-size:.75rem;color:#cffafe;line-height:1.6;margin-bottom:6px;'>
+      <p style='color:#fff;font-weight:700;margin:0 0 3px;font-size:.82rem;'>🗓️ 時程</p>
+      第 1 節：老師發題目 + 個人開始排版<br>
+      第 2 節：完成 → 匯出 PDF → 上傳 Google Classroom
+    </div>
+
+    <div style='background:rgba(168,85,247,0.25);border-left:3px solid #d8b4fe;padding:8px 12px;border-radius:8px;font-size:.75rem;color:#f3e8ff;line-height:1.6;'>
+      <p style='color:#fff;font-weight:700;margin:0 0 3px;font-size:.82rem;'>⭐ 加分挑戰（+5 分）</p>
+      交一份 <strong>「我想寫的小論文主題發想單」</strong>（1 頁）：
+      主題方向、想解決什麼問題、初步想到的做法。
+      <strong>期末大報告會做完整小論文</strong>，先想早點準備。
+    </div>
+  </div>
+</div>
+
+<div style='background:rgba(255,255,255,0.08);padding:8px 12px;border-radius:8px;margin-top:8px;font-size:.75rem;color:#cffafe;'>
+  💡 <strong>期末預告</strong>：學完 Ch08 大數據、Ch09 資料分析後，期末個人大報告會寫一篇<strong>真正的小論文</strong>——用到今天學的六大架構、格式規範，加上你會的數據分析技能。今天先把工具練熟！
+</div>"""
+},
+
+{
+    'id': 25, 'chapter': '個人實作', 'title': 'Word / Docs 匯出 PDF 教學',
+    'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>💾 Word / Docs 匯出 PDF 教學</h2>
+  <p class='slide-desc'>小論文比賽只接受 <strong>PDF 檔</strong>，其他格式一律退件</p>
+
+  <div class='card-grid-2' style='margin-bottom:10px;'>
+    <div style='background:#eff6ff;border:1px solid #93c5fd;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.9rem;margin-bottom:8px;'>📄 Microsoft Word</div>
+      <div style='font-size:.8rem;color:#1e3a8a;line-height:1.7;'>
+        <strong>步驟</strong>：<br>
+        ① 檔案 → 另存新檔<br>
+        ② 選存檔位置<br>
+        ③ 「存檔類型」下拉選 <strong>PDF (*.pdf)</strong><br>
+        ④ 點「儲存」
+      </div>
+      <div style='background:#fff;border:1px solid #bfdbfe;border-radius:6px;padding:6px 10px;margin-top:8px;font-size:.72rem;color:#6b7280;'>
+        💡 快捷鍵：<code>F12</code> → 快速另存新檔
+      </div>
+    </div>
+
+    <div style='background:#fef3c7;border:1px solid #fbbf24;border-radius:12px;padding:14px;'>
+      <div style='font-weight:700;color:#92400e;font-size:.9rem;margin-bottom:8px;'>📗 Google Docs</div>
+      <div style='font-size:.8rem;color:#78350f;line-height:1.7;'>
+        <strong>步驟</strong>：<br>
+        ① 檔案 → 下載<br>
+        ② 選 <strong>PDF 文件 (.pdf)</strong><br>
+        ③ 自動下載到你的下載資料夾
+      </div>
+      <div style='background:#fff;border:1px solid #fde68a;border-radius:6px;padding:6px 10px;margin-top:8px;font-size:.72rem;color:#6b7280;'>
+        💡 想再改？回到 Google Docs 就好，下載出去的 PDF 就是完成品
+      </div>
+    </div>
+  </div>
+
+  <div style='background:#f0fdf4;border-left:4px solid #22c55e;padding:10px 14px;border-radius:8px;font-size:.85rem;color:#15803d;'>
+    ✅ <strong>檢查清單</strong>：
+    <div style='display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px;font-size:.78rem;'>
+      <div>☐ 頁首出現在每一頁</div>
+      <div>☐ 頁碼連續正確</div>
+      <div>☐ 目錄顯示無誤</div>
+      <div>☐ 圖表沒有跑版</div>
+      <div>☐ 中文沒有變亂碼</div>
+      <div>☐ 總頁數 4-10 頁</div>
+    </div>
+  </div>
+
+  <div class='tip-box' style='margin-top:8px;'>
+    ⚠️ 匯出後<strong>一定要用 PDF 開一次</strong>檢查！有時候字型、圖片位置在 PDF 會跑掉。
+  </div>
+</div>"""
+},
+
+{
+    'id': 26, 'chapter': '個人實作', 'title': '結尾：從工具到創作',
+    'bg': 'navy', 'quiz': None, 'chart': None, 'video': None,
+    'html': """
+<div style='text-align:center;padding:30px 20px;'>
+  <div style='font-size:64px;margin-bottom:20px;'>🎓</div>
+  <h1 style='font-size:2.2rem;font-weight:900;color:#fff;margin-bottom:12px;'>從工具到創作</h1>
+  <h2 style='font-size:1.2rem;font-weight:400;color:#93c5fd;margin-bottom:24px;'>你已具備寫出一篇小論文的所有技能</h2>
+
+  <div style='display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;max-width:700px;margin:0 auto 24px;'>
+    <div style='background:rgba(255,255,255,0.1);padding:12px;border-radius:10px;'>
+      <div style='font-size:1.8rem;margin-bottom:4px;'>📄</div>
+      <div style='color:#e0f2fe;font-size:.85rem;'>Word / Docs 雙軌</div>
+    </div>
+    <div style='background:rgba(255,255,255,0.1);padding:12px;border-radius:10px;'>
+      <div style='font-size:1.8rem;margin-bottom:4px;'>🏷️</div>
+      <div style='color:#e0f2fe;font-size:.85rem;'>段落樣式 + 自動目錄</div>
+    </div>
+    <div style='background:rgba(255,255,255,0.1);padding:12px;border-radius:10px;'>
+      <div style='font-size:1.8rem;margin-bottom:4px;'>👥</div>
+      <div style='color:#e0f2fe;font-size:.85rem;'>共同編輯與版本控制</div>
+    </div>
+    <div style='background:rgba(255,255,255,0.1);padding:12px;border-radius:10px;'>
+      <div style='font-size:1.8rem;margin-bottom:4px;'>🏆</div>
+      <div style='color:#e0f2fe;font-size:.85rem;'>小論文六大架構</div>
+    </div>
+  </div>
+
+  <div style='background:rgba(255,255,255,0.1);padding:16px 20px;border-radius:12px;max-width:640px;margin:0 auto 20px;'>
+    <p style='color:#fef3c7;font-size:1.1rem;font-weight:700;margin:0 0 6px;'>🚀 挑戰自己：報名 115 學年小論文比賽</p>
+    <p style='color:#e2e8f0;font-size:.9rem;margin:0;line-height:1.6;'>
+      第一學期截止：<strong>115.10.15 中午 12 時</strong><br>
+      投稿網站：<a href='https://www.shs.edu.tw' target='_blank' style='color:#93c5fd;'>shs.edu.tw</a><br>
+      得獎可放進學習歷程，是升學備審的加分武器！
+    </p>
+  </div>
+
+  <p style='color:#94a3b8;font-size:.9rem;font-style:italic;'>
+    「文書工具是骨架，思考與研究才是靈魂。」
+  </p>
+</div>"""
+},
+
 ]

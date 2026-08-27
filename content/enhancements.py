@@ -694,74 +694,99 @@ _ch03 = {
 # ── Ch04：Google Workspace 文書應用 ─────────────────────────────────────────
 
 _ch04 = {
-    3: {  # Google vs Microsoft
-        'html_append': _life('你的班上用哪個？',
-            "<p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0 0 8px;'>"
-            "根據 2024 調查，台灣高中職有 <strong>78%</strong> 採用 Google Workspace for Education（免費版），"
-            "理由是「免費、好協作、不用安裝」。但職場上 Microsoft 365 仍佔 <strong>85%</strong> 市佔率。"
-            "所以兩個都要學！</p>"
-            + _mini_cards(
-                ('📚', '台灣學校', '78% 用 Google', '#2563eb'),
-                ('🏢', '台灣企業', '85% 用 MS 365', '#0284c7'),
-                ('🌐', '全球學生', '17 億人用 Google Workspace', '#16a34a'),
-                ('💰', '費用差距', 'Google 免費 vs MS $300/年', '#d97706'),
-            )
+    3: {  # Office 365 學生帳號免費申請
+        'video': _vid_search(
+            'Office 365 教育版 學生 免費申請 教學 中文',
+            '▶ Office 365 學生版免費申請教學',
+            '3 分鐘看懂怎麼領取 Microsoft 免費學生方案'),
+    },
+    6: {  # 段落樣式
+        'video': _vid_search(
+            'Word 段落樣式 標題 樣式 教學 中文',
+            '▶ Word 段落樣式一次搞懂',
+            '為什麼專業排版都用樣式而不是手動改字體'),
+    },
+    7: {  # 自動目錄
+        'html_append': _quiz_click(
+            "🕵️ 你插入了自動目錄，可是目錄裡空空的！最可能是什麼原因？",
+            ["電腦壞了",
+             "章名沒套「標題 1」樣式，只是把字放大",
+             "檔案格式錯了",
+             "Word 版本太舊"],
+            1,
+            "自動目錄只認得「標題 1、標題 2」等段落樣式，手動放大字體不算。"
+            "選取章名 → 套「標題 1」 → 回到目錄按更新 → 就會出現。"
         ),
     },
-    5: {  # Google 帳號安全
-        'video': _vid_search('Google 帳號 雙重驗證 安全設定 教學 2FA', '▶ Google 帳號安全設定實作', '5 分鐘強化你的 Google 帳號安全'),
+    11: {  # 即時協作
+        'video': _vid_search(
+            '文件 即時協作 共同編輯 Word Google Docs 教學',
+            '▶ 多人即時協作實際操作教學',
+            '看看 3 人同時編輯一份文件是什麼感覺'),
     },
-    13: {  # 即時協作
-        'video': _vid_search('Google 文件 即時協作 共同編輯 教學 技巧', '▶ Google 文件協作功能完整教學', '看看多人即時協作怎麼運作'),
-        'html_append': _life('期末報告不再 Email 傳來傳去',
-            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
-            "<div style='background:#fef2f2;padding:8px 10px;border-radius:8px;margin-bottom:8px;'>"
-            "<p style='color:#dc2626;font-weight:700;margin:0 0 3px;'>😫 舊方法（傳統 Word）</p>"
-            "<p style='margin:0;'>小明改完傳給小華 → 小華改完再傳 → 最後搞不清楚哪個是最新版 → 合併版本花了 2 小時</p></div>"
-            "<div style='background:#f0fdf4;padding:8px 10px;border-radius:8px;'>"
-            "<p style='color:#15803d;font-weight:700;margin:0 0 3px;'>✅ Google 文件</p>"
-            "<p style='margin:0;'>5 個人同時在同一份文件編輯，看到彼此游標顏色，留言討論，一份文件搞定</p></div>"
-            "</div>"
+    15: {  # 認識全國小論文比賽
+        'html_append': _ref('小論文比賽 — 官方資源', [
+            ('🌐', '中學生網站（投稿）', 'https://www.shs.edu.tw/', '註冊、投稿、查獎項都在這'),
+            ('📖', '小論文寫作比賽專區', 'https://www.shs.edu.tw/essay/', '看歷屆優秀作品參考格式'),
+            ('📋', '格式說明暨評審要點', 'https://www.shs.edu.tw/', '官方 PDF 詳細規則'),
+            ('🇹🇼', '國立中興大學附屬高中', 'https://www.chsh.tcc.edu.tw/', '承辦學校'),
+        ]),
+    },
+    16: {  # 六大架構
+        'html_append': _quiz_click(
+            "🏗️ 小論文六大架構的正確順序是？",
+            ["前言 → 研究方法 → 文獻探討 → 結果 → 結論 → 參考文獻",
+             "前言 → 文獻探討 → 研究方法 → 分析結果 → 結論建議 → 參考文獻",
+             "文獻探討 → 前言 → 研究方法 → 結論 → 分析結果 → 參考文獻",
+             "前言 → 結論 → 文獻探討 → 研究方法 → 分析結果 → 參考文獻"],
+            1,
+            "正確順序 = <strong>前言 → 文獻探討 → 研究方法 → 分析結果 → 結論建議 → 參考文獻</strong>。"
+            "背這個口訣：<strong>「想 → 查 → 做 → 找 → 說 → 引」</strong>"
+            "（想主題、查文獻、做研究、找結果、說結論、引資料）。"
         ),
     },
-    14: {  # 版本歷史
-        'html_append': _life('版本歷史救了我的報告',
-            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
-            "<p style='margin:0 0 6px;'>📖 <strong>真實場景</strong>：期末報告改到一半，不小心刪掉了一大段辛苦寫的內容，存檔後才發現！</p>"
-            "<p style='margin:0 0 6px;'>✅ <strong>解決方法</strong>：檔案 → 版本歷史 → 查看版本歷史記錄 → 找到刪除前的版本 → 還原 ✨</p>"
-            "<p style='margin:0;color:#6b7280;'>Google 文件每隔幾分鐘自動存版本，永遠不怕誤刪。Microsoft Word Online 也有同樣功能。</p>"
-            "</div>"
+    18: {  # 引註與 APA 參考文獻
+        'html_append': _ref('APA 格式產生器（省時神器）', [
+            ('📝', 'APA 格式產生器（中文）', 'https://www.mybib.com/tools/apa-citation-generator', '貼網址自動產生格式'),
+            ('📚', 'Zotero（文獻管理軟體）', 'https://www.zotero.org/', '免費、大學生必備'),
+            ('🎓', 'Google 學術搜尋', 'https://scholar.google.com.tw/', '找學術文獻、可直接複製引用格式'),
+            ('📖', 'HyRead 電子書', 'https://www.hyread.com.tw/', '學校圖書館通常有訂閱、可找專業書'),
+        ]),
+    },
+    20: {  # 14 條退件原因
+        'html_append': _quiz_click(
+            "🎯 你的小論文投稿後被退件，最可能的原因是哪個？（挑最常見的）",
+            ["內容主題太專業",
+             "格式不符六大架構、順序寫錯",
+             "字型不好看",
+             "沒有用彩色印刷"],
+            1,
+            "根據承辦學校統計，最常見退件原因是「格式不符六大架構」、「篇幅不對」、"
+            "「無頁首」、「參考文獻少於 3 篇」。真正被評內容不佳退的很少 —— "
+            "先把格式做對、再拼內容深度！"
         ),
     },
-    17: {  # Google 試算表
-        'video': _vid_search('Google 試算表 基礎教學 函數 VLOOKUP 中文', '▶ Google 試算表實用功能教學', '快速學會試算表最常用的技巧'),
+    22: {  # 電腦軟體應用丙級
+        'html_append': _ref('丙級技能檢定 — 報名與學習資源', [
+            ('🏛️', '技能檢定中心（官方報名）', 'https://skill.tcte.edu.tw/', '看考試日期、報名、公告成績'),
+            ('📚', '丙級 15400 電腦軟體應用 題庫', 'https://skill.tcte.edu.tw/', '學術科題庫下載（考題公開）'),
+            ('🎬', 'YouTube 丙級術科教學搜尋', 'https://www.youtube.com/results?search_query=電腦軟體應用+丙級+術科+教學', '很多老師錄的解題影片'),
+            ('📱', '技檢學堂 App', 'https://play.google.com/store/apps/details?id=tw.com.tcte.skillstudent', '手機刷學科題庫'),
+        ]),
     },
-    21: {  # 生產力工作流程
-        'html_append': _innov('Workspace + AI = 超強生產力',
-            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
-            "<p style='margin:0 0 6px;'>✨ <strong>Gemini in Google Workspace</strong>（2025）：</p>"
-            "<div style='display:flex;flex-direction:column;gap:5px;'>"
-            "<div style='background:#fff;padding:7px 10px;border-radius:6px;'>📄 <strong>文件</strong>：「幫我把這份報告摘要成 5 個重點」→ 一鍵完成</div>"
-            "<div style='background:#fff;padding:7px 10px;border-radius:6px;'>📊 <strong>試算表</strong>：「分析這份資料，找出趨勢」→ 自動產生圖表</div>"
-            "<div style='background:#fff;padding:7px 10px;border-radius:6px;'>📑 <strong>簡報</strong>：「用這份文件建立 10 張投影片」→ 自動排版</div>"
-            "<div style='background:#fff;padding:7px 10px;border-radius:6px;'>📧 <strong>Gmail</strong>：「草擬一封婉拒的回信」→ 維持你的語氣</div>"
-            "</div></div>"
-        ),
+    23: {  # 丙級術科 Word 題型範例
+        'video': _vid_search(
+            '電腦軟體應用 丙級 Word 術科 教學',
+            '▶ 丙級 Word 術科實作示範',
+            '看老師實際操作術科題目'),
     },
-    24: {  # 雲端改變了工作方式
-        'video': _vid_search('遠端工作 雲端協作 未來趨勢 Google Workspace', '▶ 雲端如何改變未來工作方式', '看看頂尖企業如何利用雲端協作'),
-        'html_append': _data('雲端辦公的影響',
-            _mini_cards(
-                ('🏠', '遠端工作者', '全球 16% 已全遠端', '#2563eb'),
-                ('✈️', '數位遊牧', '全球 3,500 萬人', '#8b5cf6'),
-                ('⏱️', '省時', '減少 30% 開會時間', '#16a34a'),
-                ('💻', '台灣', '68% 企業有遠端政策', '#d97706'),
-            )
-        ) + _ref('Google Workspace — 延伸閱讀', [
-            ('📘', 'Google Workspace 學習中心', 'https://support.google.com/a/users/', '官方教學（中文）'),
-            ('🎓', 'Google 教育中心', 'https://edu.google.com/intl/ALL_tw/', '免費 Google 教育版'),
-            ('⌨️', 'Google 快捷鍵一覽', 'https://support.google.com/docs/answer/179738', '效率翻倍'),
-            ('✨', 'Google 認證能力測驗', 'https://cloud.google.com/learn/certification', '有免費 Level 1 認證'),
+    26: {  # 結尾：從工具到創作
+        'html_append': _ref('進階學習資源', [
+            ('📘', 'Microsoft 支援中心（Word 教學）', 'https://support.microsoft.com/zh-tw/word', '官方詳細教學'),
+            ('📗', 'Google 文件學習中心', 'https://support.google.com/docs/', 'Google Docs 完整說明'),
+            ('⌨️', 'Word 快捷鍵一覽', 'https://support.microsoft.com/zh-tw/office/word-鍵盤快速鍵-95ef89dd-7142-4b50-afb2-f762f663ceb2', '效率翻倍'),
+            ('🎓', 'Google 教育中心 Level 1 認證', 'https://edu.google.com/intl/ALL_tw/for-educators/certification-programs/', '有正式證書'),
+            ('🏆', 'Microsoft Office Specialist 認證', 'https://learn.microsoft.com/zh-tw/credentials/browse/', '職場加分'),
         ]),
     },
 }
