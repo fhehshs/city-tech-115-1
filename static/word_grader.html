@@ -266,20 +266,20 @@ async function gradeDocx(zip) {
 
   const items = [];
 
-  // ① 標題 1 樣式 (10 分) — 寬容匹配（不管屬性順序、支援中英文樣式名）
-  const hasH1 = /<w:pStyle[^>]*(Heading1|標題1|標題 1|"a3"|"1"|"11")\b/i.test(docXml);
+  // ① 標題 1 樣式 (10 分) — 從 styles.xml 反查 heading 樣式的 styleId
+  const h1Info = checkHeading(stylesXml, docXml, 1);
   items.push(mkItem(
     '① 標題 1 樣式',
-    hasH1 ? '有段落套用「標題 1」樣式' : '沒偵測到「標題 1」樣式（把大章名選起來 → 按「標題 1」樣式）',
-    hasH1 ? 10 : 0, 10
+    h1Info.ok ? `有段落套用「標題 1」樣式（styleId: ${h1Info.ids.join(', ')}）` : '沒偵測到「標題 1」樣式（把大章名選起來 → 按「標題 1」樣式）',
+    h1Info.ok ? 10 : 0, 10
   ));
 
   // ② 標題 2 樣式 (5 分)
-  const hasH2 = /<w:pStyle[^>]*(Heading2|標題2|標題 2|"a4"|"2"|"22")\b/i.test(docXml);
+  const h2Info = checkHeading(stylesXml, docXml, 2);
   items.push(mkItem(
     '② 標題 2 樣式',
-    hasH2 ? '有段落套用「標題 2」樣式' : '沒偵測到「標題 2」樣式',
-    hasH2 ? 5 : 0, 5
+    h2Info.ok ? `有段落套用「標題 2」樣式（styleId: ${h2Info.ids.join(', ')}）` : '沒偵測到「標題 2」樣式',
+    h2Info.ok ? 5 : 0, 5
   ));
 
   // ③ 目錄 TOC (10 分)
@@ -412,6 +412,37 @@ function analyzeFonts(docXml, stylesXml) {
     hasTimes: timesCount > 0,
     mainFont: [...allFonts].slice(0, 3).join(', ')
   };
+}
+
+// 從 styles.xml 找 heading N 樣式的 styleId 清單，再檢查 docXml 有沒有用到
+// 這樣不管 Word 用什麼內部 id（Heading1、a3、20、標題 1...）都能抓到
+function checkHeading(stylesXml, docXml, level) {
+  const foundIds = [];
+  const styleRe = /<w:style\s+[^>]*w:styleId="([^"]+)"[^>]*>([\s\S]*?)<\/w:style>/g;
+  let m;
+  while ((m = styleRe.exec(stylesXml)) !== null) {
+    const id = m[1];
+    const inner = m[2];
+    const nameMatch = inner.match(/<w:name\s+w:val="([^"]+)"/);
+    if (!nameMatch) continue;
+    const name = nameMatch[1].toLowerCase().replace(/\s+/g, ' ').trim();
+    // 匹配英文「heading N」或中文「標題 N」/「標題N」
+    if (name === `heading ${level}` || name === `標題 ${level}` || name === `標題${level}`) {
+      foundIds.push(id);
+    }
+  }
+  // fallback：直接找字面 pStyle
+  if (foundIds.length === 0) {
+    const fallback = new RegExp(`<w:pStyle[^>]*(Heading${level}|標題 ?${level})`, 'i');
+    if (fallback.test(docXml)) return { ok: true, ids: ['(直接匹配)'] };
+    return { ok: false, ids: [] };
+  }
+  // 檢查 docXml 是否用到這些 id
+  const escId = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const usedIds = foundIds.filter(id => {
+    return new RegExp(`<w:pStyle[^>]*w:val="${escId(id)}"`).test(docXml);
+  });
+  return { ok: usedIds.length > 0, ids: usedIds.length > 0 ? usedIds : foundIds };
 }
 
 function analyzeSize(docXml, stylesXml) {
