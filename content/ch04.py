@@ -1051,6 +1051,26 @@ SLIDES = [
 
 <div style='background:rgba(255,255,255,0.08);padding:8px 12px;border-radius:8px;margin-top:8px;font-size:.75rem;color:#cffafe;'>
   💡 <strong>期末預告</strong>：學完 Ch08 大數據、Ch09 資料分析後，期末個人大報告會寫一篇<strong>真正的小論文</strong>——用到今天學的六大架構、格式規範，加上你會的數據分析技能。今天先把工具練熟！
+</div>
+
+<div style='text-align:center;margin-top:14px;'>
+  <div style='display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;'>
+    <a href='static/templates/丙級術科模擬_原稿.docx' download
+       style='display:inline-block;background:#7c3aed;color:#fff;padding:8px 18px;border-radius:20px;text-decoration:none;font-weight:600;font-size:.82rem;'>
+      📄 下載題目原稿
+    </a>
+    <a href='static/templates/丙級術科模擬_範本.docx' download
+       style='display:inline-block;background:#0d9488;color:#fff;padding:8px 18px;border-radius:20px;text-decoration:none;font-weight:600;font-size:.82rem;'>
+      🎯 下載完成品範本
+    </a>
+  </div>
+  <a href='static/word_grader.html' target='_blank'
+     style='display:inline-block;background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;padding:12px 26px;border-radius:26px;text-decoration:none;font-weight:700;font-size:.95rem;box-shadow:0 4px 14px rgba(245,158,11,.4);'>
+    🎯 上傳你的 .docx 立刻看分數 →
+  </a>
+  <p style='color:#e0f7fa;font-size:.72rem;margin:6px 0 0;'>
+    <strong>檔案不會上傳到伺服器</strong>，只在你的瀏覽器內即時分析。可反覆修正到滿意再交作業！
+  </p>
 </div>"""
 },
 
