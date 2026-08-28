@@ -266,10 +266,8 @@ async function gradeDocx(zip) {
 
   const items = [];
 
-  // ① 標題 1 樣式 (10 分)
-  const hasH1 = /<w:pStyle w:val="(Heading1|標題1|1)"\/>/.test(docXml)
-             || /<w:pStyle w:val="Heading1"/.test(docXml)
-             || /<w:pStyle w:val="標題1"/.test(docXml);
+  // ① 標題 1 樣式 (10 分) — 寬容匹配（不管屬性順序、支援中英文樣式名）
+  const hasH1 = /<w:pStyle[^>]*(Heading1|標題1|標題 1|"a3"|"1"|"11")\b/i.test(docXml);
   items.push(mkItem(
     '① 標題 1 樣式',
     hasH1 ? '有段落套用「標題 1」樣式' : '沒偵測到「標題 1」樣式（把大章名選起來 → 按「標題 1」樣式）',
@@ -277,8 +275,7 @@ async function gradeDocx(zip) {
   ));
 
   // ② 標題 2 樣式 (5 分)
-  const hasH2 = /<w:pStyle w:val="Heading2"/.test(docXml)
-             || /<w:pStyle w:val="標題2"/.test(docXml);
+  const hasH2 = /<w:pStyle[^>]*(Heading2|標題2|標題 2|"a4"|"2"|"22")\b/i.test(docXml);
   items.push(mkItem(
     '② 標題 2 樣式',
     hasH2 ? '有段落套用「標題 2」樣式' : '沒偵測到「標題 2」樣式',
@@ -418,27 +415,33 @@ function analyzeFonts(docXml, stylesXml) {
 }
 
 function analyzeSize(docXml, stylesXml) {
-  // 找 <w:sz w:val="XX"/> — 值除以 2 = pt
+  // 只讀 docXml 的實際段落設定（不看 styles.xml 的預設值，避免預設 sizes 干擾）
   const sizes = [];
-  [docXml, stylesXml].forEach(xml => {
-    const ms = xml.matchAll(/<w:sz w:val="(\d+)"/g);
-    for (const m of ms) sizes.push(parseInt(m[1]) / 2);
-  });
+  const ms = docXml.matchAll(/<w:sz w:val="(\d+)"/g);
+  for (const m of ms) sizes.push(parseInt(m[1]) / 2);
+  if (!sizes.length) {
+    // fallback：若 docXml 沒任何 sz，再看 styles
+    const ms2 = stylesXml.matchAll(/<w:sz w:val="(\d+)"/g);
+    for (const m of ms2) sizes.push(parseInt(m[1]) / 2);
+  }
   if (!sizes.length) return { mainSize: '未知' };
-  // 統計出現最多的字級（排除 heading 常見大字級）
+  // 統計「內文常用字級」（9-14pt），出現最多的視為主字級
   const count = {};
-  sizes.filter(s => s >= 9 && s <= 16).forEach(s => count[s] = (count[s] || 0) + 1);
+  sizes.filter(s => s >= 9 && s <= 14).forEach(s => count[s] = (count[s] || 0) + 1);
   const main = Object.entries(count).sort((a, b) => b[1] - a[1])[0];
   return { mainSize: main ? parseFloat(main[0]) : sizes[0] };
 }
 
 function analyzeLineSpacing(docXml, stylesXml) {
-  // <w:spacing w:line="360" w:lineRule="auto"/> — 240=1.0, 360=1.5, 480=2.0
+  // 只讀 docXml 的實際段落設定
   const spacings = [];
-  [docXml, stylesXml].forEach(xml => {
-    const ms = xml.matchAll(/<w:spacing[^\/]*w:line="(\d+)"[^\/]*(?:w:lineRule="auto")?/g);
-    for (const m of ms) spacings.push(parseInt(m[1]));
-  });
+  const ms = docXml.matchAll(/<w:spacing[^\/]*w:line="(\d+)"/g);
+  for (const m of ms) spacings.push(parseInt(m[1]));
+  if (!spacings.length) {
+    // fallback 到 styles
+    const ms2 = stylesXml.matchAll(/<w:spacing[^\/]*w:line="(\d+)"/g);
+    for (const m of ms2) spacings.push(parseInt(m[1]));
+  }
   if (!spacings.length) return { main: '未知' };
   const count = {};
   spacings.forEach(s => count[s] = (count[s] || 0) + 1);
