@@ -300,7 +300,88 @@ _ch02 = {
         'video': _vid_search('二進位 十六進位 轉換 教學 中文 動畫',
                              '▶ 二進位、十六進位怎麼算？',
                              '5 分鐘搞懂進位系統'),
-        'html_append': _quiz_click(
+        'html_append': """
+<!-- 儲存單位對照（生活實例，擴充到 PB） -->
+<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>
+  <h4 style='color:#1d4ed8;font-size:.9rem;font-weight:700;margin:0 0 10px;'>💾 儲存單位對照（生活實例）</h4>
+  <div style='display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;'>
+    <div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #3b82f6;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.88rem;'>KB</div>
+      <div style='font-size:.75rem;color:#374151;'>≈ 一封純文字信</div>
+    </div>
+    <div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #3b82f6;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.88rem;'>MB</div>
+      <div style='font-size:.75rem;color:#374151;'>≈ 一首 MP3 歌曲</div>
+    </div>
+    <div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #3b82f6;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.88rem;'>GB</div>
+      <div style='font-size:.75rem;color:#374151;'>≈ 一部電影</div>
+    </div>
+    <div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #3b82f6;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.88rem;'>TB</div>
+      <div style='font-size:.75rem;color:#374151;'>≈ 一顆筆電硬碟</div>
+    </div>
+    <div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #3b82f6;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.88rem;'>PB</div>
+      <div style='font-size:.75rem;color:#374151;'>≈ 全球每天的數據</div>
+    </div>
+  </div>
+</div>
+
+<!-- 進位系統對照表（以十進位 47 為例） -->
+<div style='background:linear-gradient(135deg,#faf5ff,#ede9fe);border-radius:12px;padding:14px 16px;margin-top:12px;border-left:4px solid #8b5cf6;'>
+  <h4 style='color:#6d28d9;font-size:.9rem;font-weight:700;margin:0 0 8px;'>🔢 進位系統：同一個數字，不同進位長什麼樣</h4>
+  <table style='width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;font-size:.78rem;'>
+    <thead>
+      <tr style='background:#8b5cf6;color:#fff;'>
+        <th style='padding:7px 8px;text-align:left;'>進位系統</th>
+        <th style='padding:7px 8px;text-align:center;'>基數</th>
+        <th style='padding:7px 8px;text-align:center;'>符號</th>
+        <th style='padding:7px 8px;text-align:center;'>十進位 47 轉換</th>
+        <th style='padding:7px 8px;text-align:left;'>對應場景</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style='border-bottom:1px solid #e5e7eb;'>
+        <td style='padding:7px 8px;color:#3b82f6;font-weight:700;'>二進位 Binary</td>
+        <td style='padding:7px 8px;text-align:center;'>2</td>
+        <td style='padding:7px 8px;text-align:center;font-family:monospace;'>0、1</td>
+        <td style='padding:7px 8px;text-align:center;font-family:monospace;color:#dc2626;font-weight:700;'>101111<sub>2</sub></td>
+        <td style='padding:7px 8px;color:#374151;'>電腦內部運算</td>
+      </tr>
+      <tr style='border-bottom:1px solid #e5e7eb;background:#faf5ff;'>
+        <td style='padding:7px 8px;color:#3b82f6;font-weight:700;'>八進位 Octal</td>
+        <td style='padding:7px 8px;text-align:center;'>8</td>
+        <td style='padding:7px 8px;text-align:center;font-family:monospace;'>0–7</td>
+        <td style='padding:7px 8px;text-align:center;font-family:monospace;color:#dc2626;font-weight:700;'>57<sub>8</sub></td>
+        <td style='padding:7px 8px;color:#374151;'>早期 Unix 系統</td>
+      </tr>
+      <tr style='border-bottom:1px solid #e5e7eb;'>
+        <td style='padding:7px 8px;color:#3b82f6;font-weight:700;'>十進位 Decimal</td>
+        <td style='padding:7px 8px;text-align:center;'>10</td>
+        <td style='padding:7px 8px;text-align:center;font-family:monospace;'>0–9</td>
+        <td style='padding:7px 8px;text-align:center;font-family:monospace;color:#dc2626;font-weight:700;'>47<sub>10</sub></td>
+        <td style='padding:7px 8px;color:#374151;'>日常計算</td>
+      </tr>
+      <tr style='background:#faf5ff;'>
+        <td style='padding:7px 8px;color:#3b82f6;font-weight:700;'>十六進位 Hex</td>
+        <td style='padding:7px 8px;text-align:center;'>16</td>
+        <td style='padding:7px 8px;text-align:center;font-family:monospace;'>0–9、A–F</td>
+        <td style='padding:7px 8px;text-align:center;font-family:monospace;color:#dc2626;font-weight:700;'>2F<sub>16</sub></td>
+        <td style='padding:7px 8px;color:#374151;'>網頁色碼 #2F4F4F</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Instagram 顏色案例 -->
+  <div style='background:#fff;border:1px solid #e9d5ff;border-radius:8px;padding:10px 12px;margin-top:10px;font-size:.82rem;color:#374151;line-height:1.6;'>
+    🎨 <strong>Instagram 品牌紅是 <span style='color:#E1306C;font-family:monospace;'>#E1306C</span></strong> —
+    E1 = <strong>225</strong>（紅）、30 = <strong>48</strong>（綠）、6C = <strong>108</strong>（藍），
+    這是 RGB 三原色的<strong>十六進位</strong>表示法！<br>
+    <span style='color:#6b7280;font-size:.75rem;'>💡 網頁上所有顏色都是這種 <code>#RRGGBB</code> 六位十六進位碼，每兩位代表一個顏色通道，範圍 00–FF（0–255）。</span>
+  </div>
+</div>
+""" + _quiz_click(
             "下列哪個檔案最大？",
             ["一張手機拍的照片（約 3 MB）",
              "一首 MP3 歌曲（約 4 MB）",
