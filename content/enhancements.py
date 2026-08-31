@@ -327,60 +327,6 @@ _ch02 = {
     </div>
   </div>
 </div>
-
-<!-- 進位系統對照表（以十進位 47 為例） -->
-<div style='background:linear-gradient(135deg,#faf5ff,#ede9fe);border-radius:12px;padding:14px 16px;margin-top:12px;border-left:4px solid #8b5cf6;'>
-  <h4 style='color:#6d28d9;font-size:.9rem;font-weight:700;margin:0 0 8px;'>🔢 進位系統：同一個數字，不同進位長什麼樣</h4>
-  <table style='width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;font-size:.78rem;'>
-    <thead>
-      <tr style='background:#8b5cf6;color:#fff;'>
-        <th style='padding:7px 8px;text-align:left;'>進位系統</th>
-        <th style='padding:7px 8px;text-align:center;'>基數</th>
-        <th style='padding:7px 8px;text-align:center;'>符號</th>
-        <th style='padding:7px 8px;text-align:center;'>十進位 47 轉換</th>
-        <th style='padding:7px 8px;text-align:left;'>對應場景</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style='border-bottom:1px solid #e5e7eb;'>
-        <td style='padding:7px 8px;color:#3b82f6;font-weight:700;'>二進位 Binary</td>
-        <td style='padding:7px 8px;text-align:center;'>2</td>
-        <td style='padding:7px 8px;text-align:center;font-family:monospace;'>0、1</td>
-        <td style='padding:7px 8px;text-align:center;font-family:monospace;color:#dc2626;font-weight:700;'>101111<sub>2</sub></td>
-        <td style='padding:7px 8px;color:#374151;'>電腦內部運算</td>
-      </tr>
-      <tr style='border-bottom:1px solid #e5e7eb;background:#faf5ff;'>
-        <td style='padding:7px 8px;color:#3b82f6;font-weight:700;'>八進位 Octal</td>
-        <td style='padding:7px 8px;text-align:center;'>8</td>
-        <td style='padding:7px 8px;text-align:center;font-family:monospace;'>0–7</td>
-        <td style='padding:7px 8px;text-align:center;font-family:monospace;color:#dc2626;font-weight:700;'>57<sub>8</sub></td>
-        <td style='padding:7px 8px;color:#374151;'>早期 Unix 系統</td>
-      </tr>
-      <tr style='border-bottom:1px solid #e5e7eb;'>
-        <td style='padding:7px 8px;color:#3b82f6;font-weight:700;'>十進位 Decimal</td>
-        <td style='padding:7px 8px;text-align:center;'>10</td>
-        <td style='padding:7px 8px;text-align:center;font-family:monospace;'>0–9</td>
-        <td style='padding:7px 8px;text-align:center;font-family:monospace;color:#dc2626;font-weight:700;'>47<sub>10</sub></td>
-        <td style='padding:7px 8px;color:#374151;'>日常計算</td>
-      </tr>
-      <tr style='background:#faf5ff;'>
-        <td style='padding:7px 8px;color:#3b82f6;font-weight:700;'>十六進位 Hex</td>
-        <td style='padding:7px 8px;text-align:center;'>16</td>
-        <td style='padding:7px 8px;text-align:center;font-family:monospace;'>0–9、A–F</td>
-        <td style='padding:7px 8px;text-align:center;font-family:monospace;color:#dc2626;font-weight:700;'>2F<sub>16</sub></td>
-        <td style='padding:7px 8px;color:#374151;'>網頁色碼 #2F4F4F</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- Instagram 顏色案例 -->
-  <div style='background:#fff;border:1px solid #e9d5ff;border-radius:8px;padding:10px 12px;margin-top:10px;font-size:.82rem;color:#374151;line-height:1.6;'>
-    🎨 <strong>Instagram 品牌紅是 <span style='color:#E1306C;font-family:monospace;'>#E1306C</span></strong> —
-    E1 = <strong>225</strong>（紅）、30 = <strong>48</strong>（綠）、6C = <strong>108</strong>（藍），
-    這是 RGB 三原色的<strong>十六進位</strong>表示法！<br>
-    <span style='color:#6b7280;font-size:.75rem;'>💡 網頁上所有顏色都是這種 <code>#RRGGBB</code> 六位十六進位碼，每兩位代表一個顏色通道，範圍 00–FF（0–255）。</span>
-  </div>
-</div>
 """ + _quiz_click(
             "下列哪個檔案最大？",
             ["一張手機拍的照片（約 3 MB）",
@@ -389,11 +335,23 @@ _ch02 = {
              "一份 Word 報告（約 200 KB）"],
             2,
             "1 GB ≈ 1,024 MB。影片是最大宗——這也是為什麼手機容量常常不夠用。"
-        ) + _reveal(
+        ),
+    },
+    7: {  # 進位系統與顏色編碼（新分出的 slide）— 加二進位換算互動
+        'html_append': _reveal(
             "動動腦：8 位元的二進位數 1010 1010 換算成十進位是多少？",
             "從右邊起，位元權重是 1, 2, 4, 8, 16, 32, 64, 128",
             "1010 1010 = 128 + 32 + 8 + 2 = <strong>170</strong>。"
             "電腦裡所有資料（文字、圖片、音樂）最終都被拆成這樣的 0/1 序列。"
+        ) + _quiz_click(
+            "你在 Canva 選了一個顏色 <span style='color:#0d9488;font-family:monospace;'>#0D9488</span>，這代表什麼？",
+            ["紅 13、綠 148、藍 136（青綠色）",
+             "紅 0、綠 13、藍 9488（藍色）",
+             "無意義的隨機字串",
+             "是這個顏色的名稱代號"],
+            0,
+            "#RRGGBB 中 0D = 13、94 = 148、88 = 136。每兩位一組 = 一個顏色通道，"
+            "0-255（十六進位 00-FF）。你看的所有網頁顏色都是這種六位十六進位碼。"
         ),
     },
     8: {  # 像素、解析度與色彩深度

@@ -106,6 +106,63 @@ SLIDES = [
 </div>"""
 },
 
+{
+  'id': 100,
+  'chapter': '第一章：數位語言基礎',
+  'title': '電腦為什麼只懂 0 和 1',
+  'bg': 'white',
+  'quiz': None, 'chart': None, 'video': None,
+  'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>💡 電腦為什麼只懂 0 和 1？</h2>
+  <p class='slide-desc'>先從原理開始——為什麼電腦不用 10 個數字，只用 2 個？</p>
+
+  <div class='card-grid-2' style='margin-bottom:12px;'>
+    <div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px;'>
+      <div style='font-size:.88rem;font-weight:700;color:#1E3A5F;margin-bottom:8px;'>⚡ 原理：電晶體 = 小開關</div>
+      <div style='font-size:.82rem;color:#374151;line-height:1.7;'>
+        電腦裡到處都是<strong>電晶體</strong>，就像小小的開關 —<br>
+        <span style='display:inline-block;background:#fef2f2;color:#dc2626;padding:2px 10px;border-radius:6px;font-weight:700;margin:4px 4px 4px 0;'>OFF = 0</span>
+        <span style='display:inline-block;background:#f0fdf4;color:#16a34a;padding:2px 10px;border-radius:6px;font-weight:700;'>ON = 1</span><br><br>
+        只有兩種狀態 → 最不容易「認錯」→ 電腦超級可靠。<br>
+        8 個開關組合 = <strong>1 Byte</strong>，共 <strong>256 種變化</strong>，剛好可以表示一個英文字母。
+      </div>
+    </div>
+
+    <div style='background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:14px;'>
+      <div style='font-size:.88rem;font-weight:700;color:#1E3A5F;margin-bottom:8px;'>🧠 生活對比：手電筒暗號</div>
+      <div style='font-size:.82rem;color:#1e3a8a;line-height:1.7;'>
+        想像你要用手電筒傳暗號 ——<br>
+        只有「<strong>亮</strong>」和「<strong>暗</strong>」兩種狀態，卻能拼出任何訊息（就像摩斯密碼）。<br><br>
+        電腦用 <strong>0 和 1</strong> 也是同樣道理，<br>
+        只是速度快了 <strong>幾十億倍</strong>。
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 位元視覺化 -->
+  <div style='background:#0f172a;border-radius:12px;padding:14px 16px;color:#fff;text-align:center;margin-bottom:10px;'>
+    <div style='font-size:.85rem;color:#94a3b8;margin-bottom:8px;'>🎛️ 8 個位元組合起來 = 1 Byte</div>
+    <div style='display:inline-flex;gap:6px;flex-wrap:wrap;justify-content:center;'>
+      <span style='background:#dc2626;color:#fff;padding:6px 12px;border-radius:6px;font-family:monospace;font-weight:700;'>0</span>
+      <span style='background:#16a34a;color:#fff;padding:6px 12px;border-radius:6px;font-family:monospace;font-weight:700;'>1</span>
+      <span style='background:#16a34a;color:#fff;padding:6px 12px;border-radius:6px;font-family:monospace;font-weight:700;'>0</span>
+      <span style='background:#dc2626;color:#fff;padding:6px 12px;border-radius:6px;font-family:monospace;font-weight:700;'>0</span>
+      <span style='background:#16a34a;color:#fff;padding:6px 12px;border-radius:6px;font-family:monospace;font-weight:700;'>0</span>
+      <span style='background:#dc2626;color:#fff;padding:6px 12px;border-radius:6px;font-family:monospace;font-weight:700;'>0</span>
+      <span style='background:#dc2626;color:#fff;padding:6px 12px;border-radius:6px;font-family:monospace;font-weight:700;'>0</span>
+      <span style='background:#16a34a;color:#fff;padding:6px 12px;border-radius:6px;font-family:monospace;font-weight:700;'>1</span>
+    </div>
+    <div style='margin-top:8px;font-size:.78rem;color:#cbd5e1;'>
+      這 8 個開關組合起來 = <strong style='color:#fbbf24;'>01000001</strong>（十進位 65）= 英文字母「<strong style='color:#fbbf24;'>A</strong>」
+    </div>
+  </div>
+
+  <div class='tip-box'>
+    🔜 <strong>接下來</strong>會學：類比與數位的差別、文字如何變成數字、數字又怎麼變成一堆 0/1 存進電腦。
+  </div>
+</div>"""
+},
 
 {
   'id': 3,
@@ -297,55 +354,114 @@ SLIDES = [
 {
   'id': 6,
   'chapter': '第一章：數位語言基礎',
-  'title': '儲存單位 × 電腦為什麼只懂 0 和 1',
+  'title': '儲存單位（bit / Byte / KB / MB / GB / TB）',
   'bg': 'white',
   'quiz': None, 'chart': None,
-  'video': {'type': 'search', 'query': '二進位 電腦 為什麼 教學 動畫 中文', 'title': '🔢 電腦為什麼只懂 0 和 1？', 'desc': '搜尋二進位系統教學影片'},
+  'video': {'type': 'search', 'query': '二進位 十六進位 轉換 教學 中文 動畫', 'title': '▶ 二進位、十六進位怎麼算？', 'desc': '5 分鐘搞懂進位系統'},
   'html': """
 <div class='slide-inner'>
-  <h2 class='slide-title'>📦 儲存單位 × 為什麼電腦只懂 0 和 1</h2>
+  <h2 class='slide-title'>📦 儲存單位換算</h2>
+  <p class='slide-desc'>剛剛看過 A = 1 Byte、中文 = 3 Bytes、Emoji = 4 Bytes——那 KB / MB / GB 又是多大？</p>
 
-  <div class='card-grid-2' style='margin-bottom:12px'>
-    <!-- 左：儲存單位換算 -->
+  <div class='card-grid-2' style='margin-bottom:12px;'>
     <div>
-      <div style='font-size:.8rem;font-weight:700;color:#1E3A5F;margin-bottom:8px'>📦 儲存單位換算</div>
+      <div style='font-size:.85rem;font-weight:700;color:#1E3A5F;margin-bottom:8px;'>📦 換算表（每格 × 1,024）</div>
       <div class='units-grid'>
         <div class='unit-row unit-small'><span class='unit-name'>1 bit（位元）</span><span class='unit-eq'>最小單位，0 或 1</span></div>
         <div class='unit-row unit-small'><span class='unit-name'>1 Byte（位元組）</span><span class='unit-eq'>= 8 bits</span></div>
-        <div class='unit-row'><span class='unit-name'>1 KB</span><span class='unit-eq'>= 1,024 Bytes</span></div>
-        <div class='unit-row'><span class='unit-name'>1 MB</span><span class='unit-eq'>= 1,024 KB</span></div>
-        <div class='unit-row'><span class='unit-name'>1 GB</span><span class='unit-eq'>= 1,024 MB</span></div>
-        <div class='unit-row unit-large'><span class='unit-name'>1 TB</span><span class='unit-eq'>= 1,024 GB</span></div>
-      </div>
-      <div style='margin-top:8px;padding:8px 10px;background:#fffbeb;border-radius:8px;font-size:.75rem;color:#92400e;line-height:1.5'>
-        💡 一封 LINE 訊息 ≈ 100 Bytes<br>
-        一首 MP3 歌曲 ≈ 3–5 MB<br>
-        一部 4K 電影 ≈ 50–100 GB
+        <div class='unit-row'><span class='unit-name'>1 KB（千位元組）</span><span class='unit-eq'>= 1,024 Bytes</span></div>
+        <div class='unit-row'><span class='unit-name'>1 MB（百萬位元組）</span><span class='unit-eq'>= 1,024 KB</span></div>
+        <div class='unit-row'><span class='unit-name'>1 GB（十億位元組）</span><span class='unit-eq'>= 1,024 MB</span></div>
+        <div class='unit-row unit-large'><span class='unit-name'>1 TB（兆位元組）</span><span class='unit-eq'>= 1,024 GB</span></div>
       </div>
     </div>
-
-    <!-- 右：為什麼是 0 和 1 -->
     <div>
-      <div style='font-size:.8rem;font-weight:700;color:#1E3A5F;margin-bottom:8px'>💡 為什麼電腦只用 0 和 1？</div>
-      <div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-size:.78rem;color:#374151;line-height:1.7;margin-bottom:8px'>
-        電腦裡到處都是<strong>電晶體</strong>，就像小小的開關 —<br>
-        <span style='display:inline-block;background:#fef2f2;color:#dc2626;padding:1px 8px;border-radius:6px;font-weight:700;'>OFF = 0</span>
-        <span style='display:inline-block;background:#f0fdf4;color:#16a34a;padding:1px 8px;border-radius:6px;font-weight:700;'>ON = 1</span><br>
-        只有兩種狀態 → 最不容易「認錯」 → 電腦超級可靠。<br>
-        8 個開關組合起來 = <strong>1 Byte</strong>，共 256 種變化，剛好可以表示一個英文字母。
-      </div>
-      <div style='background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px 12px;font-size:.75rem;color:#1e3a8a;line-height:1.6'>
-        <div style='font-weight:700;color:#1e40af;margin-bottom:4px;'>🧠 生活對比：</div>
-        想像你要用手電筒傳暗號 —— 只有「亮/暗」兩種狀態，卻能拼出任何訊息（就像摩斯密碼）。電腦用 0 和 1 也是同樣道理，只是速度快了幾十億倍。
+      <div style='font-size:.85rem;font-weight:700;color:#1E3A5F;margin-bottom:8px;'>💡 為什麼是 1024，不是 1000？</div>
+      <div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px;font-size:.8rem;color:#374151;line-height:1.7;'>
+        因為電腦用<strong>二進位</strong>，剛好 2<sup>10</sup> = <strong>1,024</strong> ≈ 1000。<br><br>
+        用 1024 是「電腦剛好對齊」的容量，硬體規格常用它。<br>
+        1000 是「人類看起來整齊」的十進位——所以硬碟廠商包裝上寫「1TB」通常用 10<sup>12</sup> = 1,000 GB，實際能用略小。
       </div>
     </div>
   </div>
 
   <div class='tip-box'>
-    🔜 <strong>下一張</strong>會來實際看：一張照片、一首歌，是怎麼被拆成幾百萬個 0 和 1 存起來的。
+    🔜 <strong>下一張</strong>來看：進位系統（二/八/十/十六）長什麼樣、網頁色碼藏了什麼秘密。
   </div>
 
   <div id='video-section-6' class='video-section' style='margin-top:8px'></div>
+</div>"""
+},
+
+{
+  'id': 7,
+  'chapter': '第一章：數位語言基礎',
+  'title': '進位系統與顏色編碼',
+  'bg': 'white',
+  'quiz': None, 'chart': None, 'video': None,
+  'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>🔢 進位系統與顏色編碼</h2>
+  <p class='slide-desc'>同一個數字，用不同進位長什麼樣？網頁色碼藏了什麼秘密？</p>
+
+  <!-- 進位系統對照表（以十進位 47 為例） -->
+  <table style='width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;font-size:.82rem;margin-bottom:10px;border:1px solid #e2e8f0;'>
+    <thead>
+      <tr style='background:#8b5cf6;color:#fff;'>
+        <th style='padding:8px 10px;text-align:left;'>進位系統</th>
+        <th style='padding:8px 10px;text-align:center;'>基數</th>
+        <th style='padding:8px 10px;text-align:center;'>符號</th>
+        <th style='padding:8px 10px;text-align:center;'>十進位 47 轉換</th>
+        <th style='padding:8px 10px;text-align:left;'>對應場景</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style='border-bottom:1px solid #e5e7eb;'>
+        <td style='padding:7px 10px;color:#3b82f6;font-weight:700;'>二進位 Binary</td>
+        <td style='padding:7px 10px;text-align:center;'>2</td>
+        <td style='padding:7px 10px;text-align:center;font-family:monospace;'>0、1</td>
+        <td style='padding:7px 10px;text-align:center;font-family:monospace;color:#dc2626;font-weight:700;'>101111<sub>2</sub></td>
+        <td style='padding:7px 10px;color:#374151;'>電腦內部運算</td>
+      </tr>
+      <tr style='border-bottom:1px solid #e5e7eb;background:#faf5ff;'>
+        <td style='padding:7px 10px;color:#3b82f6;font-weight:700;'>八進位 Octal</td>
+        <td style='padding:7px 10px;text-align:center;'>8</td>
+        <td style='padding:7px 10px;text-align:center;font-family:monospace;'>0–7</td>
+        <td style='padding:7px 10px;text-align:center;font-family:monospace;color:#dc2626;font-weight:700;'>57<sub>8</sub></td>
+        <td style='padding:7px 10px;color:#374151;'>早期 Unix 系統</td>
+      </tr>
+      <tr style='border-bottom:1px solid #e5e7eb;'>
+        <td style='padding:7px 10px;color:#3b82f6;font-weight:700;'>十進位 Decimal</td>
+        <td style='padding:7px 10px;text-align:center;'>10</td>
+        <td style='padding:7px 10px;text-align:center;font-family:monospace;'>0–9</td>
+        <td style='padding:7px 10px;text-align:center;font-family:monospace;color:#dc2626;font-weight:700;'>47<sub>10</sub></td>
+        <td style='padding:7px 10px;color:#374151;'>日常計算</td>
+      </tr>
+      <tr style='background:#faf5ff;'>
+        <td style='padding:7px 10px;color:#3b82f6;font-weight:700;'>十六進位 Hex</td>
+        <td style='padding:7px 10px;text-align:center;'>16</td>
+        <td style='padding:7px 10px;text-align:center;font-family:monospace;'>0–9、A–F</td>
+        <td style='padding:7px 10px;text-align:center;font-family:monospace;color:#dc2626;font-weight:700;'>2F<sub>16</sub></td>
+        <td style='padding:7px 10px;color:#374151;'>網頁色碼 #2F4F4F</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Instagram 顏色案例 + 顏色示範方塊 -->
+  <div style='background:linear-gradient(135deg,#faf5ff,#ede9fe);border-radius:12px;padding:14px;border-left:4px solid #8b5cf6;'>
+    <div style='display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;'>
+      <div style='width:70px;height:70px;background:#E1306C;border-radius:12px;box-shadow:0 4px 12px rgba(225,48,108,.4);flex-shrink:0;'></div>
+      <div style='font-size:.85rem;color:#374151;line-height:1.6;'>
+        🎨 <strong>Instagram 品牌紅是 <span style='color:#E1306C;font-family:monospace;'>#E1306C</span></strong><br>
+        &nbsp;&nbsp;E1 = <strong>225</strong>（紅）· 30 = <strong>48</strong>（綠）· 6C = <strong>108</strong>（藍）<br>
+        <span style='color:#6b7280;font-size:.78rem;'>這是 RGB 三原色的十六進位表示法！每兩位一組 = 一個顏色通道，範圍 00–FF（0–255）。</span>
+      </div>
+    </div>
+  </div>
+
+  <div class='tip-box' style='margin-top:10px;'>
+    💡 <strong>網頁上所有顏色都是 <code>#RRGGBB</code></strong>：紅紅綠綠藍藍。下次打開 Canva、PowerPoint 選色，看到 <code>#</code> 開頭的六位碼就是這個！
+  </div>
 </div>"""
 },
 
@@ -462,58 +578,6 @@ SLIDES = [
 },
 
 
-{
-  'id': 10,
-  'chapter': '第一章：數位語言基礎',
-  'title': '進位系統與顏色編碼',
-  'bg': 'white',
-  'quiz': None, 'chart': None, 'video': None,
-  'html': """
-<div class='slide-inner'>
-  <h2 class='slide-title'>🔢 進位系統與顏色編碼</h2>
-  <div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px'>
-    <div>
-      <div style='font-size:.78rem;font-weight:700;color:#1E3A5F;margin-bottom:8px'>進位系統比較</div>
-      <div style='font-size:.78rem;line-height:1.8;background:#f8fafc;padding:10px;border-radius:8px;border:1px solid #e2e8f0'>
-        <div><strong>2 進位</strong>：只用 0 和 1，電腦最基本的語言</div>
-        <div><strong>8 進位</strong>：用 0–7，早期程式設計常見</div>
-        <div><strong>16 進位</strong>：用 0–9 與 A–F，簡潔表示大數值</div>
-      </div>
-    </div>
-    <div>
-      <div style='font-size:.78rem;font-weight:700;color:#1E3A5F;margin-bottom:8px'>十進位與轉換</div>
-      <div style='font-size:.78rem;line-height:2;background:#f8fafc;padding:10px;border-radius:8px;border:1px solid #e2e8f0'>
-        <div>十進位 <strong>10</strong> 的對應：</div>
-        <div>二進位：<code style='background:#eff6ff;padding:1px 5px;border-radius:4px'>1010</code></div>
-        <div>八進位：<code style='background:#eff6ff;padding:1px 5px;border-radius:4px'>12</code></div>
-        <div>十六進位：<code style='background:#eff6ff;padding:1px 5px;border-radius:4px'>A</code></div>
-        <div style='font-size:.7rem;color:#64748b;margin-top:4px'>位數越少，表示越簡潔！</div>
-      </div>
-    </div>
-    <div>
-      <div style='font-size:.78rem;font-weight:700;color:#1E3A5F;margin-bottom:8px'>顏色編碼實例</div>
-      <div style='font-size:.78rem;line-height:1.8;background:#f8fafc;padding:10px;border-radius:8px;border:1px solid #e2e8f0'>
-        <div style='display:flex;align-items:center;gap:8px;margin-bottom:6px'>
-          <div style='width:20px;height:20px;background:#dc2626;border-radius:4px'></div>
-          <span>重點紅 <code>#DC2626</code></span>
-        </div>
-        <div style='display:flex;align-items:center;gap:8px;margin-bottom:6px'>
-          <div style='width:20px;height:20px;background:#0d9488;border-radius:4px'></div>
-          <span>科技綠 <code>#0D9488</code></span>
-        </div>
-        <div style='display:flex;align-items:center;gap:8px'>
-          <div style='width:20px;height:20px;background:#6b3fa0;border-radius:4px'></div>
-          <span>AI 紫 <code>#6B3FA0</code></span>
-        </div>
-        <div style='font-size:.7rem;color:#64748b;margin-top:6px'>網頁色彩皆以十六進位表示</div>
-      </div>
-    </div>
-  </div>
-  <div class='tip-box'>
-    🎯 <strong>重點</strong>：十六進位 #RRGGBB 每兩碼代表一個顏色通道（R/G/B），各自從 00（0）到 FF（255），共 1677 萬種組合。
-  </div>
-</div>"""
-},
 
 {
   'id': 11,
