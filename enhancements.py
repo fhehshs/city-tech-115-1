@@ -1,0 +1,1228 @@
+# -*- coding: utf-8 -*-
+"""
+enhancements.py — 各章節豐富化內容
+結構：ENHANCEMENTS[章節編號][投影片id] = {
+    'video': {...}          # 覆蓋原始 video 欄位
+    'html_append': '...'    # 附加在原始 html 後面
+}
+"""
+
+# ── 通用 HTML 元件 ──────────────────────────────────────────────────────────
+
+def _life(title, body):
+    return f"""
+<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>
+  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：{title}</h4>
+  {body}
+</div>"""
+
+def _innov(title, body):
+    return f"""
+<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>
+  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：{title}</h4>
+  {body}
+</div>"""
+
+def _data(title, body):
+    return f"""
+<div style='background:linear-gradient(135deg,#faf5ff,#ede9fe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #8b5cf6;'>
+  <h4 style='color:#6d28d9;font-size:.85rem;font-weight:700;margin:0 0 8px;'>📊 數據說話：{title}</h4>
+  {body}
+</div>"""
+
+def _vid_search(query, title, desc):
+    return {'type': 'search', 'query': query, 'title': title, 'desc': desc}
+
+def _vid_yt(vid_id, title):
+    return {'type': 'youtube', 'id': vid_id, 'title': title}
+
+def _vid_both(vid_id, query, title, desc='在 YouTube 搜尋同主題其他教學影片', search_title=None):
+    """雙模式：上方嵌入乾淨播放器（youtube-nocookie，無廣告干擾），下方保留搜尋備援
+    嵌入的影片若失效，學生仍可透過下方按鈕搜尋替代內容。"""
+    return {
+        'type': 'both',
+        'id': vid_id,
+        'title': title,
+        'query': query,
+        'desc': desc,
+        'search_title': search_title or '想看更多相關影片',
+    }
+
+def _mini_cards(*cards):
+    """cards = list of (emoji, title, value, color)"""
+    items = ''.join(
+        f"<div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'>"
+        f"<div style='font-size:1.4rem;'>{e}</div>"
+        f"<p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>{t}</p>"
+        f"<p style='font-size:.75rem;color:{c};font-weight:600;margin:0;'>{v}</p></div>"
+        for e, t, v, c in cards
+    )
+    return f"<div style='display:grid;grid-template-columns:repeat({len(cards)},1fr);gap:8px;'>{items}</div>"
+
+
+def _ref(title, items):
+    """延伸閱讀 / 參考資料連結區塊
+    items = list of (icon, label, url, note)
+    """
+    lis = ''.join(
+        f"<li style='margin-bottom:6px;line-height:1.55;'>"
+        f"<span style='margin-right:6px;'>{i}</span>"
+        f"<a href='{u}' target='_blank' rel='noopener' "
+        f"style='color:#0d9488;font-weight:600;text-decoration:none;border-bottom:1px dashed #0d9488;'>{lb}</a>"
+        f"<span style='color:#6b7280;font-size:.75rem;'> — {n}</span></li>"
+        for i, lb, u, n in items
+    )
+    return f"""
+<div style='background:linear-gradient(135deg,#fff7ed,#ffedd5);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #f97316;'>
+  <h4 style='color:#c2410c;font-size:.85rem;font-weight:700;margin:0 0 8px;'>📚 延伸閱讀：{title}</h4>
+  <ul style='list-style:none;padding:0;margin:0;font-size:.82rem;color:#374151;'>{lis}</ul>
+</div>"""
+
+
+def _reveal(question, hint, answer):
+    """CSS-only 點擊揭曉小挑戰（用 <details>）"""
+    return f"""
+<div style='background:linear-gradient(135deg,#ecfeff,#cffafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #06b6d4;'>
+  <h4 style='color:#0e7490;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🧩 小挑戰</h4>
+  <p style='font-size:.85rem;color:#374151;margin:0 0 6px;'><strong>Q：</strong>{question}</p>
+  <p style='font-size:.78rem;color:#6b7280;margin:0 0 8px;'>💡 提示：{hint}</p>
+  <details style='cursor:pointer;'>
+    <summary style='color:#0e7490;font-weight:700;font-size:.82rem;user-select:none;'>👀 點我看答案</summary>
+    <div style='margin-top:8px;background:#fff;padding:10px 12px;border-radius:8px;font-size:.85rem;color:#374151;line-height:1.6;'>{answer}</div>
+  </details>
+</div>"""
+
+
+def _quiz_click(question, options, correct_idx, explain):
+    """即時互動選擇題（onclick 顯示對錯）— options: list of str, correct_idx: 0-based"""
+    import uuid
+    gid = 'q' + uuid.uuid4().hex[:8]
+    btns = ''.join(
+        f"<button onclick=\"(function(b){{"
+        f"var ok={('true' if i == correct_idx else 'false')};"
+        f"b.style.background=ok?'#16a34a':'#dc2626';b.style.color='#fff';"
+        f"var box=document.getElementById('{gid}_r');"
+        f"box.style.display='block';"
+        f"box.innerHTML=(ok?'✅ 答對了！':'❌ 再想想...')+'<br><span style=\\'font-size:.78rem;color:#6b7280\\'>' + '{explain.replace(chr(39), chr(92)+chr(39))}' + '</span>';"
+        f"}})(this)\" "
+        f"style='background:#fff;border:2px solid #cbd5e1;color:#374151;padding:8px 12px;border-radius:8px;font-size:.82rem;cursor:pointer;text-align:left;transition:all .15s;'>"
+        f"{chr(65+i)}. {opt}</button>"
+        for i, opt in enumerate(options)
+    )
+    return f"""
+<div style='background:linear-gradient(135deg,#faf5ff,#f3e8ff);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #8b5cf6;'>
+  <h4 style='color:#6d28d9;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🎮 互動小測驗</h4>
+  <p style='font-size:.85rem;color:#374151;margin:0 0 10px;line-height:1.5;'>{question}</p>
+  <div style='display:grid;grid-template-columns:1fr 1fr;gap:6px;'>{btns}</div>
+  <div id='{gid}_r' style='display:none;margin-top:10px;background:#fff;padding:10px 12px;border-radius:8px;font-size:.85rem;color:#111827;font-weight:600;'></div>
+</div>"""
+
+
+# ── Ch01：科技演進與硬體 ─────────────────────────────────────────────────────
+
+_ch01 = {
+    3: {  # 摩爾定律
+        'video': _vid_search('摩爾定律 CPU 科技進化 教學', '▶ 摩爾定律動畫解說', '觀看科技演進速度動畫'),
+        'html_append': _life('你的手機比登月火箭強多少？',
+            _mini_cards(
+                ('📱', 'iPhone 17 Pro', '每秒 2 兆次', '#2563eb'),
+                ('🚀', '阿波羅登月', '每秒 4.3 萬次', '#dc2626'),
+                ('⬆️', '差距倍數', '約 4,400 萬倍', '#16a34a'),
+                ('⏱️', '摩爾定律', '每 2 年翻倍', '#d97706'),
+            )
+        ),
+    },
+    5: {  # 台積電
+        # ✅ 已驗證：台積創新館官方頻道「晶圓廠導覽」
+        'video': _vid_both(
+            'WTZiT_asKLM',
+            '台積電 半導體 台灣 故事 紀錄片 中文',
+            '台積公司—晶圓廠導覽（台積創新館官方）',
+            desc='想找更多台積電/半導體介紹？點下方搜尋',
+            search_title='▶ 更多半導體與台積電中文影片',
+        ),
+        'html_append': _innov('台積電如何改變世界？',
+            "<p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0;'>"
+            "全球 <strong>90%</strong> 最先進晶片（3nm 以下）由台積電生產。"
+            "iPhone、NVIDIA GPU、特斯拉 FSD 晶片全依賴台積電。"
+            "台積電市值（2025）超過 <strong>新台幣 25 兆元</strong>，相當於台灣 GDP 的 1.3 倍。</p>"
+        ),
+    },
+    9: {  # CPU vs GPU
+        'video': _vid_search('CPU vs GPU 差異 工作原理 動畫 中文', '▶ CPU vs GPU 誰更快？', '用動畫理解 CPU 與 GPU 的分工'),
+        'html_append': _life('為什麼打遊戲要看 GPU？',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<p style='margin:0 0 6px;'>🎮 <strong>遊戲</strong>：每秒要計算數百萬個像素顏色 → GPU 同時處理比 CPU 快 100 倍</p>"
+            "<p style='margin:0 0 6px;'>🤖 <strong>AI 訓練</strong>：ChatGPT 訓練用了 10,000 個 NVIDIA A100 GPU</p>"
+            "<p style='margin:0;'>📱 <strong>手機</strong>：A17 晶片內建 CPU + GPU + NPU（AI 加速），全部整合在指甲大小</p></div>"
+        ),
+    },
+    13: {  # HDD vs SSD
+        'video': _vid_search('SSD HDD 差異 運作原理 速度比較', '▶ SSD vs HDD 速度大比拼', '看看 SSD 比 HDD 快多少倍'),
+        'html_append': _data('存取速度比較',
+            _mini_cards(
+                ('💾', 'HDD 傳統硬碟', '讀寫 150 MB/s', '#dc2626'),
+                ('⚡', 'SATA SSD', '讀寫 550 MB/s', '#d97706'),
+                ('🚀', 'NVMe SSD', '讀寫 7,000 MB/s', '#16a34a'),
+                ('📱', '手機快閃記憶體', '讀寫 3,500 MB/s', '#2563eb'),
+            ) +
+            "<p style='font-size:.75rem;color:#6b7280;margin:8px 0 0;'>NVMe SSD 比傳統 HDD 快 <strong>46 倍</strong>，開機時間從 60 秒縮短到 5 秒</p>"
+        ),
+    },
+    8: {  # 電腦硬體架構（新增：電腦內部實體圖）
+        'html_append': """
+<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>
+  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 10px;'>🖥️ 補充圖：拆開機殼看電腦內部長這樣</h4>
+  <img src='static/img/computer_inside.jpg' alt='電腦機殼內部各元件位置'
+    style='width:100%;max-width:600px;display:block;margin:0 auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.15);'/>
+  <p style='font-size:.78rem;color:#374151;text-align:center;margin:8px 0 0;line-height:1.5;'>
+    圖中可看到：<strong>電源供應器</strong>、<strong>光碟機/燒錄機</strong>、<strong>風扇</strong>、
+    <strong>CPU</strong>、<strong>記憶體</strong>、<strong>主機板</strong>、<strong>磁碟機/硬碟</strong>、
+    <strong>顯示卡</strong> 的實際位置與外觀。
+  </p>
+</div>"""
+    },
+    11: {  # 主機板與連接介面（新增互動題 + 主機板實體圖）
+        'html_append': """
+<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>
+  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 10px;'>🔌 補充圖：主機板上的各種插槽</h4>
+  <img src='static/img/motherboard.jpg' alt='主機板各插槽標示'
+    style='width:100%;max-width:640px;display:block;margin:0 auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.15);'/>
+  <p style='font-size:.78rem;color:#374151;text-align:center;margin:8px 0 0;line-height:1.5;'>
+    <strong>CPU 插槽</strong>接處理器、<strong>記憶體插槽</strong>插 RAM、
+    <strong>PCI-E x16</strong> 通常接顯示卡、<strong>PCI-E x1</strong> 接較小的擴充卡、
+    <strong>PCI</strong> 是舊型擴充槽、<strong>SATA</strong> 接硬碟與光碟機。
+  </p>
+</div>""" + _quiz_click(
+            "你買了一台新的 4K 螢幕，準備接到筆電上。下列哪個連接介面「不能」傳輸影像？",
+            ["HDMI", "USB-C（DisplayPort 模式）", "USB-A", "Thunderbolt 4"],
+            2,
+            "USB-A 是舊型接口，只能傳資料。要接螢幕請認明 HDMI、DisplayPort、USB-C 或 Thunderbolt。"
+        ),
+    },
+    14: {  # 儲存單位換算（新增：M/G/T 換算表）
+        'html_append': """
+<div style='background:linear-gradient(135deg,#faf5ff,#ede9fe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #8b5cf6;'>
+  <h4 style='color:#6d28d9;font-size:.85rem;font-weight:700;margin:0 0 10px;'>🔍 深度探索：常聽到「幾咪」「幾 G」「幾 T」是什麼意思？</h4>
+  <div style='overflow-x:auto;'>
+  <table style='width:100%;border-collapse:collapse;font-size:.82rem;background:#fff;border-radius:8px;overflow:hidden;'>
+    <thead>
+      <tr style='background:#8b5cf6;color:#fff;'>
+        <th style='padding:8px 10px;text-align:left;'>口語</th>
+        <th style='padding:8px 10px;text-align:left;'>意指</th>
+        <th style='padding:8px 10px;text-align:left;'>意義</th>
+        <th style='padding:8px 10px;text-align:left;'>常見應用</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style='border-bottom:1px solid #e5e7eb;'>
+        <td style='padding:8px 10px;font-weight:700;color:#6d28d9;'>咪</td>
+        <td style='padding:8px 10px;'>Mega</td>
+        <td style='padding:8px 10px;'>百萬、2<sup>20</sup>、10<sup>6</sup></td>
+        <td style='padding:8px 10px;' rowspan='3'>
+          ① <strong>CPU 運算頻率</strong>，如 3.2 GHz（Hz 指赫茲）<br>
+          ② <strong>記憶體容量</strong>，如 16 GB（B 指 Byte）<br>
+          ③ <strong>網路傳輸速率</strong>，如 256 Mbps（bps 指 bit per second，每秒位元數）<br>
+          ④ <strong>硬碟容量</strong>，如 8 TB（B 指 Byte）
+        </td>
+      </tr>
+      <tr style='border-bottom:1px solid #e5e7eb;background:#faf5ff;'>
+        <td style='padding:8px 10px;font-weight:700;color:#6d28d9;'>G</td>
+        <td style='padding:8px 10px;'>Giga</td>
+        <td style='padding:8px 10px;'>十億、2<sup>30</sup>、10<sup>9</sup></td>
+      </tr>
+      <tr>
+        <td style='padding:8px 10px;font-weight:700;color:#6d28d9;'>T</td>
+        <td style='padding:8px 10px;'>Tera</td>
+        <td style='padding:8px 10px;'>兆、2<sup>40</sup>、10<sup>12</sup></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p style='font-size:.75rem;color:#6b7280;margin:8px 0 0;'>
+    💡 小訣竅：<strong>大寫 B = Byte</strong>（位元組，8 個 bit）、<strong>小寫 b = bit</strong>（位元）。
+    網路速度用 bps，檔案大小用 B。買 100 Mbps 網路，實際下載速度大約 12.5 MB/s。
+  </p>
+</div>"""
+    },
+    19: {  # 手機的硬體
+        'html_append': _innov('未來的晶片技術',
+            "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.8rem;'>"
+            "<div style='background:#fff;padding:10px;border-radius:8px;border-left:3px solid #22c55e;'>"
+            "<p style='font-weight:700;color:#15803d;margin:0 0 4px;'>⚛️ 2nm 製程（2025）</p>"
+            "<p style='color:#374151;margin:0;'>一枚晶片容納 500 億個電晶體，比人類頭髮細 35,000 倍</p></div>"
+            "<div style='background:#fff;padding:10px;border-radius:8px;border-left:3px solid #22c55e;'>"
+            "<p style='font-weight:700;color:#15803d;margin:0 0 4px;'>🤖 AI 晶片內建</p>"
+            "<p style='color:#374151;margin:0;'>手機 NPU 每秒執行 380 兆次 AI 運算，讓即時翻譯、人臉辨識成真</p></div>"
+            "<div style='background:#fff;padding:10px;border-radius:8px;border-left:3px solid #22c55e;'>"
+            "<p style='font-weight:700;color:#15803d;margin:0 0 4px;'>🌡️ 散熱突破</p>"
+            "<p style='color:#374151;margin:0;'>石墨烯散熱材料讓手機滿載時維持 40°C 以下</p></div>"
+            "<div style='background:#fff;padding:10px;border-radius:8px;border-left:3px solid #22c55e;'>"
+            "<p style='font-weight:700;color:#15803d;margin:0 0 4px;'>🔋 快充進化</p>"
+            "<p style='color:#374151;margin:0;'>240W 快充，8 分鐘充滿 4,500mAh 電池</p></div>"
+            "</div>"
+        ),
+    },
+    24: {  # 結尾補延伸閱讀
+        'html_append': _ref('科技演進與硬體 — 延伸閱讀', [
+            ('🇹🇼', '台積電官網（教育資源）', 'https://www.tsmc.com/chinese', '認識半導體產業'),
+            ('📖', '維基百科：摩爾定律', 'https://zh.wikipedia.org/wiki/摩尔定律', '完整歷史背景'),
+            ('🎬', 'YouTube：晶片是怎麼做的', 'https://www.youtube.com/results?search_query=晶片如何製造+動畫', '看晶片如何從沙子做成'),
+            ('📊', 'PassMark CPU 效能排行', 'https://www.cpubenchmark.net/', '選購筆電時查 CPU 效能'),
+        ]),
+    },
+}
+
+# ── Ch02：AI 時代的數位創作者（NEW，原本無 enhancements） ─────────────────
+
+_ch02 = {
+    3: {  # 類比訊號 vs 數位訊號
+        'video': _vid_search('類比訊號 數位訊號 差異 動畫 教學 中文',
+                             '▶ 類比 vs 數位 動畫解說',
+                             '用動畫理解類比與數位訊號的差別'),
+        'html_append': _life('黑膠唱片為什麼又流行了？',
+            "<p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0;'>"
+            "數位音樂（Spotify、Apple Music）方便、無損；但黑膠唱片是<strong>類比訊號</strong>，"
+            "聲波是連續的波形，被許多樂迷認為「更溫暖、更有層次」。"
+            "2024 年全球黑膠銷量突破 <strong>4,900 萬張</strong>，是 1990 年代以來新高。"
+            "💡 數位不一定等於更好，看用途選擇工具。</p>"
+        ),
+    },
+    4: {  # ASCII 與 Unicode
+        'html_append': _reveal(
+            "把英文字 A 存入電腦，其實電腦記錄的是「數字 65」。那你名字裡的中文「王」，電腦怎麼存？",
+            "ASCII 只能存英文；中文要用 Unicode（如 UTF-8）",
+            "中文「王」在 Unicode 是 U+738B，UTF-8 編碼為 3 個 byte：E7 8E 8B。"
+            "所以中文檔案比英文檔案佔更多空間。"
+        ),
+    },
+    6: {  # 儲存單位 × 為什麼電腦只懂 0 和 1（合併原 slide 6 + slide 7 的互動）
+        'video': _vid_search('二進位 十六進位 轉換 教學 中文 動畫',
+                             '▶ 二進位、十六進位怎麼算？',
+                             '5 分鐘搞懂進位系統'),
+        'html_append': """
+<!-- 儲存單位對照（生活實例，擴充到 PB） -->
+<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>
+  <h4 style='color:#1d4ed8;font-size:.9rem;font-weight:700;margin:0 0 10px;'>💾 儲存單位對照（生活實例）</h4>
+  <div style='display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;'>
+    <div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #3b82f6;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.88rem;'>KB</div>
+      <div style='font-size:.75rem;color:#374151;'>≈ 一封純文字信</div>
+    </div>
+    <div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #3b82f6;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.88rem;'>MB</div>
+      <div style='font-size:.75rem;color:#374151;'>≈ 一首 MP3 歌曲</div>
+    </div>
+    <div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #3b82f6;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.88rem;'>GB</div>
+      <div style='font-size:.75rem;color:#374151;'>≈ 一部電影</div>
+    </div>
+    <div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #3b82f6;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.88rem;'>TB</div>
+      <div style='font-size:.75rem;color:#374151;'>≈ 一顆筆電硬碟</div>
+    </div>
+    <div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #3b82f6;'>
+      <div style='font-weight:700;color:#1e40af;font-size:.88rem;'>PB</div>
+      <div style='font-size:.75rem;color:#374151;'>≈ 全球每天的數據</div>
+    </div>
+  </div>
+</div>
+""" + _quiz_click(
+            "下列哪個檔案最大？",
+            ["一張手機拍的照片（約 3 MB）",
+             "一首 MP3 歌曲（約 4 MB）",
+             "一部 1 小時 1080p 影片（約 2 GB）",
+             "一份 Word 報告（約 200 KB）"],
+            2,
+            "1 GB ≈ 1,024 MB。影片是最大宗——這也是為什麼手機容量常常不夠用。"
+        ),
+    },
+    7: {  # 進位系統與顏色編碼（新分出的 slide）— 加二進位換算互動
+        'html_append': _reveal(
+            "動動腦：8 位元的二進位數 1010 1010 換算成十進位是多少？",
+            "從右邊起，位元權重是 1, 2, 4, 8, 16, 32, 64, 128",
+            "1010 1010 = 128 + 32 + 8 + 2 = <strong>170</strong>。"
+            "電腦裡所有資料（文字、圖片、音樂）最終都被拆成這樣的 0/1 序列。"
+        ) + _quiz_click(
+            "你在 Canva 選了一個顏色 <span style='color:#0d9488;font-family:monospace;'>#0D9488</span>，這代表什麼？",
+            ["紅 13、綠 148、藍 136（青綠色）",
+             "紅 0、綠 13、藍 9488（藍色）",
+             "無意義的隨機字串",
+             "是這個顏色的名稱代號"],
+            0,
+            "#RRGGBB 中 0D = 13、94 = 148、88 = 136。每兩位一組 = 一個顏色通道，"
+            "0-255（十六進位 00-FF）。你看的所有網頁顏色都是這種六位十六進位碼。"
+        ),
+    },
+    8: {  # 像素、解析度與色彩深度
+        'html_append': _life('你的手機拍多少像素？',
+            _mini_cards(
+                ('📱', 'iPhone 17 Pro', '4,800 萬像素', '#2563eb'),
+                ('📺', '4K 電視', '約 830 萬像素', '#8b5cf6'),
+                ('🖥️', 'Full HD 螢幕', '約 207 萬像素', '#d97706'),
+                ('👁️', '人眼分辨極限', '約 5.76 億像素', '#16a34a'),
+            ) +
+            "<p style='font-size:.75rem;color:#6b7280;margin:8px 0 0;'>"
+            "像素越多越清晰，但檔案也越大。同一張照片存成 4K 是 Full HD 的 4 倍大。</p>"
+        ),
+    },
+    9: {  # 聲音與視訊的數位表示
+        'video': _vid_search('取樣頻率 位元深度 音訊 教學 中文',
+                             '▶ CD 音質為什麼是 44.1kHz？',
+                             '了解音訊如何被數位化'),
+    },
+    # slide 10 已刪除（原「進位系統與顏色編碼」，內容整合到新 slide 7）
+    11: {  # 選對格式
+        'html_append': _life('常見錯誤',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<div style='background:#fef2f2;padding:8px 10px;border-radius:8px;margin-bottom:6px;border-left:3px solid #ef4444;'>"
+            "<p style='color:#dc2626;font-weight:700;margin:0 0 3px;'>❌ 用 Word (.docx) 傳給不同版本電腦 → 排版跑掉</p>"
+            "<p style='margin:0;'>✅ 改用 PDF：所有裝置看起來都一樣。</p></div>"
+            "<div style='background:#fef2f2;padding:8px 10px;border-radius:8px;margin-bottom:6px;border-left:3px solid #ef4444;'>"
+            "<p style='color:#dc2626;font-weight:700;margin:0 0 3px;'>❌ 上傳 BMP 大圖到臉書 → 檔案 30MB 傳不上去</p>"
+            "<p style='margin:0;'>✅ 改用 JPEG 或 WebP：品質幾乎一樣，檔案小 10 倍。</p></div>"
+            "<div style='background:#f0fdf4;padding:8px 10px;border-radius:8px;border-left:3px solid #22c55e;'>"
+            "<p style='color:#15803d;font-weight:700;margin:0 0 3px;'>✅ Logo/圖示：用 SVG（向量圖）</p>"
+            "<p style='margin:0;'>放大不會模糊，且檔案通常只有 1–5 KB。</p></div>"
+            "</div>"
+        ),
+    },
+    14: {  # AI 如何生成圖片
+        'video': _vid_search('AI 圖片生成 擴散模型 原理 中文 教學',
+                             '▶ AI 如何從噪點畫出圖？',
+                             '用 3 分鐘看懂擴散模型'),
+        'html_append': _innov('AI 生圖技術演進速度',
+            _mini_cards(
+                ('🖼️', '2021 DALL·E 1', '解析度粗糙、人物變形', '#6b7280'),
+                ('✨', '2023 Midjourney v5', '照片級擬真', '#d97706'),
+                ('🎨', '2025 主流工具', '影片、3D、可控細節', '#16a34a'),
+                ('🚀', '2026', '即時對話式生成、可編輯', '#8b5cf6'),
+            )
+        ) + _life('其實你每天都在用 AI',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<p style='margin:0 0 8px;'>AI 早就不只是 ChatGPT！你打開的這些 App 也在偷偷用 AI：</p>"
+            "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;'>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #ec4899;'>"
+            "<p style='font-weight:700;color:#be185d;margin:0 0 3px;'>手機內建圖片、影片剪接功能</p>"
+            "<p style='margin:0;font-size:.75rem;'>自動去背景、AI 上字幕、一鍵美顏，都是 AI 在幕後跑</p></div>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #f59e0b;'>"
+            "<p style='font-weight:700;color:#b45309;margin:0 0 3px;'>🎵 Suno AI</p>"
+            "<p style='margin:0;font-size:.75rem;'>打一句話 → 5 分鐘產出一整首歌（含歌詞、旋律、演唱）</p></div>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #8b5cf6;'>"
+            "<p style='font-weight:700;color:#6d28d9;margin:0 0 3px;'>📸 IG / Snapchat 濾鏡</p>"
+            "<p style='margin:0;font-size:.75rem;'>把你臉變成小狗、變年輕變老，都是 AI 臉部辨識</p></div>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #16a34a;'>"
+            "<p style='font-weight:700;color:#15803d;margin:0 0 3px;'>🔐 iPhone Face ID</p>"
+            "<p style='margin:0;font-size:.75rem;'>用臉解鎖手機，也是 AI 神經網路即時比對</p></div>"
+            "</div>"
+            "<p style='margin:10px 0 0;color:#dc2626;font-weight:600;font-size:.78rem;'>💡 想試試 AI 做音樂？打開 <a href='https://suno.com/' target='_blank' style='color:#dc2626;'>suno.com</a>，免費註冊，一節課能做出 5 首歌！</p>"
+            "</div>"
+        ),
+    },
+    16: {  # AI 擴散模型原理
+        # ✅ 已驗證：Vox 頻道「AI art, explained」（英文，可開自動中文字幕）
+        'video': _vid_both(
+            'SVcsDDABEkM',
+            'AI 擴散模型 圖片生成 原理 動畫 中文',
+            'AI art, explained（Vox，可開中文字幕）',
+            desc='想聽中文原生解說？點下方搜尋',
+            search_title='▶ AI 生圖原理中文教學搜尋',
+        ),
+    },
+    18: {  # AI 模型作品比較
+        'html_append': _quiz_click(
+            "🕵️ AI 圖片猜謎：下列哪一項「最常出現」在 AI 生成的圖片中，可以幫你辨識真偽？",
+            ["手指數量不對（6 隻手指、融在一起）",
+             "光影方向完全一致、非常自然",
+             "頭髮絲根根分明、非常寫實",
+             "背景每個字都清楚正確"],
+            0,
+            "AI 目前最不擅長：① 手指細節（常出現多指/融合）② 文字（招牌、書本上的字常變亂碼）"
+            "③ 對稱性（耳環、眼鏡兩邊不對稱）④ 反射細節（鏡子、水面）。下次看到懷疑是 AI 的圖，"
+            "先看手和文字最容易找破綻！"
+        ) + _ref('主流 AI 生圖平台試用連結（可讓學生實作比較）', [
+            ('🎨', 'Microsoft Designer（免費）', 'https://designer.microsoft.com/', '無需付費、支援中文'),
+            ('🖌️', 'Adobe Firefly（免費額度）', 'https://firefly.adobe.com/', '訓練資料為授權素材、商用較安全'),
+            ('🌈', 'Bing Image Creator（免費）', 'https://www.bing.com/create', 'DALL·E 3 引擎、中文提示可用'),
+            ('🖼️', 'Google ImageFX（免費）', 'https://labs.google/fx/tools/image-fx', 'Google Imagen 引擎'),
+            ('🎵', 'Suno AI（音樂生成）', 'https://suno.com/', '免費一天 10 首歌'),
+        ]),
+    },
+    20: {  # AI 幻覺
+        'html_append': _life('AI 幻覺真實案例',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<div style='background:#fef2f2;padding:8px 10px;border-radius:8px;margin-bottom:6px;border-left:3px solid #ef4444;'>"
+            "<p style='color:#dc2626;font-weight:700;margin:0 0 3px;'>⚖️ 2023 美國律師案例</p>"
+            "<p style='margin:0;'>紐約律師 Schwartz 用 ChatGPT 寫訴狀，AI 引用了 6 個「不存在」的判例。"
+            "法官罰款 5,000 美元並公開懲處，成為 AI 幻覺經典案例。</p></div>"
+            "<div style='background:#fef9c3;padding:8px 10px;border-radius:8px;border-left:3px solid #f59e0b;'>"
+            "<p style='color:#92400e;font-weight:700;margin:0 0 3px;'>🛡️ 如何避免？</p>"
+            "<p style='margin:0;'>① 任何數字、日期、引用都要交叉查證<br>"
+            "② 使用具「網頁搜尋」功能的 AI（如 ChatGPT Search、Perplexity）<br>"
+            "③ 遇到專業內容問專家，AI 只當第一稿助手</p></div>"
+            "</div>"
+        ),
+    },
+    21: {  # AI Agent 介紹（新增：李宏毅老師講座）
+        # ✅ 已驗證：台大李宏毅老師「一堂課搞懂 AI Agent 的原理」(2025)
+        'video': _vid_both(
+            'M2Yg1kwPpts',
+            'AI Agent 是什麼 原理 教學 中文',
+            '一堂課搞懂 AI Agent 的原理（台大李宏毅，2025）',
+            desc='想看更多 AI Agent 介紹？',
+            search_title='▶ 更多 AI Agent 中文教學',
+        ),
+    },
+    22: {  # AI 正在改變哪些職業
+        'html_append': _data('AI 對台灣職場的影響（2025 世界經濟論壇）',
+            _mini_cards(
+                ('📉', '將被 AI 取代', '約 22% 傳統文書', '#dc2626'),
+                ('📈', '新增職缺', 'AI 訓練師、Prompt 工程師', '#16a34a'),
+                ('🔄', '工作型態改變', '85% 現有工作內容重組', '#d97706'),
+                ('🎓', '最重要技能', '學習力 > 特定技術', '#8b5cf6'),
+            )
+        ),
+    },
+    23: {  # AI 輔助 vs AI 代工
+        'html_append': _quiz_click(
+            "以下哪一種做法比較「AI 輔助」而不是「AI 代工」？",
+            ["把老師的作業題目丟給 ChatGPT，複製貼上交出去",
+             "先自己寫草稿，再請 AI 幫忙檢查邏輯與錯字",
+             "整份心得請 AI 生成，只改標題",
+             "考試偷用 AI 回答問答題"],
+            1,
+            "AI 輔助的核心是「保留自己的思考」。AI 用來檢查、擴展、翻譯，而不是完全替代。"
+            "許多老師與教育部（2025 指引）都採「透明宣告 AI 使用範圍」原則。"
+        ),
+    },
+    26: {  # 智慧財產權
+        'html_append': _reveal(
+            "同學把你的 IG 貼文截圖放到自己的 IG 限動、還加上自己的評論——這樣算侵權嗎？",
+            "想一下：原創、來源標示、營利與否",
+            "① 若是「合理引用」（有標示、少量、非營利、有評論）通常可接受；"
+            "② 但直接盜用照片不標示來源，就算沒賺錢也可能構成著作權侵害；"
+            "③ 建議做法：加上原作者標籤 @xxx 或「來源：@xxx」，並取得對方同意最保險。"
+        ),
+    },
+    30: {  # CC0 公眾領域與免費素材
+        'html_append': _ref('高中生做報告可用的免費素材網站', [
+            ('📷', 'Unsplash（照片，CC0）', 'https://unsplash.com/', '高品質商用免費照片'),
+            ('🎨', 'Pixabay（照片/影片/音樂）', 'https://pixabay.com/zh-tw/', '中文介面、數十萬素材'),
+            ('🎵', 'YouTube Audio Library（音樂）', 'https://www.youtube.com/audiolibrary', '影片配樂免版稅'),
+            ('🖼️', 'Icons8 / Flaticon（圖示）', 'https://icons8.com/', '簡報用圖示、部分免費'),
+            ('🎭', 'Openverse（Creative Commons 搜尋）', 'https://openverse.org/', 'CC 授權統整搜尋'),
+        ]),
+    },
+    33: {  # 合理引用四大原則
+        'html_append': _life('學校報告怎麼合理引用？',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<p style='margin:0 0 8px;'>合理引用四原則（著作權法第 65 條）：</p>"
+            "<div style='display:flex;flex-direction:column;gap:5px;'>"
+            "<div style='background:#fff;padding:7px 10px;border-radius:6px;border-left:2px solid #3b82f6;'>① <strong>目的</strong>：教育、研究、評論而非營利</div>"
+            "<div style='background:#fff;padding:7px 10px;border-radius:6px;border-left:2px solid #3b82f6;'>② <strong>性質</strong>：原作是否已公開發表</div>"
+            "<div style='background:#fff;padding:7px 10px;border-radius:6px;border-left:2px solid #3b82f6;'>③ <strong>比例</strong>：引用份量佔全文的比例（不能全文照抄）</div>"
+            "<div style='background:#fff;padding:7px 10px;border-radius:6px;border-left:2px solid #3b82f6;'>④ <strong>影響</strong>：對原作市場價值的影響</div>"
+            "</div>"
+            "<p style='color:#dc2626;font-weight:600;margin:8px 0 0;font-size:.78rem;'>💡 最保險做法：引用時<strong>加註來源</strong>（作者、標題、網址、日期）</p>"
+            "</div>"
+        ),
+    },
+    34: {  # AI 生成圖著作權
+        'html_append': _innov('AI 生圖著作權：全球最新爭議',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<p style='margin:0 0 6px;'>🇺🇸 <strong>美國</strong>（2023）：純 AI 生成無人類創意輸入，<strong>不受著作權保護</strong></p>"
+            "<p style='margin:0 0 6px;'>🇹🇼 <strong>台灣智慧局</strong>（2023 說明）：AI 產出「無著作權」，但「人類選擇、編輯、修改後」的成果可主張</p>"
+            "<p style='margin:0 0 6px;'>🇨🇳 <strong>中國</strong>（2024 廣州判例）：AI 生成圖若有「人類創意選擇」，可享有著作權</p>"
+            "<p style='margin:0;color:#d97706;font-weight:600;'>⚖️ 目前全球尚無統一標準，作品標示「AI 生成」是最安全做法</p>"
+            "</div>"
+        ),
+    },
+}
+
+# ── Ch03：個人資料保護與資訊倫理 ────────────────────────────────────────────
+
+_ch03 = {
+    2: {  # 什麼是個人資料（新增：快問快答互動 + 個資法二分類）
+        'html_append': _quiz_click(
+            "🕵️ 快問快答：以下哪一項「不是」台灣個資法保護的個人資料？",
+            ["身分證字號",
+             "血型與健康紀錄",
+             "IG 帳號的公開昵稱",
+             "生日、電話、地址"],
+            2,
+            "個資法只保護「可識別特定個人」且「非任意公開」的資料。"
+            "IG 公開昵稱是你自己公開的，通常不受個資法特別保護。"
+            "另補充：台灣個資法把個資分兩類 —— "
+            "① <strong>一般個資</strong>（姓名、電話、地址、學經歷）; "
+            "② <strong>特種個資</strong>（病歷、犯罪紀錄、生物特徵等，保護更嚴格）。"
+        ),
+    },
+    3: {  # Cookie 是什麼
+        'video': _vid_search('Cookie 瀏覽器 是什麼 追蹤 隱私 教學', '▶ Cookie 如何追蹤你？', '了解 Cookie 是怎麼記錄你的行為'),
+        'html_append': _life('你每天被追蹤幾次？',
+            "<p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0 0 8px;'>"
+            "打開任何新聞網站，右鍵「檢視」→ 應用程式 → Cookie，你會看到 <strong>50–200 個</strong> 追蹤器同時運作。</p>"
+            + _mini_cards(
+                ('🛍️', 'Amazon', '平均存 287 個 Cookie', '#d97706'),
+                ('📰', '新聞網站', '平均存 123 個 Cookie', '#dc2626'),
+                ('📱', 'Instagram', '存 1st party Cookie', '#8b5cf6'),
+                ('🔍', 'Google', '跨站追蹤你的足跡', '#2563eb'),
+            )
+        ),
+    },
+    4: {  # 數位足跡
+        'html_append': _life('一天的數位足跡有多長？',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.8;'>"
+            "<p style='margin:0 0 4px;'>☀️ <strong>早上</strong>：開 IG 看限時動態 → 廣告商知道你的作息時間</p>"
+            "<p style='margin:0 0 4px;'>📍 <strong>搭車</strong>：Google 地圖導航 → 記錄你的通勤路線</p>"
+            "<p style='margin:0 0 4px;'>🍜 <strong>午餐</strong>：外送 App 訂餐 → 記錄你的飲食偏好與居住地點</p>"
+            "<p style='margin:0 0 4px;'>🎵 <strong>下課</strong>：Spotify → 分析你的情緒和喜好</p>"
+            "<p style='margin:0;'>😴 <strong>晚上</strong>：Netflix → 知道你幾點睡覺、看什麼類型影片</p>"
+            "<p style='font-size:.75rem;color:#dc2626;margin:8px 0 0;font-weight:600;'>⚠️ 你產生的數位足跡，可以讓 AI 精準預測你的下一步行為</p>"
+            "</div>"
+        ),
+    },
+    6: {  # 個資外洩有多常見
+        'html_append': _data('全球個資外洩規模（2024）',
+            _mini_cards(
+                ('🔓', '每天外洩', '300 萬筆個資', '#dc2626'),
+                ('💸', '平均損失', '每次 435 萬美元', '#d97706'),
+                ('🇹🇼', '台灣排名', '亞太區第 3 高風險', '#8b5cf6'),
+                ('⏱️', '偵測時間', '平均 204 天才發現', '#6b7280'),
+            ) +
+            "<p style='font-size:.75rem;color:#374151;margin:8px 0 0;'>來源：IBM Cost of a Data Breach Report 2024</p>"
+        ),
+    },
+    8: {  # 台灣個資法（新增：2023 個資會成立）
+        'html_append': _innov('2023 台灣個資法大更新',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<p style='margin:0 0 6px;'>🏛️ <strong>個人資料保護委員會（PDPC）</strong>於 2023 年正式成立，是台灣第一個專責個資的政府機關。</p>"
+            "<p style='margin:0 0 6px;color:#dc2626;'>💰 <strong>罰則加重</strong>：企業違法蒐集使用個資，最高可罰 <strong>1,500 萬元</strong>（原本只罰 20 萬）</p>"
+            "<p style='margin:0;'>📌 例如 2023 年 iRent、和泰車聯網外洩 40 萬筆個資，被處以高額罰款並要求改善。</p>"
+            "</div>"
+        ),
+    },
+    13: {  # 常見資安攻擊（新增：釣魚 email 辨識練習題）
+        'video': _vid_search('釣魚攻擊 社交工程 資安 詐騙 教學 辨識', '▶ 釣魚攻擊真實案例解析', '學會辨識常見的社交工程攻擊手法'),
+        'html_append': _quiz_click(
+            "🎣 這封 email 有 4 個釣魚特徵，哪個「最明顯」是詐騙？<br>"
+            "<span style='display:block;background:#f8fafc;border:1px solid #cbd5e1;padding:8px 10px;border-radius:6px;margin-top:6px;font-size:.75rem;'>"
+            "<strong>寄件人</strong>：service@apple-support-tw.help<br>"
+            "<strong>主旨</strong>：您的 Apple ID 帳號已被鎖定！請立即驗證<br>"
+            "<strong>內文</strong>：親愛的用戶您好，請於 24 小時內點擊下方連結重新驗證，逾期帳號將永久停用。"
+            "</span>",
+            ["主旨用「立即」「驗證」等急迫用語",
+             "寄件人網域 apple-support-tw.help 不是 apple.com",
+             "威脅「逾期帳號將停用」製造恐懼",
+             "以上都是釣魚特徵"],
+            3,
+            "🎯 釣魚 email 四大特徵全都命中：<br>"
+            "① 假冒官方網域（真正 Apple 是 @apple.com）<br>"
+            "② 製造急迫感（24 小時內）<br>"
+            "③ 威脅性語氣（帳號停用）<br>"
+            "④ 引誘點擊未知連結<br>"
+            "🛡️ 收到疑似 email → 直接開瀏覽器打官方網址檢查，別點信裡連結！"
+        ),
+    },
+    14: {  # 深偽技術（更新：2025 韓國校園 Deepfake 事件）
+        'video': _vid_search('Deepfake 深偽技術 如何運作 危害 AI 換臉', '▶ Deepfake 如何以假亂真？', '了解 AI 深偽技術的原理與風險'),
+        'html_append': _life('身邊的 Deepfake 案例（2024-2025 更新）',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<div style='background:#fef2f2;padding:10px;border-radius:8px;margin-bottom:6px;border-left:3px solid #ef4444;'>"
+            "<p style='font-weight:700;color:#dc2626;margin:0 0 4px;'>🚨 2024 台灣主播 Deepfake 詐騙</p>"
+            "<p style='margin:0;'>以「知名主播」Deepfake 影片推薦假投資平台，多名受害者共損失逾 <strong>3,000 萬元</strong></p></div>"
+            "<div style='background:#fff1f2;padding:10px;border-radius:8px;margin-bottom:6px;border-left:3px solid #f43f5e;'>"
+            "<p style='font-weight:700;color:#be123c;margin:0 0 4px;'>😢 2024 韓國校園 Deepfake 事件</p>"
+            "<p style='margin:0;'>加害者將女學生照片合成裸照散布在 Telegram 群組，"
+            "受害者遍布數百所學校，震驚全球。多國隨後修法將「製作/散布 Deepfake 猥褻圖」入罪。</p></div>"
+            "<div style='background:#fef9c3;padding:10px;border-radius:8px;border-left:3px solid #f59e0b;'>"
+            "<p style='font-weight:700;color:#92400e;margin:0 0 4px;'>🛡️ 高中生自保 3 招</p>"
+            "<p style='margin:0;'>① IG/FB 少放正面清晰照 → 用側臉/背影更安全<br>"
+            "② 遇到疑似 Deepfake 立即截圖存證，告訴家人與老師<br>"
+            "③ 台灣 2023 已修《性侵害犯罪防治法》，散布性 Deepfake 最重判 5 年</p></div>"
+            "</div>"
+        ) + _quiz_click(
+            "🕵️ 你看到一支「同學說爆料某位老師」的影片在 IG 瘋傳，怎麼做最正確？",
+            ["立刻轉發給同學說「這超扯」",
+             "先不轉發，找兩個以上獨立來源查證",
+             "留言批評影片裡的人",
+             "封鎖傳給你影片的人"],
+            1,
+            "📌 面對可疑影片，第一動作永遠是 <strong>停 → 查 → 不轉</strong>。"
+            "Deepfake 現在幾分鐘就能做出以假亂真的內容，"
+            "轉發等於幫忙散布假訊息，可能觸犯《社會秩序維護法》妨害名譽。"
+        ),
+    },
+    19: {  # AI 與倫理
+        'html_append': _innov('AI 倫理正在改變法律',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<p style='margin:0 0 6px;'>🇪🇺 <strong>EU AI Act（2024）</strong>：全球首部 AI 法規，要求 AI 系統標示、禁止操控性 AI</p>"
+            "<p style='margin:0 0 6px;'>🇹🇼 <strong>台灣 AI 基本法（2025 草案）</strong>：規範 AI 生成內容需標示、保護勞工不被 AI 取代</p>"
+            "<p style='margin:0;'>🤖 <strong>你的作業</strong>：使用 AI 寫報告要標示「AI 輔助」，未來可能成為學術誠信的基本要求</p>"
+            "</div>"
+        ) + _life('AI 對高中生的 3 個直接影響',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #3b82f6;margin-bottom:6px;'>"
+            "<p style='font-weight:700;color:#1e40af;margin:0 0 3px;'>📝 用 AI 寫作業會被抓嗎？</p>"
+            "<p style='margin:0;font-size:.78rem;'>會！GPTZero、Turnitin AI 偵測器準確率 80%+。"
+            "台大、政大等已明訂：完全用 AI 生成的作業視同抄襲，可能被記過。</p></div>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #ef4444;margin-bottom:6px;'>"
+            "<p style='font-weight:700;color:#dc2626;margin:0 0 3px;'>🎭 你的照片可能被拿去做 Deepfake</p>"
+            "<p style='margin:0;font-size:.78rem;'>公開的 IG 照片可能被抓來訓練 AI 或做深偽。建議 IG 帳號設「不公開」、"
+            "少放正面清晰照。</p></div>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #16a34a;'>"
+            "<p style='font-weight:700;color:#15803d;margin:0 0 3px;'>🎓 未來大學/職場都要會用 AI</p>"
+            "<p style='margin:0;font-size:.78rem;'>2025 起 104 人力銀行熱門職缺 6 成要求「熟 AI 工具」。"
+            "會用 AI 不是加分而是基本，重點是要有能力判斷 AI 是否正確。</p></div>"
+            "</div>"
+        ),
+    },
+    20: {  # 假訊息識別
+        'html_append': _life('這則新聞是真的嗎？',
+            "<div style='font-size:.82rem;color:#374151;'>"
+            "<p style='font-weight:700;margin:0 0 8px;'>🔍 查核 SOP（30 秒快速辨識）</p>"
+            "<div style='display:flex;flex-direction:column;gap:5px;'>"
+            "<div style='background:#fff;padding:7px 10px;border-radius:6px;border-left:2px solid #3b82f6;'>① 看來源：媒體有沒有版權頁、聯絡方式？</div>"
+            "<div style='background:#fff;padding:7px 10px;border-radius:6px;border-left:2px solid #3b82f6;'>② 查時間：標題寫「最新」但文章日期是 3 年前？</div>"
+            "<div style='background:#fff;padding:7px 10px;border-radius:6px;border-left:2px solid #3b82f6;'>③ 反搜圖：右鍵搜尋圖片來源，看是否盜用舊照</div>"
+            "<div style='background:#fff;padding:7px 10px;border-radius:6px;border-left:2px solid #3b82f6;'>④ 交叉比對：台灣事實查核中心（tfc-taiwan.org.tw）</div>"
+            "</div></div>"
+        ) + _quiz_click(
+            "以下哪一則訊息「最可能是假訊息」？",
+            ["中央氣象署：明日午後有雷陣雨，請攜帶雨具（附連結）",
+             "『LINE 群組轉發』：喝檸檬水可以治癌！99% 醫生都在推薦！快分享",
+             "衛福部食藥署發布最新食安通報（衛福部官網）",
+             "教育部公告：學測日期為 X 月 X 日（官方新聞稿）"],
+            1,
+            "假訊息常見特徵：① 訴諸情緒（快分享！）② 沒有可信來源 ③ 用『99%』『所有』等絕對詞 "
+            "④ 常出現在 LINE 群組轉發。真訊息通常有官方連結、明確日期、記者署名。"
+        ),
+    },
+    11: {  # 密碼安全（新增互動題）
+        'html_append': _quiz_click(
+            "下列哪一個密碼「最安全」？",
+            ["Password123",
+             "MyDog2010",
+             "P@ssw0rd!",
+             "correct-horse-battery-staple（4 個隨機英文單字）"],
+            3,
+            "密碼長度比複雜度更重要！四個隨機英文單字組合的長密碼（passphrase），"
+            "電腦需要 500+ 年才能破解；反而『P@ssw0rd!』只要 4 小時。"
+            "另建議：不同網站不同密碼，並開啟兩步驟驗證。"
+        ),
+    },
+    24: {  # 章末延伸閱讀
+        'html_append': _ref('個資保護與資訊倫理 — 延伸閱讀', [
+            ('🇹🇼', '個人資料保護委員會（籌備處）', 'https://www.pdpc.gov.tw/', '個資法官方權威資訊'),
+            ('🔍', '台灣事實查核中心', 'https://tfc-taiwan.org.tw/', '免費查核假訊息'),
+            ('🛡️', 'Have I Been Pwned（英）', 'https://haveibeenpwned.com/', '查你的 Email 有沒有被外洩'),
+            ('🔐', 'iPASS 密碼強度檢測', 'https://bitwarden.com/password-strength/', '線上測你的密碼多久會被破解'),
+            ('📱', '刑事局 165 反詐騙專線', 'https://165.npa.gov.tw/', '接到詐騙訊息可查詢'),
+        ]),
+    },
+}
+
+# ── Ch04：Google Workspace 文書應用 ─────────────────────────────────────────
+
+_ch04 = {
+    3: {  # Office 365 學生帳號免費申請
+        'video': _vid_search(
+            'Office 365 教育版 學生 免費申請 教學 中文',
+            '▶ Office 365 學生版免費申請教學',
+            '3 分鐘看懂怎麼領取 Microsoft 免費學生方案'),
+    },
+    6: {  # 段落樣式
+        'video': _vid_search(
+            'Word 段落樣式 標題 樣式 教學 中文',
+            '▶ Word 段落樣式一次搞懂',
+            '為什麼專業排版都用樣式而不是手動改字體'),
+    },
+    7: {  # 自動目錄
+        'html_append': _quiz_click(
+            "🕵️ 你插入了自動目錄，可是目錄裡空空的！最可能是什麼原因？",
+            ["電腦壞了",
+             "章名沒套「標題 1」樣式，只是把字放大",
+             "檔案格式錯了",
+             "Word 版本太舊"],
+            1,
+            "自動目錄只認得「標題 1、標題 2」等段落樣式，手動放大字體不算。"
+            "選取章名 → 套「標題 1」 → 回到目錄按更新 → 就會出現。"
+        ),
+    },
+    11: {  # 即時協作
+        'video': _vid_search(
+            '文件 即時協作 共同編輯 Word Google Docs 教學',
+            '▶ 多人即時協作實際操作教學',
+            '看看 3 人同時編輯一份文件是什麼感覺'),
+    },
+    15: {  # 認識全國小論文比賽
+        'html_append': _ref('小論文比賽 — 官方資源', [
+            ('🌐', '中學生網站（投稿）', 'https://www.shs.edu.tw/', '註冊、投稿、查獎項都在這'),
+            ('📖', '小論文寫作比賽專區', 'https://www.shs.edu.tw/essay/', '看歷屆優秀作品參考格式'),
+            ('📋', '格式說明暨評審要點', 'https://www.shs.edu.tw/', '官方 PDF 詳細規則'),
+            ('🇹🇼', '國立中興大學附屬高中', 'https://www.chsh.tcc.edu.tw/', '承辦學校'),
+        ]),
+    },
+    16: {  # 六大架構
+        'html_append': _quiz_click(
+            "🏗️ 小論文六大架構的正確順序是？",
+            ["前言 → 研究方法 → 文獻探討 → 結果 → 結論 → 參考文獻",
+             "前言 → 文獻探討 → 研究方法 → 分析結果 → 結論建議 → 參考文獻",
+             "文獻探討 → 前言 → 研究方法 → 結論 → 分析結果 → 參考文獻",
+             "前言 → 結論 → 文獻探討 → 研究方法 → 分析結果 → 參考文獻"],
+            1,
+            "正確順序 = <strong>前言 → 文獻探討 → 研究方法 → 分析結果 → 結論建議 → 參考文獻</strong>。"
+            "背這個口訣：<strong>「想 → 查 → 做 → 找 → 說 → 引」</strong>"
+            "（想主題、查文獻、做研究、找結果、說結論、引資料）。"
+        ),
+    },
+    18: {  # 引註與 APA 參考文獻
+        'html_append': _ref('APA 格式產生器（省時神器）', [
+            ('📝', 'APA 格式產生器（中文）', 'https://www.mybib.com/tools/apa-citation-generator', '貼網址自動產生格式'),
+            ('📚', 'Zotero（文獻管理軟體）', 'https://www.zotero.org/', '免費、大學生必備'),
+            ('🎓', 'Google 學術搜尋', 'https://scholar.google.com.tw/', '找學術文獻、可直接複製引用格式'),
+            ('📖', 'HyRead 電子書', 'https://www.hyread.com.tw/', '學校圖書館通常有訂閱、可找專業書'),
+        ]),
+    },
+    20: {  # 14 條退件原因
+        'html_append': _quiz_click(
+            "🎯 你的小論文投稿後被退件，最可能的原因是哪個？（挑最常見的）",
+            ["內容主題太專業",
+             "格式不符六大架構、順序寫錯",
+             "字型不好看",
+             "沒有用彩色印刷"],
+            1,
+            "根據承辦學校統計，最常見退件原因是「格式不符六大架構」、「篇幅不對」、"
+            "「無頁首」、「參考文獻少於 3 篇」。真正被評內容不佳退的很少 —— "
+            "先把格式做對、再拼內容深度！"
+        ),
+    },
+    22: {  # 電腦軟體應用丙級
+        'html_append': _ref('丙級技能檢定 — 報名與學習資源', [
+            ('🏛️', '技能檢定中心（官方報名）', 'https://skill.tcte.edu.tw/', '看考試日期、報名、公告成績'),
+            ('📚', '丙級 15400 電腦軟體應用 題庫', 'https://skill.tcte.edu.tw/', '學術科題庫下載（考題公開）'),
+            ('🎬', 'YouTube 丙級術科教學搜尋', 'https://www.youtube.com/results?search_query=電腦軟體應用+丙級+術科+教學', '很多老師錄的解題影片'),
+            ('📱', '技檢學堂 App', 'https://play.google.com/store/apps/details?id=tw.com.tcte.skillstudent', '手機刷學科題庫'),
+        ]),
+    },
+    23: {  # 丙級術科 Word 題型範例
+        'video': _vid_search(
+            '電腦軟體應用 丙級 Word 術科 教學',
+            '▶ 丙級 Word 術科實作示範',
+            '看老師實際操作術科題目'),
+    },
+    26: {  # 結尾：從工具到創作
+        'html_append': _ref('進階學習資源', [
+            ('📘', 'Microsoft 支援中心（Word 教學）', 'https://support.microsoft.com/zh-tw/word', '官方詳細教學'),
+            ('📗', 'Google 文件學習中心', 'https://support.google.com/docs/', 'Google Docs 完整說明'),
+            ('⌨️', 'Word 快捷鍵一覽', 'https://support.microsoft.com/zh-tw/office/word-鍵盤快速鍵-95ef89dd-7142-4b50-afb2-f762f663ceb2', '效率翻倍'),
+            ('🎓', 'Google 教育中心 Level 1 認證', 'https://edu.google.com/intl/ALL_tw/for-educators/certification-programs/', '有正式證書'),
+            ('🏆', 'Microsoft Office Specialist 認證', 'https://learn.microsoft.com/zh-tw/credentials/browse/', '職場加分'),
+        ]),
+    },
+}
+
+# ── Ch05：合併列印與表單應用 ─────────────────────────────────────────────────
+
+_ch05 = {
+    2: {  # 什麼是合併列印
+        'video': _vid_search('Word 合併列印 教學 功能變數 step by step 中文', '▶ Word 合併列印完整教學', '跟著影片一步步完成合併列印'),
+    },
+    4: {  # 生活中的合併列印
+        'html_append': _life('學校裡的合併列印',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;'>"
+            "<div style='background:#fff;padding:8px;border-radius:8px;border-top:3px solid #3b82f6;'>"
+            "<p style='font-weight:700;color:#1d4ed8;margin:0 0 4px;'>🏫 學校每學期使用</p>"
+            "<p style='color:#374151;margin:0;font-size:.78rem;'>成績通知單 × 全校 1,200 份<br>活動邀請函 × 家長 1,200 份<br>社團報名確認函 × 300 份</p></div>"
+            "<div style='background:#fff;padding:8px;border-radius:8px;border-top:3px solid #3b82f6;'>"
+            "<p style='font-weight:700;color:#1d4ed8;margin:0 0 4px;'>💡 手動 vs 合併列印</p>"
+            "<p style='color:#374151;margin:0;font-size:.78rem;'>手動輸入 1,200 份：約 40 小時<br>合併列印：設定 1 小時，列印 20 分鐘<br>節省 <strong>97.5%</strong> 時間！</p></div>"
+            "</div></div>"
+        ),
+    },
+    8: {  # 成績通知單實作
+        'video': _vid_search('Word 合併列印 成績單 實作 資料來源 Excel 中文', '▶ 合併列印成績通知單實作', '實際示範從 Excel 到 Word 合併列印'),
+    },
+    13: {  # 認識 Google 表單
+        'video': _vid_search('Google 表單 製作 教學 問卷 設定 中文', '▶ Google 表單完整製作教學', '從零開始建立一份 Google 問卷'),
+    },
+    19: {  # 問卷設計原則
+        'html_append': _life('設計一份好問卷的眉角',
+            "<div style='font-size:.82rem;color:#374151;'>"
+            "<p style='margin:0 0 8px;'>研究顯示問卷長度直接影響完成率：</p>"
+            + _mini_cards(
+                ('✅', '5 分鐘以內', '完成率 80%+', '#16a34a'),
+                ('⚠️', '10 分鐘', '完成率 約 50%', '#d97706'),
+                ('❌', '20 分鐘', '完成率 < 20%', '#dc2626'),
+                ('💡', '最佳長度', '7–10 題', '#2563eb'),
+            ) +
+            "<p style='font-size:.75rem;color:#6b7280;margin:8px 0 0;'>設計原則：從容易問到難 → 避免引導性問法 → 一題只問一件事</p>"
+            "</div>"
+        ),
+    },
+    21: {  # 調查報告撰寫
+        'html_append': _innov('資料 → 故事 → 行動',
+            "<p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0 0 8px;'>"
+            "Google 表單 + 試算表 + 簡報 = 完整的資料說故事流程</p>"
+            "<div style='font-size:.8rem;text-align:center;'>"
+            "<div style='display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;'>"
+            "<span style='background:#dbeafe;color:#1d4ed8;padding:5px 10px;border-radius:8px;font-weight:700;'>📋 表單收集</span>"
+            "<span style='color:#6b7280;'>→</span>"
+            "<span style='background:#dcfce7;color:#15803d;padding:5px 10px;border-radius:8px;font-weight:700;'>📊 試算表分析</span>"
+            "<span style='color:#6b7280;'>→</span>"
+            "<span style='background:#fde68a;color:#92400e;padding:5px 10px;border-radius:8px;font-weight:700;'>📈 圖表視覺化</span>"
+            "<span style='color:#6b7280;'>→</span>"
+            "<span style='background:#ede9fe;color:#6d28d9;padding:5px 10px;border-radius:8px;font-weight:700;'>📑 簡報呈現</span>"
+            "</div></div>"
+        ),
+    },
+    24: {  # 章末延伸閱讀
+        'html_append': _ref('合併列印與表單 — 延伸閱讀', [
+            ('📄', 'Microsoft 官方合併列印教學', 'https://support.microsoft.com/zh-tw/office/', '看不懂就查這裡'),
+            ('📋', 'Google 表單完整說明', 'https://support.google.com/docs/topic/9055404', '所有題型/邏輯的用法'),
+            ('📊', 'Google 表單範本庫', 'https://docs.google.com/forms/', '直接改範本比較快'),
+            ('🎓', 'SurveyCake（台製問卷平台）', 'https://www.surveycake.com/', '進階問卷分析工具'),
+        ]),
+    },
+}
+
+# ── Ch06：網際網路運作原理 ───────────────────────────────────────────────────
+
+_ch06 = {
+    4: {  # OSI 七層模型
+        'video': _vid_search('OSI 七層模型 TCP/IP 網路協定 教學 動畫 中文', '▶ OSI 模型動畫教學', '用動畫搞懂七層網路模型'),
+    },
+    5: {  # 台灣網路基礎設施
+        # 使用「雙模式」：上方嵌入乾淨播放器（Code.org 官方，非營利穩定），下方保留搜尋備援
+        'video': _vid_both(
+            'ZhEf7e4kopM',  # Code.org: The Internet - Wires, Cables & Wifi (long-running)
+            '網際網路 如何運作 原理 教學 中文 動畫',
+            '網際網路：電線、電纜與 Wi-Fi（Code.org）',
+            desc='想聽中文解說？改搜尋更多相關影片',
+            search_title='▶ 更多網際網路教學（中文）',
+        ),
+        'html_append': _data('台灣網路有多快？（2025）',
+            _mini_cards(
+                ('🏆', '全球排名', '寬頻速度 Top 5', '#d97706'),
+                ('⚡', '平均速度', '固網 320 Mbps', '#2563eb'),
+                ('📱', '行動網路', '5G 覆蓋率 89%', '#16a34a'),
+                ('🌊', '海纜數量', '連接全球 15 條海纜', '#8b5cf6'),
+            )
+        ),
+    },
+    13: {  # DNS
+        'html_append': _life('打 google.com 背後發生了什麼？',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.8;'>"
+            "<p style='font-weight:700;margin:0 0 6px;'>你按下 Enter 後的 0.02 秒：</p>"
+            "<p style='margin:0 0 3px;'>① 瀏覽器查本機快取：有沒有記過 google.com 的 IP？</p>"
+            "<p style='margin:0 0 3px;'>② 問 DNS 伺服器（通常是中華電信 168.95.1.1）</p>"
+            "<p style='margin:0 0 3px;'>③ DNS 回答：google.com = 142.250.185.68</p>"
+            "<p style='margin:0 0 3px;'>④ 瀏覽器連線到 142.250.185.68，Google 伺服器回傳網頁</p>"
+            "<p style='margin:0;color:#2563eb;font-weight:600;'>⏱️ 全程不到 50 毫秒完成！</p>"
+            "</div>"
+        ),
+    },
+    14: {  # HTTP vs HTTPS
+        # ✅ 已驗證：PowerCert Animated Videos「SSL, TLS, HTTP, HTTPS Explained」
+        'video': _vid_both(
+            'hExRDVZHhig',
+            'HTTPS SSL TLS 加密 運作 原理 教學 中文',
+            'SSL, TLS, HTTP, HTTPS 動畫解說（PowerCert）',
+            desc='想找中文教學？點下方搜尋',
+            search_title='▶ HTTPS 中文教學搜尋',
+        ),
+        'html_append': _life('為什麼不要在咖啡店用 HTTP 網站？',
+            "<p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0;'>"
+            "連上咖啡店 Wi-Fi，同網段的人可以用 Wireshark 軟體「嗅探」流量。"
+            "如果網站是 HTTP（無加密），你的帳號密碼會以<strong>明文</strong>傳輸，直接被看光。"
+            " HTTPS 的 TLS 加密讓竊聽者只看到亂碼。"
+            "🔐 記得：網址列出現鎖頭圖示 = 安全</p>"
+        ),
+    },
+    19: {  # 4G→5G→6G
+        'html_append': _data('行動通訊速度演進',
+            _mini_cards(
+                ('📶', '3G（2003）', '2 Mbps，網頁', '#6b7280'),
+                ('📱', '4G（2012）', '100 Mbps，影片', '#d97706'),
+                ('⚡', '5G（2020）', '10 Gbps，IoT', '#2563eb'),
+                ('🚀', '6G（預計2030）', '1 Tbps，XR 全息', '#16a34a'),
+            ) +
+            "<p style='font-size:.75rem;color:#374151;margin:8px 0 0;'>5G 延遲僅 1ms，讓自駕車、遠端手術、工廠自動化成為可能</p>"
+        ),
+    },
+    21: {  # Starlink 台灣
+        'html_append': _life('颱風停電還能上網？',
+            "<p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0 0 8px;'>"
+            "2024 年凱米颱風重創台灣，部分山區光纖全斷。"
+            "使用 Starlink 衛星網路的農民依然能上網通報狀況、聯繫救援。</p>"
+            "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.8rem;'>"
+            "<div style='background:#fff;padding:8px;border-radius:8px;border-left:3px solid #3b82f6;'>"
+            "<p style='font-weight:700;margin:0 0 3px;'>🛰️ Starlink 規格</p>"
+            "<p style='color:#374151;margin:0;'>速度：100–200 Mbps<br>延遲：25–50ms<br>台灣月租：NT$1,399</p></div>"
+            "<div style='background:#fff;padding:8px;border-radius:8px;border-left:3px solid #3b82f6;'>"
+            "<p style='font-weight:700;margin:0 0 3px;'>🌐 衛星數量</p>"
+            "<p style='color:#374151;margin:0;'>已發射超過 6,000 顆<br>覆蓋全球 100+ 國家<br>2025 年台灣正式開放</p></div>"
+            "</div>"
+        ),
+    },
+    8: {  # IPv4 位址（新增互動）
+        'html_append': _quiz_click(
+            "下列哪一個「不是」合法的 IPv4 位址？",
+            ["192.168.1.1", "8.8.8.8", "300.10.5.1", "255.255.255.0"],
+            2,
+            "IPv4 每一段介於 0–255（8 位元 = 2^8 = 256 個值），所以 300 超出範圍就不合法。"
+            "192.168.x.x 是家用私有位址；8.8.8.8 是 Google DNS；255.255.255.0 常見於子網路遮罩。"
+        ),
+    },
+    11: {  # 埠號與常見服務（新增互動題）
+        'html_append': _reveal(
+            "打開瀏覽器輸入 https://www.google.com，系統預設會用哪個 Port（埠號）？",
+            "HTTP 是 80，HTTPS 是它的加密版",
+            "HTTPS 預設 Port = <strong>443</strong>。若使用 HTTP（沒加 s），預設 Port = 80。"
+            "其他常見 Port：SSH=22、FTP=21、SMTP=25、DNS=53。"
+        ),
+    },
+    24: {  # 章末延伸閱讀
+        'html_append': _ref('網際網路 — 延伸閱讀', [
+            ('🌐', 'How the Internet Works（Code.org）', 'https://www.youtube.com/playlist?list=PLzdnOPI1iJNfMRZm5DDxco3UdsFegvuB7', '動畫短片，超入門'),
+            ('📊', 'Speedtest 測速工具', 'https://www.speedtest.net/', '測你家網速'),
+            ('🔒', 'HTTPS 憑證檢查（SSL Labs）', 'https://www.ssllabs.com/ssltest/', '看網站加密強度'),
+            ('📡', 'Cloudflare Learning', 'https://www.cloudflare.com/zh-tw/learning/', '網路知識中文百科'),
+            ('🎓', '教育部資安宣導', 'https://cissnet.edu.tw/', '學生資安素養'),
+        ]),
+    },
+}
+
+# ── Ch07：新興科技應用 ─────────────────────────────────────────
+
+_ch07 = {
+    3: {
+        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：你家可能已經有 IoT 設備</h4>\n  <div style='font-size:.82rem;color:#374151;'><div style='display:grid;grid-template-columns:repeat(4,1fr);gap:8px;'><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>📺</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>智慧電視</p><p style='font-size:.75rem;color:#2563eb;font-weight:600;margin:0;'>連網、記錄觀看習慣</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>🔊</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>智慧音箱</p><p style='font-size:.75rem;color:#8b5cf6;font-weight:600;margin:0;'>Alexa/Siri 隨時在聽</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>📡</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>Wi-Fi 路由器</p><p style='font-size:.75rem;color:#d97706;font-weight:600;margin:0;'>分析家中流量</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>📷</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>網路攝影機</p><p style='font-size:.75rem;color:#dc2626;font-weight:600;margin:0;'>門鈴、監視器</p></div></div><p style='font-size:.75rem;color:#374151;margin:8px 0 0;'>全球 2025 年 IoT 設備數量已突破 <strong>200 億台</strong>，平均每人擁有 2.5 台</p></div>\n</div>",
+    },
+    5: {
+        'video': {'type': 'search', 'query': 'IoT 資安 攻擊 智慧家庭 風險 駭客 案例', 'title': '▶ IoT 設備如何被駭客入侵', 'desc': '了解智慧家電的資安弱點'},
+        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：你的智慧音箱在偷聽嗎？</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><p style='margin:0 0 6px;'>2023 年研究發現，Amazon Echo 在沒有喚醒詞的情況下，每天平均有 <strong>19 次</strong>「誤喚醒」並錄音上傳。</p><p style='margin:0;color:#d97706;font-weight:600;'>🛡️ 自保方法：定期查看 Alexa/Siri 錄音紀錄，設定自動刪除</p></div>\n</div>",
+    },
+    6: {
+        # ✅ 已驗證：IBM Technology 官方「What is edge computing?」
+        'video': _vid_both(
+            'cEOUeItHDdo',
+            '邊緣運算 Edge Computing 介紹 教學 中文',
+            'What is edge computing?（IBM Technology）',
+            desc='想聽中文？點下方搜尋更多',
+            search_title='▶ 邊緣運算中文教學搜尋',
+        ),
+        'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：特斯拉自駕就是邊緣運算</h4>\n  <p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0;'>特斯拉每輛車有一台 FSD 電腦（72 TOPS 算力），每秒處理 <strong>2,300 個影格</strong>的攝影機畫面，<strong>不傳到雲端</strong>，本地即時判斷。如果要傳到雲端再回傳，光網路延遲就夠讓車撞牆了。這就是邊緣運算的關鍵：<strong>低延遲 × 本地處理 = 生死之差</strong></p>\n</div>",
+    },
+    9: {
+        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：台灣農民用 AIoT 種草莓</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><p style='margin:0 0 6px;'>苗栗大湖草莓農場導入 AIoT 系統：</p><div style='display:flex;flex-direction:column;gap:5px;'><div style='background:#fff;padding:6px 10px;border-radius:6px;border-left:2px solid #22c55e;'>🌡️ 土壤感測器每 10 分鐘回傳溫度、濕度、pH 值</div><div style='background:#fff;padding:6px 10px;border-radius:6px;border-left:2px solid #22c55e;'>📱 AI 分析後自動灌溉，減少 40% 用水量</div><div style='background:#fff;padding:6px 10px;border-radius:6px;border-left:2px solid #22c55e;'>📸 攝影機辨識病蟲害，早期預警比人眼快 3 天</div><div style='background:#fff;padding:6px 10px;border-radius:6px;border-left:2px solid #22c55e;'>💰 產量提升 25%，人力成本降低 30%</div></div></div>\n</div>",
+    },
+    15: {
+        # ✅ 已驗證：Simplilearn「Cloud Computing In 6 Minutes」
+        'video': _vid_both(
+            'M988_fsOSWo',
+            '雲端運算 SaaS PaaS IaaS 介紹 教學 中文',
+            'Cloud Computing In 6 Minutes（Simplilearn）',
+            desc='想聽中文？點下方搜尋更多',
+            search_title='▶ 雲端運算中文教學搜尋',
+        ),
+    },
+    18: {
+        'video': {'type': 'search', 'query': '量子電腦 原理 量子位元 教學 中文 淺顯易懂', 'title': '▶ 量子電腦是什麼？', 'desc': '用簡單比喻理解量子電腦原理'},
+        'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：量子電腦 vs 一般電腦</h4>\n  <div style='display:grid;grid-template-columns:repeat(4,1fr);gap:8px;'><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>💻</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>一般電腦</p><p style='font-size:.75rem;color:#6b7280;font-weight:600;margin:0;'>位元：0 或 1</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>⚛️</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>量子電腦</p><p style='font-size:.75rem;color:#8b5cf6;font-weight:600;margin:0;'>量子位元：0+1 疊加</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>🔐</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>破解 RSA</p><p style='font-size:.75rem;color:#dc2626;font-weight:600;margin:0;'>一般：宇宙年齡也算不完</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>⚡</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>量子電腦</p><p style='font-size:.75rem;color:#d97706;font-weight:600;margin:0;'>2048-bit RSA：數小時</p></div></div><p style='font-size:.75rem;color:#374151;margin:8px 0 0;'>Google 2023 年量子電腦用 <strong>200 秒</strong>完成傳統電腦需 47 年的計算</p>\n</div>",
+    },
+    19: {
+        'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：台北的智慧城市計畫</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;'><div style='background:#fff;padding:8px;border-radius:8px;border-top:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;margin:0 0 4px;'>🚦 智慧交通</p><p style='font-size:.78rem;margin:0;'>AI 即時調整號誌時序，尖峰時段車流量降低 15%</p></div><div style='background:#fff;padding:8px;border-radius:8px;border-top:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;margin:0 0 4px;'>♻️ 智慧垃圾桶</p><p style='font-size:.78rem;margin:0;'>感測滿載度，清運路線優化，減少 30% 油耗</p></div><div style='background:#fff;padding:8px;border-radius:8px;border-top:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;margin:0 0 4px;'>💧 漏水偵測</p><p style='font-size:.78rem;margin:0;'>AI 分析管線聲音，提早發現水管破裂，每年省數億元</p></div><div style='background:#fff;padding:8px;border-radius:8px;border-top:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;margin:0 0 4px;'>🌡️ 熱島效應</p><p style='font-size:.78rem;margin:0;'>感測器全市佈建，找出熱點種樹降溫</p></div></div></div>\n</div>",
+    },
+}
+
+# ── Ch08：巨量資料與資料科學 ─────────────────────────────────────────
+
+_ch08 = {
+    2: {
+        # 雙模式：IBM 官方大數據介紹 + 搜尋備援
+        'video': _vid_both(
+            'j-0cUmUyb-Y',
+            '大數據 Big Data 是什麼 教學 生活應用 中文',
+            'What Is Big Data?（IBM Technology，可開自動字幕）',
+            desc='想聽中文？點下方搜尋更多',
+            search_title='▶ 大數據中文入門搜尋',
+        ),
+        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：Netflix 怎麼知道你想看什麼？</h4>\n  <p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0 0 8px;'>Netflix 每天蒐集 <strong>1,億</strong> 筆用戶行為數據：</p><div style='font-size:.8rem;color:#374151;display:flex;flex-direction:column;gap:4px;'><div style='background:#fff;padding:6px 10px;border-radius:6px;border-left:2px solid #dc2626;'>🎬 你暫停在哪個時間點（代表那個鏡頭讓你有情緒）</div><div style='background:#fff;padding:6px 10px;border-radius:6px;border-left:2px solid #dc2626;'>⏩ 你跳過了片頭曲（代表你是老用戶）</div><div style='background:#fff;padding:6px 10px;border-radius:6px;border-left:2px solid #dc2626;'>🔄 你在哪一集棄劇（幫助他們改善劇本）</div><div style='background:#fff;padding:6px 10px;border-radius:6px;border-left:2px solid #dc2626;'>📸 縮圖用哪張你最容易點擊（A/B 測試）</div></div>\n</div>",
+    },
+    5: {
+        'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：資料科學在台灣的職缺</h4>\n  <p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0 0 8px;'>根據 104 人力銀行 2025 數據：</p><div style='display:grid;grid-template-columns:repeat(4,1fr);gap:8px;'><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>💼</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>資料分析師</p><p style='font-size:.75rem;color:#2563eb;font-weight:600;margin:0;'>平均月薪 NT$58,000</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>🤖</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>機器學習工程師</p><p style='font-size:.75rem;color:#8b5cf6;font-weight:600;margin:0;'>平均月薪 NT$85,000</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>📊</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>BI 分析師</p><p style='font-size:.75rem;color:#d97706;font-weight:600;margin:0;'>平均月薪 NT$55,000</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>🔬</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>資料科學家</p><p style='font-size:.75rem;color:#16a34a;font-weight:600;margin:0;'>平均月薪 NT$95,000</p></div></div>\n</div>",
+    },
+    6: {
+        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：健保資料庫救了多少人？</h4>\n  <p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0 0 8px;'>台灣健保資料庫是全球最完整的醫療大數據之一，涵蓋 <strong>2,300 萬人</strong> 30 年的就醫紀錄。</p><div style='font-size:.8rem;display:flex;flex-direction:column;gap:5px;'><div style='background:#dbeafe;padding:7px 10px;border-radius:6px;'>🦠 COVID-19：台灣用健保大數據在疫情爆發前 3 天預測高風險族群</div><div style='background:#dbeafe;padding:7px 10px;border-radius:6px;'>💊 新藥副作用：比傳統臨床試驗快 10 倍發現罕見副作用</div><div style='background:#dbeafe;padding:7px 10px;border-radius:6px;'>🏥 醫療資源分配：找出偏鄉醫療缺口，派遣醫師支援</div></div>\n</div>",
+    },
+    10: {
+        # ✅ 已驗證：數位發展部 moda 官方「開啟 Open Data 百寶箱！」
+        'video': _vid_both(
+            'ceYhPm_JGls',
+            '開放資料 open data 應用 台灣 案例 教學',
+            '開啟 Open Data 百寶箱！（數位發展部 moda 官方）',
+            desc='想看更多開放資料應用案例？',
+            search_title='▶ 更多台灣開放資料應用',
+        ),
+        'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：政府開放資料能做什麼？</h4>\n  <p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0 0 8px;'>data.gov.tw 有超過 <strong>46,000 個</strong> 開放資料集，學生可以免費使用：</p><div style='display:grid;grid-template-columns:1fr 1fr;gap:7px;font-size:.78rem;'><div style='background:#fff;padding:7px;border-radius:6px;'>🚌 公車即時位置 → App 開發</div><div style='background:#fff;padding:7px;border-radius:6px;'>🌦️ 空氣品質指數 → 警示系統</div><div style='background:#fff;padding:7px;border-radius:6px;'>🏘️ 房價歷史資料 → 趨勢分析</div><div style='background:#fff;padding:7px;border-radius:6px;'>📊 選舉開票資料 → 視覺化地圖</div></div>\n</div>",
+    },
+    19: {
+        # ✅ 已驗證：蔡興正老師「Google 試算表的圖表製作」
+        'video': _vid_both(
+            'VyTFgQiR2eY',
+            'Google 試算表 圖表 製作 教學 中文',
+            'Google 試算表的圖表製作（蔡興正）',
+            desc='想找進階圖表技巧？',
+            search_title='▶ 更多 Google 試算表圖表教學',
+        ),
+    },
+    20: {
+        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：台灣資料新聞學的興起</h4>\n  <p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0 0 6px;'>《報導者》、《天下雜誌》等媒體用資料視覺化說故事：</p><div style='font-size:.8rem;display:flex;flex-direction:column;gap:5px;'><div style='background:#fff;padding:7px 10px;border-radius:6px;border-left:2px solid #8b5cf6;'>📍 台灣房價地圖：用顏色顯示每坪價格，一眼看出哪裡最貴</div><div style='background:#fff;padding:7px 10px;border-radius:6px;border-left:2px solid #8b5cf6;'>👶 少子化趨勢：動態圖表顯示各縣市出生率 10 年變化</div><div style='background:#fff;padding:7px 10px;border-radius:6px;border-left:2px solid #8b5cf6;'>🌡️ 極端氣候：台灣各地高溫天數逐年增加的視覺化</div></div>\n</div>",
+    },
+    21: {
+        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：這張圖在騙你！</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;'><div style='background:#fef2f2;padding:8px;border-radius:8px;border-top:3px solid #ef4444;'><p style='font-weight:700;color:#dc2626;margin:0 0 4px;'>❌ 常見誤導手法</p><p style='font-size:.78rem;margin:0;'>Y 軸不從 0 開始 → 微小差距看起來很大<br>截斷 X 軸 → 隱藏不利的時間段</p></div><div style='background:#f0fdf4;padding:8px;border-radius:8px;border-top:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;margin:0 0 4px;'>✅ 看圖 SOP</p><p style='font-size:.78rem;margin:0;'>① 看座標軸起點<br>② 確認樣本數（n=?）<br>③ 找資料來源</p></div></div></div>\n</div>",
+    },
+}
+
+# ── Ch09：資料分析實作 ─────────────────────────────────────────
+
+_ch09 = {
+    3: {
+        'video': {'type': 'search', 'query': 'Excel 函數 SUM AVERAGE COUNTIF 基礎教學 中文', 'title': '▶ Excel 最常用函數實作教學', 'desc': '快速學會試算表基礎函數'},
+    },
+    4: {
+        'html_append': '\n<div style=\'background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;\'>\n  <h4 style=\'color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;\'>💡 生活實例：期末成績單的實際用途</h4>\n  <div style=\'font-size:.82rem;color:#374151;line-height:1.6;\'><p style=\'margin:0 0 6px;\'>假設班上 30 人成績已輸入試算表，你可以用一個公式回答：</p><div style=\'display:flex;flex-direction:column;gap:5px;\'><div style=\'background:#dbeafe;padding:7px 10px;border-radius:6px;\'><code style=\'color:#1d4ed8;\'>=COUNTIF(B2:B31,">=60")</code> → 及格人數</div><div style=\'background:#dbeafe;padding:7px 10px;border-radius:6px;\'><code style=\'color:#1d4ed8;\'>=COUNTIF(B2:B31,">=90")</code> → 優秀人數（90分以上）</div><div style=\'background:#dcfce7;padding:7px 10px;border-radius:6px;\'><code style=\'color:#15803d;\'>=SUMIF(C2:C31,"男",B2:B31)</code> → 男生總分（計算平均用）</div></div></div>\n</div>',
+    },
+    9: {
+        # ✅ 已驗證：Excel Campus - Jon「Excel Vlookup Tutorial - Everything You Need To Know」
+        'video': _vid_both(
+            'd3BYVQ6xIE4',
+            'VLOOKUP 函數 教學 Excel 中文 實例',
+            'Excel VLOOKUP Tutorial（Excel Campus，可開自動中文字幕）',
+            desc='想找中文教學？點下方搜尋',
+            search_title='▶ VLOOKUP 中文教學搜尋',
+        ),
+        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：VLOOKUP 的最強使用場景</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><p style='margin:0 0 6px;'>📋 <strong>情境</strong>：你有 300 個學號，要從另一張表找出對應的姓名和班級</p><p style='margin:0 0 6px;'>手動複製貼上：需要 <strong>300 個步驟</strong>，容易出錯</p><p style='margin:0;'>用 VLOOKUP：<code style='color:#1d4ed8;background:#dbeafe;padding:2px 6px;border-radius:4px;'>=VLOOKUP(A2,學生名冊!$A:$C,2,0)</code> → <strong>1 個公式向下拉，30 秒完成</strong></p></div>\n</div>",
+    },
+    13: {
+        'video': {'type': 'search', 'query': '樞紐分析表 Excel 教學 入門 實例 中文', 'title': '▶ 樞紐分析表 5 分鐘入門', 'desc': '快速掌握樞紐分析表的核心操作'},
+        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：老闆要每月業績報表，你怎麼做？</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><p style='margin:0 0 4px;'>原始資料：12,000 筆銷售記錄（日期、產品、業務員、金額）</p><p style='margin:0 0 4px;color:#dc2626;'>😓 手動整理：要用 SUMIF 一個一個算，花 3 小時</p><p style='margin:0;color:#15803d;font-weight:600;'>✅ 樞紐分析表：拖拉 3 個欄位，10 秒看到每月每業務的業績表</p></div>\n</div>",
+    },
+    19: {
+        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：用趨勢線預測明年成績</h4>\n  <p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0 0 8px;'>如果你有過去 5 年學測平均分數的資料，加上趨勢線後，Excel 可以用 <code style='color:#6d28d9;background:#ede9fe;padding:1px 5px;border-radius:3px;'>FORECAST</code> 函數預測明年的分數走向。</p><p style='font-size:.82rem;color:#374151;margin:0;'>企業用同樣方法預測下季業績、庫存需求、電力用量。資料 + 趨勢線 = 讓過去的數字預測未來。</p>\n</div>",
+    },
+    21: {
+        'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：相關不等於因果！</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><p style='margin:0 0 8px;font-weight:700;'>📈 以下相關係數都很高，但邏輯上沒有因果關係：</p><div style='display:flex;flex-direction:column;gap:5px;'><div style='background:#fef9c3;padding:7px 10px;border-radius:6px;border-left:2px solid #f59e0b;'>🍦 夏天冰淇淋銷量 vs 溺水人數（r = 0.97）→ 真正原因：夏天</div><div style='background:#fef9c3;padding:7px 10px;border-radius:6px;border-left:2px solid #f59e0b;'>📽️ 尼可拉斯凱吉電影數 vs 游泳池溺水數（r = 0.87）</div><div style='background:#fef9c3;padding:7px 10px;border-radius:6px;border-left:2px solid #f59e0b;'>🧀 起司消費量 vs 被棉被悶死人數（r = 0.95）</div></div><p style='color:#d97706;font-weight:700;margin:8px 0 0;'>⚠️ 看到高相關時，永遠問：「有沒有第三個變數在作怪？」</p></div>\n</div>",
+    },
+}
+
+# ── Ch10：Power BI 與期末總結 ─────────────────────────────────────────
+
+_ch10 = {
+    2: {
+        # ✅ 已驗證：Microsoft Power BI 官方「What is Power BI?」
+        'video': _vid_both(
+            'yKTSLffVGbk',
+            'Power BI 是什麼 教學 入門 儀表板 中文',
+            'What is Power BI?（Microsoft Power BI 官方）',
+            desc='想看中文完整教學？',
+            search_title='▶ Power BI 中文入門教學搜尋',
+        ),
+        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：台積電用 Power BI 管理全球供應鏈</h4>\n  <p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0;'>台積電在全球有數百個供應商，每天產生數百萬筆採購、庫存、品質數據。Power BI 儀表板讓採購主管在同一個畫面看到：全球庫存水位、交期達成率、品質不良率。以前要開 10 個 Excel 花 2 小時整理，現在開 Power BI 即時更新，<strong>節省 80% 報表時間</strong>。</p>\n</div>",
+    },
+    4: {
+        'html_append': "\n<div style='background:linear-gradient(135deg,#faf5ff,#ede9fe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #8b5cf6;'>\n  <h4 style='color:#6d28d9;font-size:.85rem;font-weight:700;margin:0 0 8px;'>📊 數據說話：Power BI 在台灣的滲透率</h4>\n  <div style='display:grid;grid-template-columns:repeat(4,1fr);gap:8px;'><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>🏭</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>製造業</p><p style='font-size:.75rem;color:#2563eb;font-weight:600;margin:0;'>55% 已導入 BI 工具</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>🏦</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>金融業</p><p style='font-size:.75rem;color:#16a34a;font-weight:600;margin:0;'>72% 使用資料儀表板</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>🛒</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>零售業</p><p style='font-size:.75rem;color:#d97706;font-weight:600;margin:0;'>即時庫存 × 銷售分析</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>💰</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>節省成本</p><p style='font-size:.75rem;color:#8b5cf6;font-weight:600;margin:0;'>平均減少 35% 報表人力</p></div></div><p style='font-size:.75rem;color:#374151;margin:8px 0 0;'>來源：IDC 台灣企業資料分析調查 2024</p>\n</div>",
+    },
+    6: {
+        'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：一張好的儀表板長什麼樣？</h4>\n  <div style='font-size:.82rem;color:#374151;'><div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;'><div style='background:#f0fdf4;padding:8px;border-radius:8px;border-top:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;font-size:.8rem;margin:0 0 4px;'>✅ 好的設計</p><p style='font-size:.75rem;margin:0;'>3 秒內看懂主要結論<br>顏色不超過 3 種<br>最重要數字放左上角<br>KPI 一眼比較達標/未達標</p></div><div style='background:#fef2f2;padding:8px;border-radius:8px;border-top:3px solid #ef4444;'><p style='font-weight:700;color:#dc2626;font-size:.8rem;margin:0 0 4px;'>❌ 常見錯誤</p><p style='font-size:.75rem;margin:0;'>塞滿 20 個圖表<br>3D 圓餅圖讓人看不懂比例<br>顏色太多造成混亂<br>沒有時間軸脈絡</p></div></div></div>\n</div>",
+    },
+    9: {
+        # ✅ 已驗證：簡單實驗室「Power BI 教學入門｜從零開始做出銷售儀表板」（2025，中文）
+        'video': _vid_both(
+            'rAupdv0I_Us',
+            'Power BI 連接資料 教學 中文',
+            'Power BI 教學入門｜從零做出銷售儀表板（簡單實驗室）',
+            desc='想比較不同教學風格？',
+            search_title='▶ 更多 Power BI 中文教學',
+        ),
+    },
+    19: {
+        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：你是幾星級的數位公民？</h4>\n  <div style='font-size:.82rem;color:#374151;'><div style='display:flex;flex-direction:column;gap:6px;'><div style='background:#fef9c3;padding:8px 12px;border-radius:8px;border-left:3px solid #f59e0b;'><p style='font-weight:700;color:#92400e;margin:0 0 2px;'>⭐ 初級：會用工具</p><p style='font-size:.78rem;margin:0;'>Office、Google Workspace、手機 App 基本操作</p></div><div style='background:#dcfce7;padding:8px 12px;border-radius:8px;border-left:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;margin:0 0 2px;'>⭐⭐ 中級：能創造價值</p><p style='font-size:.78rem;margin:0;'>資料分析、視覺化、自動化流程、資訊判讀</p></div><div style='background:#dbeafe;padding:8px 12px;border-radius:8px;border-left:3px solid #3b82f6;'><p style='font-weight:700;color:#1d4ed8;margin:0 0 2px;'>⭐⭐⭐ 高級：懂倫理與影響</p><p style='font-size:.78rem;margin:0;'>理解 AI 偏見、個資保護、數位落差、科技社會責任</p></div></div></div>\n</div>",
+    },
+    21: {
+        'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：AI 不會取代你，懂 AI 的人才會</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><p style='margin:0 0 8px;'>2025 WEF（世界經濟論壇）報告：未來 5 年，<strong>85% 的工作會被 AI 改變</strong>，但只有 <strong>14%</strong> 工作會完全消失。</p><p style='font-weight:700;margin:0 0 6px;'>AI 時代最需要的技能：</p><div style='display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:.78rem;'><div style='background:#fff;padding:7px;border-radius:6px;'>🎯 <strong>提問力</strong>：懂得給 AI 好的 Prompt</div><div style='background:#fff;padding:7px;border-radius:6px;'>🔍 <strong>判斷力</strong>：驗證 AI 輸出是否正確</div><div style='background:#fff;padding:7px;border-radius:6px;'>🤝 <strong>溝通力</strong>：AI 無法替代人際關係</div><div style='background:#fff;padding:7px;border-radius:6px;'>🎨 <strong>創意力</strong>：定義問題比解題更重要</div></div></div>\n</div>",
+    },
+    24: {
+        'html_append': _ref('Power BI 與後續學習資源', [
+            ('📊', 'Microsoft Power BI（免費）', 'https://powerbi.microsoft.com/zh-tw/', '個人版完全免費'),
+            ('🎓', 'Microsoft Learn — Power BI', 'https://learn.microsoft.com/zh-tw/training/', '官方免費中文課程'),
+            ('🏆', 'PL-300 認證考試', 'https://learn.microsoft.com/zh-tw/certifications/exams/pl-300', '學生半價考證照'),
+            ('🌱', 'Kaggle 資料科學競賽', 'https://www.kaggle.com/', '免費練習資料集'),
+            ('📚', 'Google 數據分析專業認證', 'https://www.coursera.org/professional-certificates/google-data-analytics', 'Coursera 熱門課程'),
+        ]),
+    },
+}
+
+# ── 為 Ch07/Ch08/Ch09 追加章末延伸閱讀與 Ch09 VLOOKUP 互動練習 ─────────
+_ch07[24] = {
+    'html_append': _ref('新興科技 — 延伸閱讀', [
+        ('🏙️', '台北市智慧城市', 'https://smartcity.taipei/', '台灣智慧城市案例'),
+        ('🌍', 'IBM 量子電腦體驗（免費）', 'https://quantum.ibm.com/', '線上寫量子程式'),
+        ('📡', 'IoT for Beginners（Microsoft）', 'https://microsoft.github.io/IoT-For-Beginners/', '免費入門教材'),
+        ('🎓', 'Coursera 新興科技課程', 'https://www.coursera.org/browse/information-technology', '進階學習'),
+    ]),
+}
+_ch08[24] = {
+    'html_append': _ref('巨量資料與資料科學 — 延伸閱讀', [
+        ('🇹🇼', '政府資料開放平台 data.gov.tw', 'https://data.gov.tw/', '4.6 萬筆免費資料集'),
+        ('📊', 'Our World in Data（英）', 'https://ourworldindata.org/', '全球最好的資料視覺化'),
+        ('📰', '報導者 The Reporter（資料新聞）', 'https://www.twreporter.org/', '台灣資料新聞範例'),
+        ('🎨', 'Flourish 免費視覺化工具', 'https://flourish.studio/', '做動態圖表超好用'),
+    ]),
+}
+_ch09[24] = {
+    'html_append': _ref('資料分析實作 — 延伸閱讀', [
+        ('📗', 'Excel 官方教學', 'https://support.microsoft.com/zh-tw/excel', '所有函數說明'),
+        ('🎓', 'ExcelJet 函數速查', 'https://exceljet.net/', '英文但範例超豐富'),
+        ('📺', 'PAPAYA 電腦教室（YouTube）', 'https://www.youtube.com/@papayaclass', '中文 Excel 教學'),
+        ('🧮', 'Google 試算表函數清單', 'https://support.google.com/docs/table/25273', '官方函數字典'),
+    ]),
+}
+# Ch9 slide 9：VLOOKUP 之後加入互動練習題
+_ch09[9] = {
+    # ✅ 已驗證：Excel Campus - Jon「Excel Vlookup Tutorial」
+    'video': _vid_both(
+        'd3BYVQ6xIE4',
+        'VLOOKUP 函數 教學 Excel 中文 實例',
+        'Excel VLOOKUP Tutorial（Excel Campus，可開自動中文字幕）',
+        desc='想找中文教學？點下方搜尋',
+        search_title='▶ VLOOKUP 中文教學搜尋',
+    ),
+    'html_append': _ch09[9]['html_append'] + _quiz_click(
+        "公式 =VLOOKUP(A2, 資料!$A$2:$C$100, 3, 0) 意思是？",
+        ["找 A2 的值，回傳第 3 列",
+         "在「資料」工作表 A 欄找 A2，找到後回傳同一列的「第 3 欄」，需完全符合",
+         "把 A2 到 A100 的第 3 欄相加",
+         "把 3 個欄位複製到 A2"],
+        1,
+        "VLOOKUP(要找的值, 查詢範圍, 回傳第幾欄, 精確符合?)。"
+        "$ 是絕對參照，往下拉公式時範圍不會跑掉；最後參數 0（或 FALSE）代表要精確符合。"
+    ),
+}
+
+# ── 總彙整 ─────────────────────────────────────────────────────────────
+
+ENHANCEMENTS = {
+    1:  _ch01,
+    2:  _ch02,
+    3:  _ch03,
+    4:  _ch04,
+    5:  _ch05,
+    6:  _ch06,
+    7:  _ch07,
+    8:  _ch08,
+    9:  _ch09,
+    10: _ch10,
+}
