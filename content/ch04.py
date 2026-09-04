@@ -960,14 +960,14 @@ SLIDES = [
     },
     {
         'id': 23,
-        'chapter': '分組實作',
-        'title': '分組實作：網路指令探索',
+        'chapter': '實作',
+        'title': '實作：網路指令探索',
         'bg': 'teal',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>🖥️ 分組實作：網路指令探索</h2>
+<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>🖥️ 實作：網路指令探索</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div style='background:rgba(255,255,255,0.15);padding:18px;border-radius:12px;'>
     <h3 style='color:#fff;font-size:1rem;margin-bottom:14px;'>📋 實作任務（共 4 項）</h3>
@@ -1015,28 +1015,20 @@ SLIDES = [
         </tr>
       </table>
     </div>
-    <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:10px;'>
-      <h3 style='color:#fff;font-size:0.9rem;margin-bottom:8px;'>🏆 評分標準（100 分）</h3>
-      <ul style='color:#cffafe;font-size:0.85rem;padding-left:16px;margin:0;'>
-        <li>完成 4 項指令操作 <strong style='color:#fff;'>40 分</strong></li>
-        <li>正確記錄觀察資料 <strong style='color:#fff;'>30 分</strong></li>
-        <li>分析：為何台灣 ping 國外較慢？<strong style='color:#fff;'>20 分</strong></li>
-        <li>延伸：找一個有趣的 IP 並說明 <strong style='color:#fff;'>10 分</strong></li>
-      </ul>
-    </div>
+    
   </div>
 </div>"""
     },
     {
         'id': 24,
-        'chapter': '分組實作',
+        'chapter': '實作',
         'title': '本週重點回顧',
         'bg': 'navy',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>📖 Week 6 重點回顧</h2>
+<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>📖 重點回顧</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:15px;'>
   <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:10px;'>
     <h3 style='color:#93c5fd;font-size:1rem;margin-bottom:10px;'>第一章 網路基礎</h3>
@@ -1071,8 +1063,6 @@ SLIDES = [
     </ul>
   </div>
 </div>
-<div style='background:rgba(255,255,255,0.1);padding:12px;border-radius:8px;margin-top:15px;text-align:center;'>
-  <p style='color:#bfdbfe;font-size:0.95rem;margin:0;'>下週預告：<strong style='color:#fff;'>新興科技應用</strong> ── 物聯網、AIoT、雲端運算、量子電腦</p>
-</div>"""
+"""
     }
 ]
