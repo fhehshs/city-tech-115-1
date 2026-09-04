@@ -737,12 +737,15 @@ _ch03 = {
             "另建議：不同網站不同密碼，並開啟兩步驟驗證。"
         ),
     },
-    18: {  # 什麼是資訊倫理（新增：加智能社會紀錄片預告）
-        # ⚠️ Netflix 紀錄片預告可能禁止嵌入，改為搜尋按鈕
-        'video': _vid_search(
-            '智能社會 進退兩難 監視資本主義 中文 預告',
-            '▶ 《智能社會：進退兩難》Netflix 紀錄片預告',
-            '搜尋這部揭露社群媒體演算法的紀錄片預告'),
+    18: {  # 什麼是資訊倫理（換成「矽谷輕鬆談」— 中文原生、切題）
+        # ✅ 已驗證：矽谷輕鬆談 Just Kidding Tech
+        'video': _vid_both(
+            'cxDZvSabWek',
+            '社群媒體 上癮 反思 中文 資訊倫理',
+            '我們真的需要社群媒體嗎？（矽谷輕鬆談）',
+            desc='想聽更多科技 × 生活反思？',
+            search_title='▶ 更多科技與資訊倫理討論影片',
+        ),
         'html_append': _life('反思：你為什麼一直滑手機停不下來？',
             "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
             "<p style='margin:0 0 8px;'>Netflix 紀錄片《智能社會：進退兩難》訪問 Facebook、Google、Instagram、Twitter 前工程師，他們親口說出：</p>"
@@ -757,12 +760,12 @@ _ch03 = {
             "</div>"
         ) + """
 <div style='background:linear-gradient(135deg,#faf5ff,#ede9fe);border-radius:12px;padding:12px 14px;margin-top:12px;text-align:center;border-left:4px solid #8b5cf6;'>
-  <div style='color:#6d28d9;font-size:.88rem;font-weight:700;margin-bottom:8px;'>🎬 推薦紀錄片（點按鈕直接開 YouTube 看）</div>
-  <a href='https://www.youtube.com/watch?v=ZJx3zKtDZVI' target='_blank' rel='noopener'
+  <div style='color:#6d28d9;font-size:.88rem;font-weight:700;margin-bottom:8px;'>🎬 若上方播放器有問題，點下方按鈕直接開 YouTube 看</div>
+  <a href='https://www.youtube.com/watch?v=cxDZvSabWek' target='_blank' rel='noopener'
      style='display:inline-block;background:#7c3aed;color:#fff;padding:10px 20px;border-radius:20px;text-decoration:none;font-weight:700;font-size:.88rem;box-shadow:0 4px 12px rgba(124,58,237,.35);'>
-    ▶ 《智能社會：進退兩難》Netflix 紀錄片預告
+    ▶ 我們真的需要社群媒體嗎？（矽谷輕鬆談）
   </a>
-  <p style='color:#6b7280;font-size:.72rem;margin:6px 0 0;'>Facebook / Google 前員工親口說出：「你就是產品」</p>
+  <p style='color:#6b7280;font-size:.72rem;margin:6px 0 0;'>台灣人在矽谷做的科技 Podcast · 中文原生 · 貼近年輕人的反思</p>
 </div>""",
     },
     21: {  # 社群媒體與數位公民（新增：加 TikTok 演算法解密 + 生活實例）
