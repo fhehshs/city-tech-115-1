@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-# Week 6: 網際網路運作原理
+# Ch.5: 合併列印與表單應用
 
 CHAPTERS = [
     {'name': '封面', 'start': 1},
-    {'name': '第一章：網路基礎概念', 'start': 2},
-    {'name': '第二章：TCP/IP 與位址', 'start': 8},
-    {'name': '第三章：DNS 與 HTTP/HTTPS', 'start': 14},
-    {'name': '第四章：無線網路與 5G', 'start': 19},
+    {'name': '第一章：合併列印概念', 'start': 2},
+    {'name': '第二章：合併列印實作', 'start': 8},
+    {'name': '第三章：Google 表單設計', 'start': 14},
+    {'name': '第四章：問卷資料分析', 'start': 19},
     {'name': '分組實作', 'start': 23},
 ]
 
@@ -15,16 +15,16 @@ QUIZZES = {
         'title': '第一章 隨堂測驗',
         'questions': [
             {
-                'q': '下列哪個描述最能說明「封包交換」的運作方式？',
-                'options': ['整條通訊線路在傳輸期間被獨佔，不分享', '資料切成小封包，各自選最佳路由，到達後重組', '所有封包必須走相同路徑才能保持順序', '封包在傳送前必須先建立永久連線'],
-                'answer': 1,
-                'explain': '封包交換讓每個封包獨立選路，有效利用網路頻寬，是網際網路的核心技術。'
+                'q': '合併列印（Mail Merge）的主要用途是什麼？',
+                'options': ['將多份文件合併成一份', '自動寄送電子郵件給所有聯絡人', '將固定格式文件與資料來源結合，批次產生個人化文件', '將試算表資料轉換為文件格式'],
+                'answer': 2,
+                'explain': '合併列印讓你用一份「範本」文件（含佔位符），加上一份「資料來源」（如 Excel 或 Google 試算表），批次產生幾百份個人化文件。例如：學生成績通知單、活動邀請函、大量信封地址。'
             },
             {
-                'q': '台灣國際網路主要透過哪種基礎設施連接至全球？',
-                'options': ['衛星通訊', '地面微波', '海底電纜', '無線電廣播'],
-                'answer': 2,
-                'explain': '台灣約 99% 的國際頻寬來自海底電纜，2006 年台灣地震曾造成多條海纜斷裂，影響亞洲網路。'
+                'q': '合併列印中，「資料來源」通常是什麼格式？',
+                'options': ['純文字檔案（.txt）', '試算表或資料庫（如 Excel、Google 試算表）', 'PDF 文件', 'Word 文件本身'],
+                'answer': 1,
+                'explain': '合併列印的資料來源需要結構化的表格資料，最常用的是 Excel（.xlsx）或 Google 試算表。第一列通常是欄位名稱（如姓名、地址），之後每列是一筆記錄，對應一份輸出文件。'
             },
         ]
     },
@@ -32,16 +32,16 @@ QUIZZES = {
         'title': '第二章 隨堂測驗',
         'questions': [
             {
-                'q': 'IPv6 的主要優勢是什麼？',
-                'options': ['傳輸速度比 IPv4 快 100 倍', '完全向下相容所有 IPv4 設備', '不需要路由器即可運作', '幾乎無限的位址空間（128 位元）'],
+                'q': '在 Word 合併列印中，「功能變數」（佔位符）的格式是？',
+                'options': ['{欄位名稱}', '[欄位名稱]', '${欄位名稱}', '《《欄位名稱》》'],
                 'answer': 3,
-                'explain': 'IPv6 使用 128 位元，可提供 2^128 個位址，解決 IPv4（32 位元，約 43 億個）耗盡的問題。'
+                'explain': 'Word 合併列印使用《《功能變數》》符號（也稱 «欄位名稱»）作為佔位符。例如在範本中寫「親愛的《《姓名》》同學」，合併時《《姓名》》會被資料來源的實際姓名替換。'
             },
             {
-                'q': 'TCP 與 UDP 最主要的差異是什麼？',
-                'options': ['TCP 確保資料到達（可靠），UDP 追求速度（不可靠）', 'TCP 速度比 UDP 快 10 倍', 'UDP 用於網頁瀏覽，TCP 用於影音串流', 'TCP 只能傳文字，UDP 可傳影片'],
+                'q': '使用合併列印產生信封時，需要特別注意什麼？',
+                'options': ['收件人地址格式要符合中華郵政規定，包括郵遞區號位置', '信封上不能印彩色圖案', '只能用 A4 紙張列印', '收件人和寄件人欄位必須用不同字體'],
                 'answer': 0,
-                'explain': 'TCP 有握手、確認、重送機制，保證資料正確到達。UDP 省去這些步驟，適合直播/遊戲等對延遲敏感的應用。'
+                'explain': '中華郵政規定信封的郵遞區號框需在特定位置，地址書寫格式為「縣市→區→路→號」。合併列印信封時要確認郵遞區號欄位已包含在資料中，且框的位置符合郵政規範。'
             },
         ]
     },
@@ -49,16 +49,16 @@ QUIZZES = {
         'title': '第三章 隨堂測驗',
         'questions': [
             {
-                'q': 'HTTPS 相較於 HTTP 多了什麼保護？',
-                'options': ['傳輸速度提升 10 倍', '伺服器不需要處理加密，效能更好', 'SSL/TLS 加密，防止資料在傳輸中被竊聽', '完全防止網站被駭客攻擊'],
-                'answer': 2,
-                'explain': 'HTTPS = HTTP + TLS 加密。瀏覽器與伺服器之間的資料被加密，即使被攔截也看不懂內容。'
+                'q': 'Google 表單中，「必填」選項的作用是？',
+                'options': ['限制只有特定人才能填寫此題', '若此題未填寫，表單無法提交', '自動顯示提示文字', '限制填寫次數'],
+                'answer': 1,
+                'explain': '將題目設定為「必填」後，填寫者若跳過此題，點擊提交時會出現錯誤提示，無法送出表單。這確保你能收集到所有必要的資訊。適合用在不可或缺的問題，但不要所有題目都必填，以免降低填寫意願。'
             },
             {
-                'q': '你在瀏覽器輸入 www.ntpc.edu.tw，DNS 的工作是什麼？',
-                'options': ['加密你的網路流量', '將網域名稱轉換為 IP 位址', '決定網頁顯示的語言', '驗證網站的安全性'],
-                'answer': 1,
-                'explain': 'DNS（Domain Name System）是網際網路的「電話簿」，將人類易記的網域名稱翻譯成機器使用的 IP 位址。'
+                'q': 'Google 表單的哪種題型最適合讓填寫者「從多個選項中只選一個」？',
+                'options': ['核取方塊（可複選）', '下拉式選單（最多選一）', '單選題（選項按鈕）', '線性刻度'],
+                'answer': 2,
+                'explain': '單選題（Radio button）和下拉式選單都只能選一個，但用途不同：單選題適合選項少（2-5個）、需要一眼看清楚選項的情況；下拉式選單適合選項多（如縣市、年級），不佔版面。核取方塊（Checkbox）可以多選。'
             },
         ]
     },
@@ -66,16 +66,16 @@ QUIZZES = {
         'title': '第四章 隨堂測驗',
         'questions': [
             {
-                'q': '5G 相較於 4G 最顯著的技術提升是？',
-                'options': ['更低延遲（低於 1ms）、更高速度、可同時連接更多設備', '通訊距離增加為 4G 的 10 倍', '完全不需要基地台，直接衛星傳輸', '僅提升手機通話品質'],
+                'q': 'Google 表單收集的資料，可以自動整理到哪裡？',
+                'options': ['Google 試算表（可查看所有填寫記錄）', 'Google 文件', 'Google 簡報', 'Gmail 信箱'],
                 'answer': 0,
-                'explain': '5G 的關鍵優勢：速度達 20Gbps（4G 約 1Gbps）、延遲低至 1ms、每平方公里支援 100 萬個設備連接。'
+                'explain': 'Google 表單的「回應」標籤中，點擊試算表圖示，可以自動建立一份連結的 Google 試算表。每當有人填寫表單，新資料就會即時出現在試算表中，方便後續統計分析。'
             },
             {
-                'q': '在命令提示字元輸入 ping 8.8.8.8 主要測試什麼？',
-                'options': ['下載目標網站的所有資料', '查詢目標 IP 的擁有者', '測試 DNS 解析是否正常', '本機到目標伺服器的網路連通性與延遲'],
+                'q': '以下哪項是設計問卷時的好習慣？',
+                'options': ['每題都設定為必填以確保資料完整', '問題越多越好，收集更多資訊', '只使用開放式問題以獲得詳細回答', '問卷長度適中，避免超過 10 分鐘填寫時間'],
                 'answer': 3,
-                'explain': 'ping 發送 ICMP Echo 封包，測試目標是否可達，並回報往返時間（RTT）。8.8.8.8 是 Google 的公共 DNS 伺服器。'
+                'explain': '問卷設計原則：長度適中（理想 5-7 分鐘，最多 15 分鐘），填寫率會大幅降低。其他好習慣：非關鍵題不必填、選擇題和開放題混合使用、問題清楚不含糊、避免引導性問題、在開頭說明目的和填寫時間。'
             },
         ]
     },
@@ -83,817 +83,558 @@ QUIZZES = {
 
 SLIDES = [
     {
-        'id': 1,
-        'chapter': '封面',
-        'title': '網際網路運作原理',
-        'bg': 'navy',
-        'quiz': None,
-        'chart': None,
-        'video': None,
+        'id': 1, 'chapter': '封面', 'title': '合併列印與表單應用',
+        'bg': 'navy', 'quiz': None, 'chart': None, 'video': None,
         'html': """
 <div style='text-align:center;padding:30px 20px;'>
-  <div style='font-size:72px;margin-bottom:20px;'>🌐</div>
-  <h1 style='font-size:2.8rem;font-weight:900;color:#fff;margin-bottom:12px;'>網際網路運作原理</h1>
-  <h2 style='font-size:1.5rem;font-weight:400;color:#93c5fd;margin-bottom:30px;'>How the Internet Works</h2>
+  <div style='font-size:72px;margin-bottom:20px;'>📋</div>
+  <h1 style='font-size:2.8rem;font-weight:900;color:#fff;margin-bottom:12px;'>合併列印與表單應用</h1>
+  <h2 style='font-size:1.5rem;font-weight:400;color:#93c5fd;margin-bottom:30px;'>Mail Merge &amp; Google Forms</h2>
   <div style='display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:30px;'>
-    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🔌 TCP/IP 協定</span>
-    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📍 IP 位址</span>
-    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🌏 DNS 解析</span>
-    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🔒 HTTP/HTTPS</span>
-    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📡 5G 技術</span>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>✉️ 合併列印</span>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📝 表單設計</span>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📊 資料分析</span>
   </div>
-  <p style='color:#bfdbfe;font-size:1.1rem;'>城市科技 — 第六週</p>
+  <p style='color:#bfdbfe;font-size:1.1rem;'>城市科技 — 第五章</p>
 </div>"""
     },
     {
-        'id': 2,
-        'chapter': '第一章：網路基礎概念',
-        'title': '什麼是網際網路？',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
+        'id': 2, 'chapter': '第一章：合併列印概念', 'title': '什麼是合併列印？',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 class='slide-title'>什麼是網際網路？</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;border-left:4px solid #2563eb;padding:15px;border-radius:8px;margin-bottom:15px;'>
-      <h3 style='color:#1e40af;font-size:1.1rem;margin-bottom:8px;'>📌 定義</h3>
-      <p style='color:#374151;font-size:0.95rem;'>網際網路是由數十億台設備相互連接，遵循共同協定（Protocol）傳遞資訊的<strong>全球網路</strong>。</p>
-    </div>
-    <div style='background:#f0fdf4;border-left:4px solid #16a34a;padding:15px;border-radius:8px;'>
-      <h3 style='color:#15803d;font-size:1.1rem;margin-bottom:8px;'>📦 封包交換</h3>
-      <p style='color:#374151;font-size:0.95rem;'>資料被切割成小「封包」，各自在網路中選最佳路由，到達後再重組。就像快遞拆包裝分批送達！</p>
-    </div>
-  </div>
-  <div>
-    <div style='background:#f5f3ff;border-left:4px solid #7c3aed;padding:15px;border-radius:8px;margin-bottom:15px;'>
-      <h3 style='color:#6d28d9;font-size:1.1rem;margin-bottom:8px;'>🌏 台灣網路現況</h3>
-      <ul style='color:#374151;font-size:0.9rem;margin:0;padding-left:18px;'>
-        <li>固網寬頻普及率 <strong>98%</strong></li>
-        <li>行動上網用戶超過 <strong>2,800 萬</strong></li>
-        <li>國際頻寬 99% 靠 <strong>海底電纜</strong></li>
-        <li>2006 年地震曾造成亞洲斷網</li>
-      </ul>
-    </div>
-    <div style='background:#fff7ed;border-left:4px solid #ea580c;padding:12px;border-radius:8px;'>
-      <p style='color:#9a3412;font-size:0.9rem;margin:0;'>💡 <strong>你知道嗎？</strong> 每天全球傳輸約 <strong>4.4 艾位元組（EB）</strong>的資料，相當於 44 億部 1GB 的電影！</p>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 3,
-        'chapter': '第一章：網路基礎概念',
-        'title': '網路拓樸與設備',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
-        'html': """
-<h2 class='slide-title'>網路拓樸與設備</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <h3 style='color:#1e40af;font-size:1.1rem;margin-bottom:12px;'>🔧 關鍵網路設備</h3>
-    <table style='width:100%;border-collapse:collapse;font-size:0.9rem;'>
-      <tr style='background:#1e40af;color:#fff;'>
-        <th style='padding:8px;text-align:left;'>設備</th>
-        <th style='padding:8px;text-align:left;'>功能</th>
-      </tr>
-      <tr style='background:#eff6ff;'>
-        <td style='padding:8px;color:#1e40af;font-weight:700;'>路由器 Router</td>
-        <td style='padding:8px;color:#374151;'>在不同網路間轉送封包，選擇最佳路徑</td>
-      </tr>
-      <tr style='background:#fff;'>
-        <td style='padding:8px;color:#1e40af;font-weight:700;'>交換器 Switch</td>
-        <td style='padding:8px;color:#374151;'>連接同一網路內的設備，依 MAC 位址轉發</td>
-      </tr>
-      <tr style='background:#eff6ff;'>
-        <td style='padding:8px;color:#1e40af;font-weight:700;'>集線器 Hub</td>
-        <td style='padding:8px;color:#374151;'>廣播訊號給所有連接設備（已逐漸淘汰）</td>
-      </tr>
-      <tr style='background:#fff;'>
-        <td style='padding:8px;color:#1e40af;font-weight:700;'>數據機 Modem</td>
-        <td style='padding:8px;color:#374151;'>將數位訊號轉為類比（或光）訊號傳輸</td>
-      </tr>
-    </table>
-  </div>
-  <div>
-    <h3 style='color:#16a34a;font-size:1.1rem;margin-bottom:12px;'>🗺️ 常見拓樸結構</h3>
-    <div style='display:flex;flex-direction:column;gap:10px;'>
-      <div style='background:#f0fdf4;padding:10px;border-radius:8px;border:1px solid #86efac;'>
-        <strong style='color:#15803d;'>⭐ 星狀拓樸（Star）</strong>
-        <p style='color:#374151;font-size:0.85rem;margin:4px 0 0;'>所有設備連到中央交換器，最常見於企業/學校</p>
-      </div>
-      <div style='background:#eff6ff;padding:10px;border-radius:8px;border:1px solid #93c5fd;'>
-        <strong style='color:#1e40af;'>🕸️ 網狀拓樸（Mesh）</strong>
-        <p style='color:#374151;font-size:0.85rem;margin:4px 0 0;'>每節點相互連接，骨幹網路採用，高容錯</p>
-      </div>
-      <div style='background:#fdf4ff;padding:10px;border-radius:8px;border:1px solid #d8b4fe;'>
-        <strong style='color:#7c3aed;'>🔗 總線拓樸（Bus）</strong>
-        <p style='color:#374151;font-size:0.85rem;margin:4px 0 0;'>共享一條主幹，早期乙太網路使用</p>
-      </div>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 4,
-        'chapter': '第一章：網路基礎概念',
-        'title': 'OSI 七層模型',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
-        'html': """
-<h2 class='slide-title'>OSI 七層模型</h2>
-<p style='color:#374151;font-size:0.95rem;margin-bottom:15px;'>OSI 模型將網路通訊分為 7 層，每層各司其職，就像寄信的流程：寫信→封信→貼郵票→投郵筒→郵局→配送→收信</p>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:15px;'>
-  <div>
-    <div style='background:#fef2f2;border:1px solid #fca5a5;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
-      <span style='background:#dc2626;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>7</span>
-      <span style='font-weight:700;color:#991b1b;'>應用層</span><span style='color:#374151;font-size:0.85rem;'>HTTP, FTP, SMTP</span>
-    </div>
-    <div style='background:#fff7ed;border:1px solid #fdba74;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
-      <span style='background:#ea580c;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>6</span>
-      <span style='font-weight:700;color:#9a3412;'>表現層</span><span style='color:#374151;font-size:0.85rem;'>加密、格式轉換</span>
-    </div>
-    <div style='background:#fefce8;border:1px solid #fde047;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
-      <span style='background:#ca8a04;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>5</span>
-      <span style='font-weight:700;color:#854d0e;'>會議層</span><span style='color:#374151;font-size:0.85rem;'>建立/管理連線</span>
-    </div>
-    <div style='background:#f0fdf4;border:1px solid #86efac;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
-      <span style='background:#16a34a;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>4</span>
-      <span style='font-weight:700;color:#15803d;'>傳輸層</span><span style='color:#374151;font-size:0.85rem;'>TCP / UDP</span>
-    </div>
-  </div>
-  <div>
-    <div style='background:#eff6ff;border:1px solid #93c5fd;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
-      <span style='background:#2563eb;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>3</span>
-      <span style='font-weight:700;color:#1e40af;'>網路層</span><span style='color:#374151;font-size:0.85rem;'>IP 位址、路由</span>
-    </div>
-    <div style='background:#fdf4ff;border:1px solid #d8b4fe;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
-      <span style='background:#7c3aed;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>2</span>
-      <span style='font-weight:700;color:#6d28d9;'>資料鏈結層</span><span style='color:#374151;font-size:0.85rem;'>MAC 位址、乙太網路</span>
-    </div>
-    <div style='background:#f1f5f9;border:1px solid #94a3b8;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;gap:8px;'>
-      <span style='background:#475569;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;font-weight:700;'>1</span>
-      <span style='font-weight:700;color:#334155;'>實體層</span><span style='color:#374151;font-size:0.85rem;'>電纜、光纖、無線</span>
-    </div>
-    <div style='background:#fef2f2;padding:10px;border-radius:8px;margin-top:10px;'>
-      <p style='color:#dc2626;font-size:0.85rem;margin:0;'>💡 實務上常用 <strong>TCP/IP 四層模型</strong>（應用、傳輸、網路、鏈結），是 OSI 的簡化版本。</p>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 5,
-        'chapter': '第一章：網路基礎概念',
-        'title': '台灣網路基礎設施',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': {'url': 'https://www.youtube.com/embed/AEaKrq3SpW8', 'title': '網際網路如何運作', 'desc': '深入了解封包如何在全球網路中傳遞'},
-        'html': """
-<h2 class='slide-title'>台灣網路基礎設施</h2>
+<h2 class='slide-title'>合併列印：批次產生個人化文件</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div>
     <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🔌 台灣主要 ISP</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;'>
-        <div style='background:#fff;padding:8px;border-radius:6px;display:flex;justify-content:space-between;'>
-          <span style='color:#374151;font-size:0.9rem;'>中華電信 HiNet</span><span style='color:#1e40af;font-weight:700;font-size:0.9rem;'>市佔 ~40%</span>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>💡 核心概念</h3>
+      <div style='background:#f8fafc;padding:15px;border-radius:8px;'>
+        <div style='text-align:center;margin-bottom:10px;'>
+          <div style='display:flex;align-items:center;justify-content:center;gap:8px;font-size:.85rem;'>
+            <div style='background:#dbeafe;padding:8px 12px;border-radius:8px;color:#1e40af;font-weight:700;'>📄 範本文件</div>
+            <span style='font-size:1.2rem;color:#6b7280;'>+</span>
+            <div style='background:#dcfce7;padding:8px 12px;border-radius:8px;color:#15803d;font-weight:700;'>📊 資料來源</div>
+            <span style='font-size:1.2rem;color:#6b7280;'>=</span>
+            <div style='background:#fde047;padding:8px 12px;border-radius:8px;color:#854d0e;font-weight:700;'>📑 N 份文件</div>
+          </div>
         </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;display:flex;justify-content:space-between;'>
-          <span style='color:#374151;font-size:0.9rem;'>台灣大哥大 TWM</span><span style='color:#1e40af;font-weight:700;font-size:0.9rem;'>市佔 ~20%</span>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;display:flex;justify-content:space-between;'>
-          <span style='color:#374151;font-size:0.9rem;'>遠傳電信</span><span style='color:#1e40af;font-weight:700;font-size:0.9rem;'>市佔 ~18%</span>
-        </div>
+        <p style='color:#374151;font-size:.83rem;text-align:center;'>一份範本 × 100 筆資料 = 100 份個人化文件</p>
       </div>
     </div>
-    <div style='background:#fff7ed;padding:12px;border-radius:8px;border:1px solid #fdba74;'>
-      <p style='color:#9a3412;font-size:0.9rem;margin:0;'>🌊 <strong>2006 年台灣大地震事件</strong><br>12 月 26 日南海海底電纜斷裂，亞洲多國網速驟降，示範了海纜的重要性。</p>
+    <div style='background:#f0fdf4;padding:10px;border-radius:8px;'>
+      <p style='color:#15803d;font-size:.85rem;font-weight:700;margin-bottom:5px;'>🕐 省多少時間？</p>
+      <p style='color:#374151;font-size:.83rem;margin:0;'>手動：100 份通知單 × 5 分鐘 = 500 分鐘<br>合併列印：設定完成後，5 分鐘產生全部 100 份</p>
     </div>
   </div>
-  <div style='background:#f9fafb;padding:15px;border-radius:10px;'>
-    <h3 style='color:#374151;font-size:1rem;margin-bottom:10px;'>📊 台灣網路速度排名</h3>
-    <p style='color:#6b7280;font-size:0.85rem;margin-bottom:10px;'>根據 Speedtest Global Index 2024</p>
-    <div style='display:flex;flex-direction:column;gap:8px;'>
-      <div>
-        <div style='display:flex;justify-content:space-between;margin-bottom:3px;'>
-          <span style='color:#374151;font-size:0.85rem;'>固網中位數下載（全球前段班）</span>
-          <span style='color:#1e40af;font-weight:700;'>286 Mbps</span>
-        </div>
-        <div style='background:#dbeafe;border-radius:4px;height:10px;'><div style='background:#2563eb;width:95%;height:10px;border-radius:4px;'></div></div>
-      </div>
-      <div>
-        <div style='display:flex;justify-content:space-between;margin-bottom:3px;'>
-          <span style='color:#374151;font-size:0.85rem;'>行動網路中位數下載</span>
-          <span style='color:#16a34a;font-weight:700;'>98 Mbps</span>
-        </div>
-        <div style='background:#dcfce7;border-radius:4px;height:10px;'><div style='background:#16a34a;width:75%;height:10px;border-radius:4px;'></div></div>
+  <div>
+    <div style='background:#fef9c3;padding:15px;border-radius:10px;border:1px solid #fde047;'>
+      <h3 style='color:#854d0e;font-size:1rem;margin-bottom:10px;'>📝 常見應用</h3>
+      <div style='display:flex;flex-direction:column;gap:7px;font-size:.83rem;'>
+        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #f59e0b;color:#374151;'>✉️ 學生成績通知單（每個家長不同）</div>
+        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #f59e0b;color:#374151;'>🎟️ 活動邀請函（每人姓名不同）</div>
+        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #f59e0b;color:#374151;'>🏷️ 信封地址標籤（大量寄件）</div>
+        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #f59e0b;color:#374151;'>🎓 畢業證書（每人姓名、科系不同）</div>
+        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #f59e0b;color:#374151;'>📧 行銷電子郵件（個人化稱謂）</div>
       </div>
     </div>
-    <p style='color:#6b7280;font-size:0.8rem;margin-top:12px;'>台灣固網寬頻速度位居亞洲前列，光纖普及率超過 90%</p>
   </div>
 </div>"""
     },
     {
-        'id': 6,
-        'chapter': '第一章：網路基礎概念',
-        'title': '🎯 第一章 隨堂測驗',
-        'bg': 'purple',
-        'quiz': 'q1',
-        'chart': None,
-        'video': None,
+        'id': 3, 'chapter': '第一章：合併列印概念', 'title': '合併列印的組成',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+        'html': """
+<h2 class='slide-title'>合併列印的兩大組成要素</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#eff6ff;padding:18px;border-radius:12px;border:2px solid #2563eb;'>
+      <h3 style='color:#1e40af;font-size:1.1rem;margin-bottom:12px;text-align:center;'>📄 範本文件</h3>
+      <div style='background:#fff;padding:15px;border-radius:8px;font-size:.85rem;line-height:1.8;border:1px solid #e2e8f0;'>
+        <p style='color:#374151;margin:0;'>親愛的 <span style='background:#fde047;padding:2px 5px;border-radius:3px;color:#854d0e;font-weight:700;'>《《姓名》》</span> 同學家長：</p>
+        <p style='color:#374151;margin:8px 0;'>您的孩子本學期成績為 <span style='background:#fde047;padding:2px 5px;border-radius:3px;color:#854d0e;font-weight:700;'>《《總分》》</span> 分，名次為全班第 <span style='background:#fde047;padding:2px 5px;border-radius:3px;color:#854d0e;font-weight:700;'>《《名次》》</span> 名。</p>
+      </div>
+      <p style='color:#6b7280;font-size:.75rem;margin-top:8px;text-align:center;'>黃色部分為功能變數（佔位符）</p>
+    </div>
+  </div>
+  <div>
+    <div style='background:#f0fdf4;padding:18px;border-radius:12px;border:2px solid #16a34a;'>
+      <h3 style='color:#15803d;font-size:1.1rem;margin-bottom:12px;text-align:center;'>📊 資料來源（試算表）</h3>
+      <table style='width:100%;border-collapse:collapse;font-size:.8rem;'>
+        <tr style='background:#15803d;color:#fff;'><th style='padding:6px;'>姓名</th><th style='padding:6px;'>總分</th><th style='padding:6px;'>名次</th></tr>
+        <tr><td style='padding:5px;color:#374151;'>王小明</td><td style='padding:5px;color:#374151;'>285</td><td style='padding:5px;color:#374151;'>3</td></tr>
+        <tr style='background:#f0fdf4;'><td style='padding:5px;color:#374151;'>李小花</td><td style='padding:5px;color:#374151;'>312</td><td style='padding:5px;color:#374151;'>1</td></tr>
+        <tr><td style='padding:5px;color:#374151;'>陳大成</td><td style='padding:5px;color:#374151;'>270</td><td style='padding:5px;color:#374151;'>7</td></tr>
+      </table>
+      <p style='color:#6b7280;font-size:.75rem;margin-top:8px;text-align:center;'>每列資料 → 產生一份文件</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 4, 'chapter': '第一章：合併列印概念', 'title': '生活中的合併列印',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+        'html': """
+<h2 class='slide-title'>你不知道這些都用了合併列印？</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:16px;'>
+  <div style='display:flex;flex-direction:column;gap:10px;'>
+    <div style='background:#eff6ff;padding:12px;border-radius:10px;border-left:4px solid #2563eb;'>
+      <h3 style='color:#1e40af;font-size:.9rem;margin-bottom:5px;'>🏦 銀行對帳單</h3>
+      <p style='color:#374151;font-size:.82rem;'>每個月你收到的信用卡帳單、存款對帳單，銀行是用合併列印批次產生幾百萬份。</p>
+    </div>
+    <div style='background:#f0fdf4;padding:12px;border-radius:10px;border-left:4px solid #16a34a;'>
+      <h3 style='color:#15803d;font-size:.9rem;margin-bottom:5px;'>📦 包裹收件標籤</h3>
+      <p style='color:#374151;font-size:.82rem;'>黑貓宅急便、711 等物流，每個包裹上的姓名地址標籤都是合併列印自動產生的。</p>
+    </div>
+    <div style='background:#fdf4ff;padding:12px;border-radius:10px;border-left:4px solid #7c3aed;'>
+      <h3 style='color:#7c3aed;font-size:.9rem;margin-bottom:5px;'>🎓 學校成績單</h3>
+      <p style='color:#374151;font-size:.82rem;'>期末成績單、學期評語，老師或教務處使用合併列印批次印出每個學生的個人成績。</p>
+    </div>
+  </div>
+  <div style='display:flex;flex-direction:column;gap:10px;'>
+    <div style='background:#fff7ed;padding:12px;border-radius:10px;border-left:4px solid #ea580c;'>
+      <h3 style='color:#ea580c;font-size:.9rem;margin-bottom:5px;'>🎫 活動票券</h3>
+      <p style='color:#374151;font-size:.82rem;'>演唱會、展覽的入場票上有你的姓名和座位號碼，是從購票資料庫合併列印。</p>
+    </div>
+    <div style='background:#fef9c3;padding:12px;border-radius:10px;border-left:4px solid #ca8a04;'>
+      <h3 style='color:#854d0e;font-size:.9rem;margin-bottom:5px;'>📧 行銷電子郵件</h3>
+      <p style='color:#374151;font-size:.82rem;'>你收到「親愛的 XXX 先生/小姐，我們為您準備了...」，這種個人化郵件就是合併列印的電子版。</p>
+    </div>
+    <div style='background:#fef2f2;padding:10px;border-radius:8px;'>
+      <p style='color:#dc2626;font-size:.83rem;margin:0;'>💡 這些功能每天在全球處理幾十億份文件！</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 5, 'chapter': '第一章：合併列印概念', 'title': 'Word 合併列印工具',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+        'html': """
+<h2 class='slide-title'>Word 合併列印：工具列介紹</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🔧 「郵件」索引標籤功能</h3>
+      <div class='layer-stack'>
+        <div class='layer layer-user'><div class='layer-num'>1</div><div><div class='layer-name' style='color:#374151;'>開始合併列印</div><div class='layer-detail'>選擇文件類型（信件、信封、標籤）</div></div></div>
+        <div class='layer layer-app'><div class='layer-num'>2</div><div><div class='layer-name' style='color:#374151;'>選取收件者</div><div class='layer-detail'>連接 Excel 或 Outlook 聯絡人</div></div></div>
+        <div class='layer layer-os'><div class='layer-num'>3</div><div><div class='layer-name' style='color:#374151;'>插入合併欄位</div><div class='layer-detail'>在文件中插入《《欄位》》佔位符</div></div></div>
+        <div class='layer layer-hw'><div class='layer-num'>4</div><div><div class='layer-name' style='color:#374151;'>完成與合併</div><div class='layer-detail'>預覽結果並列印或儲存</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>📊 資料來源格式要求</h3>
+      <table style='width:100%;border-collapse:collapse;font-size:.82rem;'>
+        <tr style='background:#15803d;color:#fff;'><th style='padding:6px;'>要求</th><th style='padding:6px;'>說明</th></tr>
+        <tr><td style='padding:5px;color:#374151;'>第一列</td><td style='padding:5px;color:#374151;'>欄位名稱（不能有空格）</td></tr>
+        <tr style='background:#f0fdf4;'><td style='padding:5px;color:#374151;'>資料列</td><td style='padding:5px;color:#374151;'>從第二列開始，每列一筆</td></tr>
+        <tr><td style='padding:5px;color:#374151;'>欄位名稱</td><td style='padding:5px;color:#374151;'>建議用英文或無空格中文</td></tr>
+        <tr style='background:#f0fdf4;'><td style='padding:5px;color:#374151;'>空白列</td><td style='padding:5px;color:#374151;'>不要有空白列（會出錯）</td></tr>
+      </table>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 6, 'chapter': '第一章：合併列印概念', 'title': '規則條件設定',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+        'html': """
+<h2 class='slide-title'>合併列印進階：條件規則</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🔀 IF...THEN...ELSE 規則</h3>
+      <p style='color:#374151;font-size:.88rem;margin-bottom:10px;'>根據條件顯示不同文字，讓文件更個人化：</p>
+      <div style='background:#f8fafc;padding:12px;border-radius:8px;font-family:monospace;font-size:.82rem;'>
+        <p style='color:#1e40af;margin:0 0 4px;font-weight:700;'>IF 性別 = "男"</p>
+        <p style='color:#15803d;margin:0 0 4px;padding-left:16px;'>THEN "先生"</p>
+        <p style='color:#dc2626;margin:0;padding-left:16px;'>ELSE "小姐"</p>
+      </div>
+      <p style='color:#374151;font-size:.82rem;margin-top:8px;'>結果：「王小明 先生」或「李小花 小姐」</p>
+    </div>
+  </div>
+  <div>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>📊 資料篩選</h3>
+      <p style='color:#374151;font-size:.88rem;margin-bottom:8px;'>可以篩選特定條件的資料：</p>
+      <ul style='color:#374151;font-size:.85rem;padding-left:16px;'>
+        <li>只寄給「台北市」的收件人</li>
+        <li>只寄給成績低於 60 分的學生</li>
+        <li>只處理「已報名」的名單</li>
+      </ul>
+      <div style='background:#dcfce7;padding:8px;border-radius:6px;margin-top:8px;'>
+        <p style='color:#15803d;font-size:.8rem;margin:0;'>操作：選取收件者 → 編輯收件者清單 → 篩選</p>
+      </div>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 7, 'chapter': '第一章：合併列印概念', 'title': '🎯 第一章 隨堂測驗',
+        'bg': 'purple', 'quiz': 'q1', 'chart': None, 'video': None,
         'html': """
 <div style='text-align:center;padding:20px;'>
   <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
   <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第一章 隨堂測驗</h2>
-  <p style='color:#e9d5ff;font-size:1.1rem;'>網路基礎概念 ── 2 道題目，點擊作答！</p>
+  <p style='color:#e9d5ff;font-size:1.1rem;'>合併列印概念 ── 2 道題目，點擊作答！</p>
 </div>"""
     },
     {
-        'id': 7,
-        'chapter': '第二章：TCP/IP 與位址',
-        'title': 'TCP vs UDP',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
+        'id': 8, 'chapter': '第二章：合併列印實作', 'title': '成績通知單實作',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 class='slide-title'>TCP vs UDP</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div style='background:#eff6ff;padding:15px;border-radius:10px;'>
-    <h3 style='color:#1e40af;font-size:1.1rem;margin-bottom:12px;text-align:center;'>🔒 TCP（傳輸控制協定）</h3>
-    <ul style='color:#374151;font-size:0.9rem;padding-left:18px;'>
-      <li><strong>三向交握</strong>：SYN → SYN-ACK → ACK</li>
-      <li><strong>確認機制</strong>：確保每個封包被收到</li>
-      <li><strong>重送機制</strong>：遺失封包自動重傳</li>
-      <li><strong>有序傳輸</strong>：保持封包順序</li>
-    </ul>
-    <div style='background:#dbeafe;padding:8px;border-radius:6px;margin-top:10px;'>
-      <p style='color:#1e40af;font-size:0.85rem;margin:0;text-align:center;'>✅ 適用：網頁、電子郵件、檔案傳輸</p>
-    </div>
-  </div>
-  <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
-    <h3 style='color:#15803d;font-size:1.1rem;margin-bottom:12px;text-align:center;'>⚡ UDP（用戶資料報協定）</h3>
-    <ul style='color:#374151;font-size:0.9rem;padding-left:18px;'>
-      <li><strong>無連線</strong>：直接發送，不握手</li>
-      <li><strong>不確認</strong>：發出後不管是否到達</li>
-      <li><strong>低延遲</strong>：省去確認/重送時間</li>
-      <li><strong>輕量</strong>：封包標頭小，效率高</li>
-    </ul>
-    <div style='background:#dcfce7;padding:8px;border-radius:6px;margin-top:10px;'>
-      <p style='color:#15803d;font-size:0.85rem;margin:0;text-align:center;'>✅ 適用：直播、視訊通話、線上遊戲</p>
-    </div>
-  </div>
-</div>
-<div style='background:#fef9c3;padding:12px;border-radius:8px;margin-top:15px;border:1px solid #fde047;'>
-  <p style='color:#854d0e;font-size:0.9rem;margin:0;'>🎮 <strong>生活例子</strong>：打電動（UDP）——掉幾個封包沒關係，但要低延遲。看 Netflix（TCP）——需要完整資料，稍微緩衝可以接受。</p>
-</div>"""
-    },
-    {
-        'id': 8,
-        'chapter': '第二章：TCP/IP 與位址',
-        'title': 'IPv4 位址',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
-        'html': """
-<h2 class='slide-title'>IPv4 位址</h2>
+<h2 class='slide-title'>實作一：學生成績通知單</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div>
     <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📍 IPv4 格式</h3>
-      <div style='background:#fff;padding:12px;border-radius:8px;text-align:center;'>
-        <p style='font-size:1.3rem;font-weight:800;color:#1e40af;letter-spacing:2px;'>192.168.1.100</p>
-        <p style='color:#6b7280;font-size:0.8rem;'>4 組十進位數字，每組 0-255，共 32 位元</p>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📋 準備工作</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;display:flex;gap:8px;align-items:start;'><span style='background:#2563eb;color:#fff;min-width:20px;height:20px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;'>1</span><span style='color:#374151;'>準備 Excel 檔：欄位含「學號、姓名、國文、英文、數學、總分、名次」</span></div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;display:flex;gap:8px;align-items:start;'><span style='background:#2563eb;color:#fff;min-width:20px;height:20px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;'>2</span><span style='color:#374151;'>建立 Word 範本：版面配置、學校 logo、固定文字</span></div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;display:flex;gap:8px;align-items:start;'><span style='background:#2563eb;color:#fff;min-width:20px;height:20px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;'>3</span><span style='color:#374151;'>連結資料：郵件 → 選取收件者 → 使用現有清單</span></div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;display:flex;gap:8px;align-items:start;'><span style='background:#2563eb;color:#fff;min-width:20px;height:20px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;'>4</span><span style='color:#374151;'>插入欄位：在對應位置插入《《欄位名稱》》</span></div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;display:flex;gap:8px;align-items:start;'><span style='background:#2563eb;color:#fff;min-width:20px;height:20px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;'>5</span><span style='color:#374151;'>預覽、確認後完成合併，列印或儲存</span></div>
       </div>
-    </div>
-    <div style='background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px;'>
-      <h3 style='color:#374151;font-size:0.95rem;margin-bottom:8px;'>🏠 私有 IP vs 公有 IP</h3>
-      <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
-        <tr style='background:#f1f5f9;'>
-          <th style='padding:6px;text-align:left;color:#374151;'>類型</th>
-          <th style='padding:6px;text-align:left;color:#374151;'>範圍</th>
-        </tr>
-        <tr>
-          <td style='padding:6px;color:#1e40af;font-weight:600;'>A 類私有</td>
-          <td style='padding:6px;color:#374151;'>10.0.0.0 – 10.255.255.255</td>
-        </tr>
-        <tr style='background:#f8fafc;'>
-          <td style='padding:6px;color:#1e40af;font-weight:600;'>B 類私有</td>
-          <td style='padding:6px;color:#374151;'>172.16.0.0 – 172.31.255.255</td>
-        </tr>
-        <tr>
-          <td style='padding:6px;color:#1e40af;font-weight:600;'>C 類私有</td>
-          <td style='padding:6px;color:#374151;'>192.168.0.0 – 192.168.255.255</td>
-        </tr>
-      </table>
     </div>
   </div>
   <div>
-    <div style='background:#fef2f2;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#dc2626;font-size:1rem;margin-bottom:8px;'>⚠️ IPv4 耗盡危機</h3>
-      <p style='color:#374151;font-size:0.9rem;'>IPv4 最多提供 <strong>2³² ≈ 43 億</strong>個位址。</p>
-      <p style='color:#374151;font-size:0.9rem;margin-top:6px;'>IANA（國際位址分配機構）已於 <strong>2011 年</strong>宣告 IPv4 位址耗盡！</p>
-      <div style='background:#fee2e2;padding:8px;border-radius:6px;margin-top:8px;'>
-        <p style='color:#991b1b;font-size:0.85rem;margin:0;'>NAT（網路位址轉譯）讓多台設備共用一個公有 IP，延長了 IPv4 使用壽命</p>
+    <div style='background:#f8fafc;border:2px solid #e2e8f0;padding:15px;border-radius:10px;font-size:.83rem;'>
+      <h3 style='color:#374151;font-size:.9rem;margin-bottom:10px;text-align:center;'>成績通知單範本預覽</h3>
+      <div style='background:#fff;padding:12px;border-radius:8px;border:1px solid #e5e7eb;'>
+        <p style='color:#374151;text-align:center;font-weight:700;font-size:.85rem;margin-bottom:8px;'>芳和實驗中學 成績通知</p>
+        <p style='color:#374151;font-size:.8rem;margin-bottom:6px;'>學號：<span style='background:#fef9c3;padding:1px 4px;border-radius:3px;font-weight:700;color:#854d0e;'>《《學號》》</span></p>
+        <p style='color:#374151;font-size:.8rem;margin-bottom:6px;'>姓名：<span style='background:#fef9c3;padding:1px 4px;border-radius:3px;font-weight:700;color:#854d0e;'>《《姓名》》</span> 同學</p>
+        <table style='width:100%;border-collapse:collapse;font-size:.75rem;margin-top:8px;'>
+          <tr style='background:#1e3a5f;color:#fff;'><th style='padding:4px;'>科目</th><th style='padding:4px;'>成績</th></tr>
+          <tr><td style='padding:4px;color:#374151;'>國文</td><td style='padding:4px;color:#854d0e;font-weight:700;'>《《國文》》</td></tr>
+          <tr style='background:#f8fafc;'><td style='padding:4px;color:#374151;'>英文</td><td style='padding:4px;color:#854d0e;font-weight:700;'>《《英文》》</td></tr>
+          <tr><td style='padding:4px;color:#374151;'>數學</td><td style='padding:4px;color:#854d0e;font-weight:700;'>《《數學》》</td></tr>
+          <tr style='background:#dbeafe;'><td style='padding:4px;color:#1e40af;font-weight:700;'>總分</td><td style='padding:4px;color:#1e40af;font-weight:700;'>《《總分》》</td></tr>
+        </table>
       </div>
-    </div>
-    <div style='background:#f0fdf4;padding:12px;border-radius:8px;'>
-      <p style='color:#15803d;font-size:0.9rem;margin:0;'>💡 <strong>你家的 IP</strong>：路由器有一個公有 IP，家中每台設備得到路由器分配的私有 IP（如 192.168.1.x）</p>
     </div>
   </div>
 </div>"""
     },
     {
-        'id': 9,
-        'chapter': '第二章：TCP/IP 與位址',
-        'title': 'IPv6 — 下一代位址',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
+        'id': 9, 'chapter': '第二章：合併列印實作', 'title': '信封合併列印',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 class='slide-title'>IPv6 — 下一代位址</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>🆕 IPv6 格式</h3>
-      <div style='background:#fff;padding:12px;border-radius:8px;text-align:center;'>
-        <p style='font-size:0.95rem;font-weight:800;color:#15803d;letter-spacing:1px;word-break:break-all;'>2001:0db8:85a3:0000:<br>0000:8a2e:0370:7334</p>
-        <p style='color:#6b7280;font-size:0.8rem;'>8 組十六進位，共 128 位元</p>
-      </div>
-    </div>
-    <div style='background:#eff6ff;padding:12px;border-radius:8px;'>
-      <h3 style='color:#1e40af;font-size:0.95rem;margin-bottom:8px;'>📊 比較</h3>
-      <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
-        <tr style='background:#1e40af;color:#fff;'>
-          <th style='padding:6px;'>項目</th><th style='padding:6px;'>IPv4</th><th style='padding:6px;'>IPv6</th>
-        </tr>
-        <tr><td style='padding:6px;color:#374151;'>長度</td><td style='padding:6px;color:#374151;'>32 位元</td><td style='padding:6px;color:#374151;'>128 位元</td></tr>
-        <tr style='background:#f8fafc;'><td style='padding:6px;color:#374151;'>位址數量</td><td style='padding:6px;color:#374151;'>43 億</td><td style='padding:6px;color:#374151;'>2¹²⁸ ≈ 無窮</td></tr>
-        <tr><td style='padding:6px;color:#374151;'>標頭大小</td><td style='padding:6px;color:#374151;'>20 bytes</td><td style='padding:6px;color:#374151;'>40 bytes（固定）</td></tr>
-      </table>
-    </div>
-  </div>
-  <div>
-    <div style='background:#fdf4ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#7c3aed;font-size:1rem;margin-bottom:10px;'>✨ IPv6 新特性</h3>
-      <ul style='color:#374151;font-size:0.9rem;padding-left:18px;'>
-        <li>無需 NAT，設備直接擁有全球唯一 IP</li>
-        <li>內建 IPSec 安全性</li>
-        <li>自動設定位址（SLAAC）</li>
-        <li>更有效率的路由</li>
-        <li>支援多播（Multicast）</li>
-      </ul>
-    </div>
-    <div style='background:#fff7ed;padding:12px;border-radius:8px;border:1px solid #fdba74;'>
-      <p style='color:#9a3412;font-size:0.9rem;margin:0;'>🇹🇼 <strong>台灣現況</strong>：NCC 要求 ISP 2025 年前 IPv6 普及率達 80%，中華電信已全面支援。IoT 裝置的爆炸性成長讓 IPv6 更加迫切。</p>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 10,
-        'chapter': '第二章：TCP/IP 與位址',
-        'title': '路由器如何選擇路徑？',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
-        'html': """
-<h2 class='slide-title'>路由器如何選擇路徑？</h2>
+<h2 class='slide-title'>實作二：大量信封地址列印</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div>
     <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🗺️ 路由決策</h3>
-      <p style='color:#374151;font-size:0.9rem;margin-bottom:8px;'>路由器維護一張<strong>路由表</strong>，根據目的地 IP 決定下一跳（Next Hop）。</p>
-      <div style='background:#fff;padding:10px;border-radius:6px;font-family:monospace;font-size:0.8rem;color:#374151;'>
-        <p style='margin:2px 0;'>目的網路 → 下一跳</p>
-        <p style='margin:2px 0;color:#1e40af;'>140.92.0.0/16 → 203.72.1.1</p>
-        <p style='margin:2px 0;color:#1e40af;'>8.8.8.0/24 → 203.72.1.254</p>
-        <p style='margin:2px 0;color:#6b7280;'>0.0.0.0/0 → 預設閘道</p>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📮 信封設定步驟</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'><strong>郵件 → 開始合併列印 → 信封</strong>：設定信封尺寸</div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'>台灣常用：<strong>DL（22x11cm）</strong> 或 <strong>6號信封（17.3x12cm）</strong></div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'>資料欄位：姓名、地址、郵遞區號（分開欄位）</div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'>設定寄件人（固定文字，不合併）</div>
       </div>
     </div>
-    <div style='background:#f0fdf4;padding:12px;border-radius:8px;'>
-      <h3 style='color:#15803d;font-size:0.95rem;margin-bottom:8px;'>⚡ 動態路由協定</h3>
-      <ul style='color:#374151;font-size:0.9rem;padding-left:18px;margin:0;'>
-        <li><strong>RIP</strong>：距離向量，小型網路</li>
-        <li><strong>OSPF</strong>：連結狀態，企業常用</li>
-        <li><strong>BGP</strong>：ISP 間的骨幹路由協定</li>
-      </ul>
-    </div>
   </div>
   <div>
-    <div style='background:#fef9c3;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#854d0e;font-size:1rem;margin-bottom:10px;'>🎯 生活比喻</h3>
-      <p style='color:#374151;font-size:0.9rem;'>路由器就像一個<strong>智慧導航系統</strong>：</p>
-      <ul style='color:#374151;font-size:0.9rem;padding-left:18px;margin-top:8px;'>
-        <li>目的地 = 目標 IP</li>
-        <li>道路 = 網路連線</li>
-        <li>塞車 = 頻寬擁塞</li>
-        <li>改道 = 動態路由更新</li>
-      </ul>
-    </div>
-    <div style='background:#fdf4ff;padding:12px;border-radius:8px;'>
-      <p style='color:#7c3aed;font-size:0.9rem;margin:0;'>🔍 <strong>tracert / traceroute</strong> 指令可以看到你的封包經過哪些路由器（跳點），從台灣連到美國通常要經過 15-20 個跳點！</p>
+    <div style='background:#f8fafc;border:2px solid #e2e8f0;padding:15px;border-radius:10px;'>
+      <h3 style='color:#374151;font-size:.9rem;margin-bottom:10px;text-align:center;'>信封範本示意</h3>
+      <div style='background:#fff;padding:15px;border-radius:8px;border:1px solid #e5e7eb;min-height:100px;position:relative;font-size:.8rem;'>
+        <div style='position:absolute;top:10px;left:10px;'>
+          <p style='color:#374151;margin:0;font-size:.75rem;'>芳和實驗中學</p>
+          <p style='color:#374151;margin:0;font-size:.75rem;'>台北市大安區和平東路三段</p>
+        </div>
+        <div style='position:absolute;top:10px;right:10px;width:55px;height:25px;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;'>
+          <p style='color:#94a3b8;font-size:.65rem;margin:0;'>郵票</p>
+        </div>
+        <div style='position:absolute;bottom:15px;right:15px;text-align:right;'>
+          <p style='color:#854d0e;font-weight:700;font-size:.8rem;background:#fef9c3;padding:2px 4px;border-radius:3px;display:inline-block;margin-bottom:3px;'>《《郵遞區號》》</p><br>
+          <p style='color:#374151;margin:0;font-size:.8rem;'>《《地址》》</p>
+          <p style='color:#374151;margin:0;font-size:.8rem;'><span style='background:#fef9c3;padding:1px 4px;border-radius:3px;color:#854d0e;font-weight:700;'>《《姓名》》</span> 收</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>"""
     },
     {
-        'id': 11,
-        'chapter': '第二章：TCP/IP 與位址',
-        'title': '埠號與常見服務',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
+        'id': 10, 'chapter': '第二章：合併列印實作', 'title': '地址標籤',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 class='slide-title'>埠號（Port）與常見服務</h2>
-<p style='color:#374151;font-size:0.95rem;margin-bottom:15px;'>IP 位址找到電腦，埠號（Port）指定電腦上的服務。就像公寓大樓：IP = 門牌號碼，Port = 幾號房。</p>
+<h2 class='slide-title'>實作三：地址標籤批次列印</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div>
-    <table style='width:100%;border-collapse:collapse;font-size:0.9rem;'>
-      <tr style='background:#1e40af;color:#fff;'>
-        <th style='padding:8px;text-align:left;'>埠號</th>
-        <th style='padding:8px;text-align:left;'>服務</th>
-        <th style='padding:8px;text-align:left;'>用途</th>
-      </tr>
-      <tr style='background:#eff6ff;'><td style='padding:8px;font-weight:700;color:#1e40af;'>80</td><td style='padding:8px;color:#374151;'>HTTP</td><td style='padding:8px;color:#374151;'>網頁瀏覽</td></tr>
-      <tr><td style='padding:8px;font-weight:700;color:#1e40af;'>443</td><td style='padding:8px;color:#374151;'>HTTPS</td><td style='padding:8px;color:#374151;'>加密網頁</td></tr>
-      <tr style='background:#eff6ff;'><td style='padding:8px;font-weight:700;color:#1e40af;'>25</td><td style='padding:8px;color:#374151;'>SMTP</td><td style='padding:8px;color:#374151;'>寄送電子郵件</td></tr>
-      <tr><td style='padding:8px;font-weight:700;color:#1e40af;'>110</td><td style='padding:8px;color:#374151;'>POP3</td><td style='padding:8px;color:#374151;'>收取電子郵件</td></tr>
-      <tr style='background:#eff6ff;'><td style='padding:8px;font-weight:700;color:#1e40af;'>21</td><td style='padding:8px;color:#374151;'>FTP</td><td style='padding:8px;color:#374151;'>檔案傳輸</td></tr>
-      <tr><td style='padding:8px;font-weight:700;color:#1e40af;'>22</td><td style='padding:8px;color:#374151;'>SSH</td><td style='padding:8px;color:#374151;'>遠端安全連線</td></tr>
-      <tr style='background:#eff6ff;'><td style='padding:8px;font-weight:700;color:#1e40af;'>53</td><td style='padding:8px;color:#374151;'>DNS</td><td style='padding:8px;color:#374151;'>網域名稱解析</td></tr>
-    </table>
+    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🏷️ 標籤設定步驟</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'><strong>郵件 → 開始合併列印 → 標籤</strong></div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'>選擇標籤廠商和型號（如 Avery A4）</div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'>在「第一個標籤」設計版面</div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'>點擊「更新標籤」複製到所有標籤</div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'>預覽確認後直接列印到標籤貼紙</div>
+      </div>
+    </div>
+    <div style='background:#fef9c3;padding:10px;border-radius:8px;'>
+      <p style='color:#854d0e;font-size:.83rem;margin:0;'>💡 一頁 A4 可放 12–24 個標籤，效率極高！</p>
+    </div>
   </div>
   <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:8px;'>🔢 埠號範圍</h3>
-      <ul style='color:#374151;font-size:0.9rem;padding-left:18px;'>
-        <li><strong>0-1023</strong>：知名埠（Well-known），系統保留</li>
-        <li><strong>1024-49151</strong>：已登記埠，應用程式使用</li>
-        <li><strong>49152-65535</strong>：動態/私有埠，暫時分配</li>
-      </ul>
+    <div style='background:#f8fafc;border:2px solid #e2e8f0;padding:12px;border-radius:10px;'>
+      <h3 style='color:#374151;font-size:.85rem;margin-bottom:10px;text-align:center;'>標籤頁面示意（3×4=12標籤）</h3>
+      <div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;'>
+        {labels}
+      </div>
     </div>
-    <div style='background:#fff7ed;padding:12px;border-radius:8px;'>
-      <p style='color:#9a3412;font-size:0.9rem;margin:0;'>🔒 <strong>防火牆</strong>根據 IP + Port 規則決定是否允許流量通過。例如：只開放 80/443 給外部訪問，其他 Port 一律封鎖。</p>
-    </div>
+  </div>
+</div>""".replace('{labels}', ''.join([
+    f"<div style='background:#fff;border:1px solid #e2e8f0;padding:6px;border-radius:4px;font-size:.65rem;color:#374151;text-align:center;'><span style='color:#854d0e;font-weight:700;'>《《姓名》》</span><br><span style='color:#6b7280;'>《《地址》》</span></div>" if i < 6 else
+    f"<div style='background:#f8fafc;border:1px solid #e2e8f0;padding:6px;border-radius:4px;font-size:.65rem;color:#94a3b8;text-align:center;'>（空白）</div>"
+    for i in range(12)
+])
+)
+    },
+    {
+        'id': 11, 'chapter': '第二章：合併列印實作', 'title': '常見問題排除',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+        'html': """
+<h2 class='slide-title'>合併列印常見問題 Q&A</h2>
+<div style='display:flex;flex-direction:column;gap:10px;'>
+  <div style='display:grid;grid-template-columns:1fr 3fr;gap:12px;background:#fef2f2;padding:12px;border-radius:10px;align-items:start;'>
+    <div style='background:#dc2626;color:#fff;padding:8px;border-radius:8px;text-align:center;font-size:.82rem;font-weight:700;'>❓ 問題<br>合併後日期格式錯誤（顯示英文格式）</div>
+    <div style='background:#fff;padding:10px;border-radius:8px;font-size:.82rem;color:#374151;'>在欄位上右鍵 → 編輯功能變數 → 圖片格式：加入 <code style='color:#1e40af;'>\\@ "yyyy年MM月dd日"</code> 轉換日期格式。</div>
+  </div>
+  <div style='display:grid;grid-template-columns:1fr 3fr;gap:12px;background:#fff7ed;padding:12px;border-radius:10px;align-items:start;'>
+    <div style='background:#ea580c;color:#fff;padding:8px;border-radius:8px;text-align:center;font-size:.82rem;font-weight:700;'>❓ 問題<br>金額出現小數點（如 100.00）</div>
+    <div style='background:#fff;padding:10px;border-radius:8px;font-size:.82rem;color:#374151;'>在欄位上右鍵 → 編輯功能變數 → 加入 <code style='color:#1e40af;'>\\# "#,##0"</code> 格式化數字，去除小數並加千分位。</div>
+  </div>
+  <div style='display:grid;grid-template-columns:1fr 3fr;gap:12px;background:#eff6ff;padding:12px;border-radius:10px;align-items:start;'>
+    <div style='background:#2563eb;color:#fff;padding:8px;border-radius:8px;text-align:center;font-size:.82rem;font-weight:700;'>❓ 問題<br>連結資料時找不到 Excel 檔</div>
+    <div style='background:#fff;padding:10px;border-radius:8px;font-size:.82rem;color:#374151;'>確認 Excel 檔案已關閉（Word 無法連結開啟中的檔案），且路徑中不要有特殊字元。</div>
   </div>
 </div>"""
     },
     {
-        'id': 12,
-        'chapter': '第二章：TCP/IP 與位址',
-        'title': '🎯 第二章 隨堂測驗',
-        'bg': 'purple',
-        'quiz': 'q2',
-        'chart': None,
-        'video': None,
+        'id': 12, 'chapter': '第二章：合併列印實作', 'title': '🎯 第二章 隨堂測驗',
+        'bg': 'purple', 'quiz': 'q2', 'chart': None, 'video': None,
         'html': """
 <div style='text-align:center;padding:20px;'>
   <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
   <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第二章 隨堂測驗</h2>
-  <p style='color:#e9d5ff;font-size:1.1rem;'>TCP/IP 與 IP 位址 ── 2 道題目，點擊作答！</p>
+  <p style='color:#e9d5ff;font-size:1.1rem;'>合併列印實作 ── 2 道題目，點擊作答！</p>
 </div>"""
     },
     {
-        'id': 13,
-        'chapter': '第三章：DNS 與 HTTP/HTTPS',
-        'title': 'DNS — 網路的電話簿',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
+        'id': 13, 'chapter': '第三章：Google 表單設計', 'title': '認識 Google 表單',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 class='slide-title'>DNS — 網路的電話簿</h2>
+<h2 class='slide-title'>Google 表單：免費強大的問卷工具</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div>
     <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🔍 DNS 解析流程</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;'>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
-          <span style='color:#1e40af;font-size:0.8rem;font-weight:700;'>1</span>
-          <span style='color:#374151;font-size:0.85rem;'> 瀏覽器查詢本機 DNS 快取</span>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
-          <span style='color:#1e40af;font-size:0.8rem;font-weight:700;'>2</span>
-          <span style='color:#374151;font-size:0.85rem;'> 查詢 ISP 的 DNS 解析器</span>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
-          <span style='color:#1e40af;font-size:0.8rem;font-weight:700;'>3</span>
-          <span style='color:#374151;font-size:0.85rem;'> 詢問根 DNS 伺服器（. / Root）</span>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
-          <span style='color:#1e40af;font-size:0.8rem;font-weight:700;'>4</span>
-          <span style='color:#374151;font-size:0.85rem;'> 詢問頂層域名（.com / .tw）伺服器</span>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
-          <span style='color:#1e40af;font-size:0.8rem;font-weight:700;'>5</span>
-          <span style='color:#374151;font-size:0.85rem;'> 取得 IP，快取結果並回傳瀏覽器</span>
-        </div>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📝 Google 表單能做什麼？</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'>📋 問卷調查（選項、評分、開放題）</div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'>✅ 線上測驗（自動批改、顯示分數）</div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'>📅 活動報名（收集姓名聯絡資訊）</div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'>📊 資料蒐集（自動整理到試算表）</div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'>🔗 分享連結，任何裝置都能填寫</div>
       </div>
     </div>
   </div>
   <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>🌐 常用公共 DNS</h3>
-      <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
-        <tr style='background:#15803d;color:#fff;'>
-          <th style='padding:6px;'>提供者</th><th style='padding:6px;'>IP</th>
-        </tr>
-        <tr><td style='padding:6px;color:#374151;'>Google</td><td style='padding:6px;color:#374151;font-weight:700;'>8.8.8.8 / 8.8.4.4</td></tr>
-        <tr style='background:#f8fafc;'><td style='padding:6px;color:#374151;'>Cloudflare</td><td style='padding:6px;color:#374151;font-weight:700;'>1.1.1.1 / 1.0.0.1</td></tr>
-        <tr><td style='padding:6px;color:#374151;'>台灣學術網路</td><td style='padding:6px;color:#374151;font-weight:700;'>168.95.1.1</td></tr>
-      </table>
-    </div>
-    <div style='background:#fef2f2;padding:12px;border-radius:8px;'>
-      <p style='color:#dc2626;font-size:0.9rem;margin:0;'>⚠️ <strong>DNS 污染攻擊</strong>：駭客偽造 DNS 回應，把正確域名指向惡意 IP，誘騙用戶連到假網站（釣魚網站）。</p>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>⭐ 為什麼選 Google 表單？</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
+        <div style='background:#dcfce7;padding:7px;border-radius:5px;color:#15803d;'>✅ 完全免費，無限筆數</div>
+        <div style='background:#dcfce7;padding:7px;border-radius:5px;color:#15803d;'>✅ 不需安裝任何軟體</div>
+        <div style='background:#dcfce7;padding:7px;border-radius:5px;color:#15803d;'>✅ 即時查看回應統計圖表</div>
+        <div style='background:#dcfce7;padding:7px;border-radius:5px;color:#15803d;'>✅ 自動同步到 Google 試算表</div>
+        <div style='background:#dcfce7;padding:7px;border-radius:5px;color:#15803d;'>✅ 可設定截止時間和填寫限制</div>
+      </div>
     </div>
   </div>
 </div>"""
     },
     {
-        'id': 14,
-        'chapter': '第三章：DNS 與 HTTP/HTTPS',
-        'title': 'HTTP vs HTTPS',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': {'url': 'https://www.youtube.com/embed/hExRDVZHhig', 'title': 'HTTPS 如何運作', 'desc': '了解 SSL/TLS 加密保護你的網路流量'},
+        'id': 14, 'chapter': '第三章：Google 表單設計', 'title': '題型選擇',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 class='slide-title'>HTTP vs HTTPS</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div style='background:#fef2f2;padding:15px;border-radius:10px;'>
-    <h3 style='color:#dc2626;font-size:1.1rem;margin-bottom:10px;text-align:center;'>🔓 HTTP（不安全）</h3>
-    <ul style='color:#374151;font-size:0.9rem;padding-left:18px;'>
-      <li>明文傳輸，資料未加密</li>
-      <li>中間人可攔截、竄改</li>
-      <li>預設使用 Port 80</li>
-      <li>瀏覽器顯示「不安全」</li>
-    </ul>
-    <div style='background:#fee2e2;padding:8px;border-radius:6px;margin-top:10px;text-align:center;'>
-      <p style='color:#991b1b;font-size:0.85rem;margin:0;'>🚨 不應在 HTTP 輸入密碼！</p>
+<h2 class='slide-title'>Google 表單題型全覽</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:16px;'>
+  <div style='display:flex;flex-direction:column;gap:8px;'>
+    <div style='background:#eff6ff;padding:10px;border-radius:8px;border-left:3px solid #2563eb;'>
+      <h3 style='color:#1e40af;font-size:.88rem;margin-bottom:4px;'>🔘 單選題（選項按鈕）</h3>
+      <p style='color:#374151;font-size:.78rem;margin:0;'>只能選一個答案，適合明確二選一或少數選項</p>
+    </div>
+    <div style='background:#f0fdf4;padding:10px;border-radius:8px;border-left:3px solid #16a34a;'>
+      <h3 style='color:#15803d;font-size:.88rem;margin-bottom:4px;'>☑️ 核取方塊（複選）</h3>
+      <p style='color:#374151;font-size:.78rem;margin:0;'>可選多個答案，適合「選出所有符合的」</p>
+    </div>
+    <div style='background:#fdf4ff;padding:10px;border-radius:8px;border-left:3px solid #7c3aed;'>
+      <h3 style='color:#7c3aed;font-size:.88rem;margin-bottom:4px;'>🔽 下拉式選單</h3>
+      <p style='color:#374151;font-size:.78rem;margin:0;'>只能選一個，適合選項多（縣市、年級等）</p>
+    </div>
+    <div style='background:#fff7ed;padding:10px;border-radius:8px;border-left:3px solid #ea580c;'>
+      <h3 style='color:#ea580c;font-size:.88rem;margin-bottom:4px;'>📏 線性刻度</h3>
+      <p style='color:#374151;font-size:.78rem;margin:0;'>1–5 或 1–10 的滿意度、重要性評分</p>
     </div>
   </div>
-  <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
-    <h3 style='color:#15803d;font-size:1.1rem;margin-bottom:10px;text-align:center;'>🔒 HTTPS（安全）</h3>
-    <ul style='color:#374151;font-size:0.9rem;padding-left:18px;'>
-      <li>TLS/SSL 加密傳輸</li>
-      <li>伺服器身份驗證（憑證）</li>
-      <li>預設使用 Port 443</li>
-      <li>瀏覽器顯示「🔒」鎖頭</li>
-    </ul>
-    <div style='background:#dcfce7;padding:8px;border-radius:6px;margin-top:10px;text-align:center;'>
-      <p style='color:#15803d;font-size:0.85rem;margin:0;'>✅ 網路銀行、購物必備</p>
+  <div style='display:flex;flex-direction:column;gap:8px;'>
+    <div style='background:#fef9c3;padding:10px;border-radius:8px;border-left:3px solid #ca8a04;'>
+      <h3 style='color:#854d0e;font-size:.88rem;margin-bottom:4px;'>📝 簡答（短文字）</h3>
+      <p style='color:#374151;font-size:.78rem;margin:0;'>填寫姓名、電話等短文字，一行內容</p>
     </div>
-  </div>
-</div>
-<div style='background:#eff6ff;padding:12px;border-radius:8px;margin-top:15px;'>
-  <h3 style='color:#1e40af;font-size:0.95rem;margin-bottom:8px;'>🤝 TLS 握手流程（簡化）</h3>
-  <div style='display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;'>
-    <span style='background:#2563eb;color:#fff;padding:5px 12px;border-radius:6px;font-size:0.85rem;'>1. Client Hello</span>
-    <span style='color:#1e40af;'>→</span>
-    <span style='background:#2563eb;color:#fff;padding:5px 12px;border-radius:6px;font-size:0.85rem;'>2. Server 送憑證</span>
-    <span style='color:#1e40af;'>→</span>
-    <span style='background:#2563eb;color:#fff;padding:5px 12px;border-radius:6px;font-size:0.85rem;'>3. 協商加密金鑰</span>
-    <span style='color:#1e40af;'>→</span>
-    <span style='background:#16a34a;color:#fff;padding:5px 12px;border-radius:6px;font-size:0.85rem;'>4. 加密通訊開始！</span>
+    <div style='background:#fef2f2;padding:10px;border-radius:8px;border-left:3px solid #dc2626;'>
+      <h3 style='color:#dc2626;font-size:.88rem;margin-bottom:4px;'>📄 段落（長文字）</h3>
+      <p style='color:#374151;font-size:.78rem;margin:0;'>填寫長段意見、建議，多行文字</p>
+    </div>
+    <div style='background:#f0fdf4;padding:10px;border-radius:8px;border-left:3px solid #0d9488;'>
+      <h3 style='color:#0d9488;font-size:.88rem;margin-bottom:4px;'>📅 日期 / 時間</h3>
+      <p style='color:#374151;font-size:.78rem;margin:0;'>選擇日期或時間，顯示日期選擇器</p>
+    </div>
+    <div style='background:#eff6ff;padding:10px;border-radius:8px;border-left:3px solid #6366f1;'>
+      <h3 style='color:#4338ca;font-size:.88rem;margin-bottom:4px;'>🔲 方格（矩陣題）</h3>
+      <p style='color:#374151;font-size:.78rem;margin:0;'>多題共用相同選項，節省版面</p>
+    </div>
   </div>
 </div>"""
     },
     {
-        'id': 15,
-        'chapter': '第三章：DNS 與 HTTP/HTTPS',
-        'title': 'HTTP 請求與回應',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
+        'id': 15, 'chapter': '第三章：Google 表單設計', 'title': '表單進階設定',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 class='slide-title'>HTTP 請求與回應</h2>
+<h2 class='slide-title'>Google 表單進階設定</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div>
-    <div style='background:#f1f5f9;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#374151;font-size:1rem;margin-bottom:8px;'>📤 HTTP 方法</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;'>
-        <div style='background:#dcfce7;padding:8px;border-radius:6px;'>
-          <span style='color:#15803d;font-weight:700;font-size:0.9rem;'>GET</span>
-          <span style='color:#374151;font-size:0.85rem;'> — 取得資源（瀏覽網頁）</span>
-        </div>
-        <div style='background:#dbeafe;padding:8px;border-radius:6px;'>
-          <span style='color:#1e40af;font-weight:700;font-size:0.9rem;'>POST</span>
-          <span style='color:#374151;font-size:0.85rem;'> — 送出資料（填表單）</span>
-        </div>
-        <div style='background:#fef9c3;padding:8px;border-radius:6px;'>
-          <span style='color:#854d0e;font-weight:700;font-size:0.9rem;'>PUT</span>
-          <span style='color:#374151;font-size:0.85rem;'> — 更新資源</span>
-        </div>
-        <div style='background:#fee2e2;padding:8px;border-radius:6px;'>
-          <span style='color:#dc2626;font-weight:700;font-size:0.9rem;'>DELETE</span>
-          <span style='color:#374151;font-size:0.85rem;'> — 刪除資源</span>
-        </div>
+    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>⚙️ 常用設定</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'><strong style='color:#1e40af;'>每人限填一次</strong>：需要 Google 帳號，防止重複填寫</div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'><strong style='color:#1e40af;'>顯示進度列</strong>：讓填寫者知道還有幾題</div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'><strong style='color:#1e40af;'>填寫後顯示結果</strong>：可讓填寫者看到統計圖</div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'><strong style='color:#1e40af;'>確認訊息</strong>：填寫完成後顯示感謝文字</div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;color:#374151;'><strong style='color:#1e40af;'>截止接受回應</strong>：到期後自動關閉</div>
       </div>
     </div>
   </div>
   <div>
-    <div style='background:#fff;border:1px solid #e5e7eb;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#374151;font-size:1rem;margin-bottom:8px;'>📊 常見狀態碼</h3>
-      <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
-        <tr><td style='padding:6px;'><span style='background:#dcfce7;color:#15803d;padding:2px 8px;border-radius:4px;font-weight:700;'>200</span></td><td style='padding:6px;color:#374151;'>OK — 成功</td></tr>
-        <tr><td style='padding:6px;'><span style='background:#dbeafe;color:#1e40af;padding:2px 8px;border-radius:4px;font-weight:700;'>301</span></td><td style='padding:6px;color:#374151;'>永久重導向</td></tr>
-        <tr><td style='padding:6px;'><span style='background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:4px;font-weight:700;'>404</span></td><td style='padding:6px;color:#374151;'>找不到頁面</td></tr>
-        <tr><td style='padding:6px;'><span style='background:#fee2e2;color:#dc2626;padding:2px 8px;border-radius:4px;font-weight:700;'>500</span></td><td style='padding:6px;color:#374151;'>伺服器錯誤</td></tr>
-        <tr><td style='padding:6px;'><span style='background:#fdf4ff;color:#7c3aed;padding:2px 8px;border-radius:4px;font-weight:700;'>403</span></td><td style='padding:6px;color:#374151;'>禁止存取</td></tr>
-      </table>
-    </div>
-    <div style='background:#fff7ed;padding:10px;border-radius:8px;'>
-      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>💡 REST API 就是遵循 HTTP 規範設計的程式介面，Google Maps、LINE 等服務的 API 都使用 HTTP 方法傳遞資料。</p>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>📊 分區設計</h3>
+      <p style='color:#374151;font-size:.88rem;margin-bottom:8px;'>長問卷可分成多個「區段」：</p>
+      <ul style='color:#374151;font-size:.83rem;padding-left:16px;'>
+        <li>每區段有標題說明，視覺清楚</li>
+        <li>可設定根據答案跳至不同區段</li>
+        <li>例如：選「是」→ 到第2區；選「否」→ 直接到最後</li>
+      </ul>
+      <div style='background:#dcfce7;padding:8px;border-radius:6px;margin-top:8px;'>
+        <p style='color:#15803d;font-size:.8rem;margin:0;'>新增區段：最下方工具列 → 新增區段圖示</p>
+      </div>
     </div>
   </div>
 </div>"""
     },
     {
-        'id': 16,
-        'chapter': '第三章：DNS 與 HTTP/HTTPS',
-        'title': '網路安全新聞事件',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
+        'id': 16, 'chapter': '第三章：Google 表單設計', 'title': '線上測驗設計',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 class='slide-title'>網路安全新聞事件</h2>
+<h2 class='slide-title'>Google 表單當測驗：自動批改</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div style='display:flex;flex-direction:column;gap:12px;'>
-    <div style='background:#fef2f2;padding:14px;border-radius:10px;border-left:4px solid #dc2626;'>
-      <h3 style='color:#dc2626;font-size:0.95rem;margin-bottom:6px;'>📰 2023 台積電供應商遭勒索</h3>
-      <p style='color:#374151;font-size:0.85rem;margin:0;'>駭客組織 LockBit 入侵台積電供應商 Kinmax，竊取並威脅公開 70GB 技術資料。事件凸顯「供應鏈資安」的重要性——供應商被駭，客戶機密也可能外洩。</p>
-    </div>
-    <div style='background:#fff7ed;padding:14px;border-radius:10px;border-left:4px solid #ea580c;'>
-      <h3 style='color:#ea580c;font-size:0.95rem;margin-bottom:6px;'>📰 2016 一銀 ATM 盜領事件</h3>
-      <p style='color:#374151;font-size:0.85rem;margin:0;'>國際駭客集團入侵第一銀行內部網路，遠端植入惡意程式讓 41 台 ATM 自動吐鈔，盜領 8,300 多萬元，是台灣史上最大 ATM 竊案，最終靠監視器與民眾報案破案。</p>
+  <div>
+    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🎓 啟用測驗模式</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;display:flex;gap:6px;align-items:center;'><span style='background:#2563eb;color:#fff;width:18px;height:18px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;'>1</span><span style='color:#374151;'>設定 → 測驗 → 將此表單設為測驗</span></div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;display:flex;gap:6px;align-items:center;'><span style='background:#2563eb;color:#fff;width:18px;height:18px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;'>2</span><span style='color:#374151;'>每題設定正確答案和分數</span></div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;display:flex;gap:6px;align-items:center;'><span style='background:#2563eb;color:#fff;width:18px;height:18px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;'>3</span><span style='color:#374151;'>可加入解釋說明（答完後顯示）</span></div>
+        <div style='background:#dbeafe;padding:7px;border-radius:5px;display:flex;gap:6px;align-items:center;'><span style='background:#2563eb;color:#fff;width:18px;height:18px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;'>4</span><span style='color:#374151;'>設定何時顯示分數（立即/審閱後）</span></div>
+      </div>
     </div>
   </div>
-  <div style='display:flex;flex-direction:column;gap:12px;'>
-    <div style='background:#eff6ff;padding:14px;border-radius:10px;border-left:4px solid #2563eb;'>
-      <h3 style='color:#1e40af;font-size:0.95rem;margin-bottom:6px;'>🛡️ 防禦措施</h3>
-      <ul style='color:#374151;font-size:0.85rem;padding-left:16px;margin:0;'>
-        <li>確認網址使用 HTTPS 🔒</li>
-        <li>使用 DNS over HTTPS（DoH）</li>
-        <li>啟用 VPN 在公共 Wi-Fi</li>
-        <li>定期更新系統與憑證</li>
-      </ul>
-    </div>
-    <div style='background:#f0fdf4;padding:14px;border-radius:10px;border-left:4px solid #16a34a;'>
-      <h3 style='color:#15803d;font-size:0.95rem;margin-bottom:6px;'>✅ 辨識安全網站</h3>
-      <ul style='color:#374151;font-size:0.85rem;padding-left:16px;margin:0;'>
-        <li>瀏覽器鎖頭圖示 🔒</li>
-        <li>網址列開頭是 https://</li>
-        <li>憑證有效期未過期</li>
-        <li>憑證由可信 CA 簽發</li>
-      </ul>
+  <div>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>✅ 支援自動批改的題型</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
+        <div style='background:#dcfce7;padding:6px;border-radius:5px;color:#15803d;'>✅ 單選題（完全自動批改）</div>
+        <div style='background:#dcfce7;padding:6px;border-radius:5px;color:#15803d;'>✅ 核取方塊（多選題）</div>
+        <div style='background:#dcfce7;padding:6px;border-radius:5px;color:#15803d;'>✅ 下拉式選單</div>
+        <div style='background:#fef9c3;padding:6px;border-radius:5px;color:#854d0e;'>⚠️ 簡答題（需設定正確答案，大小寫敏感）</div>
+        <div style='background:#fee2e2;padding:6px;border-radius:5px;color:#dc2626;'>❌ 段落（長文字）需人工批改</div>
+      </div>
     </div>
   </div>
 </div>"""
     },
     {
-        'id': 17,
-        'chapter': '第三章：DNS 與 HTTP/HTTPS',
-        'title': '🎯 第三章 隨堂測驗',
-        'bg': 'purple',
-        'quiz': 'q3',
-        'chart': None,
-        'video': None,
+        'id': 17, 'chapter': '第三章：Google 表單設計', 'title': '🎯 第三章 隨堂測驗',
+        'bg': 'purple', 'quiz': 'q3', 'chart': None, 'video': None,
         'html': """
 <div style='text-align:center;padding:20px;'>
   <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
   <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第三章 隨堂測驗</h2>
-  <p style='color:#e9d5ff;font-size:1.1rem;'>DNS 與 HTTP/HTTPS ── 2 道題目，點擊作答！</p>
+  <p style='color:#e9d5ff;font-size:1.1rem;'>Google 表單設計 ── 2 道題目，點擊作答！</p>
 </div>"""
     },
     {
-        'id': 18,
-        'chapter': '第四章：無線網路與 5G',
-        'title': 'Wi-Fi 標準演進',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
+        'id': 18, 'chapter': '第四章：問卷資料分析', 'title': '表單回應分析',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 class='slide-title'>Wi-Fi 標準演進</h2>
-<div style='overflow-x:auto;'>
-  <table style='width:100%;border-collapse:collapse;font-size:0.9rem;'>
-    <tr style='background:#1e40af;color:#fff;'>
-      <th style='padding:10px;'>標準</th>
-      <th style='padding:10px;'>年份</th>
-      <th style='padding:10px;'>頻段</th>
-      <th style='padding:10px;'>最高速率</th>
-      <th style='padding:10px;'>特色</th>
-    </tr>
-    <tr style='background:#f8fafc;'><td style='padding:8px;text-align:center;font-weight:700;color:#374151;'>802.11g</td><td style='padding:8px;text-align:center;color:#374151;'>2003</td><td style='padding:8px;text-align:center;color:#374151;'>2.4 GHz</td><td style='padding:8px;text-align:center;color:#374151;'>54 Mbps</td><td style='padding:8px;color:#374151;'>普及化 Wi-Fi</td></tr>
-    <tr><td style='padding:8px;text-align:center;font-weight:700;color:#1e40af;'>802.11n<br><span style='font-size:0.75rem;'>(Wi-Fi 4)</span></td><td style='padding:8px;text-align:center;color:#374151;'>2009</td><td style='padding:8px;text-align:center;color:#374151;'>2.4/5 GHz</td><td style='padding:8px;text-align:center;color:#374151;'>600 Mbps</td><td style='padding:8px;color:#374151;'>MIMO 多天線</td></tr>
-    <tr style='background:#f8fafc;'><td style='padding:8px;text-align:center;font-weight:700;color:#7c3aed;'>802.11ac<br><span style='font-size:0.75rem;'>(Wi-Fi 5)</span></td><td style='padding:8px;text-align:center;color:#374151;'>2013</td><td style='padding:8px;text-align:center;color:#374151;'>5 GHz</td><td style='padding:8px;text-align:center;color:#374151;'>6.9 Gbps</td><td style='padding:8px;color:#374151;'>MU-MIMO</td></tr>
-    <tr><td style='padding:8px;text-align:center;font-weight:700;color:#15803d;'>802.11ax<br><span style='font-size:0.75rem;'>(Wi-Fi 6)</span></td><td style='padding:8px;text-align:center;color:#374151;'>2019</td><td style='padding:8px;text-align:center;color:#374151;'>2.4/5/6 GHz</td><td style='padding:8px;text-align:center;color:#374151;'>9.6 Gbps</td><td style='padding:8px;color:#374151;'>OFDMA、高密度</td></tr>
-    <tr style='background:#fef9c3;'><td style='padding:8px;text-align:center;font-weight:700;color:#854d0e;'>802.11be<br><span style='font-size:0.75rem;'>(Wi-Fi 7)</span></td><td style='padding:8px;text-align:center;color:#374151;'>2024</td><td style='padding:8px;text-align:center;color:#374151;'>2.4/5/6 GHz</td><td style='padding:8px;text-align:center;color:#374151;'>46 Gbps</td><td style='padding:8px;color:#374151;'>Multi-Link、極低延遲</td></tr>
-  </table>
-</div>
-<div style='background:#eff6ff;padding:10px;border-radius:8px;margin-top:12px;'>
-  <p style='color:#1e40af;font-size:0.9rem;margin:0;'>💡 家用路由器上的「5 GHz」是 Wi-Fi 頻段，不是 5G 行動網路！兩者是不同的技術，記得分辨。</p>
-</div>"""
-    },
-    {
-        'id': 19,
-        'chapter': '第四章：無線網路與 5G',
-        'title': '4G → 5G → 6G',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
-        'html': """
-<h2 class='slide-title'>4G → 5G → 6G 行動通訊演進</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;'>
-  <div style='background:#eff6ff;padding:14px;border-radius:10px;text-align:center;'>
-    <div style='font-size:2rem;margin-bottom:8px;'>📱</div>
-    <h3 style='color:#1e40af;font-size:1.1rem;margin-bottom:10px;'>4G LTE</h3>
-    <ul style='color:#374151;font-size:0.85rem;list-style:none;padding:0;text-align:left;'>
-      <li>⚡ 速度：1 Gbps</li>
-      <li>⏱️ 延遲：30-50ms</li>
-      <li>📅 商用：2009 年</li>
-      <li>✅ 用途：手機上網、影音</li>
-    </ul>
-  </div>
-  <div style='background:#f0fdf4;padding:14px;border-radius:10px;text-align:center;border:2px solid #16a34a;'>
-    <div style='font-size:2rem;margin-bottom:8px;'>🚀</div>
-    <h3 style='color:#15803d;font-size:1.1rem;margin-bottom:10px;'>5G ✨現在</h3>
-    <ul style='color:#374151;font-size:0.85rem;list-style:none;padding:0;text-align:left;'>
-      <li>⚡ 速度：20 Gbps</li>
-      <li>⏱️ 延遲：低於 1ms</li>
-      <li>📅 商用：2019 年</li>
-      <li>✅ 用途：IoT、自駕車、AR</li>
-    </ul>
-  </div>
-  <div style='background:#fdf4ff;padding:14px;border-radius:10px;text-align:center;'>
-    <div style='font-size:2rem;margin-bottom:8px;'>🌌</div>
-    <h3 style='color:#7c3aed;font-size:1.1rem;margin-bottom:10px;'>6G 未來</h3>
-    <ul style='color:#374151;font-size:0.85rem;list-style:none;padding:0;text-align:left;'>
-      <li>⚡ 速度：1 Tbps（預估）</li>
-      <li>⏱️ 延遲：低於 0.1ms</li>
-      <li>📅 商用：約 2030 年</li>
-      <li>✅ 用途：數位孿生、腦機介面</li>
-    </ul>
-  </div>
-</div>
-<div style='background:#fff7ed;padding:12px;border-radius:8px;margin-top:15px;border:1px solid #fdba74;'>
-  <p style='color:#9a3412;font-size:0.9rem;margin:0;'>🇹🇼 <strong>台灣 5G 現況（2024）</strong>：中華電信、台灣大、遠傳、台星、亞太均已開台，全台 5G 覆蓋率達 <strong>92%</strong>。台積電苗栗廠、彰化縣政府等已導入 5G 私網應用。</p>
-</div>"""
-    },
-    {
-        'id': 20,
-        'chapter': '第四章：無線網路與 5G',
-        'title': '5G 改變了什麼？',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
-        'html': """
-<h2 class='slide-title'>5G 改變了什麼？台灣應用案例</h2>
+<h2 class='slide-title'>Google 表單回應分析</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div style='display:flex;flex-direction:column;gap:12px;'>
-    <div style='background:#f0fdf4;padding:14px;border-radius:10px;border-left:4px solid #16a34a;'>
-      <h3 style='color:#15803d;font-size:0.95rem;margin-bottom:6px;'>🏭 智慧工廠</h3>
-      <p style='color:#374151;font-size:0.85rem;margin:0;'>台積電導入 5G 私網，AGV 自動搬運車透過 5G 精準定位，替代有線纜線束縛，生產效率提升 20%。</p>
-    </div>
-    <div style='background:#eff6ff;padding:14px;border-radius:10px;border-left:4px solid #2563eb;'>
-      <h3 style='color:#1e40af;font-size:0.95rem;margin-bottom:6px;'>🏥 遠距醫療</h3>
-      <p style='color:#374151;font-size:0.85rem;margin:0;'>成大醫院與台南偏鄉診所合作，外科醫師在台南市遠端指導手術，5G 低延遲讓影像傳輸近乎即時。</p>
-    </div>
-    <div style='background:#fdf4ff;padding:14px;border-radius:10px;border-left:4px solid #7c3aed;'>
-      <h3 style='color:#7c3aed;font-size:0.95rem;margin-bottom:6px;'>🚗 自動駕駛</h3>
-      <p style='color:#374151;font-size:0.85rem;margin:0;'>桃園機場園區試行 5G 自動接駁車，運用 5G 低延遲感測數據，實現安全的無人駕駛。</p>
+  <div>
+    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📊 內建圖表</h3>
+      <p style='color:#374151;font-size:.88rem;margin-bottom:8px;'>點擊「回應」標籤，Google 表單自動產生：</p>
+      <ul style='color:#374151;font-size:.83rem;padding-left:16px;'>
+        <li>圓餅圖（單選題）</li>
+        <li>長條圖（核取方塊）</li>
+        <li>統計數字（總回應數）</li>
+        <li>各題回應摘要</li>
+      </ul>
     </div>
   </div>
   <div>
-    <div style='background:#fef9c3;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#854d0e;font-size:1rem;margin-bottom:10px;'>📊 5G 三大應用場景（ITU）</h3>
-      <div style='display:flex;flex-direction:column;gap:8px;'>
-        <div style='background:#fff;padding:10px;border-radius:6px;'>
-          <strong style='color:#854d0e;font-size:0.85rem;'>eMBB</strong>
-          <p style='color:#374151;font-size:0.8rem;margin:2px 0 0;'>超高頻寬 — 8K 影音、VR/AR</p>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>📈 連結 Google 試算表</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
+        <div style='background:#dcfce7;padding:7px;border-radius:5px;color:#374151;'>回應 → 點擊試算表圖示 → 建立新試算表</div>
+        <div style='background:#dcfce7;padding:7px;border-radius:5px;color:#374151;'>每次有人填寫，資料即時出現在試算表</div>
+        <div style='background:#dcfce7;padding:7px;border-radius:5px;color:#374151;'>在試算表中可進行進階分析：COUNTIF、排序、篩選</div>
+        <div style='background:#dcfce7;padding:7px;border-radius:5px;color:#374151;'>可建立樞紐分析表進行交叉分析</div>
+      </div>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 19, 'chapter': '第四章：問卷資料分析', 'title': '問卷設計原則',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+        'html': """
+<h2 class='slide-title'>好問卷的設計原則</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>✅ 好問卷應該...</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;font-size:.83rem;'>
+        <div style='background:#dcfce7;padding:6px;border-radius:5px;color:#15803d;'>開頭說明目的和預計填寫時間</div>
+        <div style='background:#dcfce7;padding:6px;border-radius:5px;color:#15803d;'>問題清楚、不含雙重否定</div>
+        <div style='background:#dcfce7;padding:6px;border-radius:5px;color:#15803d;'>選項互斥且完整（有「其他」選項）</div>
+        <div style='background:#dcfce7;padding:6px;border-radius:5px;color:#15803d;'>適當長度（5-10分鐘完成）</div>
+        <div style='background:#dcfce7;padding:6px;border-radius:5px;color:#15803d;'>最後加「感謝填寫」確認訊息</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div style='background:#fef2f2;padding:15px;border-radius:10px;'>
+      <h3 style='color:#dc2626;font-size:1rem;margin-bottom:10px;'>❌ 不好的問卷問題</h3>
+      <div style='display:flex;flex-direction:column;gap:8px;font-size:.83rem;'>
+        <div style='background:#fee2e2;padding:8px;border-radius:6px;'>
+          <p style='color:#dc2626;font-weight:700;margin:0 0 2px;'>引導性問題</p>
+          <p style='color:#374151;margin:0;'>「你不覺得我們的服務很棒嗎？」</p>
         </div>
-        <div style='background:#fff;padding:10px;border-radius:6px;'>
-          <strong style='color:#854d0e;font-size:0.85rem;'>mMTC</strong>
-          <p style='color:#374151;font-size:0.8rem;margin:2px 0 0;'>大規模機器連線 — 智慧城市、農業</p>
+        <div style='background:#fee2e2;padding:8px;border-radius:6px;'>
+          <p style='color:#dc2626;font-weight:700;margin:0 0 2px;'>雙重問題</p>
+          <p style='color:#374151;margin:0;'>「你喜歡這個產品的品質和價格嗎？」（兩件事一題問）</p>
         </div>
-        <div style='background:#fff;padding:10px;border-radius:6px;'>
-          <strong style='color:#854d0e;font-size:0.85rem;'>URLLC</strong>
-          <p style='color:#374151;font-size:0.8rem;margin:2px 0 0;'>超可靠低延遲 — 遠距手術、自駕車</p>
+        <div style='background:#fee2e2;padding:8px;border-radius:6px;'>
+          <p style='color:#dc2626;font-weight:700;margin:0 0 2px;'>模糊問題</p>
+          <p style='color:#374151;margin:0;'>「你常用手機嗎？」（多常算「常」？）</p>
         </div>
       </div>
     </div>
@@ -901,178 +642,140 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 21,
-        'chapter': '第四章：無線網路與 5G',
-        'title': '衛星網路 — Starlink 在台灣',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
+        'id': 20, 'chapter': '第四章：問卷資料分析', 'title': '資料清理與分析',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 class='slide-title'>衛星網路 — Starlink 與台灣</h2>
+<h2 class='slide-title'>問卷資料清理與初步分析</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div>
-    <div style='background:#0f172a;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#38bdf8;font-size:1rem;margin-bottom:10px;'>🛸 SpaceX Starlink</h3>
-      <ul style='color:#e2e8f0;font-size:0.85rem;padding-left:16px;'>
-        <li>低軌道衛星（LEO）：550公里高度</li>
-        <li>全球已部署 <strong>6,000+</strong> 顆衛星</li>
-        <li>下載速度：50-200 Mbps</li>
-        <li>延遲：20-60ms（遠優於傳統衛星）</li>
-        <li>覆蓋偏遠山區、海上、災區</li>
+    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🧹 資料清理</h3>
+      <ul style='color:#374151;font-size:.85rem;padding-left:16px;'>
+        <li>移除填寫不完整的問卷</li>
+        <li>統一格式（如縣市名稱）</li>
+        <li>找出明顯矛盾的回答</li>
+        <li>確認無重複填寫</li>
       </ul>
     </div>
-    <div style='background:#fef2f2;padding:12px;border-radius:8px;'>
-      <p style='color:#dc2626;font-size:0.85rem;margin:0;'>⚠️ <strong>太空垃圾問題</strong>：大量衛星增加碰撞風險（Kessler 效應），各國正在制定太空交通管理法規。</p>
+    <div style='background:#fef9c3;padding:10px;border-radius:8px;'>
+      <p style='color:#854d0e;font-size:.85rem;font-weight:700;margin-bottom:4px;'>常用函數</p>
+      <p style='color:#374151;font-size:.82rem;margin:0;'><code style='color:#1e40af;'>COUNTIF</code>：計算特定條件的筆數<br><code style='color:#1e40af;'>AVERAGEIF</code>：條件平均<br><code style='color:#1e40af;'>UNIQUE</code>：取出唯一值</p>
     </div>
   </div>
   <div>
-    <div style='background:#fff7ed;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#ea580c;font-size:1rem;margin-bottom:10px;'>🇹🇼 Starlink 台灣應用</h3>
-      <ul style='color:#374151;font-size:0.85rem;padding-left:16px;'>
-        <li>2022 年正式在台灣開通服務</li>
-        <li>花東偏遠學校數位落差問題解決</li>
-        <li>海巡署船隻即時通訊</li>
-        <li>2023 年颱風後緊急通訊備援</li>
-        <li>台灣山屋、離島地區普及</li>
-      </ul>
-    </div>
-    <div style='background:#f0fdf4;padding:12px;border-radius:8px;'>
-      <p style='color:#15803d;font-size:0.9rem;margin:0;'>🏔️ <strong>教育意義</strong>：台灣 57% 土地是山地，地面基礎設施難以覆蓋，衛星網路正彌補數位落差，讓每個孩子都能上網學習。</p>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>📊 資料視覺化</h3>
+      <p style='color:#374151;font-size:.88rem;margin-bottom:8px;'>不同資料型態適合不同圖表：</p>
+      <div style='display:flex;flex-direction:column;gap:6px;font-size:.82rem;'>
+        <div style='background:#dcfce7;padding:6px;border-radius:5px;color:#374151;'><strong style='color:#15803d;'>圓餅圖</strong>：各選項佔比（比例關係）</div>
+        <div style='background:#dcfce7;padding:6px;border-radius:5px;color:#374151;'><strong style='color:#15803d;'>長條圖</strong>：各類別數量比較</div>
+        <div style='background:#dcfce7;padding:6px;border-radius:5px;color:#374151;'><strong style='color:#15803d;'>折線圖</strong>：隨時間的變化趨勢</div>
+        <div style='background:#dcfce7;padding:6px;border-radius:5px;color:#374151;'><strong style='color:#15803d;'>散佈圖</strong>：兩變數的相關性</div>
+      </div>
     </div>
   </div>
 </div>"""
     },
     {
-        'id': 22,
-        'chapter': '第四章：無線網路與 5G',
-        'title': '🎯 第四章 隨堂測驗',
-        'bg': 'purple',
-        'quiz': 'q4',
-        'chart': None,
-        'video': None,
+        'id': 21, 'chapter': '第四章：問卷資料分析', 'title': '調查報告撰寫',
+        'bg': 'white', 'quiz': None, 'chart': None, 'video': None,
+        'html': """
+<h2 class='slide-title'>從資料到報告：說一個好故事</h2>
+<div style='background:#1e293b;padding:20px;border-radius:12px;margin-bottom:16px;'>
+  <h3 style='color:#94a3b8;font-size:.85rem;text-align:center;margin-bottom:16px;letter-spacing:.05em;'>調查報告的結構</h3>
+  <div style='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;'>
+    <div style='background:#0f172a;padding:12px;border-radius:8px;text-align:center;border-bottom:3px solid #3b82f6;'>
+      <div style='font-size:1.6rem;'>🎯</div>
+      <p style='color:#93c5fd;font-size:.7rem;margin-top:4px;'>① 研究目的<br>為何調查？</p>
+    </div>
+    <div style='background:#0f172a;padding:12px;border-radius:8px;text-align:center;border-bottom:3px solid #22c55e;'>
+      <div style='font-size:1.6rem;'>👥</div>
+      <p style='color:#86efac;font-size:.7rem;margin-top:4px;'>② 對象與方法<br>誰填？怎麼填？</p>
+    </div>
+    <div style='background:#0f172a;padding:12px;border-radius:8px;text-align:center;border-bottom:3px solid #f59e0b;'>
+      <div style='font-size:1.6rem;'>📊</div>
+      <p style='color:#fcd34d;font-size:.7rem;margin-top:4px;'>③ 資料呈現<br>圖表顯示什麼？</p>
+    </div>
+    <div style='background:#0f172a;padding:12px;border-radius:8px;text-align:center;border-bottom:3px solid #f472b6;'>
+      <div style='font-size:1.6rem;'>💡</div>
+      <p style='color:#f9a8d4;font-size:.7rem;margin-top:4px;'>④ 分析結論<br>代表什麼意義？</p>
+    </div>
+    <div style='background:#0f172a;padding:12px;border-radius:8px;text-align:center;border-bottom:3px solid #a78bfa;'>
+      <div style='font-size:1.6rem;'>📝</div>
+      <p style='color:#c4b5fd;font-size:.7rem;margin-top:4px;'>⑤ 建議<br>可以怎麼改善？</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 22, 'chapter': '第四章：問卷資料分析', 'title': '🎯 第四章 隨堂測驗',
+        'bg': 'purple', 'quiz': 'q4', 'chart': None, 'video': None,
         'html': """
 <div style='text-align:center;padding:20px;'>
   <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
   <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第四章 隨堂測驗</h2>
-  <p style='color:#e9d5ff;font-size:1.1rem;'>無線網路與 5G ── 2 道題目，點擊作答！</p>
+  <p style='color:#e9d5ff;font-size:1.1rem;'>問卷資料分析 ── 2 道題目，點擊作答！</p>
 </div>"""
     },
     {
-        'id': 23,
-        'chapter': '分組實作',
-        'title': '分組實作：網路指令探索',
-        'bg': 'teal',
-        'quiz': None,
-        'chart': None,
-        'video': None,
+        'id': 23, 'chapter': '分組實作', 'title': '分組實作：校園調查與合併列印',
+        'bg': 'teal', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>🖥️ 分組實作：網路指令探索</h2>
+<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>📋 分組實作：校園調查與合併列印</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div style='background:rgba(255,255,255,0.15);padding:18px;border-radius:12px;'>
-    <h3 style='color:#fff;font-size:1rem;margin-bottom:14px;'>📋 實作任務（共 4 項）</h3>
+    <h3 style='color:#fff;font-size:1rem;margin-bottom:14px;'>📋 實作任務</h3>
     <div style='display:flex;flex-direction:column;gap:10px;'>
-      <div style='background:rgba(255,255,255,0.2);padding:10px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:0.9rem;margin:0 0 4px;'>① ping 測試</p>
-        <p style='color:#cffafe;font-size:0.8rem;margin:0;font-family:monospace;'>ping google.com<br>ping 8.8.8.8</p>
-        <p style='color:#a5f3fc;font-size:0.8rem;margin:4px 0 0;'>→ 記錄平均延遲（RTT）</p>
+      <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
+        <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務一：設計問卷</p>
+        <p style='color:#cffafe;font-size:.8rem;margin:0;'>以「同學的數位生活習慣」為主題，設計一份包含至少 3 種題型的 Google 表單問卷</p>
       </div>
-      <div style='background:rgba(255,255,255,0.2);padding:10px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:0.9rem;margin:0 0 4px;'>② nslookup 查詢</p>
-        <p style='color:#cffafe;font-size:0.8rem;margin:0;font-family:monospace;'>nslookup ntpc.gov.tw<br>nslookup youtube.com</p>
-        <p style='color:#a5f3fc;font-size:0.8rem;margin:4px 0 0;'>→ 找出 IP 位址</p>
+      <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
+        <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務二：蒐集資料</p>
+        <p style='color:#cffafe;font-size:.8rem;margin:0;'>請至少 20 位同學填寫問卷，連結試算表整理資料，製作視覺化圖表</p>
       </div>
-      <div style='background:rgba(255,255,255,0.2);padding:10px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:0.9rem;margin:0 0 4px;'>③ tracert 路由追蹤</p>
-        <p style='color:#cffafe;font-size:0.8rem;margin:0;font-family:monospace;'>tracert google.com</p>
-        <p style='color:#a5f3fc;font-size:0.8rem;margin:4px 0 0;'>→ 數一數經過幾個跳點</p>
-      </div>
-      <div style='background:rgba(255,255,255,0.2);padding:10px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:0.9rem;margin:0 0 4px;'>④ ipconfig 查詢</p>
-        <p style='color:#cffafe;font-size:0.8rem;margin:0;font-family:monospace;'>ipconfig /all</p>
-        <p style='color:#a5f3fc;font-size:0.8rem;margin:4px 0 0;'>→ 找出自己的 IP 與 DNS</p>
+      <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
+        <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務三：合併列印</p>
+        <p style='color:#cffafe;font-size:.8rem;margin:0;'>用調查結果製作個人化感謝函，運用合併列印批次產生每位填答者的感謝信</p>
       </div>
     </div>
   </div>
   <div>
     <div style='background:rgba(255,255,255,0.15);padding:15px;border-radius:12px;margin-bottom:12px;'>
-      <h3 style='color:#fff;font-size:1rem;margin-bottom:10px;'>📊 觀察記錄表</h3>
-      <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
-        <tr style='background:rgba(255,255,255,0.2);'>
-          <th style='padding:6px;color:#fff;text-align:left;'>網站</th>
-          <th style='padding:6px;color:#fff;text-align:left;'>IP 位址</th>
-          <th style='padding:6px;color:#fff;text-align:left;'>延遲 ms</th>
-          <th style='padding:6px;color:#fff;text-align:left;'>跳點數</th>
-        </tr>
-        <tr style='background:rgba(255,255,255,0.08);'>
-          <td style='padding:6px;color:#cffafe;'>google.com</td><td style='padding:6px;color:#e2e8f0;'>___________</td><td style='padding:6px;color:#e2e8f0;'>___</td><td style='padding:6px;color:#e2e8f0;'>___</td>
-        </tr>
-        <tr>
-          <td style='padding:6px;color:#cffafe;'>youtube.com</td><td style='padding:6px;color:#e2e8f0;'>___________</td><td style='padding:6px;color:#e2e8f0;'>___</td><td style='padding:6px;color:#e2e8f0;'>___</td>
-        </tr>
-        <tr style='background:rgba(255,255,255,0.08);'>
-          <td style='padding:6px;color:#cffafe;'>ntpc.gov.tw</td><td style='padding:6px;color:#e2e8f0;'>___________</td><td style='padding:6px;color:#e2e8f0;'>___</td><td style='padding:6px;color:#e2e8f0;'>___</td>
-        </tr>
-      </table>
-    </div>
-    <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:10px;'>
-      <h3 style='color:#fff;font-size:0.9rem;margin-bottom:8px;'>🏆 評分標準（100 分）</h3>
-      <ul style='color:#cffafe;font-size:0.85rem;padding-left:16px;margin:0;'>
-        <li>完成 4 項指令操作 <strong style='color:#fff;'>40 分</strong></li>
-        <li>正確記錄觀察資料 <strong style='color:#fff;'>30 分</strong></li>
-        <li>分析：為何台灣 ping 國外較慢？<strong style='color:#fff;'>20 分</strong></li>
-        <li>延伸：找一個有趣的 IP 並說明 <strong style='color:#fff;'>10 分</strong></li>
+      <h3 style='color:#fff;font-size:1rem;margin-bottom:10px;'>📊 成果展示</h3>
+      <ul style='color:#cffafe;font-size:.85rem;padding-left:16px;'>
+        <li>Google 表單問卷連結</li>
+        <li>試算表資料與圖表截圖</li>
+        <li>調查結果簡報（Google Slides）</li>
+        <li>合併列印完成的感謝函樣本</li>
       </ul>
+    </div>
+    <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:8px;'>
+      <p style='color:#fff;font-size:.85rem;font-weight:700;margin-bottom:4px;'>🗓️ 繳交方式</p>
+      <p style='color:#cffafe;font-size:.82rem;margin:0;'>上傳至 Google Classroom：表單連結 + 簡報檔 + 合併列印PDF</p>
     </div>
   </div>
 </div>"""
     },
     {
-        'id': 24,
-        'chapter': '分組實作',
-        'title': '本週重點回顧',
-        'bg': 'navy',
-        'quiz': None,
-        'chart': None,
-        'video': None,
+        'id': 24, 'chapter': '分組實作', 'title': '資料的力量',
+        'bg': 'navy', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>📖 Week 6 重點回顧</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:15px;'>
-  <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:10px;'>
-    <h3 style='color:#93c5fd;font-size:1rem;margin-bottom:10px;'>第一章 網路基礎</h3>
-    <ul style='color:#e2e8f0;font-size:0.85rem;padding-left:16px;margin:0;'>
-      <li>封包交換是網際網路核心</li>
-      <li>OSI 七層 / TCP/IP 四層模型</li>
-      <li>台灣固網速度全球前三</li>
-    </ul>
+<div style='text-align:center;padding:30px 20px;'>
+  <div style='font-size:64px;margin-bottom:20px;'>📊</div>
+  <h1 style='font-size:2.2rem;font-weight:900;color:#fff;margin-bottom:12px;'>資料的力量</h1>
+  <h2 style='font-size:1.2rem;font-weight:400;color:#93c5fd;margin-bottom:24px;'>從一份問卷，了解整個群體的想法</h2>
+  <div style='background:rgba(255,255,255,0.1);padding:18px;border-radius:12px;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto;'>
+    <p style='color:#e2e8f0;font-size:1rem;font-style:italic;line-height:1.7;margin:0;'>
+      「In God we trust; all others must bring data.」<br>
+      <span style='font-size:.85rem;color:#94a3b8;'>— W. Edwards Deming，統計學家</span>
+    </p>
   </div>
-  <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:10px;'>
-    <h3 style='color:#93c5fd;font-size:1rem;margin-bottom:10px;'>第二章 TCP/IP 與位址</h3>
-    <ul style='color:#e2e8f0;font-size:0.85rem;padding-left:16px;margin:0;'>
-      <li>TCP 可靠傳輸 vs UDP 低延遲</li>
-      <li>IPv4 耗盡，IPv6 解決問題</li>
-      <li>埠號識別不同網路服務</li>
-    </ul>
+  <div style='display:flex;justify-content:center;gap:12px;flex-wrap:wrap;'>
+    <span style='background:rgba(255,255,255,0.12);color:#e0f2fe;padding:8px 18px;border-radius:20px;font-size:.9rem;'>學會合併列印 ✅</span>
+    <span style='background:rgba(255,255,255,0.12);color:#e0f2fe;padding:8px 18px;border-radius:20px;font-size:.9rem;'>設計問卷 ✅</span>
+    <span style='background:rgba(255,255,255,0.12);color:#e0f2fe;padding:8px 18px;border-radius:20px;font-size:.9rem;'>下一章見 👋</span>
   </div>
-  <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:10px;'>
-    <h3 style='color:#93c5fd;font-size:1rem;margin-bottom:10px;'>第三章 DNS 與 HTTPS</h3>
-    <ul style='color:#e2e8f0;font-size:0.85rem;padding-left:16px;margin:0;'>
-      <li>DNS 將網域翻譯為 IP</li>
-      <li>HTTPS = HTTP + TLS 加密</li>
-      <li>鎖頭圖示 🔒 確認安全網站</li>
-    </ul>
-  </div>
-  <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:10px;'>
-    <h3 style='color:#93c5fd;font-size:1rem;margin-bottom:10px;'>第四章 5G 與新興</h3>
-    <ul style='color:#e2e8f0;font-size:0.85rem;padding-left:16px;margin:0;'>
-      <li>Wi-Fi 頻段 ≠ 5G 行動網路</li>
-      <li>5G 三場景：eMBB/mMTC/URLLC</li>
-      <li>Starlink 解決偏鄉落差</li>
-    </ul>
-  </div>
-</div>
-<div style='background:rgba(255,255,255,0.1);padding:12px;border-radius:8px;margin-top:15px;text-align:center;'>
-  <p style='color:#bfdbfe;font-size:0.95rem;margin:0;'>下週預告：<strong style='color:#fff;'>新興科技應用</strong> ── 物聯網、AIoT、雲端運算、量子電腦</p>
 </div>"""
-    }
+    },
 ]
