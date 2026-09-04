@@ -639,14 +639,11 @@ _ch03 = {
         ),
     },
     14: {  # 深偽技術（更新：2025 韓國校園 Deepfake 事件）
-        # ✅ 已驗證：法務部官方「識詐宣導 · Deepfake 破解」
-        'video': _vid_both(
-            'pfyQC_Rk5Ao',
-            'Deepfake 深偽 詐騙 台灣 案例 教學 中文',
-            '調查官教你破解 Deepfake 詐騙（法務部官方）',
-            desc='想找更多深偽案例分析？',
-            search_title='▶ 更多 Deepfake 中文教學搜尋',
-        ),
+        # ⚠️ 法務部影片禁止其他網站嵌入，改為直接開 YouTube 看
+        'video': _vid_search(
+            'Deepfake 深偽技術 詐騙 台灣 案例 中文',
+            '▶ Deepfake 詐騙案例（點擊搜尋法務部官方影片等）',
+            '搜尋深偽技術教學與台灣詐騙案例'),
         'html_append': _life('身邊的 Deepfake 案例（2024-2025 更新）',
             "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
             "<div style='background:#fef2f2;padding:10px;border-radius:8px;margin-bottom:6px;border-left:3px solid #ef4444;'>"
@@ -662,7 +659,15 @@ _ch03 = {
             "② 遇到疑似 Deepfake 立即截圖存證，告訴家人與老師<br>"
             "③ 台灣 2023 已修《性侵害犯罪防治法》，散布性 Deepfake 最重判 5 年</p></div>"
             "</div>"
-        ) + _quiz_click(
+        ) + """
+<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:12px 14px;margin-top:12px;text-align:center;border-left:4px solid #22c55e;'>
+  <div style='color:#166534;font-size:.88rem;font-weight:700;margin-bottom:8px;'>🎬 推薦影片（點按鈕直接開 YouTube 看）</div>
+  <a href='https://www.youtube.com/watch?v=pfyQC_Rk5Ao' target='_blank' rel='noopener'
+     style='display:inline-block;background:#dc2626;color:#fff;padding:10px 20px;border-radius:20px;text-decoration:none;font-weight:700;font-size:.88rem;box-shadow:0 4px 12px rgba(220,38,38,.35);'>
+    ▶ 調查官教你破解 Deepfake 詐騙（法務部官方）
+  </a>
+  <p style='color:#6b7280;font-size:.72rem;margin:6px 0 0;'>3 分鐘看懂詐騙集團怎麼用 AI 換臉</p>
+</div>""" + _quiz_click(
             "🕵️ 你看到一支「同學說爆料某位老師」的影片在 IG 瘋傳，怎麼做最正確？",
             ["立刻轉發給同學說「這超扯」",
              "先不轉發，找兩個以上獨立來源查證",
@@ -733,14 +738,11 @@ _ch03 = {
         ),
     },
     18: {  # 什麼是資訊倫理（新增：加智能社會紀錄片預告）
-        # ✅ 已驗證：Netflix《智能社會：進退兩難》(The Social Dilemma) 中文預告
-        'video': _vid_both(
-            'ZJx3zKtDZVI',
-            '智能社會 進退兩難 監視資本主義 中文',
-            '《智能社會：進退兩難》Netflix 紀錄片預告',
-            desc='想看完整紀錄片可上 Netflix',
-            search_title='▶ 更多社群媒體與科技倫理紀錄片',
-        ),
+        # ⚠️ Netflix 紀錄片預告可能禁止嵌入，改為搜尋按鈕
+        'video': _vid_search(
+            '智能社會 進退兩難 監視資本主義 中文 預告',
+            '▶ 《智能社會：進退兩難》Netflix 紀錄片預告',
+            '搜尋這部揭露社群媒體演算法的紀錄片預告'),
         'html_append': _life('反思：你為什麼一直滑手機停不下來？',
             "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
             "<p style='margin:0 0 8px;'>Netflix 紀錄片《智能社會：進退兩難》訪問 Facebook、Google、Instagram、Twitter 前工程師，他們親口說出：</p>"
@@ -753,7 +755,15 @@ _ch03 = {
             "<p style='color:#dc2626;font-weight:600;margin:8px 0 0;font-size:.78rem;'>"
             "🤔 討論題：你今天花多少時間在 IG / TikTok / YouTube Shorts 上？值得嗎？</p>"
             "</div>"
-        ),
+        ) + """
+<div style='background:linear-gradient(135deg,#faf5ff,#ede9fe);border-radius:12px;padding:12px 14px;margin-top:12px;text-align:center;border-left:4px solid #8b5cf6;'>
+  <div style='color:#6d28d9;font-size:.88rem;font-weight:700;margin-bottom:8px;'>🎬 推薦紀錄片（點按鈕直接開 YouTube 看）</div>
+  <a href='https://www.youtube.com/watch?v=ZJx3zKtDZVI' target='_blank' rel='noopener'
+     style='display:inline-block;background:#7c3aed;color:#fff;padding:10px 20px;border-radius:20px;text-decoration:none;font-weight:700;font-size:.88rem;box-shadow:0 4px 12px rgba(124,58,237,.35);'>
+    ▶ 《智能社會：進退兩難》Netflix 紀錄片預告
+  </a>
+  <p style='color:#6b7280;font-size:.72rem;margin:6px 0 0;'>Facebook / Google 前員工親口說出：「你就是產品」</p>
+</div>""",
     },
     21: {  # 社群媒體與數位公民（新增：加 TikTok 演算法解密 + 生活實例）
         'video': _vid_search(
