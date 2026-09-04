@@ -780,7 +780,7 @@ SLIDES = [
       <p style='color:#fff;font-size:.85rem;font-weight:700;margin:0 0 4px;'>🗓️ 時程</p>
       <p style='color:#cffafe;font-size:.78rem;margin:0;line-height:1.5;'>
         <br>
-        <strong>繳交</strong>：下週上課前完成，並全組上台分享
+        <strong>繳交</strong>：20260928前完成，並於下次上課全組上台分享
       </p>
     </div>
   </div>
