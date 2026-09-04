@@ -580,7 +580,21 @@ _ch03 = {
             "<p style='margin:0;'>😴 <strong>晚上</strong>：Netflix → 知道你幾點睡覺、看什麼類型影片</p>"
             "<p style='font-size:.75rem;color:#dc2626;margin:8px 0 0;font-weight:600;'>⚠️ 你產生的數位足跡，可以讓 AI 精準預測你的下一步行為</p>"
             "</div>"
-        ),
+        ) + """
+<div style='background:linear-gradient(135deg,#0f172a,#1e3a5f);border-radius:12px;padding:14px 16px;margin-top:12px;text-align:center;'>
+  <div style='color:#fbbf24;font-size:.95rem;font-weight:700;margin-bottom:6px;'>🕵️ 立刻測測看：你正在被追蹤嗎？</div>
+  <p style='color:#cbd5e1;font-size:.8rem;line-height:1.6;margin:0 0 10px;'>
+    美國電子前線基金會（EFF）做的免費檢測工具，點下方按鈕會告訴你：<br>
+    你的瀏覽器有多獨特、廣告商多容易辨識出你、可否被跨網站追蹤。
+  </p>
+  <a href='https://coveryourtracks.eff.org/' target='_blank' rel='noopener'
+     style='display:inline-block;background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;padding:10px 22px;border-radius:22px;text-decoration:none;font-weight:700;font-size:.9rem;box-shadow:0 4px 14px rgba(245,158,11,.4);'>
+    🚀 Cover Your Tracks（EFF 免費檢測）
+  </a>
+  <p style='color:#94a3b8;font-size:.7rem;margin:8px 0 0;'>
+    💡 建議用不同瀏覽器（Chrome/Edge/Firefox/隱私分頁）分別測一次，比較結果
+  </p>
+</div>"""
     },
     6: {  # 個資外洩有多常見
         'html_append': _data('全球個資外洩規模（2024）',
@@ -625,7 +639,14 @@ _ch03 = {
         ),
     },
     14: {  # 深偽技術（更新：2025 韓國校園 Deepfake 事件）
-        'video': _vid_search('Deepfake 深偽技術 如何運作 危害 AI 換臉', '▶ Deepfake 如何以假亂真？', '了解 AI 深偽技術的原理與風險'),
+        # ✅ 已驗證：法務部官方「識詐宣導 · Deepfake 破解」
+        'video': _vid_both(
+            'pfyQC_Rk5Ao',
+            'Deepfake 深偽 詐騙 台灣 案例 教學 中文',
+            '調查官教你破解 Deepfake 詐騙（法務部官方）',
+            desc='想找更多深偽案例分析？',
+            search_title='▶ 更多 Deepfake 中文教學搜尋',
+        ),
         'html_append': _life('身邊的 Deepfake 案例（2024-2025 更新）',
             "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
             "<div style='background:#fef2f2;padding:10px;border-radius:8px;margin-bottom:6px;border-left:3px solid #ef4444;'>"
@@ -711,13 +732,76 @@ _ch03 = {
             "另建議：不同網站不同密碼，並開啟兩步驟驗證。"
         ),
     },
+    18: {  # 什麼是資訊倫理（新增：加智能社會紀錄片預告）
+        # ✅ 已驗證：Netflix《智能社會：進退兩難》(The Social Dilemma) 中文預告
+        'video': _vid_both(
+            'ZJx3zKtDZVI',
+            '智能社會 進退兩難 監視資本主義 中文',
+            '《智能社會：進退兩難》Netflix 紀錄片預告',
+            desc='想看完整紀錄片可上 Netflix',
+            search_title='▶ 更多社群媒體與科技倫理紀錄片',
+        ),
+        'html_append': _life('反思：你為什麼一直滑手機停不下來？',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<p style='margin:0 0 8px;'>Netflix 紀錄片《智能社會：進退兩難》訪問 Facebook、Google、Instagram、Twitter 前工程師，他們親口說出：</p>"
+            "<div style='background:#fff;padding:10px 12px;border-radius:8px;border-left:3px solid #8b5cf6;margin-bottom:6px;'>"
+            "<p style='margin:0;font-style:italic;color:#6d28d9;font-weight:600;'>「你的注意力就是產品，你才是被賣掉的。」</p>"
+            "<p style='margin:4px 0 0;font-size:.72rem;color:#6b7280;'>—— Tristan Harris, 前 Google 設計倫理長</p>"
+            "</div>"
+            "<p style='margin:8px 0 0;'>科技公司靠<strong>演算法</strong>讓你「停不下來」，因為你的每一秒使用時間 = 廣告收入。"
+            "這不是意外，是<strong>設計出來的成癮</strong>。</p>"
+            "<p style='color:#dc2626;font-weight:600;margin:8px 0 0;font-size:.78rem;'>"
+            "🤔 討論題：你今天花多少時間在 IG / TikTok / YouTube Shorts 上？值得嗎？</p>"
+            "</div>"
+        ),
+    },
+    21: {  # 社群媒體與數位公民（新增：加 TikTok 演算法解密 + 生活實例）
+        'video': _vid_search(
+            'TikTok 演算法 為什麼 上癮 解密 中文',
+            '▶ TikTok 演算法的祕密',
+            '搜尋 TikTok/IG 演算法如何讓你上癮的解密影片'),
+        'html_append': _innov('TikTok / IG Reels / YouTube Shorts 的「無限滑動」設計',
+            "<div style='font-size:.82rem;color:#374151;line-height:1.6;'>"
+            "<p style='margin:0 0 8px;'>這 3 個平台都在用「<strong>無限滾動</strong> + <strong>隨機獎勵</strong>」設計，"
+            "跟拉斯維加斯吃角子老虎機的原理一模一樣。</p>"
+            "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;'>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #ec4899;'>"
+            "<p style='font-weight:700;color:#be185d;margin:0 0 3px;'>📱 平均使用時間</p>"
+            "<p style='margin:0;font-size:.75rem;'>台灣青少年一天用手機 <strong>6.5 小時</strong>，其中社群媒體佔 <strong>3.2 小時</strong>（衛福部 2024）</p></div>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #f59e0b;'>"
+            "<p style='font-weight:700;color:#b45309;margin:0 0 3px;'>🧠 對大腦的影響</p>"
+            "<p style='margin:0;font-size:.75rem;'>短影音刺激多巴胺分泌，長期削弱<strong>專注力</strong>與<strong>耐性</strong>（美國心理學會 2023）</p></div>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #8b5cf6;'>"
+            "<p style='font-weight:700;color:#6d28d9;margin:0 0 3px;'>😰 心理健康</p>"
+            "<p style='margin:0;font-size:.75rem;'>每天用超過 3 小時青少年，焦慮憂鬱風險高 <strong>2.7 倍</strong></p></div>"
+            "<div style='background:#fff;padding:8px 10px;border-radius:8px;border-left:3px solid #16a34a;'>"
+            "<p style='font-weight:700;color:#15803d;margin:0 0 3px;'>💡 自救 3 招</p>"
+            "<p style='margin:0;font-size:.75rem;'>① 關通知 ② 首頁移掉 App ③ 設每日時間限制</p></div>"
+            "</div>"
+            "<p style='margin:10px 0 0;color:#6b7280;font-size:.75rem;'>"
+            "🛡️ 你可到 <strong>設定 → 螢幕使用時間（iOS）/ 數位健康（Android）</strong> 看你上週用了幾小時 App。</p>"
+            "</div>"
+        ) + _quiz_click(
+            "為什麼 TikTok 讓你一滑就 2 小時停不下來？（哪個是主因？）",
+            ["影片真的都很好看",
+             "演算法根據你的停留秒數推薦，越看越精準",
+             "TikTok 給你錢",
+             "只有你會這樣"],
+            1,
+            "TikTok 的演算法會偵測你在每支影片停留多久、看完幾秒、有沒有點讚、有沒有分享，"
+            "然後<strong>越推越精準</strong>——讓你「還想再看一支」。這是設計出來的成癮機制。"
+            "解方：意識到後主動離開、設時間限制。"
+        ),
+    },
     24: {  # 章末延伸閱讀
         'html_append': _ref('個資保護與資訊倫理 — 延伸閱讀', [
             ('🇹🇼', '個人資料保護委員會（籌備處）', 'https://www.pdpc.gov.tw/', '個資法官方權威資訊'),
             ('🔍', '台灣事實查核中心', 'https://tfc-taiwan.org.tw/', '免費查核假訊息'),
             ('🛡️', 'Have I Been Pwned（英）', 'https://haveibeenpwned.com/', '查你的 Email 有沒有被外洩'),
-            ('🔐', 'iPASS 密碼強度檢測', 'https://bitwarden.com/password-strength/', '線上測你的密碼多久會被破解'),
+            ('🕵️', 'Cover Your Tracks（EFF）', 'https://coveryourtracks.eff.org/', '免費測你被廣告商追蹤的程度'),
+            ('🔐', '密碼強度檢測（Bitwarden）', 'https://bitwarden.com/password-strength/', '線上測你的密碼多久會被破解'),
             ('📱', '刑事局 165 反詐騙專線', 'https://165.npa.gov.tw/', '接到詐騙訊息可查詢'),
+            ('🎬', '智能社會：進退兩難（Netflix）', 'https://www.netflix.com/title/81254224', '2020 年紀錄片，看科技公司前員工反思'),
         ]),
     },
 }
