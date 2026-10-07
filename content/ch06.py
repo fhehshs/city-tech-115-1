@@ -718,10 +718,10 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 23, 'chapter': '分組實作', 'title': '分組實作：芳和 50 校慶活動物料',
+        'id': 23, 'chapter': '分組實作', 'title': '分組實作：芳和 50 校慶活動-物料製作',
         'bg': 'teal', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 style='font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:8px;text-align:center;'>🎊 分組實作：芳和 50 校慶活動物料製作</h2>
+<h2 style='font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:8px;text-align:center;'>🎊 分組實作：芳和 50 校慶活動-物料製作</h2>
 <p style='color:#cffafe;text-align:center;font-size:.9rem;margin-bottom:12px;'>
   全班分 <strong>7 組</strong>，每組都走完整流程：<strong>設計表單 → 收集至少 10 份填答 → 合併列印產出物料</strong>
 </p>
@@ -807,17 +807,17 @@ SLIDES = [
       ⑤ 1 頁 Google 簡報說明製作流程與分工
     </div>
     <div style='background:rgba(255,255,255,0.12);padding:10px 12px;border-radius:10px;font-size:.78rem;color:#cffafe;line-height:1.6;'>
-      <p style='color:#fff;font-weight:700;margin:0 0 3px;font-size:.85rem;'>🗓️ 時程</p>
-      第 1 節：分組 + 設計 Google 表單 + 開放填答（提前發出）<br>
-      第 2 節：確認 ≥ 10 份填答 + 合併列印 + 展示 + 挑最佳作品<br>
-      <strong>加分</strong>：成品真的拿去校慶籌備組使用，+5 分
+      <p style='color:#fff;font-weight:700;margin:0 0 3px;font-size:.85rem;'>建議工作流程</p>
+      分工 + 設計 Google 表單 + 開放填答（提前發出）<br>
+      確認 ≥ 10 份填答 + 合併列印 + 作品展示<br>
+      
     </div>
   </div>
 </div>
 
 <p style='color:#cffafe;text-align:center;font-size:.75rem;margin:10px 0 0;font-style:italic;'>
-  💡 每組都走完整流程 <strong>設計表單 → 收集資料 → 合併列印</strong>——學會後任何需要批次個人化文件的場合都能用（迎新、畢業典禮、班聯會活動）。<br>
-  完成後，整場芳和 50 校慶的紙本物料系統就齊了！
+  💡 每組都走完整流程 <strong>設計表單 → 收集資料 → 合併列印</strong>——學會後任何需要批次個人化文件的場合都能用（迎新、社團、班聯會活動）。<br>
+  完成後，整場芳和 50 校慶的紙本物料系統就完整了！
 </p>"""
     },
     {
