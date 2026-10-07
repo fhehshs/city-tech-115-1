@@ -102,7 +102,7 @@ SLIDES = [
     <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>⚛️ 量子電腦</span>
     <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🏙️ 智慧城市</span>
   </div>
-  <p style='color:#bfdbfe;font-size:1.1rem;'>城市科技 — 第七週</p>
+  <p style='color:#bfdbfe;font-size:1.1rem;'>城市科技 — 第七章</p>
 </div>"""
     },
     {

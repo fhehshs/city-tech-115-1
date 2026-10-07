@@ -95,7 +95,7 @@ SLIDES = [
     <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📝 表單設計</span>
     <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📊 資料分析</span>
   </div>
-  <p style='color:#bfdbfe;font-size:1.1rem;'>城市科技 — 第五章</p>
+  <p style='color:#bfdbfe;font-size:1.1rem;'>城市科技 — 第六章</p>
 </div>"""
     },
     {
@@ -718,44 +718,107 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 23, 'chapter': '分組實作', 'title': '分組實作：校園調查與合併列印',
+        'id': 23, 'chapter': '分組實作', 'title': '分組實作：芳和 50 校慶活動物料',
         'bg': 'teal', 'quiz': None, 'chart': None, 'video': None,
         'html': """
-<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>📋 分組實作：校園調查與合併列印</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div style='background:rgba(255,255,255,0.15);padding:18px;border-radius:12px;'>
-    <h3 style='color:#fff;font-size:1rem;margin-bottom:14px;'>📋 實作任務</h3>
-    <div style='display:flex;flex-direction:column;gap:10px;'>
-      <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務一：設計問卷</p>
-        <p style='color:#cffafe;font-size:.8rem;margin:0;'>以「同學的數位生活習慣」為主題，設計一份包含至少 3 種題型的 Google 表單問卷</p>
-      </div>
-      <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務二：蒐集資料</p>
-        <p style='color:#cffafe;font-size:.8rem;margin:0;'>請至少 20 位同學填寫問卷，連結試算表整理資料，製作視覺化圖表</p>
-      </div>
-      <div style='background:rgba(255,255,255,0.2);padding:12px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:.9rem;margin:0 0 4px;'>任務三：合併列印</p>
-        <p style='color:#cffafe;font-size:.8rem;margin:0;'>用調查結果製作個人化感謝函，運用合併列印批次產生每位填答者的感謝信</p>
-      </div>
-    </div>
+<h2 style='font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:8px;text-align:center;'>🎊 分組實作：芳和 50 校慶活動物料製作</h2>
+<p style='color:#cffafe;text-align:center;font-size:.9rem;margin-bottom:12px;'>
+  全班分 <strong>7 組</strong>，每組都走完整流程：<strong>設計表單 → 收集至少 10 份填答 → 合併列印產出物料</strong>
+</p>
+
+<!-- 情境說明 -->
+<div style='background:rgba(255,255,255,0.1);padding:10px 14px;border-radius:10px;margin-bottom:12px;font-size:.82rem;color:#e0f7fa;line-height:1.6;'>
+  🎯 <strong>情境</strong>：芳和實驗中學 50 週年校慶即將舉辦，各組負責不同物料，為活動做足準備。<br>
+  📝 <strong>每組 3 步驟</strong>：① <strong>設計 Google 表單</strong>（跟自己任務相關的問卷）→ ② <strong>蒐集至少 10 份填答</strong>（找同學、家人、朋友幫忙填）→ ③ 把回答試算表當資料來源，<strong>合併列印產出物料</strong>。<br>
+  💡 <strong>加分</strong>：各組可共用一份「校友總名單」作為備援資料來源（有興趣的組可以互相串連）。
+</div>
+
+<!-- 7 組分工 -->
+<div style='display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-bottom:12px;'>
+
+  <div style='background:rgba(239,68,68,0.25);border-left:3px solid #fca5a5;padding:9px 11px;border-radius:6px;'>
+    <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>📨 第 1 組 · 邀請函</p>
+    <p style='color:#fecaca;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「校友聯絡資訊更新」（姓名、屆別、頭銜、Email）<br>
+    <strong>合併列印</strong>：A4 邀請函，印「親愛的 XX 校友（第 N 屆）您好」。</p>
   </div>
+
+  <div style='background:rgba(249,115,22,0.25);border-left:3px solid #fdba74;padding:9px 11px;border-radius:6px;'>
+    <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>✉️ 第 2 組 · 信封</p>
+    <p style='color:#fed7aa;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「寄送地址確認」（姓名、郵遞區號、地址）<br>
+    <strong>合併列印</strong>：DL 或西式信封，印收件人姓名/地址 + 校徽與回郵地址。</p>
+  </div>
+
+  <div style='background:rgba(234,179,8,0.25);border-left:3px solid #fde68a;padding:9px 11px;border-radius:6px;'>
+    <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>📝 第 3 組 · 回函單</p>
+    <p style='color:#fef3c7;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「出席意願 + 用餐偏好」（姓名、出席/缺席、葷/素/麩質）<br>
+    <strong>合併列印</strong>：預印姓名+編號的回函單，含勾選區。</p>
+  </div>
+
+  <div style='background:rgba(34,197,94,0.25);border-left:3px solid #86efac;padding:9px 11px;border-radius:6px;'>
+    <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>🏷️ 第 4 組 · 報到牌 / 名牌</p>
+    <p style='color:#dcfce7;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「報到資訊確認」（姓名、屆別、服務單位、頭銜）<br>
+    <strong>合併列印</strong>：10×6 cm 名牌，印姓名+屆別+單位（可做掛繩版）。</p>
+  </div>
+
+  <div style='background:rgba(14,165,233,0.25);border-left:3px solid #7dd3fc;padding:9px 11px;border-radius:6px;'>
+    <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>🪑 第 5 組 · 席位卡 / 桌卡</p>
+    <p style='color:#bae6fd;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「用餐桌次分配」（姓名、同桌好友、桌號偏好）<br>
+    <strong>合併列印</strong>：摺疊式桌卡，印姓名+桌號+歡迎詞。</p>
+  </div>
+
+  <div style='background:rgba(139,92,246,0.25);border-left:3px solid #c4b5fd;padding:9px 11px;border-radius:6px;'>
+    <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>🏆 第 6 組 · 感謝狀 / 證書</p>
+    <p style='color:#ddd6fe;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「校友志工 / 講者推薦」（姓名、服務項目、推薦理由）<br>
+    <strong>合併列印</strong>：A4 直式感謝狀，印姓名+感謝事由+日期。</p>
+  </div>
+
+  <div style='background:rgba(236,72,153,0.25);border-left:3px solid #f9a8d4;padding:9px 11px;border-radius:6px;grid-column:span 2;'>
+    <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>🎁 第 7 組 · 紀念品 / 伴手禮標籤</p>
+    <p style='color:#fce7f3;font-size:.73rem;margin:0;line-height:1.5;'>
+      <strong>表單</strong>：「校友紀念品偏好調查」（姓名、屆別、紀念品偏好：馬克杯/帆布袋/筆記本/鑰匙圈、是否客製刻字、刻字內容）<br>
+      <strong>合併列印</strong>：伴手禮袋吊牌（約 5×8 cm），印<strong>姓名+屆別+祝福語+QR Code</strong>，QR Code 連到校慶紀念網頁（可選加分）。
+    </p>
+  </div>
+</div>
+
+<!-- 評分與繳交 -->
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;'>
+  <div style='background:rgba(255,255,255,0.12);padding:12px;border-radius:10px;'>
+    <h3 style='color:#fff;font-size:.9rem;margin:0 0 6px;'>📊 各組評分（100 分）</h3>
+    <table style='width:100%;font-size:.72rem;color:#e0f7fa;border-collapse:collapse;'>
+      <tr style='background:rgba(255,255,255,0.15);'><th style='padding:4px 6px;text-align:left;'>項目</th><th style='padding:4px 6px;text-align:center;'>配分</th></tr>
+      <tr><td style='padding:4px 6px;'>Google 表單設計合理</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>20</td></tr>
+      <tr><td style='padding:4px 6px;'>蒐集 ≥ 10 份填答</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>15</td></tr>
+      <tr><td style='padding:4px 6px;'>合併列印正確運作</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>25</td></tr>
+      <tr><td style='padding:4px 6px;'>版面設計美觀專業</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>20</td></tr>
+      <tr><td style='padding:4px 6px;'>適切用途（真能用）</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>10</td></tr>
+      <tr><td style='padding:4px 6px;'>組員分工合作</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>10</td></tr>
+      <tr><td style='padding:4px 6px;'>加分：實際印出成品 or QR Code 連結</td><td style='padding:4px 6px;text-align:center;color:#a7f3d0;font-weight:700;'>+5</td></tr>
+    </table>
+  </div>
+
   <div>
-    <div style='background:rgba(255,255,255,0.15);padding:15px;border-radius:12px;margin-bottom:12px;'>
-      <h3 style='color:#fff;font-size:1rem;margin-bottom:10px;'>📊 成果展示</h3>
-      <ul style='color:#cffafe;font-size:.85rem;padding-left:16px;'>
-        <li>Google 表單問卷連結</li>
-        <li>試算表資料與圖表截圖</li>
-        <li>調查結果簡報（Google Slides）</li>
-        <li>合併列印完成的感謝函樣本</li>
-      </ul>
+    <div style='background:rgba(255,255,255,0.12);padding:10px 12px;border-radius:10px;margin-bottom:6px;font-size:.78rem;color:#cffafe;line-height:1.6;'>
+      <p style='color:#fff;font-weight:700;margin:0 0 3px;font-size:.85rem;'>📑 繳交格式</p>
+      ① <strong>Google 表單連結</strong>（已有 ≥ 10 份填答）<br>
+      ② <strong>Google 試算表</strong>（表單回應）<br>
+      ③ Word 模板原始檔（.docx）<br>
+      ④ 合併列印完成的 <strong>PDF</strong>（含 ≥ 10 筆資料）<br>
+      ⑤ 1 頁 Google 簡報說明製作流程與分工
     </div>
-    <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:8px;'>
-      <p style='color:#fff;font-size:.85rem;font-weight:700;margin-bottom:4px;'>🗓️ 繳交方式</p>
-      <p style='color:#cffafe;font-size:.82rem;margin:0;'>上傳至 Google Classroom：表單連結 + 簡報檔 + 合併列印PDF</p>
+    <div style='background:rgba(255,255,255,0.12);padding:10px 12px;border-radius:10px;font-size:.78rem;color:#cffafe;line-height:1.6;'>
+      <p style='color:#fff;font-weight:700;margin:0 0 3px;font-size:.85rem;'>🗓️ 時程</p>
+      第 1 節：分組 + 設計 Google 表單 + 開放填答（提前發出）<br>
+      第 2 節：確認 ≥ 10 份填答 + 合併列印 + 展示 + 挑最佳作品<br>
+      <strong>加分</strong>：成品真的拿去校慶籌備組使用，+5 分
     </div>
   </div>
-</div>"""
+</div>
+
+<p style='color:#cffafe;text-align:center;font-size:.75rem;margin:10px 0 0;font-style:italic;'>
+  💡 每組都走完整流程 <strong>設計表單 → 收集資料 → 合併列印</strong>——學會後任何需要批次個人化文件的場合都能用（迎新、畢業典禮、班聯會活動）。<br>
+  完成後，整場芳和 50 校慶的紙本物料系統就齊了！
+</p>"""
     },
     {
         'id': 24, 'chapter': '分組實作', 'title': '資料的力量',

@@ -102,7 +102,7 @@ SLIDES = [
     <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🔒 HTTP/HTTPS</span>
     <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📡 5G 技術</span>
   </div>
-  <p style='color:#bfdbfe;font-size:1.1rem;'>城市科技 — 第六週</p>
+  <p style='color:#bfdbfe;font-size:1.1rem;'>城市科技 — 第四章</p>
 </div>"""
     },
     {

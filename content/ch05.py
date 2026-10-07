@@ -144,7 +144,7 @@ SLIDES = [
     <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🎓 小論文六大架構</span>
     <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🏆 挑戰全國比賽</span>
   </div>
-  <p style='color:#bfdbfe;font-size:1.05rem;'>城市科技 — 第四章</p>
+  <p style='color:#bfdbfe;font-size:1.05rem;'>城市科技 — 第五章</p>
 </div>"""
 },
 

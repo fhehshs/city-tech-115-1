@@ -101,7 +101,7 @@ SLIDES = [
     <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🗂️ 樞紐分析表</span>
     <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📉 趨勢預測</span>
   </div>
-  <p style='color:#bfdbfe;font-size:1.1rem;'>城市科技 — 第九週</p>
+  <p style='color:#bfdbfe;font-size:1.1rem;'>城市科技 — 第九章</p>
 </div>"""
     },
     {
