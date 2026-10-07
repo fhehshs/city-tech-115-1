@@ -738,19 +738,19 @@ SLIDES = [
 
   <div style='background:rgba(34,197,94,0.25);border-left:3px solid #fca5a5;padding:9px 11px;border-radius:6px;'>
     <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>📨 第 1 組 · 邀請函</p>
-    <p style='color:#fecaca;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「校友聯絡資訊更新」（姓名、屆別、頭銜、Email）<br>
+    <p style='color:#dcfce7;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「校友聯絡資訊更新」（姓名、屆別、頭銜、Email）<br>
     <strong>合併列印</strong>：A4 邀請函，印「親愛的 XX 校友（第 N 屆）您好」。</p>
   </div>
 
   <div style='background:rgba(34,197,94,0.25);border-left:3px solid #fdba74;padding:9px 11px;border-radius:6px;'>
     <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>✉️ 第 2 組 · 信封</p>
-    <p style='color:#fed7aa;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「寄送地址確認」（姓名、郵遞區號、地址）<br>
+    <p style='color:#dcfce7;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「寄送地址確認」（姓名、郵遞區號、地址）<br>
     <strong>合併列印</strong>：DL 或西式信封，印收件人姓名/地址 + 校徽與回郵地址。</p>
   </div>
 
   <div style='background:rgba(34,197,94,0.25);border-left:3px solid #fde68a;padding:9px 11px;border-radius:6px;'>
     <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>📝 第 3 組 · 回函單</p>
-    <p style='color:#fef3c7;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「出席意願 + 用餐偏好」（姓名、出席/缺席、葷/素/麩質）<br>
+    <p style='color:#dcfce7;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「出席意願 + 用餐偏好」（姓名、出席/缺席、葷/素/麩質）<br>
     <strong>合併列印</strong>：預印姓名+編號的回函單，含勾選區。</p>
   </div>
 
@@ -768,13 +768,13 @@ SLIDES = [
 
   <div style='background:rgba(34,197,94,0.25);border-left:3px solid #c4b5fd;padding:9px 11px;border-radius:6px;'>
     <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>🏆 第 6 組 · 感謝狀 / 證書</p>
-    <p style='color:#ddd6fe;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「校友志工 / 講者推薦」（姓名、服務項目、推薦理由）<br>
+    <p style='color:#bae6fd;font-size:.73rem;margin:0;line-height:1.5;'><strong>表單</strong>：「校友志工 / 講者推薦」（姓名、服務項目、推薦理由）<br>
     <strong>合併列印</strong>：A4 直式感謝狀，印姓名+感謝事由+日期。</p>
   </div>
 
   <div style='background:rgba(34,197,94,0.25);border-left:3px solid #f9a8d4;padding:9px 11px;border-radius:6px;grid-column:span 2;'>
     <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>🎁 第 7 組 · 紀念品 / 伴手禮標籤</p>
-    <p style='color:#fce7f3;font-size:.73rem;margin:0;line-height:1.5;'>
+    <p style='color:#bae6fd;font-size:.73rem;margin:0;line-height:1.5;'>
       <strong>表單</strong>：「校友紀念品偏好調查」（姓名、屆別、紀念品偏好：馬克杯/帆布袋/筆記本/鑰匙圈、是否客製刻字、刻字內容）<br>
       <strong>合併列印</strong>：伴手禮袋吊牌（約 5×8 cm），印<strong>姓名+屆別+祝福語</strong>。
     </p>
