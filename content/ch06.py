@@ -776,7 +776,7 @@ SLIDES = [
     <p style='color:#fff;font-weight:700;font-size:.85rem;margin:0 0 3px;'>🎁 第 7 組 · 紀念品 / 伴手禮標籤</p>
     <p style='color:#fce7f3;font-size:.73rem;margin:0;line-height:1.5;'>
       <strong>表單</strong>：「校友紀念品偏好調查」（姓名、屆別、紀念品偏好：馬克杯/帆布袋/筆記本/鑰匙圈、是否客製刻字、刻字內容）<br>
-      <strong>合併列印</strong>：伴手禮袋吊牌（約 5×8 cm），印<strong>姓名+屆別+祝福語+QR Code</strong>，QR Code 連到校慶紀念網頁（可選加分）。
+      <strong>合併列印</strong>：伴手禮袋吊牌（約 5×8 cm），印<strong>姓名+屆別+祝福語</strong>。
     </p>
   </div>
 </div>
@@ -793,7 +793,7 @@ SLIDES = [
       <tr><td style='padding:4px 6px;'>版面設計美觀專業</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>20</td></tr>
       <tr><td style='padding:4px 6px;'>適切用途（真能用）</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>10</td></tr>
       <tr><td style='padding:4px 6px;'>組員分工合作</td><td style='padding:4px 6px;text-align:center;color:#fde68a;font-weight:700;'>10</td></tr>
-      <tr><td style='padding:4px 6px;'>加分：實際印出成品 or QR Code 連結</td><td style='padding:4px 6px;text-align:center;color:#a7f3d0;font-weight:700;'>+5</td></tr>
+      <tr><td style='padding:4px 6px;'>加分：實際印出成品 or QR Code 連結連到校慶紀念網頁</td><td style='padding:4px 6px;text-align:center;color:#a7f3d0;font-weight:700;'>+5</td></tr>
     </table>
   </div>
 
@@ -804,7 +804,7 @@ SLIDES = [
       ② <strong>Google 試算表</strong>（表單回應）<br>
       ③ Word 模板原始檔（.docx）<br>
       ④ 合併列印完成的 <strong>PDF</strong>（含 ≥ 10 筆資料）<br>
-      ⑤ 1 頁 Google 簡報說明製作流程與分工
+      ⑤ 簡報說明製作流程與分工
     </div>
     <div style='background:rgba(255,255,255,0.12);padding:10px 12px;border-radius:10px;font-size:.78rem;color:#cffafe;line-height:1.6;'>
       <p style='color:#fff;font-weight:700;margin:0 0 3px;font-size:.85rem;'>建議工作流程</p>
