@@ -188,18 +188,18 @@ SLIDES = [
     'html': """
 <div class='slide-inner'>
   <h2 class='slide-title'>🎓 Office 365 學生帳號怎麼領？</h2>
-  <p class='slide-desc'>只要有學校 email，Microsoft 送你完整的 Office 一整套</p>
+  <p class='slide-desc'>台北市學生 👉 用<strong>酷課雲帳號</strong>直接登入，Office 365 教育版免費用</p>
 
   <div class='card-grid-2' style='margin-bottom:12px;'>
     <div style='background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #fbbf24;border-radius:12px;padding:14px;'>
-      <div style='font-weight:700;color:#78350f;font-size:.95rem;margin-bottom:8px;'>📥 3 步驟取得帳號</div>
+      <div style='font-weight:700;color:#78350f;font-size:.95rem;margin-bottom:8px;'>📥 3 步驟啟用（台北市學生）</div>
       <div style='font-size:.82rem;color:#78350f;line-height:1.7;'>
-        <strong>①</strong> 去 <a href='https://www.microsoft.com/zh-tw/education/products/office' target='_blank' style='color:#c2410c;'>Microsoft 教育版申請頁</a><br>
-        <strong>②</strong> 輸入你的<strong>學校 email</strong>（如 s1234@school.edu.tw）<br>
-        <strong>③</strong> 收信、驗證 → 完成！
+        <strong>①</strong> 進入 <a href='https://o365.k12cc.tw/' target='_blank' style='color:#c2410c;font-weight:700;'>o365.k12cc.tw</a>（台北市教育局服務頁）<br>
+        <strong>②</strong> 點「<strong>登入</strong>」→ 選 <strong>酷課雲 OpenID</strong> 登入<br>
+        <strong>③</strong> 自動進入 Office 365 Portal → 線上開 Word / 下載安裝都可以
       </div>
       <p style='font-size:.75rem;color:#92400e;margin-top:10px;'>
-        💡 沒收到驗證信？先確認學校 email 是否已啟用，或問資訊組。
+        💡 帳號是酷課雲帳號（校務系統 / 班級座號相關），忘記密碼找資訊組重設。
       </p>
     </div>
 
@@ -218,7 +218,7 @@ SLIDES = [
   </div>
 
   <div class='tip-box'>
-    🏫 <strong>電腦教室桌機</strong>通常已裝好 Word，直接用即可；<strong>自己筆電</strong>建議申請學生 Office 365 或用 Google Docs 都好。
+    🏫 <strong>電腦教室桌機</strong>通常已裝好 Word，直接登入即可；<strong>自己筆電</strong>到 <a href='https://o365.k12cc.tw/' target='_blank' style='color:#1e40af;font-weight:700;'>o365.k12cc.tw</a> 用酷課雲帳號登入，就能下載安裝或線上使用。
   </div>
 </div>"""
 },
