@@ -26,6 +26,46 @@
     display: inline-block; color: #93c5fd; text-decoration: none;
     font-size: .85rem; margin-bottom: 12px;
   }
+
+  /* 身分資訊輸入 */
+  .student-info {
+    background: rgba(14,165,233,.08); border: 1px solid rgba(14,165,233,.3);
+    border-radius: 12px; padding: 14px 16px; margin-bottom: 16px;
+  }
+  .student-info h3 {
+    color: #7dd3fc; font-size: .9rem; margin-bottom: 10px;
+  }
+  .student-info .row {
+    display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 10px;
+  }
+  .student-info input, .student-info select {
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
+    border-radius: 6px; padding: 8px 10px; color: #fff; font-size: .85rem;
+    font-family: inherit; width: 100%;
+  }
+  .student-info input:focus, .student-info select:focus {
+    outline: none; border-color: #38bdf8; background: rgba(14,165,233,.1);
+  }
+  .student-info label {
+    display: block; color: #cbd5e1; font-size: .72rem; margin-bottom: 4px;
+  }
+  .student-info .hint {
+    color: #94a3b8; font-size: .72rem; margin-top: 8px;
+  }
+  .student-info .warn {
+    color: #fca5a5; font-size: .78rem; margin-top: 6px; display: none;
+  }
+  .student-info.incomplete .warn { display: block; }
+
+  /* 擋範本的警告 */
+  .template-warn {
+    background: linear-gradient(135deg, #991b1b, #7f1d1d);
+    border-radius: 12px; padding: 20px; text-align: center;
+    color: #fff; margin-bottom: 16px;
+  }
+  .template-warn .icon { font-size: 48px; margin-bottom: 10px; }
+  .template-warn h3 { font-size: 1.3rem; margin-bottom: 10px; color: #fecaca; }
+  .template-warn p { color: #fecaca; line-height: 1.6; }
   header .back:hover { color: #fff; }
 
   /* 拖曳區 */
@@ -149,9 +189,9 @@
 <div class="wrap">
 
 <header>
-  <a href="../ch4.html" class="back">← 返回 Ch04 課程</a>
-  <h1>📝 Ch04 個人實作 · Word 作業評分器</h1>
-  <p>拖曳你的 .docx 檔案上去，立刻看到分數與詳細評分</p>
+  <a href="../ch5.html" class="back">← 返回 Ch05 課程</a>
+  <h1>📝 Ch05 個人實作 · Word 作業評分器</h1>
+  <p>填入身分 → 拖檔上傳 → 立刻看分數＋詳細評分</p>
 </header>
 
 <div class="hint">
@@ -177,6 +217,35 @@
   </p>
 </div>
 
+<div class="student-info" id="studentInfo">
+  <h3>👤 填寫身分資訊（上傳前必填，分數報告會自動帶入）</h3>
+  <div class="row">
+    <div>
+      <label>班級</label>
+      <select id="siClass">
+        <option value="">請選擇</option>
+        <option>11甲</option>
+        <option>11乙</option>
+        <option>11丙</option>
+        <option>11丁</option>
+      </select>
+    </div>
+    <div>
+      <label>座號+姓名</label>
+      <input id="siName" placeholder="08 王小明" />
+    </div>
+    <div>
+      <label>學號</label>
+      <input id="siId" placeholder="例：11234567" />
+    </div>
+  </div>
+  <div class="hint">
+    💡 建議在你的 Word 作業「頁首」也加上<strong>學號 or 姓名</strong>，才會通過身分驗證加分題。<br>
+    🔒 本頁所有資料只存你瀏覽器內，<strong>不會上傳伺服器</strong>。
+  </div>
+  <div class="warn">⚠️ 請先填完班級+姓名+學號才能上傳作業</div>
+</div>
+
 <label class="drop" id="drop">
   <div class="icon">📎</div>
   <h2>拖曳 .docx 檔到這裡，或點擊選檔</h2>
@@ -200,7 +269,8 @@
     ⑨ <strong>字型</strong>（10 分）：中文用細明體/新細明體、英文用 Times New Roman<br>
     ⑩ <strong>字級 12pt</strong>（8 分）：主要內文字級是 12pt<br>
     ⑪ <strong>行距 1.5</strong>（7 分）：主要內文行距是 1.5<br>
-    <strong style="color:#fbbf24;">總分 100 分 · 80+ 優 · 60+ 及格</strong>
+    ⑫ <strong>身分驗證</strong>（10 分）：頁首有包含你的學號 or 姓名<br>
+    <strong style="color:#fbbf24;">總分 110 分（含加分題） · 90+ 優 · 70+ 及格</strong>
   </div>
 </details>
 
@@ -209,11 +279,35 @@
 
 <script>
 // ═══════════════════════════════════════════════
+// 範本 SHA-256 黑名單（學生若上傳跟範本一模一樣就擋）
+// ═══════════════════════════════════════════════
+const TEMPLATE_HASHES = {
+  '5e5b78efd629ca95b270f8ef86318f94a62b26d5abce171a8e83e952722a908f': '丙級術科模擬_範本.docx（完成品）',
+  '443994cde6eb12ec23049a0e89afff56583826c869601ecd8d6c87314875a0e6': '丙級術科模擬_原稿.docx（未排版）',
+};
+
+// ═══════════════════════════════════════════════
 // 拖曳處理
 // ═══════════════════════════════════════════════
 const drop = document.getElementById('drop');
 const fileInput = document.getElementById('file');
 const output = document.getElementById('output');
+const siEl = document.getElementById('studentInfo');
+
+function getStudentInfo() {
+  return {
+    class: document.getElementById('siClass').value.trim(),
+    name: document.getElementById('siName').value.trim(),
+    id: document.getElementById('siId').value.trim(),
+  };
+}
+
+function checkStudentInfo() {
+  const s = getStudentInfo();
+  const ok = s.class && s.name && s.id;
+  siEl.classList.toggle('incomplete', !ok);
+  return ok;
+}
 
 drop.addEventListener('dragover', e => {
   e.preventDefault();
@@ -223,11 +317,27 @@ drop.addEventListener('dragleave', () => drop.classList.remove('dragover'));
 drop.addEventListener('drop', e => {
   e.preventDefault();
   drop.classList.remove('dragover');
+  if (!checkStudentInfo()) {
+    siEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
   if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
 });
 fileInput.addEventListener('change', e => {
+  if (!checkStudentInfo()) {
+    siEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    e.target.value = ''; // 清掉選擇
+    return;
+  }
   if (e.target.files.length) handleFile(e.target.files[0]);
 });
+
+// 計算檔案 SHA-256
+async function sha256(buffer) {
+  const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+  const bytes = new Uint8Array(hashBuffer);
+  return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
 async function handleFile(file) {
   if (!file.name.toLowerCase().endsWith('.docx')) {
@@ -236,8 +346,24 @@ async function handleFile(file) {
   }
   try {
     const buf = await file.arrayBuffer();
+
+    // 🛡️ 層①：檔案 SHA-256 比對黑名單
+    const hash = await sha256(buf);
+    if (TEMPLATE_HASHES[hash]) {
+      output.innerHTML = `
+        <div class="template-warn">
+          <div class="icon">🚫</div>
+          <h3>這是老師提供的「${TEMPLATE_HASHES[hash]}」原檔</h3>
+          <p>作業需要你<strong>親自完成排版</strong>再上傳。<br>
+          請先下載原稿，照著範本的樣式排版後，再把<strong>你自己做的 .docx</strong> 拖上來。</p>
+          <p style="margin-top:12px;font-size:.78rem;opacity:.8;">檔案 hash: <code>${hash.substring(0, 24)}...</code></p>
+        </div>`;
+      return;
+    }
+
     const zip = await JSZip.loadAsync(buf);
     const result = await gradeDocx(zip);
+    result.hash = hash;
     render(file, result);
   } catch (err) {
     showError(`❌ 讀取檔案失敗：${err.message}<br>檔案可能損毀或不是有效的 .docx。`);
@@ -257,12 +383,21 @@ async function gradeDocx(zip) {
   const docXml = await getFile(zip, 'word/document.xml');
   const stylesXml = await getFile(zip, 'word/styles.xml');
   const numberingXml = await getFile(zip, 'word/numbering.xml');
+  const coreXml = await getFile(zip, 'docProps/core.xml');  // metadata
 
   // 找 header/footer 檔案
   const headerFiles = Object.keys(zip.files).filter(n => /^word\/header\d+\.xml$/.test(n));
   const footerFiles = Object.keys(zip.files).filter(n => /^word\/footer\d+\.xml$/.test(n));
   const headersXml = await Promise.all(headerFiles.map(n => zip.files[n].async('string')));
   const footersXml = await Promise.all(footerFiles.map(n => zip.files[n].async('string')));
+
+  // 讀 metadata（creator, lastModifiedBy, created, modified）
+  const metadata = {
+    creator: (coreXml.match(/<dc:creator[^>]*>([^<]*)<\/dc:creator>/) || [])[1] || '(未知)',
+    lastModifiedBy: (coreXml.match(/<cp:lastModifiedBy[^>]*>([^<]*)<\/cp:lastModifiedBy>/) || [])[1] || '(未知)',
+    created: (coreXml.match(/<dcterms:created[^>]*>([^<]*)<\/dcterms:created>/) || [])[1] || '(未知)',
+    modified: (coreXml.match(/<dcterms:modified[^>]*>([^<]*)<\/dcterms:modified>/) || [])[1] || '(未知)',
+  };
 
   const items = [];
 
@@ -374,9 +509,25 @@ async function gradeDocx(zip) {
     lineOk ? 7 : 0, 7
   ));
 
+  // ⑫ 身分驗證 (10 分)：頁首是否含學生自己填的學號或姓名
+  const student = getStudentInfo();
+  const headerAll = headersXml.join('').replace(/<[^>]+>/g, '');
+  let idInHeader = false, nameInHeader = false;
+  // 從「08 王小明」拿姓名部分（去掉前面座號）
+  const pureName = student.name.replace(/^\d+\s*/, '').trim();
+  if (student.id && headerAll.includes(student.id)) idInHeader = true;
+  if (pureName && pureName.length >= 2 && headerAll.includes(pureName)) nameInHeader = true;
+  const idOk = idInHeader || nameInHeader;
+  let idDetail = '頁首不含你的學號或姓名（記得在頁首加「學號 姓名」防混淆）';
+  if (idOk) {
+    idDetail = `頁首包含你的${idInHeader ? '學號' : ''}${idInHeader && nameInHeader ? ' + ' : ''}${nameInHeader ? '姓名' : ''}`;
+  }
+  items.push(mkItem('⑫ 身分驗證（頁首學號/姓名）', idDetail, idOk ? 10 : 0, 10));
+
+  // 把 metadata 和學生資料塞進結果
   const total = items.reduce((s, i) => s + i.got, 0);
   const max = items.reduce((s, i) => s + i.max, 0);
-  return { items, total, max };
+  return { items, total, max, metadata, student };
 }
 
 // ═══════════════════════════════════════════════
@@ -485,8 +636,14 @@ function analyzeLineSpacing(docXml, stylesXml) {
 // ═══════════════════════════════════════════════
 // 渲染結果
 // ═══════════════════════════════════════════════
+// 全域存目前這次結果，供下載報告用
+let currentResult = null;
+let currentFile = null;
+
 function render(file, result) {
-  const { items, total, max } = result;
+  currentResult = result;
+  currentFile = file;
+  const { items, total, max, metadata, student, hash } = result;
   const pct = (total / max) * 100;
   const scoreClass = pct >= 80 ? '' : pct >= 60 ? 'mid' : 'low';
   const msg = pct >= 90 ? '🎉 太棒了！近乎完美'
@@ -519,6 +676,19 @@ function render(file, result) {
         </div>
       </div>
 
+      <!-- 身分資訊顯示（學生填的 + 檔案 metadata） -->
+      <div style="background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:.78rem;color:#cbd5e1;">
+        <div style="color:#7dd3fc;font-weight:700;margin-bottom:6px;">👤 身分 & 檔案資訊（會寫入評分報告，老師會核對）</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;">
+          <div>班級：<strong style="color:#fff;">${student.class || '(未填)'}</strong></div>
+          <div>學號：<strong style="color:#fff;">${student.id || '(未填)'}</strong></div>
+          <div style="grid-column:span 2;">姓名：<strong style="color:#fff;">${student.name || '(未填)'}</strong></div>
+          <div>檔案作者：<strong style="color:${metadata.creator === student.name.replace(/^\d+\s*/, '') ? '#86efac' : '#fcd34d'};">${metadata.creator}</strong></div>
+          <div>最後修改者：<strong style="color:#fff;">${metadata.lastModifiedBy}</strong></div>
+          <div style="grid-column:span 2;font-size:.72rem;color:#94a3b8;">檔案 hash: <code>${(hash || '').substring(0, 40)}...</code></div>
+        </div>
+      </div>
+
       <div class="score-hero">
         <div class="num ${scoreClass}">${total}</div>
         <div class="max">/ ${max} 分</div>
@@ -529,30 +699,51 @@ function render(file, result) {
 
       <div class="actions">
         <button class="btn btn-primary" onclick="location.reload()">🔄 重新評分</button>
-        <button class="btn btn-secondary" onclick="downloadReport(${total}, ${max}, ${JSON.stringify(items).replace(/"/g, '&quot;')}, '${file.name}')">📥 下載評分報告</button>
+        <button class="btn btn-secondary" onclick="downloadReport()">📥 下載評分報告</button>
       </div>
     </div>
   `;
 }
 
-function downloadReport(total, max, items, fname) {
+function downloadReport() {
+  if (!currentResult || !currentFile) return;
+  const { items, total, max, metadata, student, hash } = currentResult;
+  const file = currentFile;
+  const now = new Date();
   const lines = [
-    'Ch04 個人實作 Word 作業評分報告',
+    'Ch05 個人實作 · Word 作業評分報告',
     '━━━━━━━━━━━━━━━━━━━━━━━━',
-    `檔案：${fname}`,
-    `時間：${new Date().toLocaleString('zh-TW')}`,
-    `分數：${total} / ${max}`,
     '',
-    '評分明細：',
+    '【學生身分】',
+    `  班級：${student.class}`,
+    `  學號：${student.id}`,
+    `  姓名：${student.name}`,
+    '',
+    '【檔案資訊】',
+    `  檔名：${file.name}`,
+    `  大小：${(file.size / 1024).toFixed(1)} KB`,
+    `  SHA-256：${hash || '(未計算)'}`,
+    `  檔案作者（creator）：${metadata.creator}`,
+    `  最後修改者（lastModifiedBy）：${metadata.lastModifiedBy}`,
+    `  建立時間：${metadata.created}`,
+    `  修改時間：${metadata.modified}`,
+    `  評分時間：${now.toLocaleString('zh-TW')}`,
+    '',
+    `【總分】${total} / ${max}`,
+    '',
+    '【評分明細】',
     ...items.map(i => `  [${i.got === i.max ? '✓' : i.got > 0 ? '⚠' : '✗'}] ${i.name}  ${i.got}/${i.max}\n      ${i.detail.replace(/<br>/g, '\n      ')}`),
     '',
     '━━━━━━━━━━━━━━━━━━━━━━━━',
-    '芳和實驗中學 城市科技 · 許惠淑老師'
+    '芳和實驗中學 城市科技 · 許惠淑老師',
+    `報告產生：${now.toLocaleString('zh-TW')}`,
   ];
   const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = fname.replace(/\.docx$/, '') + '_評分報告.txt';
+  // 檔名含學號+姓名方便老師歸檔
+  const safeName = (student.id || '匿名') + '_' + (student.name || '') + '_評分報告.txt';
+  a.download = safeName.replace(/[\\/:*?"<>|]/g, '_');
   a.click();
 }
 </script>
