@@ -1059,9 +1059,9 @@ SLIDES = [
        style='display:inline-block;background:#7c3aed;color:#fff;padding:8px 18px;border-radius:20px;text-decoration:none;font-weight:600;font-size:.82rem;'>
       📄 下載題目原稿
     </a>
-    <a href='static/templates/丙級術科模擬_範本.docx' download
+    <a href='static/templates/丙級術科模擬_範本.pdf' target='_blank'
        style='display:inline-block;background:#0d9488;color:#fff;padding:8px 18px;border-radius:20px;text-decoration:none;font-weight:600;font-size:.82rem;'>
-      🎯 下載完成品範本
+      🎯 查看範本 PDF（參考用）
     </a>
   </div>
   <a href='static/word_grader.html' target='_blank'
