@@ -36,7 +36,7 @@
     color: #7dd3fc; font-size: .9rem; margin-bottom: 10px;
   }
   .student-info .row {
-    display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 10px;
+    display: grid; grid-template-columns: 1fr 1fr 1fr 2fr; gap: 10px;
   }
   .student-info input, .student-info select {
     background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
@@ -224,26 +224,33 @@
       <label>班級</label>
       <select id="siClass">
         <option value="">請選擇</option>
-        <option>11甲</option>
-        <option>11乙</option>
-        <option>11丙</option>
-        <option>11丁</option>
+        <option>1154</option>
+        <option>1155</option>
+        <option>1156</option>
       </select>
     </div>
     <div>
-      <label>座號+姓名</label>
-      <input id="siName" placeholder="08 王小明" />
+      <label>組別</label>
+      <select id="siGroup">
+        <option value="">請選擇</option>
+        <option>A 組</option>
+        <option>B 組</option>
+      </select>
     </div>
     <div>
       <label>學號</label>
       <input id="siId" placeholder="例：11234567" />
+    </div>
+    <div>
+      <label>座號+姓名</label>
+      <input id="siName" placeholder="08 王小明" />
     </div>
   </div>
   <div class="hint">
     💡 建議在你的 Word 作業「頁首」也加上<strong>學號 or 姓名</strong>，才會通過身分驗證加分題。<br>
     🔒 本頁所有資料只存你瀏覽器內，<strong>不會上傳伺服器</strong>。
   </div>
-  <div class="warn">⚠️ 請先填完班級+姓名+學號才能上傳作業</div>
+  <div class="warn">⚠️ 請先填完班級+組別+學號+姓名才能上傳作業</div>
 </div>
 
 <label class="drop" id="drop">
@@ -297,6 +304,7 @@ const siEl = document.getElementById('studentInfo');
 function getStudentInfo() {
   return {
     class: document.getElementById('siClass').value.trim(),
+    group: document.getElementById('siGroup').value.trim(),
     name: document.getElementById('siName').value.trim(),
     id: document.getElementById('siId').value.trim(),
   };
@@ -304,7 +312,7 @@ function getStudentInfo() {
 
 function checkStudentInfo() {
   const s = getStudentInfo();
-  const ok = s.class && s.name && s.id;
+  const ok = s.class && s.group && s.name && s.id;
   siEl.classList.toggle('incomplete', !ok);
   return ok;
 }
@@ -681,8 +689,9 @@ function render(file, result) {
         <div style="color:#7dd3fc;font-weight:700;margin-bottom:6px;">👤 身分 & 檔案資訊（會寫入評分報告，老師會核對）</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;">
           <div>班級：<strong style="color:#fff;">${student.class || '(未填)'}</strong></div>
+          <div>組別：<strong style="color:#fff;">${student.group || '(未填)'}</strong></div>
           <div>學號：<strong style="color:#fff;">${student.id || '(未填)'}</strong></div>
-          <div style="grid-column:span 2;">姓名：<strong style="color:#fff;">${student.name || '(未填)'}</strong></div>
+          <div>姓名：<strong style="color:#fff;">${student.name || '(未填)'}</strong></div>
           <div>檔案作者：<strong style="color:${metadata.creator === student.name.replace(/^\d+\s*/, '') ? '#86efac' : '#fcd34d'};">${metadata.creator}</strong></div>
           <div>最後修改者：<strong style="color:#fff;">${metadata.lastModifiedBy}</strong></div>
           <div style="grid-column:span 2;font-size:.72rem;color:#94a3b8;">檔案 hash: <code>${(hash || '').substring(0, 40)}...</code></div>
@@ -716,6 +725,7 @@ function downloadReport() {
     '',
     '【學生身分】',
     `  班級：${student.class}`,
+    `  組別：${student.group}`,
     `  學號：${student.id}`,
     `  姓名：${student.name}`,
     '',
@@ -741,8 +751,9 @@ function downloadReport() {
   const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  // 檔名含學號+姓名方便老師歸檔
-  const safeName = (student.id || '匿名') + '_' + (student.name || '') + '_評分報告.txt';
+  // 檔名含班級+組別+學號+姓名方便老師歸檔
+  const safeName = (student.class || '') + '_' + (student.group || '').replace(/\s/g, '') + '_'
+                 + (student.id || '匿名') + '_' + (student.name || '') + '_評分報告.txt';
   a.download = safeName.replace(/[\\/:*?"<>|]/g, '_');
   a.click();
 }
