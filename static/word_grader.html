@@ -46,6 +46,15 @@
   .student-info input:focus, .student-info select:focus {
     outline: none; border-color: #38bdf8; background: rgba(14,165,233,.1);
   }
+  /* 下拉展開時每個 option 的樣式（深底淺字，才看得見） */
+  .student-info select option {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 6px;
+  }
+  .student-info select option:disabled {
+    color: #64748b;
+  }
   .student-info label {
     display: block; color: #cbd5e1; font-size: .72rem; margin-bottom: 4px;
   }
