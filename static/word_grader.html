@@ -408,9 +408,9 @@ async function gradeDocx(zip) {
   const numberingXml = await getFile(zip, 'word/numbering.xml');
   const coreXml = await getFile(zip, 'docProps/core.xml');  // metadata
 
-  // 找 header/footer 檔案
-  const headerFiles = Object.keys(zip.files).filter(n => /^word\/header\d+\.xml$/.test(n));
-  const footerFiles = Object.keys(zip.files).filter(n => /^word\/footer\d+\.xml$/.test(n));
+  // 找 header/footer 檔案（支援 Office 365 的 header.xml 無數字版本 + Word 的 header1.xml 有數字版本）
+  const headerFiles = Object.keys(zip.files).filter(n => /^word\/header\d*\.xml$/.test(n));
+  const footerFiles = Object.keys(zip.files).filter(n => /^word\/footer\d*\.xml$/.test(n));
   const headersXml = await Promise.all(headerFiles.map(n => zip.files[n].async('string')));
   const footersXml = await Promise.all(footerFiles.map(n => zip.files[n].async('string')));
 
@@ -650,6 +650,19 @@ function analyzeLineSpacing(docXml, stylesXml) {
   if (!spacings.length) return { main: '未知' };
   const count = {};
   spacings.forEach(s => count[s] = (count[s] || 0) + 1);
+  const total = spacings.length;
+
+  // 智慧判斷：Office 365 常把預設 276 (1.15) 塞進很多段落干擾。
+  // 只要「標準行距值」出現次數達 3 次以上，就認定為學生有意設定。
+  // 優先序：1.5 > 2.0 > 1.0
+  const targetLines = [360, 480, 240];  // 1.5, 2.0, 1.0
+  for (const target of targetLines) {
+    if ((count[target] || 0) >= 3) {
+      const label = target === 240 ? '1.0' : target === 360 ? '1.5' : '2.0';
+      return { main: label };
+    }
+  }
+  // 都沒明顯設定 → 取最多的
   const main = Object.entries(count).sort((a, b) => b[1] - a[1])[0];
   const val = main ? parseInt(main[0]) : 240;
   const label = val === 240 ? '1.0' : val === 360 ? '1.5' : val === 480 ? '2.0' : (val / 240).toFixed(2);
