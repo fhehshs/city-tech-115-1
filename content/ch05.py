@@ -1063,6 +1063,10 @@ SLIDES = [
        style='display:inline-block;background:#0d9488;color:#fff;padding:8px 18px;border-radius:20px;text-decoration:none;font-weight:600;font-size:.82rem;'>
       🎯 查看範本 PDF（參考用）
     </a>
+    <a href='static/img/smartphone_placeholder.jpg' download
+       style='display:inline-block;background:#f59e0b;color:#fff;padding:8px 18px;border-radius:20px;text-decoration:none;font-weight:600;font-size:.82rem;'>
+      🖼️ 下載示意圖
+    </a>
   </div>
   <a href='static/word_grader.html' target='_blank'
      style='display:inline-block;background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;padding:12px 26px;border-radius:26px;text-decoration:none;font-weight:700;font-size:.95rem;box-shadow:0 4px 14px rgba(245,158,11,.4);'>
