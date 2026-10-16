@@ -7,7 +7,7 @@ CHAPTERS = [
     {'name': '第二章：條件判斷與查詢', 'start': 8},
     {'name': '第三章：樞紐分析表', 'start': 14},
     {'name': '第四章：圖表與預測', 'start': 19},
-    {'name': '分組實作', 'start': 23},
+    {'name': '個人實作', 'start': 23},
 ]
 
 QUIZZES = {
@@ -997,14 +997,14 @@ SLIDES = [
     },
     {
         'id': 23,
-        'chapter': '分組實作',
-        'title': '分組實作：班級成績分析',
+        'chapter': '個人實作',
+        'title': '個人實作：班級成績分析（課堂練習）',
         'bg': 'teal',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>📊 分組實作：班級成績分析系統</h2>
+<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>📊 個人實作：班級成績分析（課堂練習）</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div style='background:rgba(255,255,255,0.15);padding:18px;border-radius:12px;'>
     <h3 style='color:#fff;font-size:1rem;margin-bottom:14px;'>📋 實作任務（Google 試算表）</h3>
@@ -1032,22 +1032,12 @@ SLIDES = [
     </div>
   </div>
   <div>
-    <div style='background:rgba(255,255,255,0.15);padding:15px;border-radius:12px;margin-bottom:12px;'>
-      <h3 style='color:#fff;font-size:1rem;margin-bottom:10px;'>🎨 加分挑戰</h3>
-      <ul style='color:#cffafe;font-size:0.85rem;padding-left:16px;margin:0;'>
-        <li>條件式格式：紅色標記不及格</li>
-        <li>用 VLOOKUP 建立等第對應表</li>
-        <li>預測下次考試全班平均（趨勢線）</li>
-        <li>散佈圖：出席率 vs 成績相關性</li>
-      </ul>
-    </div>
     <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:10px;'>
-      <h3 style='color:#fff;font-size:0.9rem;margin-bottom:8px;'>🏆 評分標準（100 分）</h3>
-      <ul style='color:#cffafe;font-size:0.85rem;padding-left:16px;margin:0;'>
-        <li>基本函數運算正確 <strong style='color:#fff;'>40 分</strong></li>
-        <li>樞紐分析表完成 <strong style='color:#fff;'>25 分</strong></li>
-        <li>圖表製作（格式完整）<strong style='color:#fff;'>25 分</strong></li>
-        <li>加分挑戰 <strong style='color:#fff;'>10 分（每項 2.5 分）</strong></li>
+      <h3 style='color:#fff;font-size:0.9rem;margin-bottom:8px;'>📝 練習說明</h3>
+      <ul style='color:#cffafe;font-size:0.85rem;padding-left:16px;margin:0;line-height:1.6;'>
+        <li>課堂上跟著老師操作，<strong style='color:#fff;'>不用繳交</strong></li>
+        <li>函數、樞紐分析、圖表都是期末報告分析資料會用到的工具</li>
+        <li>練熟之後，把時間留給期末報告！</li>
       </ul>
     </div>
   </div>
@@ -1055,7 +1045,7 @@ SLIDES = [
     },
     {
         'id': 24,
-        'chapter': '分組實作',
+        'chapter': '個人實作',
         'title': '本週重點回顧',
         'bg': 'navy',
         'quiz': None,

@@ -7,7 +7,7 @@ CHAPTERS = [
     {'name': '第二章：開放資料 Open Data', 'start': 8},
     {'name': '第三章：資料清理與處理', 'start': 14},
     {'name': '第四章：資料視覺化', 'start': 19},
-    {'name': '分組實作', 'start': 23},
+    {'name': '個人實作', 'start': 23},
 ]
 
 QUIZZES = {
@@ -937,14 +937,14 @@ SLIDES = [
     },
     {
         'id': 23,
-        'chapter': '分組實作',
-        'title': '分組實作：Google 試算表圖表分析',
+        'chapter': '個人實作',
+        'title': '個人實作：開放資料視覺化（課堂練習）',
         'bg': 'teal',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>📊 分組實作：開放資料視覺化</h2>
+<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>📊 個人實作：開放資料視覺化（課堂練習）</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div style='background:rgba(255,255,255,0.15);padding:18px;border-radius:12px;'>
     <h3 style='color:#fff;font-size:1rem;margin-bottom:14px;'>📋 任務流程</h3>
@@ -984,12 +984,11 @@ SLIDES = [
       </div>
     </div>
     <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:10px;'>
-      <h3 style='color:#fff;font-size:0.9rem;margin-bottom:8px;'>🏆 評分標準（100 分）</h3>
-      <ul style='color:#cffafe;font-size:0.85rem;padding-left:16px;margin:0;'>
-        <li>下載並成功匯入資料 <strong style='color:#fff;'>15 分</strong></li>
-        <li>完成資料清理（說明操作）<strong style='color:#fff;'>25 分</strong></li>
-        <li>製作 3 種圖表（格式完整）<strong style='color:#fff;'>40 分</strong></li>
-        <li>洞見分析（言之有據）<strong style='color:#fff;'>20 分</strong></li>
+      <h3 style='color:#fff;font-size:0.9rem;margin-bottom:8px;'>📝 練習說明</h3>
+      <ul style='color:#cffafe;font-size:0.85rem;padding-left:16px;margin:0;line-height:1.6;'>
+        <li>課堂上跟著老師操作，<strong style='color:#fff;'>不用繳交</strong></li>
+        <li>這五個步驟就是期末報告「正文」要用的技能</li>
+        <li>建議直接用你期末報告想研究的開放資料來練習，練完就能用！</li>
       </ul>
     </div>
   </div>
@@ -997,7 +996,7 @@ SLIDES = [
     },
     {
         'id': 24,
-        'chapter': '分組實作',
+        'chapter': '個人實作',
         'title': '本週重點回顧',
         'bg': 'navy',
         'quiz': None,
