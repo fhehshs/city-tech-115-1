@@ -1044,13 +1044,13 @@ SLIDES = [
       <p style='color:#fff;font-weight:700;margin:0 0 3px;font-size:.82rem;'>⭐ 加分挑戰（+5 分）</p>
       交一份 <strong>「我想寫的小論文主題發想單」</strong>（1 頁）：
       主題方向、想解決什麼問題、初步想到的做法。
-      <strong>期末大報告會做完整小論文</strong>，先想早點準備。
+      <strong>期末個人報告用得到</strong>，先想早點準備。
     </div>
   </div>
 </div>
 
 <div style='background:rgba(255,255,255,0.08);padding:8px 12px;border-radius:8px;margin-top:8px;font-size:.75rem;color:#cffafe;'>
-  💡 <strong>期末預告</strong>：學完 Ch08 大數據、Ch09 資料分析後，期末個人大報告會寫一篇<strong>真正的小論文</strong>——用到今天學的六大架構、格式規範，加上你會的數據分析技能。今天先把工具練熟！
+  💡 <strong>期末預告</strong>：學完 Ch08 大數據、Ch09 資料分析後，期末個人報告會用「前言、正文、結論、參考資料」四段，寫一份有開放資料和圖表的書面報告；完整的小論文格式，第二學期程式專題再挑戰。今天先把工具練熟！
 </div>
 
 <div style='text-align:center;margin-top:14px;'>

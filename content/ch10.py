@@ -1051,15 +1051,15 @@ SLIDES = [
     {
         'id': 23,
         'chapter': '期末展示',
-        'title': '期末個人小論文：城市科技與人類社會的關係',
+        'title': '期末個人報告：城市科技與人類社會的關係',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
 <div class='slide-inner'>
-  <h2 class='slide-title'>🎓 期末個人小論文：城市科技與人類社會的關係</h2>
-  <p class='slide-desc'>把 Ch05 學的<strong>小論文六大架構</strong>，加上 Ch08–Ch10 的<strong>開放資料分析</strong>，寫一篇真正能投稿的小論文</p>
+  <h2 class='slide-title'>🎓 期末個人報告：城市科技與人類社會的關係</h2>
+  <p class='slide-desc'>用 Ch08–Ch10 學的<strong>開放資料分析與視覺化</strong>，寫一份有資料、有圖表、有自己看法的書面報告</p>
 
   <div class='card-grid-2' style='margin-bottom:10px;'>
     <div style='background:#eff6ff;border-radius:10px;padding:12px 14px;border-top:4px solid #3b82f6;'>
@@ -1078,55 +1078,53 @@ SLIDES = [
     <div style='background:#f0fdf4;border-radius:10px;padding:12px 14px;border-top:4px solid #22c55e;'>
       <p style='font-weight:700;color:#166534;margin:0 0 6px;font-size:.9rem;'>✅ 必要條件</p>
       <ul style='font-size:.8rem;color:#374151;margin:0;padding-left:18px;line-height:1.7;'>
-        <li><strong>個人</strong>完成，一人一篇</li>
-        <li>至少用 <strong>1 份政府開放資料</strong>（data.gov.tw、臺北市資料大平臺…）</li>
-        <li>至少 <strong>3 張圖表</strong>（Excel、Google 試算表或 Power BI 製作）</li>
-        <li>依<strong>六大架構</strong>撰寫，A4 <strong>4–10 頁</strong>，全篇有頁首與頁碼</li>
-        <li>參考文獻至少 <strong>3 筆</strong>，採 APA 格式，不引用論壇、問答或聊天網站</li>
-        <li>文末附 <strong>AI 使用聲明</strong>（工具＋Prompt＋日期；沒用也要寫「未使用」）</li>
+        <li><strong>個人</strong>完成，一人一份</li>
+        <li>資料分析請用<strong>政府開放資料</strong>（data.gov.tw、臺北市資料大平臺…）</li>
+        <li>至少 <strong>2 張圖表</strong>（Excel、Google 試算表或 Power BI 製作）</li>
+        <li>依<strong>前言、正文、結論、參考資料</strong>四段撰寫，A4 約 <strong>3–6 頁</strong></li>
+        <li>參考資料要寫清楚，不引用論壇、問答或聊天網站</li>
+        <li>有使用 AI 請附 <strong>AI 使用聲明</strong>（工具＋Prompt＋日期）</li>
       </ul>
     </div>
   </div>
 
   <div style='background:#fef3c7;border-left:4px solid #f59e0b;padding:10px 14px;border-radius:8px;font-size:.82rem;color:#78350f;line-height:1.6;'>
     💡 <strong>好題目的公式</strong>：「<strong>某項城市科技</strong>」對「<strong>某一群人／某個城市問題</strong>」的影響。<br>
-    例：〈YouBike 2.0 站點分布與各行政區通勤需要之關係〉、〈臺北市長者使用行動支付的數位落差探討〉
+    例：〈YouBike 2.0 站點分布與各行政區的通勤需要〉、〈臺北市長者使用行動支付的數位落差〉
   </div>
 </div>"""
     },
     {
         'id': 24,
         'chapter': '期末展示',
-        'title': '六大架構：每一章要寫什麼',
+        'title': '報告四段架構：每一段要寫什麼',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
 <div class='slide-inner'>
-  <h2 class='slide-title'>🏗️ 六大架構：每一章要寫什麼</h2>
-  <p class='slide-desc'>順序不能錯，每一章都用「標題 1」，之後一鍵產生目錄</p>
+  <h2 class='slide-title'>🏗️ 報告四段架構：每一段要寫什麼</h2>
+  <p class='slide-desc'>每一段標題用「標題 1」，排版整齊又能自動產生目錄</p>
 
-  <table class='info-table' style='font-size:.8rem;margin-bottom:10px;'>
+  <table class='info-table' style='font-size:.82rem;margin-bottom:10px;'>
     <thead class='table-header'>
-      <tr><th style='width:22%;'>章節</th><th>要寫什麼</th><th style='width:26%;'>本課程的重點</th></tr>
+      <tr><th style='width:20%;'>段落</th><th>要寫什麼</th><th style='width:12%;text-align:center;'>配分</th></tr>
     </thead>
     <tbody>
-      <tr><td><strong>壹、前言</strong></td><td>研究動機、研究目的、研究問題（1–3 個）</td><td>問題要能用資料回答</td></tr>
-      <tr class='tr-highlight'><td><strong>貳、文獻探討</strong></td><td>這項科技是什麼、別人怎麼說、目前的現況</td><td>引用可信來源（.gov／.edu／新聞媒體）</td></tr>
-      <tr><td><strong>參、研究方法</strong></td><td>用了哪份資料、從哪裡下載、怎麼清理、用什麼工具分析</td><td>寫出資料名稱、提供機關、授權、更新日期</td></tr>
-      <tr class='tr-highlight'><td><strong>肆、研究分析與結果</strong></td><td>圖表＋文字解讀，每張圖都要有圖號、圖名、資料來源</td><td>區分「相關」與「因果」，Y 軸不誤導</td></tr>
-      <tr><td><strong>伍、研究結論與建議</strong></td><td>逐一回答前言的研究問題，提出建議與未來可再研究的方向</td><td>回到「科技對人類社會的影響」</td></tr>
-      <tr class='tr-highlight'><td><strong>陸、參考文獻</strong></td><td>APA 格式，內文有引用的才列</td><td>至少 3 筆；開放資料集也要列</td></tr>
+      <tr><td><strong>壹、前言</strong></td><td>研究動機（為什麼想研究這個）、研究目的（想知道什麼）、研究方法（用了哪份開放資料、用什麼工具分析）</td><td style='text-align:center;'>30%</td></tr>
+      <tr class='tr-highlight'><td><strong>貳、正文</strong></td><td>問題探討、資料分析結果、資料視覺化（圖表＋文字解讀），並引用、彙整相關資料</td><td style='text-align:center;'>40%</td></tr>
+      <tr><td><strong>參、結論</strong></td><td>提出你對研究結果的看法，結論要和研究目的、正文互相呼應；說明未來值得進一步研究的方向</td><td style='text-align:center;'>15%</td></tr>
+      <tr class='tr-highlight'><td><strong>肆、參考資料</strong></td><td>列出引用的資料與開放資料集；最好引用可信度較高的來源（.gov／.edu／新聞媒體）</td><td style='text-align:center;'>5%</td></tr>
     </tbody>
   </table>
 
   <div class='card-grid-2'>
     <div style='background:#eff6ff;border-radius:8px;padding:8px 12px;font-size:.78rem;color:#1e3a8a;'>
-      📄 <strong>檔案</strong>：匯出 <strong>PDF</strong>，檔名「班級座號姓名_篇名.pdf」；比照比賽規定，<strong>內文不寫姓名</strong>、不做封面頁
+      📊 <strong>圖表小提醒</strong>：每張圖都要有標題和資料來源，文字要說明「這張圖告訴我們什麼」
     </div>
     <div style='background:#faf5ff;border-radius:8px;padding:8px 12px;font-size:.78rem;color:#581c87;'>
-      🏆 <strong>寫得好的作品</strong>：老師會鼓勵修改後投稿「全國高級中等學校小論文寫作比賽」
+      🚀 <strong>下學期預告</strong>：第二學期的程式專題，會再挑戰完整的小論文格式
     </div>
   </div>
 </div>"""
@@ -1134,53 +1132,50 @@ SLIDES = [
     {
         'id': 25,
         'chapter': '期末展示',
-        'title': '期末小論文：時程與評分',
+        'title': '期末報告：時程與評分',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
 <div class='slide-inner'>
-  <h2 class='slide-title'>🗓️ 期末小論文：時程與評分</h2>
+  <h2 class='slide-title'>🗓️ 期末報告：時程與評分</h2>
 
   <div class='card-grid-2' style='margin-bottom:10px;'>
     <div>
       <div style='display:flex;flex-direction:column;gap:6px;'>
         <div style='background:#eff6ff;border-left:4px solid #3b82f6;border-radius:6px;padding:8px 12px;font-size:.8rem;'>
-          <strong style='color:#1e40af;'>① 秋假前最後一節</strong><br>題目、研究問題、開放資料來源定案，填寫「小論文企劃單」給老師看過
+          <strong style='color:#1e40af;'>① 秋假前最後一節</strong><br>題目與要用的開放資料定案，給老師看過
         </div>
         <div style='background:#f0fdf4;border-left:4px solid #22c55e;border-radius:6px;padding:8px 12px;font-size:.8rem;'>
-          <strong style='color:#166534;'>② 秋假期間</strong><br>下載資料、做圖表、依六大架構完成全文
+          <strong style='color:#166534;'>② 秋假期間</strong><br>下載資料、做圖表、完成四段報告
         </div>
         <div style='background:#fef2f2;border-left:4px solid #ef4444;border-radius:6px;padding:8px 12px;font-size:.8rem;'>
-          <strong style='color:#991b1b;'>③ 秋假最後一天 23:59 前</strong><br>PDF 上傳 Google Classroom（逾時以遲交計）
+          <strong style='color:#991b1b;'>③ 秋假最後一天 23:59 前</strong><br>匯出 PDF，檔名「班級座號姓名_題目.pdf」，上傳 Google Classroom
         </div>
         <div style='background:#faf5ff;border-left:4px solid #8b5cf6;border-radius:6px;padding:8px 12px;font-size:.8rem;'>
-          <strong style='color:#6b21a8;'>④ 秋假後第 1–2 週</strong><br>每人上台 <strong>3 分鐘</strong>＋回答 1 個提問；全班填同學互評表
+          <strong style='color:#6b21a8;'>④ 秋假後第 1–2 週</strong><br>每人上台 <strong>3 分鐘</strong>；全班填同學互評表
         </div>
       </div>
     </div>
     <div>
-      <table class='info-table' style='font-size:.8rem;'>
+      <table class='info-table' style='font-size:.82rem;'>
         <thead class='table-header'><tr><th>評分項目</th><th style='width:20%;text-align:center;'>分數</th></tr></thead>
         <tbody>
-          <tr><td colspan='2' style='background:#dbeafe;font-weight:700;color:#1e40af;'>📄 書面小論文 85 分</td></tr>
-          <tr><td>架構與格式（六大架構、頁首頁碼、篇幅、PDF）</td><td style='text-align:center;'>15</td></tr>
-          <tr class='tr-highlight'><td>資料來源與處理（開放資料、清理說明）</td><td style='text-align:center;'>15</td></tr>
-          <tr><td>圖表呈現（3 張以上、圖號圖名、不誤導）</td><td style='text-align:center;'>15</td></tr>
-          <tr class='tr-highlight'><td>分析與論證（言之有據、區分相關與因果）</td><td style='text-align:center;'>25</td></tr>
-          <tr><td>結論與社會連結（回答研究問題、提出建議）</td><td style='text-align:center;'>10</td></tr>
-          <tr class='tr-highlight'><td>引註與學術誠信（APA、AI 使用聲明）</td><td style='text-align:center;'>5</td></tr>
-          <tr><td colspan='2' style='background:#ede9fe;font-weight:700;color:#6b21a8;'>🎤 口頭發表 15 分</td></tr>
-          <tr><td>老師評分（時間掌控、重點清楚、能回答提問）</td><td style='text-align:center;'>10</td></tr>
-          <tr class='tr-highlight'><td>同學互評（口條表達平均）</td><td style='text-align:center;'>5</td></tr>
+          <tr><td colspan='2' style='background:#dbeafe;font-weight:700;color:#1e40af;'>📄 書面報告 90 分</td></tr>
+          <tr><td>前言（動機、目的、方法）</td><td style='text-align:center;'>30</td></tr>
+          <tr class='tr-highlight'><td>正文（問題探討、資料分析、視覺化、引用彙整）</td><td style='text-align:center;'>40</td></tr>
+          <tr><td>結論（看法、未來研究方向）</td><td style='text-align:center;'>15</td></tr>
+          <tr class='tr-highlight'><td>參考資料</td><td style='text-align:center;'>5</td></tr>
+          <tr><td colspan='2' style='background:#ede9fe;font-weight:700;color:#6b21a8;'>🎤 口頭發表 10 分</td></tr>
+          <tr><td>上台 3 分鐘（老師評分，參考同學互評）</td><td style='text-align:center;'>10</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
   <div style='background:#fef3c7;border-left:4px solid #f59e0b;padding:8px 12px;border-radius:8px;font-size:.8rem;color:#78350f;'>
-    🎤 <strong>3 分鐘怎麼講</strong>：我研究什麼問題（30 秒）→ 用了什麼資料（30 秒）→ 最重要的 1–2 張圖告訴我們什麼（1 分半）→ 結論與建議（30 秒）。<strong>上台講的是你自己的研究，答得出提問最重要。</strong>
+    🎤 <strong>3 分鐘怎麼講</strong>：我研究什麼（30 秒）→ 用了什麼資料（30 秒）→ 最重要的圖表告訴我們什麼（1 分半）→ 我的結論（30 秒）。
   </div>
 </div>"""
     },
