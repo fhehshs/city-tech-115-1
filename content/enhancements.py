@@ -1309,32 +1309,6 @@ _ch09[9] = {
     ),
 }
 
-# ── Ch08/Ch09 分組實作：上課用試算表範例下載 ───────────────────────────
-def _xlsx_dl(href, label, items):
-    tags = ''.join(
-        f"<span style='background:rgba(255,255,255,0.18);color:#fff;padding:3px 10px;border-radius:12px;font-size:.72rem;'>{t}</span>"
-        for t in items)
-    return (
-        "\n<div style='background:rgba(255,255,255,0.12);border:1px dashed rgba(255,255,255,0.5);border-radius:12px;"
-        "padding:12px 14px;margin-top:14px;text-align:center;'>"
-        f"<a href='{href}' download style='display:inline-block;background:#16a34a;color:#fff;padding:9px 22px;"
-        "border-radius:22px;text-decoration:none;font-weight:700;font-size:.9rem;box-shadow:0 3px 10px rgba(0,0,0,.2);'>"
-        f"📥 {label}</a>"
-        f"<div style='display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:8px;'>{tags}</div>"
-        "<p style='color:#e0f2fe;font-size:.72rem;margin:6px 0 0;'>Excel 直接開啟；Google 試算表用「檔案 → 匯入」上傳即可。資料為教學模擬資料。</p>"
-        "</div>"
-    )
-
-
-_ch08[23] = {
-    'html_append': _xlsx_dl('static/templates/Ch08_開放資料清理與視覺化範例.xlsx', '下載上課範例：開放資料清理與視覺化',
-                            ['髒資料找一找', 'TRIM／VALUE 清理', 'COUNTIFS 找重複', '篩選與排序', '統計函數', '3 種圖表', '誤導圖對照', '洞見寫法']),
-}
-_ch09[23] = {
-    'html_append': _xlsx_dl('static/templates/Ch09_班級成績分析範例.xlsx', '下載上課範例：班級成績分析系統',
-                            ['SUM／AVERAGE／RANK', 'IFS 與 VLOOKUP 等第', 'COUNTIF／SUMIF', 'VLOOKUP 學號查詢', '樞紐練習資料', '直方圖', '趨勢線與預測', '相關分析']),
-}
-
 # ── 總彙整 ─────────────────────────────────────────────────────────────
 
 ENHANCEMENTS = {
