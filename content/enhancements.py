@@ -1251,7 +1251,7 @@ _ch10 = {
     21: {
         'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：AI 不會取代你，懂 AI 的人才會</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><p style='margin:0 0 8px;'>2025 WEF（世界經濟論壇）報告：未來 5 年，<strong>85% 的工作會被 AI 改變</strong>，但只有 <strong>14%</strong> 工作會完全消失。</p><p style='font-weight:700;margin:0 0 6px;'>AI 時代最需要的技能：</p><div style='display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:.78rem;'><div style='background:#fff;padding:7px;border-radius:6px;'>🎯 <strong>提問力</strong>：懂得給 AI 好的 Prompt</div><div style='background:#fff;padding:7px;border-radius:6px;'>🔍 <strong>判斷力</strong>：驗證 AI 輸出是否正確</div><div style='background:#fff;padding:7px;border-radius:6px;'>🤝 <strong>溝通力</strong>：AI 無法替代人際關係</div><div style='background:#fff;padding:7px;border-radius:6px;'>🎨 <strong>創意力</strong>：定義問題比解題更重要</div></div></div>\n</div>",
     },
-    24: {
+    26: {
         'html_append': _ref('Power BI 與後續學習資源', [
             ('📊', 'Microsoft Power BI（免費）', 'https://powerbi.microsoft.com/zh-tw/', '個人版完全免費'),
             ('🎓', 'Microsoft Learn — Power BI', 'https://learn.microsoft.com/zh-tw/training/', '官方免費中文課程'),
