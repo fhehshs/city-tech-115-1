@@ -7,7 +7,7 @@ CHAPTERS = [
     {'name': '第二章：AIoT 智慧應用', 'start': 8},
     {'name': '第三章：雲端運算', 'start': 14},
     {'name': '第四章：量子電腦與智慧城市', 'start': 19},
-    {'name': '分組實作', 'start': 23},
+    {'name': '銜接：開放資料', 'start': 23},
 ]
 
 QUIZZES = {
@@ -980,67 +980,58 @@ SLIDES = [
     },
     {
         'id': 23,
-        'chapter': '分組實作',
-        'title': '分組實作：AIoT 案例探討',
+        'chapter': '銜接：開放資料',
+        'title': '智慧城市的燃料：開放資料',
         'bg': 'teal',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:20px;text-align:center;'>🔬 分組實作：AIoT 案例探討</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div style='background:rgba(255,255,255,0.15);padding:18px;border-radius:12px;'>
-    <h3 style='color:#fff;font-size:1rem;margin-bottom:14px;'>📋 探討流程</h3>
-    <div style='display:flex;flex-direction:column;gap:10px;'>
-      <div style='background:rgba(255,255,255,0.2);padding:10px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:0.9rem;margin:0 0 4px;'>步驟一：選擇案例（從以下選一）</p>
-        <ul style='color:#cffafe;font-size:0.8rem;margin:0;padding-left:16px;'>
-          <li>台北 YouBike 智慧調度系統</li>
-          <li>台積電智慧製造 AIoT</li>
-          <li>台南白河農業 AIoT</li>
-          <li>高雄港智慧物流</li>
-          <li>醫院穿戴裝置遠距監測</li>
-        </ul>
-      </div>
-      <div style='background:rgba(255,255,255,0.2);padding:10px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:0.9rem;margin:0 0 4px;'>步驟二：分析（填入報告表）</p>
-        <ul style='color:#cffafe;font-size:0.8rem;margin:0;padding-left:16px;'>
-          <li>使用了哪些感測器？</li>
-          <li>資料如何傳輸和儲存？</li>
-          <li>AI 如何分析並決策？</li>
-          <li>帶來了什麼效益？</li>
-        </ul>
-      </div>
-      <div style='background:rgba(255,255,255,0.2);padding:10px;border-radius:8px;'>
-        <p style='color:#fff;font-weight:700;font-size:0.9rem;margin:0 0 4px;'>步驟三：延伸創意</p>
-        <p style='color:#cffafe;font-size:0.8rem;margin:0;'>提出一個「芳和實中 AIoT 應用」的想法，說明要解決什麼問題。</p>
-      </div>
-    </div>
+<h2 style='font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:8px;text-align:center;'>⛽ 智慧城市的燃料：開放資料</h2>
+<p style='color:#cffafe;font-size:0.95rem;text-align:center;margin:0 0 18px;'>IoT 感測器每分每秒都在產生資料──這些資料如果<strong style='color:#fff;'>開放給所有人用</strong>，會發生什麼事？</p>
+<div style='display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;'>
+  <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:10px;text-align:center;'>
+    <div style='font-size:1.8rem;'>📡</div>
+    <p style='color:#fff;font-weight:700;font-size:0.85rem;margin:6px 0 4px;'>① 感測</p>
+    <p style='color:#cffafe;font-size:0.75rem;margin:0;'>空品測站、車流偵測器、YouBike 車柱</p>
   </div>
-  <div>
-    <div style='background:rgba(255,255,255,0.15);padding:15px;border-radius:12px;margin-bottom:12px;'>
-      <h3 style='color:#fff;font-size:1rem;margin-bottom:10px;'>📝 報告格式（Google 簡報 3 頁）</h3>
-      <ol style='color:#cffafe;font-size:0.85rem;padding-left:16px;margin:0;'>
-        <li>案例背景：問題是什麼？</li>
-        <li>AIoT 解決方案：技術架構圖</li>
-        <li>成效數據 + 你的創意延伸</li>
-      </ol>
-    </div>
-    <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:10px;'>
-      <h3 style='color:#fff;font-size:0.9rem;margin-bottom:8px;'>🏆 評分標準（100 分）</h3>
-      <ul style='color:#cffafe;font-size:0.85rem;padding-left:16px;margin:0;'>
-        <li>案例理解正確完整 <strong style='color:#fff;'>30 分</strong></li>
-        <li>技術架構說明清晰 <strong style='color:#fff;'>30 分</strong></li>
-        <li>效益數據引用正確 <strong style='color:#fff;'>20 分</strong></li>
-        <li>創意延伸可行性 <strong style='color:#fff;'>20 分</strong></li>
-      </ul>
-    </div>
+  <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:10px;text-align:center;'>
+    <div style='font-size:1.8rem;'>☁️</div>
+    <p style='color:#fff;font-weight:700;font-size:0.85rem;margin:6px 0 4px;'>② 上雲</p>
+    <p style='color:#cffafe;font-size:0.75rem;margin:0;'>資料傳到政府或企業的雲端平台</p>
+  </div>
+  <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:10px;text-align:center;'>
+    <div style='font-size:1.8rem;'>🔓</div>
+    <p style='color:#fff;font-weight:700;font-size:0.85rem;margin:6px 0 4px;'>③ 開放</p>
+    <p style='color:#cffafe;font-size:0.75rem;margin:0;'>整理成開放資料，任何人都能免費下載</p>
+  </div>
+  <div style='background:rgba(255,255,255,0.15);padding:12px;border-radius:10px;text-align:center;'>
+    <div style='font-size:1.8rem;'>📱</div>
+    <p style='color:#fff;font-weight:700;font-size:0.85rem;margin:6px 0 4px;'>④ 應用</p>
+    <p style='color:#cffafe;font-size:0.75rem;margin:0;'>民間做出 App、地圖、資料新聞</p>
+  </div>
+</div>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:14px;'>
+  <div style='background:rgba(255,255,255,0.15);padding:14px;border-radius:12px;'>
+    <h3 style='color:#fff;font-size:0.95rem;margin:0 0 8px;'>🇹🇼 你可能每天都在用</h3>
+    <ul style='color:#cffafe;font-size:0.82rem;padding-left:16px;margin:0;line-height:1.7;'>
+      <li>查 YouBike 還有幾台車 → 臺北市資料大平臺的即時資料</li>
+      <li>出門前看空氣品質 → 環境部空品監測站資料</li>
+      <li>公車、捷運到站時間 → 交通部 TDX 運輸資料平臺</li>
+    </ul>
+  </div>
+  <div style='background:rgba(255,255,255,0.15);padding:14px;border-radius:12px;'>
+    <h3 style='color:#fff;font-size:0.95rem;margin:0 0 8px;'>🤔 想一想</h3>
+    <ul style='color:#cffafe;font-size:0.82rem;padding-left:16px;margin:0;line-height:1.7;'>
+      <li>如果你想知道「哪一區最需要多設 YouBike 站」，你需要哪些資料？</li>
+      <li>智慧城市的資料都可以公開嗎？哪些涉及個資、不能開放？</li>
+    </ul>
   </div>
 </div>"""
     },
     {
         'id': 24,
-        'chapter': '分組實作',
+        'chapter': '銜接：開放資料',
         'title': '本週重點回顧',
         'bg': 'navy',
         'quiz': None,
@@ -1083,7 +1074,7 @@ SLIDES = [
   </div>
 </div>
 <div style='background:rgba(255,255,255,0.1);padding:12px;border-radius:8px;margin-top:15px;text-align:center;'>
-  <p style='color:#bfdbfe;font-size:0.95rem;margin:0;'>下週預告：<strong style='color:#fff;'>巨量資料與資料科學</strong> ── Big Data、Open Data、資料清理、視覺化</p>
+  <p style='color:#bfdbfe;font-size:0.95rem;margin:0;'>下週預告：<strong style='color:#fff;'>巨量資料與開放資料</strong> ── 智慧城市產生的資料，我們也能下載來分析！</p>
 </div>"""
     }
 ]
