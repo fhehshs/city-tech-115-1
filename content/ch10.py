@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-# Week 10: Power BI 與期末總結
+# Week 10: Google 試算表儀表板與期末總結
 
 CHAPTERS = [
     {'name': '封面', 'start': 1},
-    {'name': '第一章：認識 Power BI', 'start': 2},
-    {'name': '第二章：資料匯入與整理', 'start': 8},
-    {'name': '第三章：視覺化設計', 'start': 14},
+    {'name': '第一章：認識資料儀表板', 'start': 2},
+    {'name': '第二章：準備儀表板的資料', 'start': 8},
+    {'name': '第三章：製作互動儀表板', 'start': 14},
     {'name': '第四章：課程總回顧', 'start': 19},
-    {'name': '期末展示', 'start': 23},
+    {'name': '期末展示', 'start': 24},
 ]
 
 QUIZZES = {
@@ -15,16 +15,16 @@ QUIZZES = {
         'title': '第一章 隨堂測驗',
         'questions': [
             {
-                'q': 'Power BI 與 Excel 圖表最主要的差異是什麼？',
-                'options': ['Excel 圖表比 Power BI 能處理更大量的資料', 'Power BI 可製作互動式儀表板並輕鬆分享，Excel 圖表較靜態', 'Power BI 是付費工具，Excel 完全免費', 'Power BI 只能處理 Microsoft 的資料，Excel 可連接任何來源'],
+                'q': '「儀表板」和「一張圖表」最大的差別是什麼？',
+                'options': ['儀表板一定要用付費軟體才能做', '儀表板把重要數字和多張圖表放在同一頁，讓人一眼掌握整體狀況', '儀表板只能放文字，不能放圖表', '儀表板的資料不能更新'],
                 'answer': 1,
-                'explain': 'Power BI 的核心優勢是「互動式儀表板」——使用者可點擊圖表來互相篩選，且可發布至網路讓任何人瀏覽，適合定期更新的報表。'
+                'explain': '儀表板（Dashboard）像汽車的儀表板：把最重要的指標（KPI）和幾張相關圖表集中在一頁，看一眼就知道現況。一張圖表只回答一個問題，儀表板則讓你同時看到多個面向。'
             },
             {
-                'q': 'Power BI Desktop 是什麼？',
-                'options': ['付費的雲端訂閱服務', 'Microsoft 365 的一個線上功能', '只能在手機上使用的 APP', '免費的桌面應用程式，用於製作報表和儀表板'],
-                'answer': 3,
-                'explain': 'Power BI Desktop 是完全免費的 Windows 桌面軟體，可從 Microsoft 官網下載。Power BI Service（雲端發布）才需要付費授權。'
+                'q': '想在儀表板最上方顯示「全班平均分數」這個大數字，Google 試算表最適合用哪一種圖表？',
+                'options': ['圓餅圖', '散佈圖', '計分卡圖表', '折線圖'],
+                'answer': 2,
+                'explain': '計分卡圖表（Scorecard）專門用來顯示一個關鍵數字，還可以和基準值比較（例如比上次考試高或低多少），最適合放在儀表板最上方當 KPI。'
             },
         ]
     },
@@ -32,16 +32,16 @@ QUIZZES = {
         'title': '第二章 隨堂測驗',
         'questions': [
             {
-                'q': 'Power BI 的 Power Query 主要用途是什麼？',
-                'options': ['設計互動式儀表板的視覺效果', '計算 DAX 量值（如加總、平均）', '匯入並清理/轉換資料，無需手動修改原始檔案', '將完成的報表發布到雲端'],
-                'answer': 2,
-                'explain': 'Power Query 是 Power BI 的「ETL 工具」（Extract, Transform, Load），可設定資料清理步驟（刪除空白列、合併欄位等），每次重新整理時自動執行。'
+                'q': '要做成儀表板的原始資料，下列哪一種整理方式最正確？',
+                'options': ['每一列是一筆資料、第一列是欄位名稱，中間沒有合併儲存格或空白列', '為了好看，把相同的縣市合併成一格', '在資料中間插入小計列', '每個月的資料放在不同檔案'],
+                'answer': 0,
+                'explain': '圖表、樞紐分析表和篩選器都需要「乾淨的表格」：一列一筆、一欄一種資料、第一列是標題。合併儲存格、空白列、中間的小計列都會讓統計結果出錯。'
             },
             {
-                'q': '在 Power BI 中，不同資料表之間建立「關聯性」的目的是什麼？',
-                'options': ['讓來自不同資料表的欄位可以一起分析', '加快報表的載入速度', '將兩張表格合併成一張', '自動清理資料中的錯誤'],
-                'answer': 0,
-                'explain': '就像資料庫的 JOIN：「學生資料表」和「成績資料表」透過「學號」建立關聯，就能在圖表中同時使用兩表的欄位（如用姓名篩選各科成績）。'
+                'q': '=QUERY(A1:D100, "select B, sum(D) group by B") 這個公式在做什麼？',
+                'options': ['把 B 欄和 D 欄相乘', '刪除 B 欄重複的資料', '依 B 欄分組，計算每一組 D 欄的總和', '把 A1:D100 排序'],
+                'answer': 2,
+                'explain': 'QUERY 函數可以用類似資料庫的語法整理資料：select 選欄位、sum 加總、group by 分組。這一行的效果和「列＝B 欄、值＝D 欄加總」的樞紐分析表一樣。'
             },
         ]
     },
@@ -49,16 +49,16 @@ QUIZZES = {
         'title': '第三章 隨堂測驗',
         'questions': [
             {
-                'q': 'Power BI 儀表板中，點擊長條圖的某一長條後，頁面上其他圖表會有什麼反應？',
-                'options': ['其他圖表自動篩選顯示對應資料（交叉篩選效果）', '其他圖表被隱藏', '頁面跳轉到另一個報表頁', '長條圖數值自動計算更新'],
-                'answer': 0,
-                'explain': 'Power BI 的「交叉篩選（Cross-filtering）」是最強大的互動功能：點擊任一圖表的資料點，頁面上所有圖表自動反映篩選結果，讓分析者能快速探索資料。'
+                'q': 'Google 試算表的「交叉分析篩選器」有什麼功能？',
+                'options': ['自動幫資料畫出地圖', '點選一個條件，使用同一份資料的圖表和樞紐分析表會一起篩選', '把試算表轉成 PDF', '檢查公式有沒有錯誤'],
+                'answer': 1,
+                'explain': '交叉分析篩選器（Slicer）是讓儀表板「可以互動」的關鍵：選擇「大安區」，所有使用同一份資料範圍的圖表與樞紐分析表都只顯示大安區的資料，不用一張一張改。'
             },
             {
-                'q': '下列哪種 Power BI 視覺效果最適合展示「台灣各縣市的 YouBike 站點數量分布」？',
-                'options': ['折線圖', '矩陣（交叉分析表）', '地圖視覺效果（ArcGIS Maps）', '量測計（Gauge）'],
-                'answer': 2,
-                'explain': 'Power BI 支援各種地圖視覺效果，可自動辨識地名（台北市、高雄市）並在地圖上標示對應數值，非常適合展示地理分布資料。'
+                'q': '要比較「台北市 12 個行政區的 YouBike 借車次數」，最適合哪一種圖表？',
+                'options': ['長條圖', '圓餅圖', '計分卡圖表', '折線圖'],
+                'answer': 0,
+                'explain': '比較多個類別的數量大小用長條圖最清楚。圓餅圖適合看「占整體的比例」，而且類別太多會很難讀；折線圖適合看隨時間的變化。'
             },
         ]
     },
@@ -67,7 +67,7 @@ QUIZZES = {
         'questions': [
             {
                 'q': '十週課程中，「個人資料保護法」主要在哪一週學習？',
-                'options': ['第一週：科技演進與硬體', '第六週：網際網路運作原理', '第十週：Power BI 與期末總結', '第三週：個人資料保護與資訊倫理'],
+                'options': ['第一週：科技演進與硬體', '第六週：網際網路運作原理', '第十週：Google 試算表儀表板與期末總結', '第三週：個人資料保護與資訊倫理'],
                 'answer': 3,
                 'explain': '第三週「個人資料保護與資訊倫理」深入探討台灣個資法、Cookie、隱私權、被遺忘權等議題，與 Week 5 表單設計中的個資告知聲明互相呼應。'
             },
@@ -85,7 +85,7 @@ SLIDES = [
     {
         'id': 1,
         'chapter': '封面',
-        'title': 'Power BI 與期末總結',
+        'title': 'Google 試算表儀表板與期末總結',
         'bg': 'navy',
         'quiz': None,
         'chart': None,
@@ -93,56 +93,54 @@ SLIDES = [
         'html': """
 <div style='text-align:center;padding:30px 20px;'>
   <div style='font-size:72px;margin-bottom:20px;'>🏆</div>
-  <h1 style='font-size:2.8rem;font-weight:900;color:#fff;margin-bottom:12px;'>Power BI 與期末總結</h1>
-  <h2 style='font-size:1.5rem;font-weight:400;color:#93c5fd;margin-bottom:30px;'>Power BI &amp; Course Finale</h2>
+  <h1 style='font-size:2.6rem;font-weight:900;color:#fff;margin-bottom:12px;'>Google 試算表儀表板與期末總結</h1>
+  <h2 style='font-size:1.4rem;font-weight:400;color:#93c5fd;margin-bottom:30px;'>Data Dashboard &amp; Course Finale</h2>
   <div style='display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:30px;'>
-    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📊 Power BI</span>
-    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🎨 儀表板設計</span>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📊 資料儀表板</span>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🎛️ 交叉分析篩選器</span>
     <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>📚 十週回顧</span>
-    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🎓 期末展示</span>
+    <span style='background:rgba(255,255,255,0.15);color:#e0f2fe;padding:8px 20px;border-radius:20px;font-size:1rem;'>🎓 期末報告</span>
   </div>
   <p style='color:#bfdbfe;font-size:1.1rem;'>城市科技 — 第十章（期末）</p>
 </div>"""
     },
     {
         'id': 2,
-        'chapter': '第一章：認識 Power BI',
-        'title': '什麼是 Power BI？',
+        'chapter': '第一章：認識資料儀表板',
+        'title': '什麼是資料儀表板？',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>什麼是 Power BI？</h2>
+<h2 class='slide-title'>什麼是資料儀表板？</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div>
     <div style='background:#eff6ff;border-left:4px solid #2563eb;padding:15px;border-radius:8px;margin-bottom:15px;'>
       <h3 style='color:#1e40af;font-size:1.1rem;margin-bottom:8px;'>📌 定義</h3>
-      <p style='color:#374151;font-size:0.95rem;'>Power BI 是 Microsoft 推出的<strong>商業智慧（Business Intelligence）</strong>工具，可將資料轉化為互動式視覺化報表和儀表板。</p>
+      <p style='color:#374151;font-size:0.95rem;margin:0;'>資料儀表板（Dashboard）把<strong>最重要的數字</strong>和<strong>幾張相關圖表</strong>放在同一頁，就像汽車的儀表板，看一眼就知道現在的狀況。</p>
     </div>
     <div style='background:#f0fdf4;padding:12px;border-radius:8px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:8px;'>🆓 Power BI Desktop</h3>
-      <p style='color:#374151;font-size:0.9rem;margin-bottom:6px;'>完全免費的桌面軟體：</p>
-      <ul style='color:#374151;font-size:0.85rem;padding-left:16px;margin:0;'>
-        <li>Windows 免費下載</li>
-        <li>可連接 100+ 種資料來源</li>
-        <li>拖放建立圖表，不需寫程式</li>
-        <li>匯出 PDF 或分享給他人</li>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:8px;'>🧰 這週用的工具：Google 試算表</h3>
+      <ul style='color:#374151;font-size:0.88rem;padding-left:16px;margin:0;line-height:1.7;'>
+        <li>用學校 Google 帳號就能用，不用安裝軟體</li>
+        <li>Ch08、Ch09 學過的清理、函數、樞紐分析都用得到</li>
+        <li>圖表＋計分卡＋交叉分析篩選器 → 組成互動儀表板</li>
+        <li>可以共用連結，或下載成 PDF</li>
       </ul>
     </div>
   </div>
   <div>
-    <div style='background:#fdf4ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#7c3aed;font-size:1rem;margin-bottom:10px;'>📊 Excel vs Power BI</h3>
+    <div style='background:#fdf4ff;padding:15px;border-radius:10px;'>
+      <h3 style='color:#7c3aed;font-size:1rem;margin-bottom:10px;'>📊 一張圖表 vs 儀表板</h3>
       <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
         <tr style='background:#7c3aed;color:#fff;'>
-          <th style='padding:6px;'>功能</th><th style='padding:6px;'>Excel</th><th style='padding:6px;'>Power BI</th>
+          <th style='padding:6px;'>比較</th><th style='padding:6px;'>一張圖表</th><th style='padding:6px;'>儀表板</th>
         </tr>
-        <tr><td style='padding:6px;color:#374151;'>資料分析</td><td style='padding:6px;text-align:center;color:#374151;'>✅</td><td style='padding:6px;text-align:center;color:#374151;'>✅✅</td></tr>
-        <tr style='background:#f9fafb;'><td style='padding:6px;color:#374151;'>互動儀表板</td><td style='padding:6px;text-align:center;color:#dc2626;'>❌</td><td style='padding:6px;text-align:center;color:#16a34a;font-weight:700;'>✅</td></tr>
-        <tr><td style='padding:6px;color:#374151;'>雲端分享</td><td style='padding:6px;text-align:center;color:#374151;'>有限</td><td style='padding:6px;text-align:center;color:#16a34a;font-weight:700;'>✅</td></tr>
-        <tr style='background:#f9fafb;'><td style='padding:6px;color:#374151;'>資料量</td><td style='padding:6px;text-align:center;color:#374151;'>有限</td><td style='padding:6px;text-align:center;color:#16a34a;font-weight:700;'>大量</td></tr>
-        <tr><td style='padding:6px;color:#374151;'>學習曲線</td><td style='padding:6px;text-align:center;color:#374151;'>較易</td><td style='padding:6px;text-align:center;color:#374151;'>較陡</td></tr>
+        <tr><td style='padding:6px;color:#374151;'>回答的問題</td><td style='padding:6px;text-align:center;color:#374151;'>1 個</td><td style='padding:6px;text-align:center;color:#16a34a;font-weight:700;'>多個面向</td></tr>
+        <tr style='background:#f9fafb;'><td style='padding:6px;color:#374151;'>重要數字（KPI）</td><td style='padding:6px;text-align:center;color:#dc2626;'>沒有</td><td style='padding:6px;text-align:center;color:#16a34a;font-weight:700;'>放在最上方</td></tr>
+        <tr><td style='padding:6px;color:#374151;'>互動篩選</td><td style='padding:6px;text-align:center;color:#dc2626;'>沒有</td><td style='padding:6px;text-align:center;color:#16a34a;font-weight:700;'>點選就篩選</td></tr>
+        <tr style='background:#f9fafb;'><td style='padding:6px;color:#374151;'>資料更新</td><td style='padding:6px;text-align:center;color:#374151;'>要重畫</td><td style='padding:6px;text-align:center;color:#16a34a;font-weight:700;'>改資料就自動更新</td></tr>
       </table>
     </div>
   </div>
@@ -150,131 +148,118 @@ SLIDES = [
     },
     {
         'id': 3,
-        'chapter': '第一章：認識 Power BI',
-        'title': 'Power BI 三大組件',
+        'chapter': '第一章：認識資料儀表板',
+        'title': '儀表板的四個組成',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>Power BI 三大組件</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;margin-bottom:15px;'>
-  <div style='background:#eff6ff;padding:18px;border-radius:12px;text-align:center;border:2px solid #2563eb;'>
-    <div style='font-size:2.5rem;margin-bottom:10px;'>💻</div>
-    <h3 style='color:#1e40af;font-size:1.1rem;margin-bottom:8px;'>Power BI Desktop</h3>
-    <p style='color:#374151;font-size:0.85rem;'>製作報表的工具<br>免費下載<br>Windows 版</p>
-    <div style='background:#dbeafe;padding:6px;border-radius:4px;margin-top:8px;'>
-      <p style='color:#1e40af;font-size:0.8rem;margin:0;font-weight:700;'>🆓 完全免費</p>
-    </div>
+<h2 class='slide-title'>儀表板的四個組成（Google 試算表對應功能）</h2>
+<div style='display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:15px;'>
+  <div style='background:#eff6ff;padding:14px;border-radius:12px;text-align:center;border:2px solid #2563eb;'>
+    <div style='font-size:2.2rem;margin-bottom:6px;'>🔢</div>
+    <h3 style='color:#1e40af;font-size:1rem;margin-bottom:6px;'>KPI 數字</h3>
+    <p style='color:#374151;font-size:0.82rem;margin:0;'>總數、平均、最高<br>→ <strong>計分卡圖表</strong></p>
   </div>
-  <div style='background:#f0fdf4;padding:18px;border-radius:12px;text-align:center;border:2px solid #16a34a;'>
-    <div style='font-size:2.5rem;margin-bottom:10px;'>☁️</div>
-    <h3 style='color:#15803d;font-size:1.1rem;margin-bottom:8px;'>Power BI Service</h3>
-    <p style='color:#374151;font-size:0.85rem;'>雲端發布與分享<br>設定自動重新整理<br>行動版 APP</p>
-    <div style='background:#dcfce7;padding:6px;border-radius:4px;margin-top:8px;'>
-      <p style='color:#15803d;font-size:0.8rem;margin:0;font-weight:700;'>💰 需要授權</p>
-    </div>
+  <div style='background:#f0fdf4;padding:14px;border-radius:12px;text-align:center;border:2px solid #16a34a;'>
+    <div style='font-size:2.2rem;margin-bottom:6px;'>📊</div>
+    <h3 style='color:#15803d;font-size:1rem;margin-bottom:6px;'>圖表</h3>
+    <p style='color:#374151;font-size:0.82rem;margin:0;'>比較、趨勢、比例<br>→ <strong>插入 → 圖表</strong></p>
   </div>
-  <div style='background:#fdf4ff;padding:18px;border-radius:12px;text-align:center;border:2px solid #7c3aed;'>
-    <div style='font-size:2.5rem;margin-bottom:10px;'>📱</div>
-    <h3 style='color:#7c3aed;font-size:1.1rem;margin-bottom:8px;'>Power BI Mobile</h3>
-    <p style='color:#374151;font-size:0.85rem;'>手機/平板瀏覽報表<br>iOS & Android<br>隨時掌握數據</p>
-    <div style='background:#e9d5ff;padding:6px;border-radius:4px;margin-top:8px;'>
-      <p style='color:#7c3aed;font-size:0.8rem;margin:0;font-weight:700;'>🆓 免費下載</p>
-    </div>
+  <div style='background:#fff7ed;padding:14px;border-radius:12px;text-align:center;border:2px solid #ea580c;'>
+    <div style='font-size:2.2rem;margin-bottom:6px;'>🎛️</div>
+    <h3 style='color:#c2410c;font-size:1rem;margin-bottom:6px;'>篩選器</h3>
+    <p style='color:#374151;font-size:0.82rem;margin:0;'>點選條件一起篩選<br>→ <strong>交叉分析篩選器</strong></p>
+  </div>
+  <div style='background:#fdf4ff;padding:14px;border-radius:12px;text-align:center;border:2px solid #7c3aed;'>
+    <div style='font-size:2.2rem;margin-bottom:6px;'>🗂️</div>
+    <h3 style='color:#7c3aed;font-size:1rem;margin-bottom:6px;'>彙總表</h3>
+    <p style='color:#374151;font-size:0.82rem;margin:0;'>分組加總、平均<br>→ <strong>樞紐分析表</strong></p>
   </div>
 </div>
 <div style='background:#fff7ed;padding:12px;border-radius:8px;border:1px solid #fdba74;'>
-  <p style='color:#9a3412;font-size:0.9rem;margin:0;'>🏫 <strong>學生如何免費使用</strong>：使用學校 Microsoft 365 帳號（*.edu.tw）可免費存取 Power BI Service。教育版授權包含 Power BI Pro。</p>
+  <p style='color:#9a3412;font-size:0.9rem;margin:0;'>💡 這四樣東西 Ch08、Ch09 幾乎都學過了，這週的重點是把它們<strong>組合在同一頁</strong>，並讓它們<strong>一起連動</strong>。</p>
 </div>"""
     },
     {
         'id': 4,
-        'chapter': '第一章：認識 Power BI',
-        'title': 'Power BI 台灣企業應用',
+        'chapter': '第一章：認識資料儀表板',
+        'title': '生活中的儀表板',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>Power BI 台灣企業應用案例</h2>
+<h2 class='slide-title'>生活中的儀表板</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div style='display:flex;flex-direction:column;gap:12px;'>
     <div style='background:#eff6ff;padding:14px;border-radius:10px;border-left:4px solid #2563eb;'>
-      <h3 style='color:#1e40af;font-size:0.95rem;margin-bottom:6px;'>🏭 台達電子</h3>
-      <p style='color:#374151;font-size:0.85rem;margin:0;'>導入 Power BI 建立「即時工廠儀表板」，生產主管在手機上隨時查看各產線良率、產量、設備狀態，大幅加快決策速度。</p>
+      <h3 style='color:#1e40af;font-size:0.95rem;margin-bottom:6px;'>⚡ 台電「今日電力資訊」</h3>
+      <p style='color:#374151;font-size:0.85rem;margin:0;'>用燈號和數字顯示今天的用電量、備轉容量率，一眼就知道供電是否吃緊，是很典型的 KPI 儀表板。</p>
     </div>
     <div style='background:#f0fdf4;padding:14px;border-radius:10px;border-left:4px solid #16a34a;'>
-      <h3 style='color:#15803d;font-size:0.95rem;margin-bottom:6px;'>🏦 富邦金控</h3>
-      <p style='color:#374151;font-size:0.85rem;margin:0;'>財務部門用 Power BI 整合各子公司數據，原本需多日人工彙整的財務報表變成即時更新，節省大量人力。</p>
+      <h3 style='color:#15803d;font-size:0.95rem;margin-bottom:6px;'>🌫️ 空氣品質監測網</h3>
+      <p style='color:#374151;font-size:0.85rem;margin:0;'>環境部把全台測站的 AQI 用顏色畫在地圖上，再搭配各測站的數值與趨勢，選測站就能看細節。</p>
     </div>
   </div>
   <div style='display:flex;flex-direction:column;gap:12px;'>
     <div style='background:#fff7ed;padding:14px;border-radius:10px;border-left:4px solid #ea580c;'>
-      <h3 style='color:#ea580c;font-size:0.95rem;margin-bottom:6px;'>🏢 台北市政府</h3>
-      <p style='color:#374151;font-size:0.85rem;margin:0;'>「市長室即時儀表板」整合市政指標（垃圾清運率、道路坑洞修復、建管審核時間），市長每天用 Power BI 監控市政績效。</p>
+      <h3 style='color:#ea580c;font-size:0.95rem;margin-bottom:6px;'>⌚ 手機的健康 App</h3>
+      <p style='color:#374151;font-size:0.85rem;margin:0;'>今天走了幾步、睡了多久，用大數字顯示，下面再用長條圖比較一週的變化——你每天都在看儀表板。</p>
     </div>
     <div style='background:#fdf4ff;padding:14px;border-radius:10px;border-left:4px solid #7c3aed;'>
-      <h3 style='color:#7c3aed;font-size:0.95rem;margin-bottom:6px;'>🛒 PChome 網購</h3>
-      <p style='color:#374151;font-size:0.85rem;margin:0;'>商品部門用 Power BI 分析銷售趨勢，快速找出滯銷商品、熱門品類，即時調整促銷與備貨策略，改善庫存管理。</p>
+      <h3 style='color:#7c3aed;font-size:0.95rem;margin-bottom:6px;'>🏫 你自己的成績儀表板</h3>
+      <p style='color:#374151;font-size:0.85rem;margin:0;'>把 Ch09 的班級成績做成一頁：最上方是全班平均、及格率，下面是各科長條圖和分數分布，再加上「班級」篩選器。</p>
     </div>
   </div>
 </div>"""
     },
     {
         'id': 5,
-        'chapter': '第一章：認識 Power BI',
-        'title': 'DAX — Power BI 計算語言',
+        'chapter': '第一章：認識資料儀表板',
+        'title': '用公式算出 KPI',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>DAX — Power BI 的計算引擎</h2>
+<h2 class='slide-title'>用公式算出 KPI</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div>
     <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:8px;'>📐 什麼是 DAX？</h3>
-      <p style='color:#374151;font-size:0.9rem;margin-bottom:8px;'>DAX（Data Analysis Expressions）是 Power BI 用來建立計算欄位和量值的公式語言，語法類似 Excel 函數。</p>
-      <div style='background:#dbeafe;padding:8px;border-radius:6px;'>
-        <p style='color:#374151;font-size:0.85rem;margin:0;'>🤔 類比：DAX 是 Power BI 的「Excel 公式」</p>
-      </div>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:8px;'>📐 什麼是 KPI？</h3>
+      <p style='color:#374151;font-size:0.9rem;margin:0;'>KPI（關鍵績效指標）是最能代表現況的幾個數字。先在一個「計算」分頁用公式算好，再拿去做計分卡。</p>
     </div>
     <div style='background:#f0fdf4;padding:12px;border-radius:8px;'>
-      <h3 style='color:#15803d;font-size:0.95rem;margin-bottom:8px;'>✨ 常用 DAX 範例</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;'>
-        <div style='background:#fff;padding:8px;border-radius:6px;font-family:monospace;font-size:0.8rem;'>
-          <p style='color:#15803d;margin:0;'>及格人數 = COUNTIF(成績表[成績],">=60")</p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;font-family:monospace;font-size:0.8rem;'>
-          <p style='color:#15803d;margin:0;'>平均成績 = AVERAGE(成績表[成績])</p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;font-family:monospace;font-size:0.8rem;'>
-          <p style='color:#15803d;margin:0;'>及格率 = DIVIDE([及格人數],[總人數])</p>
-        </div>
+      <h3 style='color:#15803d;font-size:0.95rem;margin-bottom:8px;'>✨ 常用 KPI 公式（Ch09 學過）</h3>
+      <div style='display:flex;flex-direction:column;gap:6px;font-family:monospace;font-size:0.8rem;'>
+        <div style='background:#fff;padding:8px;border-radius:6px;color:#15803d;'>總借車次數 =SUM(資料!E2:E200)</div>
+        <div style='background:#fff;padding:8px;border-radius:6px;color:#15803d;'>平均每站 =AVERAGE(資料!E2:E200)</div>
+        <div style='background:#fff;padding:8px;border-radius:6px;color:#15803d;'>大站數量 =COUNTIF(資料!E2:E200,"&gt;=4000")</div>
+        <div style='background:#fff;padding:8px;border-radius:6px;color:#15803d;'>及格率 =COUNTIF(B2:B31,"&gt;=60")/COUNT(B2:B31)</div>
       </div>
     </div>
   </div>
   <div>
     <div style='background:#fdf4ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#7c3aed;font-size:1rem;margin-bottom:10px;'>🔢 量值 vs 計算欄位</h3>
-      <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
-        <tr style='background:#7c3aed;color:#fff;'>
-          <th style='padding:6px;'>類型</th><th style='padding:6px;'>說明</th>
-        </tr>
-        <tr><td style='padding:6px;color:#374151;font-weight:700;'>計算欄位</td><td style='padding:6px;color:#374151;'>對每一列計算，儲存在資料表中</td></tr>
-        <tr style='background:#f9fafb;'><td style='padding:6px;color:#374151;font-weight:700;'>量值（Measure）</td><td style='padding:6px;color:#374151;'>動態計算，根據篩選條件自動調整</td></tr>
-      </table>
+      <h3 style='color:#7c3aed;font-size:1rem;margin-bottom:10px;'>🔢 好的 KPI 要符合</h3>
+      <ul style='color:#374151;font-size:0.88rem;padding-left:16px;margin:0;line-height:1.7;'>
+        <li><strong>少</strong>：一個儀表板 3–4 個就好</li>
+        <li><strong>有意義</strong>：跟你想回答的問題有關</li>
+        <li><strong>可比較</strong>：最好有基準（上個月、全市平均）</li>
+        <li><strong>標清楚單位</strong>：次、人、%、元</li>
+      </ul>
     </div>
     <div style='background:#fff7ed;padding:10px;border-radius:8px;'>
-      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>💡 入門時先用 Power BI 內建功能（加總、平均、計數），DAX 是進階技能，不需要一開始就學。</p>
+      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>💡 公式引用原始資料，原始資料一更新，KPI 和計分卡就會自動跟著更新。</p>
     </div>
   </div>
 </div>"""
     },
     {
         'id': 6,
-        'chapter': '第一章：認識 Power BI',
+        'chapter': '第一章：認識資料儀表板',
         'title': '儀表板設計原則',
         'bg': 'white',
         'quiz': None,
@@ -290,37 +275,37 @@ SLIDES = [
         <li><strong>5 秒原則</strong>：5 秒內看懂核心訊息</li>
         <li><strong>F 型閱讀</strong>：重要 KPI 放左上角</li>
         <li><strong>一頁一主題</strong>：不要塞太多圖表</li>
-        <li><strong>顏色一致</strong>：品牌色或主題色</li>
+        <li><strong>顏色一致</strong>：同一種資料用同一個顏色</li>
         <li><strong>互動篩選</strong>：讓使用者自行探索</li>
-        <li><strong>行動友善</strong>：手機也能看清楚</li>
+        <li><strong>標題清楚</strong>：每張圖都有標題和單位</li>
       </ul>
     </div>
   </div>
   <div>
     <div style='background:#fef9c3;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #fde047;'>
-      <h3 style='color:#854d0e;font-size:1rem;margin-bottom:10px;'>🎨 版面配置範例</h3>
+      <h3 style='color:#854d0e;font-size:1rem;margin-bottom:10px;'>🎨 版面配置範例（YouBike 儀表板）</h3>
       <div style='background:#fff;padding:10px;border-radius:8px;'>
         <div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-bottom:4px;'>
-          <div style='background:#dbeafe;padding:8px;border-radius:4px;text-align:center;font-size:0.7rem;color:#1e40af;font-weight:700;'>KPI<br>總銷售額</div>
-          <div style='background:#dcfce7;padding:8px;border-radius:4px;text-align:center;font-size:0.7rem;color:#15803d;font-weight:700;'>KPI<br>客戶數</div>
-          <div style='background:#fef9c3;padding:8px;border-radius:4px;text-align:center;font-size:0.7rem;color:#854d0e;font-weight:700;'>KPI<br>利潤率</div>
+          <div style='background:#dbeafe;padding:8px;border-radius:4px;text-align:center;font-size:0.7rem;color:#1e40af;font-weight:700;'>KPI<br>總借車次數</div>
+          <div style='background:#dcfce7;padding:8px;border-radius:4px;text-align:center;font-size:0.7rem;color:#15803d;font-weight:700;'>KPI<br>站點數</div>
+          <div style='background:#fef9c3;padding:8px;border-radius:4px;text-align:center;font-size:0.7rem;color:#854d0e;font-weight:700;'>KPI<br>平均每站</div>
         </div>
         <div style='display:grid;grid-template-columns:2fr 1fr;gap:4px;'>
-          <div style='background:#f1f5f9;padding:8px;border-radius:4px;text-align:center;font-size:0.7rem;color:#374151;'>月銷售趨勢（折線圖）</div>
-          <div style='background:#f1f5f9;padding:8px;border-radius:4px;text-align:center;font-size:0.7rem;color:#374151;'>地區分布（地圖）</div>
+          <div style='background:#f1f5f9;padding:8px;border-radius:4px;text-align:center;font-size:0.7rem;color:#374151;'>各區借車次數（長條圖）</div>
+          <div style='background:#f1f5f9;padding:8px;border-radius:4px;text-align:center;font-size:0.7rem;color:#374151;'>行政區篩選器</div>
         </div>
       </div>
       <p style='color:#854d0e;font-size:0.8rem;margin-top:8px;'>重要指標在上，詳細圖表在下</p>
     </div>
     <div style='background:#fef2f2;padding:10px;border-radius:8px;'>
-      <p style='color:#dc2626;font-size:0.85rem;margin:0;'>❌ <strong>常見錯誤</strong>：使用 12 種以上顏色、一頁放 8 個圖表、圖表沒有標題、字體太小手機看不清楚。</p>
+      <p style='color:#dc2626;font-size:0.85rem;margin:0;'>❌ <strong>常見錯誤</strong>：顏色太多、一頁放 8 個圖表、圖表沒有標題、字太小看不清楚。</p>
     </div>
   </div>
 </div>"""
     },
     {
         'id': 7,
-        'chapter': '第一章：認識 Power BI',
+        'chapter': '第一章：認識資料儀表板',
         'title': '🎯 第一章 隨堂測驗',
         'bg': 'purple',
         'quiz': 'q1',
@@ -330,226 +315,190 @@ SLIDES = [
 <div style='text-align:center;padding:20px;'>
   <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
   <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第一章 隨堂測驗</h2>
-  <p style='color:#e9d5ff;font-size:1.1rem;'>認識 Power BI ── 2 道題目，點擊作答！</p>
+  <p style='color:#e9d5ff;font-size:1.1rem;'>認識資料儀表板 ── 2 道題目，點擊作答！</p>
 </div>"""
     },
     {
         'id': 8,
-        'chapter': '第二章：資料匯入與整理',
-        'title': 'Power Query 資料清理',
+        'chapter': '第二章：準備儀表板的資料',
+        'title': '儀表板的資料要先整理好',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>Power Query 資料清理</h2>
+<h2 class='slide-title'>儀表板的資料要先整理好</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🔧 Power Query 功能</h3>
-      <p style='color:#374151;font-size:0.9rem;margin-bottom:8px;'>連接資料來源後，進入 Power Query 編輯器進行清理：</p>
-      <div style='display:flex;flex-direction:column;gap:6px;'>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
-          <p style='color:#374151;font-size:0.85rem;margin:0;'>✅ 移除重複列</p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
-          <p style='color:#374151;font-size:0.85rem;margin:0;'>✅ 取代/填入缺失值</p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
-          <p style='color:#374151;font-size:0.85rem;margin:0;'>✅ 分割欄位（姓名+電話→各自欄）</p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
-          <p style='color:#374151;font-size:0.85rem;margin:0;'>✅ 自訂欄位（計算欄）</p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
-          <p style='color:#374151;font-size:0.85rem;margin:0;'>✅ 合併多個資料表</p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
-          <p style='color:#374151;font-size:0.85rem;margin:0;'>✅ 資料類型轉換（文字→數值→日期）</p>
-        </div>
-      </div>
-    </div>
+  <div style='background:#f0fdf4;padding:15px;border-radius:10px;border-top:4px solid #16a34a;'>
+    <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>✅ 乾淨表格的規則</h3>
+    <ul style='color:#374151;font-size:0.9rem;padding-left:16px;margin:0;line-height:1.8;'>
+      <li>第一列是欄位名稱，而且不重複</li>
+      <li>每一列是一筆資料（一個站點、一位學生）</li>
+      <li>每一欄只放一種資料（數字欄不要混文字）</li>
+      <li>不要合併儲存格、不要空白列、不要在中間插小計</li>
+      <li>Ch08 的清理步驟先做完：TRIM、去重複、補缺值</li>
+    </ul>
   </div>
   <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:8px;'>⭐ 最大優勢：步驟自動記錄</h3>
-      <p style='color:#374151;font-size:0.9rem;margin-bottom:8px;'>Power Query 會自動記錄每個清理步驟，下次匯入新資料時，<strong>自動套用相同步驟</strong>！</p>
-      <div style='background:#dcfce7;padding:8px;border-radius:6px;'>
-        <p style='color:#15803d;font-size:0.85rem;margin:0;'>例：每月新增銷售資料 → 按「重新整理」→ 所有清理自動完成，圖表自動更新！</p>
-      </div>
+    <div style='background:#fef2f2;padding:12px;border-radius:8px;margin-bottom:10px;'>
+      <p style='color:#991b1b;font-weight:700;font-size:0.9rem;margin:0 0 6px;'>❌ 不適合做儀表板</p>
+      <table style='width:100%;border-collapse:collapse;font-size:0.78rem;color:#374151;'>
+        <tr style='background:#fee2e2;'><td style='padding:4px;'>大安區（合併）</td><td style='padding:4px;'>公館站 3,200</td></tr>
+        <tr><td style='padding:4px;'></td><td style='padding:4px;'>大安站 2,950</td></tr>
+        <tr style='background:#fee2e2;'><td style='padding:4px;'>小計</td><td style='padding:4px;'>6,150</td></tr>
+      </table>
     </div>
-    <div style='background:#fff7ed;padding:10px;border-radius:8px;'>
-      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>💡 Power Query 也內建在 Excel 中（資料→從其他來源），不只是 Power BI 專屬功能！</p>
+    <div style='background:#ecfdf5;padding:12px;border-radius:8px;'>
+      <p style='color:#065f46;font-weight:700;font-size:0.9rem;margin:0 0 6px;'>✅ 適合做儀表板</p>
+      <table style='width:100%;border-collapse:collapse;font-size:0.78rem;color:#374151;'>
+        <tr style='background:#d1fae5;font-weight:700;'><td style='padding:4px;'>行政區</td><td style='padding:4px;'>站點</td><td style='padding:4px;'>借車次數</td></tr>
+        <tr><td style='padding:4px;'>大安區</td><td style='padding:4px;'>公館站</td><td style='padding:4px;'>3200</td></tr>
+        <tr><td style='padding:4px;'>大安區</td><td style='padding:4px;'>大安站</td><td style='padding:4px;'>2950</td></tr>
+      </table>
     </div>
   </div>
 </div>"""
     },
     {
         'id': 9,
-        'chapter': '第二章：資料匯入與整理',
-        'title': '連接多種資料來源',
+        'chapter': '第二章：準備儀表板的資料',
+        'title': '把開放資料匯入 Google 試算表',
         'bg': 'white',
         'quiz': None,
         'chart': None,
-        'video': {'url': 'https://www.youtube.com/embed/TmhQCQr_y2A', 'title': 'Power BI 入門教學', 'desc': '10 分鐘學會建立第一個 Power BI 報表'},
+        'video': None,
         'html': """
-<h2 class='slide-title'>連接多種資料來源</h2>
+<h2 class='slide-title'>把開放資料匯入 Google 試算表</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <h3 style='color:#374151;font-size:1rem;margin-bottom:12px;'>🔌 Power BI 支援的資料來源</h3>
-    <div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;'>
-      <div style='background:#eff6ff;padding:10px;border-radius:8px;text-align:center;'>
-        <div>📊</div>
-        <p style='color:#1e40af;font-size:0.8rem;font-weight:700;margin:4px 0 0;'>Excel / CSV</p>
-      </div>
-      <div style='background:#f0fdf4;padding:10px;border-radius:8px;text-align:center;'>
-        <div>🗄️</div>
-        <p style='color:#15803d;font-size:0.8rem;font-weight:700;margin:4px 0 0;'>SQL 資料庫</p>
-      </div>
-      <div style='background:#fdf4ff;padding:10px;border-radius:8px;text-align:center;'>
-        <div>☁️</div>
-        <p style='color:#7c3aed;font-size:0.8rem;font-weight:700;margin:4px 0 0;'>SharePoint</p>
-      </div>
-      <div style='background:#fff7ed;padding:10px;border-radius:8px;text-align:center;'>
-        <div>🌐</div>
-        <p style='color:#ea580c;font-size:0.8rem;font-weight:700;margin:4px 0 0;'>Web 網頁</p>
-      </div>
-      <div style='background:#fef9c3;padding:10px;border-radius:8px;text-align:center;'>
-        <div>📡</div>
-        <p style='color:#854d0e;font-size:0.8rem;font-weight:700;margin:4px 0 0;'>REST API</p>
-      </div>
-      <div style='background:#fef2f2;padding:10px;border-radius:8px;text-align:center;'>
-        <div>📋</div>
-        <p style='color:#dc2626;font-size:0.8rem;font-weight:700;margin:4px 0 0;'>Google Sheets</p>
-      </div>
-    </div>
+  <div style='background:#eff6ff;padding:15px;border-radius:10px;'>
+    <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📥 方法一：下載 CSV 再匯入</h3>
+    <ol style='color:#374151;font-size:0.88rem;padding-left:18px;margin:0;line-height:1.8;'>
+      <li>到 data.gov.tw 或臺北市資料大平臺下載 CSV</li>
+      <li>Google 試算表 → 檔案 → 匯入 → 上傳</li>
+      <li>選「插入新工作表」，分隔符號選「自動偵測」</li>
+      <li>工作表改名為「資料」，不要直接在這裡改原始數字</li>
+    </ol>
   </div>
   <div>
-    <div style='background:#f9fafb;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e5e7eb;'>
-      <h3 style='color:#374151;font-size:1rem;margin-bottom:10px;'>🔗 資料模型（關聯性）</h3>
-      <p style='color:#374151;font-size:0.9rem;margin-bottom:8px;'>多張資料表可以透過共同欄位建立關聯，就像資料庫的外鍵：</p>
-      <div style='background:#fff;padding:10px;border-radius:6px;text-align:center;font-size:0.85rem;'>
-        <div style='display:flex;justify-content:center;align-items:center;gap:12px;'>
-          <div style='background:#dbeafe;padding:8px;border-radius:6px;'>
-            <p style='color:#1e40af;font-weight:700;margin:0;'>學生資料表</p>
-            <p style='color:#374151;font-size:0.75rem;margin:2px 0 0;'>學號、姓名、班級</p>
-          </div>
-          <div style='color:#7c3aed;font-size:1.3rem;'>⟷</div>
-          <div style='background:#dcfce7;padding:8px;border-radius:6px;'>
-            <p style='color:#15803d;font-weight:700;margin:0;'>成績資料表</p>
-            <p style='color:#374151;font-size:0.75rem;margin:2px 0 0;'>學號、科目、分數</p>
-          </div>
-        </div>
-        <p style='color:#6b7280;font-size:0.75rem;margin-top:8px;'>透過「學號」連結，可同時使用兩表欄位</p>
-      </div>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:8px;'>🔗 方法二：用公式直接讀網址</h3>
+      <div style='background:#fff;padding:8px;border-radius:6px;font-family:monospace;font-size:0.8rem;color:#15803d;margin-bottom:6px;'>=IMPORTDATA("CSV 檔的網址")</div>
+      <p style='color:#374151;font-size:0.85rem;margin:0;'>資料平臺提供 CSV 下載網址時，可以用 IMPORTDATA 直接讀進來，網址上的資料更新，試算表也會跟著更新。</p>
+    </div>
+    <div style='background:#fff7ed;padding:10px;border-radius:8px;'>
+      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>⚠️ 中文出現亂碼時，改用「檔案 → 匯入」上傳，或確認 CSV 是 UTF-8 編碼。記得寫下資料名稱、提供機關與下載日期，期末報告要用。</p>
     </div>
   </div>
 </div>"""
     },
     {
         'id': 10,
-        'chapter': '第二章：資料匯入與整理',
-        'title': '從開放資料到 Power BI',
+        'chapter': '第二章：準備儀表板的資料',
+        'title': '用樞紐分析表彙總',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>從開放資料到 Power BI 儀表板</h2>
+<h2 class='slide-title'>用樞紐分析表彙總資料</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🔄 完整流程</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;'>
-        <div style='background:#dbeafe;padding:8px;border-radius:6px;display:flex;align-items:center;gap:8px;'>
-          <span style='background:#1e40af;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;'>1</span>
-          <span style='color:#374151;font-size:0.85rem;'>data.gov.tw 下載 CSV 資料</span>
-        </div>
-        <div style='background:#dbeafe;padding:8px;border-radius:6px;display:flex;align-items:center;gap:8px;'>
-          <span style='background:#1e40af;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;'>2</span>
-          <span style='color:#374151;font-size:0.85rem;'>Power BI Desktop → 取得資料 → CSV</span>
-        </div>
-        <div style='background:#dbeafe;padding:8px;border-radius:6px;display:flex;align-items:center;gap:8px;'>
-          <span style='background:#1e40af;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;'>3</span>
-          <span style='color:#374151;font-size:0.85rem;'>Power Query 清理資料</span>
-        </div>
-        <div style='background:#dbeafe;padding:8px;border-radius:6px;display:flex;align-items:center;gap:8px;'>
-          <span style='background:#1e40af;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;'>4</span>
-          <span style='color:#374151;font-size:0.85rem;'>拖放建立視覺化圖表</span>
-        </div>
-        <div style='background:#dcfce7;padding:8px;border-radius:6px;display:flex;align-items:center;gap:8px;'>
-          <span style='background:#15803d;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.8rem;'>5</span>
-          <span style='color:#374151;font-size:0.85rem;'>發布或匯出 PDF 分享</span>
-        </div>
-      </div>
-    </div>
+  <div style='background:#eff6ff;padding:15px;border-radius:10px;'>
+    <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🗂️ 步驟（Ch09 學過）</h3>
+    <ol style='color:#374151;font-size:0.88rem;padding-left:18px;margin:0;line-height:1.8;'>
+      <li>選取整份資料（含第一列標題）</li>
+      <li>插入 → 樞紐分析表 → 新工作表</li>
+      <li>列：行政區　值：借車次數（SUM）</li>
+      <li>再新增一個值：站點（COUNTA）→ 每區有幾站</li>
+      <li>依借車次數「遞減」排序</li>
+    </ol>
   </div>
   <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>📊 範例：YouBike 分析儀表板</h3>
-      <ul style='color:#374151;font-size:0.85rem;padding-left:16px;'>
-        <li>資料來源：台北市開放資料 YouBike 站點</li>
-        <li>地圖：各站點位置與使用量</li>
-        <li>折線圖：各時段租借次數</li>
-        <li>長條圖：各行政區站點數比較</li>
-        <li>篩選器：可選擇行政區</li>
-      </ul>
+    <div style='background:#f0fdf4;padding:12px;border-radius:8px;margin-bottom:10px;'>
+      <p style='color:#15803d;font-weight:700;font-size:0.9rem;margin:0 0 6px;'>📊 樞紐分析結果</p>
+      <table style='width:100%;border-collapse:collapse;font-size:0.8rem;color:#374151;'>
+        <tr style='background:#dcfce7;font-weight:700;'><td style='padding:4px;'>行政區</td><td style='padding:4px;'>借車次數</td><td style='padding:4px;'>站點數</td></tr>
+        <tr><td style='padding:4px;'>大安區</td><td style='padding:4px;'>28,567</td><td style='padding:4px;'>5</td></tr>
+        <tr><td style='padding:4px;'>中正區</td><td style='padding:4px;'>21,757</td><td style='padding:4px;'>4</td></tr>
+        <tr><td style='padding:4px;'>…</td><td style='padding:4px;'>…</td><td style='padding:4px;'>…</td></tr>
+      </table>
+      <p style='color:#64748b;font-size:0.72rem;margin:4px 0 0;'>（教學模擬資料）</p>
     </div>
     <div style='background:#fff7ed;padding:10px;border-radius:8px;'>
-      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>🎓 期末實作：各組選擇一個 data.gov.tw 資料集，製作至少包含 3 個視覺效果的 Power BI 儀表板。</p>
+      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>💡 樞紐分析表本身就可以拿來畫圖表；交叉分析篩選器也能同時篩選樞紐分析表。</p>
     </div>
   </div>
 </div>"""
     },
     {
         'id': 11,
-        'chapter': '第二章：資料匯入與整理',
-        'title': '資料關聯與模型設計',
+        'chapter': '第二章：準備儀表板的資料',
+        'title': 'QUERY、FILTER、SORT 函數',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>資料模型設計</h2>
+<h2 class='slide-title'>用函數整理資料：QUERY、FILTER、SORT</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🌟 星型架構（Star Schema）</h3>
-      <div style='background:#fff;padding:12px;border-radius:8px;text-align:center;'>
-        <div style='background:#fde047;padding:6px 12px;border-radius:6px;display:inline-block;margin-bottom:8px;'>
-          <p style='color:#854d0e;font-weight:700;font-size:0.85rem;margin:0;'>中央事實表（銷售記錄）</p>
-        </div>
-        <div style='display:flex;justify-content:center;gap:8px;flex-wrap:wrap;'>
-          <div style='background:#dbeafe;padding:5px 10px;border-radius:4px;font-size:0.75rem;color:#1e40af;'>客戶維度表</div>
-          <div style='background:#dcfce7;padding:5px 10px;border-radius:4px;font-size:0.75rem;color:#15803d;'>商品維度表</div>
-          <div style='background:#fde047;padding:5px 10px;border-radius:4px;font-size:0.75rem;color:#854d0e;'>時間維度表</div>
-          <div style='background:#fdf4ff;padding:5px 10px;border-radius:4px;font-size:0.75rem;color:#7c3aed;'>地區維度表</div>
-        </div>
-      </div>
-      <p style='color:#374151;font-size:0.8rem;margin-top:8px;'>事實表放數值，維度表放描述資訊。這是商業智慧的標準架構。</p>
+  <div style='display:flex;flex-direction:column;gap:10px;'>
+    <div style='background:#eff6ff;padding:12px;border-radius:8px;'>
+      <p style='color:#1e40af;font-weight:700;font-size:0.9rem;margin:0 0 6px;'>QUERY：分組加總（像樞紐分析表）</p>
+      <div style='background:#fff;padding:8px;border-radius:6px;font-family:monospace;font-size:0.78rem;color:#1e40af;'>=QUERY(資料!A1:F200, "select C, sum(E) group by C order by sum(E) desc", 1)</div>
+      <p style='color:#374151;font-size:0.8rem;margin:6px 0 0;'>依 C 欄（行政區）分組，加總 E 欄（借車次數），由大到小排列。</p>
+    </div>
+    <div style='background:#f0fdf4;padding:12px;border-radius:8px;'>
+      <p style='color:#15803d;font-weight:700;font-size:0.9rem;margin:0 0 6px;'>FILTER：只留下符合條件的資料</p>
+      <div style='background:#fff;padding:8px;border-radius:6px;font-family:monospace;font-size:0.78rem;color:#15803d;'>=FILTER(資料!A2:F200, 資料!C2:C200="大安區")</div>
     </div>
   </div>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>🔗 關聯性類型</h3>
-      <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
-        <tr style='background:#15803d;color:#fff;'>
-          <th style='padding:6px;'>類型</th><th style='padding:6px;'>說明</th>
-        </tr>
-        <tr><td style='padding:6px;color:#374151;font-weight:700;'>一對多</td><td style='padding:6px;color:#374151;'>一個班級對應多個學生（最常見）</td></tr>
-        <tr style='background:#f0fdf4;'><td style='padding:6px;color:#374151;font-weight:700;'>一對一</td><td style='padding:6px;color:#374151;'>每個員工對應一張薪資單</td></tr>
-        <tr><td style='padding:6px;color:#374151;font-weight:700;'>多對多</td><td style='padding:6px;color:#374151;'>學生選多門課，課有多個學生</td></tr>
-      </table>
+  <div style='display:flex;flex-direction:column;gap:10px;'>
+    <div style='background:#fdf4ff;padding:12px;border-radius:8px;'>
+      <p style='color:#7c3aed;font-weight:700;font-size:0.9rem;margin:0 0 6px;'>SORT：排序（找前幾名）</p>
+      <div style='background:#fff;padding:8px;border-radius:6px;font-family:monospace;font-size:0.78rem;color:#7c3aed;'>=SORT(資料!B2:E200, 4, FALSE)</div>
+      <p style='color:#374151;font-size:0.8rem;margin:6px 0 0;'>依範圍內第 4 欄由大到小排序；搭配 ARRAY_CONSTRAIN 可只取前 5 名。</p>
     </div>
-    <div style='background:#eff6ff;padding:10px;border-radius:8px;'>
-      <p style='color:#1e40af;font-size:0.85rem;margin:0;'>💡 設計好的資料模型，之後分析時才能靈活組合不同表的資料，不會遇到 DAX 計算錯誤。</p>
+    <div style='background:#fff7ed;padding:12px;border-radius:8px;'>
+      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>💡 這些函數的結果會<strong>跟著原始資料自動更新</strong>，很適合當儀表板圖表的資料來源。不熟也沒關係，用樞紐分析表一樣做得到。</p>
     </div>
   </div>
 </div>"""
     },
     {
         'id': 12,
-        'chapter': '第二章：資料匯入與整理',
+        'chapter': '第二章：準備儀表板的資料',
+        'title': '規劃三個工作表',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>規劃三個工作表：資料 → 計算 → 儀表板</h2>
+<div style='display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;margin-bottom:15px;'>
+  <div style='background:#eff6ff;padding:15px;border-radius:12px;text-align:center;border:2px solid #2563eb;'>
+    <div style='font-size:2rem;'>📄</div>
+    <h3 style='color:#1e40af;font-size:1rem;margin:6px 0;'>資料</h3>
+    <p style='color:#374151;font-size:0.8rem;margin:0;'>匯入的原始資料<br>清理後就不要再動</p>
+  </div>
+  <div style='font-size:1.6rem;color:#64748b;'>→</div>
+  <div style='background:#f0fdf4;padding:15px;border-radius:12px;text-align:center;border:2px solid #16a34a;'>
+    <div style='font-size:2rem;'>🧮</div>
+    <h3 style='color:#15803d;font-size:1rem;margin:6px 0;'>計算</h3>
+    <p style='color:#374151;font-size:0.8rem;margin:0;'>KPI 公式、樞紐分析表<br>QUERY 的結果</p>
+  </div>
+  <div style='font-size:1.6rem;color:#64748b;'>→</div>
+  <div style='background:#fdf4ff;padding:15px;border-radius:12px;text-align:center;border:2px solid #7c3aed;'>
+    <div style='font-size:2rem;'>📊</div>
+    <h3 style='color:#7c3aed;font-size:1rem;margin:6px 0;'>儀表板</h3>
+    <p style='color:#374151;font-size:0.8rem;margin:0;'>只放計分卡、圖表<br>和篩選器</p>
+  </div>
+</div>
+<div style='background:#fff7ed;padding:12px;border-radius:8px;border:1px solid #fdba74;'>
+  <p style='color:#9a3412;font-size:0.9rem;margin:0;'>💡 分開放的好處：原始資料不會被誤改、公式好檢查，儀表板頁面也比較乾淨。儀表板頁可以「檢視 → 隱藏格線」，看起來更像一頁報表。</p>
+</div>"""
+    },
+    {
+        'id': 13,
+        'chapter': '第二章：準備儀表板的資料',
         'title': '🎯 第二章 隨堂測驗',
         'bg': 'purple',
         'quiz': 'q2',
@@ -559,215 +508,149 @@ SLIDES = [
 <div style='text-align:center;padding:20px;'>
   <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
   <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第二章 隨堂測驗</h2>
-  <p style='color:#e9d5ff;font-size:1.1rem;'>資料匯入與整理 ── 2 道題目，點擊作答！</p>
-</div>"""
-    },
-    {
-        'id': 13,
-        'chapter': '第三章：視覺化設計',
-        'title': 'Power BI 視覺效果類型',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
-        'html': """
-<h2 class='slide-title'>Power BI 視覺效果</h2>
-<div style='display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:15px;'>
-  <div style='background:#eff6ff;padding:12px;border-radius:8px;text-align:center;'>
-    <div style='font-size:1.8rem;'>📊</div>
-    <p style='color:#1e40af;font-size:0.8rem;font-weight:700;margin:6px 0 2px;'>群組橫條圖</p>
-    <p style='color:#6b7280;font-size:0.7rem;'>比較類別大小</p>
-  </div>
-  <div style='background:#f0fdf4;padding:12px;border-radius:8px;text-align:center;'>
-    <div style='font-size:1.8rem;'>📈</div>
-    <p style='color:#15803d;font-size:0.8rem;font-weight:700;margin:6px 0 2px;'>折線圖</p>
-    <p style='color:#6b7280;font-size:0.7rem;'>時間趨勢</p>
-  </div>
-  <div style='background:#fdf4ff;padding:12px;border-radius:8px;text-align:center;'>
-    <div style='font-size:1.8rem;'>🗺️</div>
-    <p style='color:#7c3aed;font-size:0.8rem;font-weight:700;margin:6px 0 2px;'>地圖</p>
-    <p style='color:#6b7280;font-size:0.7rem;'>地理分布</p>
-  </div>
-  <div style='background:#fff7ed;padding:12px;border-radius:8px;text-align:center;'>
-    <div style='font-size:1.8rem;'>🧮</div>
-    <p style='color:#ea580c;font-size:0.8rem;font-weight:700;margin:6px 0 2px;'>矩陣</p>
-    <p style='color:#6b7280;font-size:0.7rem;'>交叉分析表</p>
-  </div>
-  <div style='background:#fef2f2;padding:12px;border-radius:8px;text-align:center;'>
-    <div style='font-size:1.8rem;'>🎯</div>
-    <p style='color:#dc2626;font-size:0.8rem;font-weight:700;margin:6px 0 2px;'>量測計</p>
-    <p style='color:#6b7280;font-size:0.7rem;'>目標達成率</p>
-  </div>
-  <div style='background:#f0f9ff;padding:12px;border-radius:8px;text-align:center;'>
-    <div style='font-size:1.8rem;'>🔷</div>
-    <p style='color:#0369a1;font-size:0.8rem;font-weight:700;margin:6px 0 2px;'>散佈圖</p>
-    <p style='color:#6b7280;font-size:0.7rem;'>相關分析</p>
-  </div>
-  <div style='background:#f0fdf4;padding:12px;border-radius:8px;text-align:center;'>
-    <div style='font-size:1.8rem;'>🃏</div>
-    <p style='color:#15803d;font-size:0.8rem;font-weight:700;margin:6px 0 2px;'>卡片</p>
-    <p style='color:#6b7280;font-size:0.7rem;'>單一 KPI 值</p>
-  </div>
-  <div style='background:#fdf4ff;padding:12px;border-radius:8px;text-align:center;'>
-    <div style='font-size:1.8rem;'>🌳</div>
-    <p style='color:#7c3aed;font-size:0.8rem;font-weight:700;margin:6px 0 2px;'>樹狀圖</p>
-    <p style='color:#6b7280;font-size:0.7rem;'>層級比例</p>
-  </div>
-</div>
-<div style='background:#eff6ff;padding:10px;border-radius:8px;'>
-  <p style='color:#1e40af;font-size:0.9rem;margin:0;'>💡 Power BI 還有 <strong>AppSource 市集</strong>，提供社群開發的自訂視覺效果（如 Sankey chart、字雲、甘特圖），免費下載使用！</p>
+  <p style='color:#e9d5ff;font-size:1.1rem;'>準備儀表板的資料 ── 2 道題目，點擊作答！</p>
 </div>"""
     },
     {
         'id': 14,
-        'chapter': '第三章：視覺化設計',
-        'title': '交叉篩選與互動效果',
+        'chapter': '第三章：製作互動儀表板',
+        'title': '選對圖表類型',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>互動效果 — Power BI 的靈魂</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🖱️ 互動效果類型</h3>
-      <div style='display:flex;flex-direction:column;gap:8px;'>
-        <div style='background:#fff;padding:10px;border-radius:6px;border-left:3px solid #2563eb;'>
-          <p style='font-weight:700;color:#1e40af;font-size:0.85rem;margin:0;'>交叉篩選（Cross-filter）</p>
-          <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>點擊長條圖 A 班 → 所有圖表自動篩選顯示 A 班資料</p>
-        </div>
-        <div style='background:#fff;padding:10px;border-radius:6px;border-left:3px solid #16a34a;'>
-          <p style='font-weight:700;color:#15803d;font-size:0.85rem;margin:0;'>交叉反白（Cross-highlight）</p>
-          <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>其他圖表保持完整但將 A 班資料反白突出</p>
-        </div>
-        <div style='background:#fff;padding:10px;border-radius:6px;border-left:3px solid #7c3aed;'>
-          <p style='font-weight:700;color:#7c3aed;font-size:0.85rem;margin:0;'>向下鑽取（Drill down）</p>
-          <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>年度圖表 → 點擊 → 自動展開季度 → 月度</p>
-        </div>
-        <div style='background:#fff;padding:10px;border-radius:6px;border-left:3px solid #ea580c;'>
-          <p style='font-weight:700;color:#ea580c;font-size:0.85rem;margin:0;'>切片器（Slicer）</p>
-          <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>視覺化篩選按鈕，點擊即篩選整頁</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div style='background:#fef9c3;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #fde047;'>
-      <h3 style='color:#854d0e;font-size:1rem;margin-bottom:10px;'>💡 為什麼互動很重要？</h3>
-      <p style='color:#374151;font-size:0.9rem;margin-bottom:8px;'>靜態報表：看完就結束</p>
-      <p style='color:#374151;font-size:0.9rem;margin-bottom:8px;'>互動儀表板：<strong>使用者主動探索資料</strong></p>
-      <div style='background:#fff;padding:10px;border-radius:6px;'>
-        <p style='color:#374151;font-size:0.85rem;margin:0;'>📖 場景：校長查看各班成績儀表板，點擊「B班」→ 所有圖表自動聚焦B班，找出哪科需要加強。完全不需要重新做圖表！</p>
-      </div>
-    </div>
-    <div style='background:#eff6ff;padding:10px;border-radius:8px;'>
-      <p style='color:#1e40af;font-size:0.85rem;margin:0;'>🔧 設定互動：選取視覺效果 → 格式 → 編輯互動，可自訂每個圖表互相影響的方式。</p>
-    </div>
-  </div>
+<h2 class='slide-title'>選對圖表類型</h2>
+<table class='info-table' style='font-size:0.85rem;margin-bottom:12px;'>
+  <thead class='table-header'><tr><th style='width:22%;'>想表達</th><th style='width:24%;'>Google 試算表圖表</th><th>例子</th></tr></thead>
+  <tbody>
+    <tr><td>一個關鍵數字</td><td><strong>計分卡圖表</strong></td><td>全市總借車次數、全班平均</td></tr>
+    <tr class='tr-highlight'><td>比較大小</td><td><strong>長條圖／柱狀圖</strong></td><td>各行政區借車次數</td></tr>
+    <tr><td>隨時間變化</td><td><strong>折線圖</strong></td><td>每小時借車次數、每月 AQI</td></tr>
+    <tr class='tr-highlight'><td>占整體比例</td><td><strong>圓餅圖</strong>（類別 5 個以內）</td><td>各等第人數比例</td></tr>
+    <tr><td>兩個變數的關係</td><td><strong>散佈圖</strong></td><td>車柱數 vs 借車次數</td></tr>
+    <tr class='tr-highlight'><td>詳細數字</td><td><strong>表格圖表</strong></td><td>前 10 名站點清單</td></tr>
+  </tbody>
+</table>
+<div style='background:#fef2f2;padding:10px;border-radius:8px;'>
+  <p style='color:#dc2626;font-size:0.85rem;margin:0;'>⚠️ Ch08 學過的「資料說謊」：Y 軸不要從中間開始、不要用 3D 圖表、圓餅圖不要放太多類別。</p>
 </div>"""
     },
     {
         'id': 15,
-        'chapter': '第三章：視覺化設計',
-        'title': '儀表板主題與美化',
+        'chapter': '第三章：製作互動儀表板',
+        'title': '插入圖表與計分卡',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>儀表板主題與美化</h2>
+<h2 class='slide-title'>插入圖表與計分卡</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🎨 套用主題</h3>
-      <p style='color:#374151;font-size:0.9rem;margin-bottom:8px;'>檢視 → 主題 → 選擇內建主題（20+ 種），或匯入自訂 JSON 主題：</p>
-      <div style='display:flex;flex-wrap:wrap;gap:6px;'>
-        <span style='background:#1e40af;color:#fff;padding:4px 10px;border-radius:4px;font-size:0.8rem;'>經典</span>
-        <span style='background:#dc2626;color:#fff;padding:4px 10px;border-radius:4px;font-size:0.8rem;'>高對比</span>
-        <span style='background:#0d9488;color:#fff;padding:4px 10px;border-radius:4px;font-size:0.8rem;'>色盲友善</span>
-        <span style='background:#7c3aed;color:#fff;padding:4px 10px;border-radius:4px;font-size:0.8rem;'>深色模式</span>
-        <span style='background:#374151;color:#fff;padding:4px 10px;border-radius:4px;font-size:0.8rem;'>自訂</span>
-      </div>
-    </div>
-    <div style='background:#f0fdf4;padding:12px;border-radius:8px;'>
-      <h3 style='color:#15803d;font-size:0.95rem;margin-bottom:8px;'>✅ 美化技巧</h3>
-      <ul style='color:#374151;font-size:0.85rem;padding-left:16px;margin:0;'>
-        <li>加入公司/學校 Logo</li>
-        <li>背景使用 PowerPoint 設計</li>
-        <li>KPI 卡片數值放大顯著</li>
-        <li>工具提示顯示詳細資訊</li>
-      </ul>
-    </div>
+  <div style='background:#eff6ff;padding:15px;border-radius:10px;'>
+    <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🔢 計分卡圖表（KPI）</h3>
+    <ol style='color:#374151;font-size:0.88rem;padding-left:18px;margin:0;line-height:1.8;'>
+      <li>選取要加總的數字欄</li>
+      <li>插入 → 圖表 → 圖表類型選「計分卡圖表」</li>
+      <li>「主要值」選欄位，彙總方式選加總或平均</li>
+      <li>可設定「基準值」，顯示比基準高或低多少</li>
+      <li>自訂 → 改字體大小與顏色</li>
+    </ol>
   </div>
   <div>
-    <div style='background:#fdf4ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#7c3aed;font-size:1rem;margin-bottom:10px;'>📱 行動版報表</h3>
-      <p style='color:#374151;font-size:0.9rem;margin-bottom:8px;'>Power BI Desktop → 檢視 → 手機版面配置：</p>
-      <ul style='color:#374151;font-size:0.85rem;padding-left:16px;'>
-        <li>專為直向手機設計的版面</li>
-        <li>重要 KPI 放最上方</li>
-        <li>圖表大小適合手指點擊</li>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:8px;'>📊 一般圖表</h3>
+      <ul style='color:#374151;font-size:0.88rem;padding-left:16px;margin:0;line-height:1.7;'>
+        <li>選取樞紐分析表或 QUERY 結果 → 插入 → 圖表</li>
+        <li>圖表編輯器「設定」選類型、「自訂」改標題與軸標</li>
+        <li>剪下圖表，貼到「儀表板」工作表排版</li>
       </ul>
     </div>
     <div style='background:#fff7ed;padding:10px;border-radius:8px;'>
-      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>🇹🇼 台灣公司實際案例：台達電子主管每天早上在手機上查看當日生產儀表板，<strong>不用打開電腦</strong>，通勤時即完成晨報。</p>
+      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>💡 每張圖都要有<strong>標題、軸標與單位</strong>；同一個儀表板的圖表大小盡量一致、對齊排好。</p>
     </div>
   </div>
 </div>"""
     },
     {
         'id': 16,
-        'chapter': '第三章：視覺化設計',
-        'title': '發布與分享報表',
+        'chapter': '第三章：製作互動儀表板',
+        'title': '交叉分析篩選器：讓儀表板動起來',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>發布與分享報表</h2>
+<h2 class='slide-title'>交叉分析篩選器：讓儀表板動起來</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>📤 分享方式</h3>
-      <div style='display:flex;flex-direction:column;gap:8px;'>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #2563eb;'>
-          <p style='font-weight:700;color:#1e40af;font-size:0.85rem;margin:0;'>匯出 PDF</p>
-          <p style='color:#374151;font-size:0.8rem;margin:2px 0 0;'>靜態版本，適合印刷或電子郵件</p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #16a34a;'>
-          <p style='font-weight:700;color:#15803d;font-size:0.85rem;margin:0;'>發布到 Power BI Service</p>
-          <p style='color:#374151;font-size:0.8rem;margin:2px 0 0;'>雲端互動版，可設定定期自動重整</p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #7c3aed;'>
-          <p style='font-weight:700;color:#7c3aed;font-size:0.85rem;margin:0;'>嵌入至網站</p>
-          <p style='color:#374151;font-size:0.8rem;margin:2px 0 0;'>用 iframe 嵌入其他網頁或 SharePoint</p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;border-left:3px solid #ea580c;'>
-          <p style='font-weight:700;color:#ea580c;font-size:0.85rem;margin:0;'>Teams 整合</p>
-          <p style='color:#374151;font-size:0.8rem;margin:2px 0 0;'>直接在 Teams 頻道顯示即時儀表板</p>
-        </div>
-      </div>
-    </div>
+  <div style='background:#eff6ff;padding:15px;border-radius:10px;'>
+    <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🎛️ 新增篩選器</h3>
+    <ol style='color:#374151;font-size:0.88rem;padding-left:18px;margin:0;line-height:1.8;'>
+      <li>點選資料範圍內任一格</li>
+      <li>資料 → 新增交叉分析篩選器</li>
+      <li>在右側選要篩選的欄位（例如「行政區」）</li>
+      <li>把篩選器拖到儀表板最上方</li>
+      <li>點篩選器，勾選「大安區」試試看</li>
+    </ol>
   </div>
   <div>
     <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:8px;'>🔐 權限管理</h3>
-      <ul style='color:#374151;font-size:0.9rem;padding-left:16px;'>
-        <li>可設定僅特定人員可查看</li>
-        <li>「行級安全性（RLS）」：不同用戶看到不同資料（老師看全班，學生只看自己）</li>
-        <li>設定資料重新整理排程（每日/每小時）</li>
-      </ul>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:8px;'>✨ 會發生什麼事？</h3>
+      <p style='color:#374151;font-size:0.88rem;margin:0;'>使用<strong>同一個資料範圍</strong>的圖表和樞紐分析表，會一起只顯示「大安區」的資料。這就是儀表板的「互動」。</p>
     </div>
-    <div style='background:#fff7ed;padding:10px;border-radius:8px;'>
-      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>⚠️ <strong>學生實作</strong>：本課程使用 Power BI Desktop 製作報表後，匯出 PDF 或截圖提交，無需 Power BI Service 帳號。</p>
+    <div style='background:#fff7ed;padding:10px;border-radius:8px;margin-bottom:10px;'>
+      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>⚠️ 用公式（QUERY、SUM）算出來的 KPI 不會被篩選器影響；想讓 KPI 也連動，可以改用計分卡圖表直接讀原始資料範圍。</p>
+    </div>
+    <div style='background:#fdf4ff;padding:10px;border-radius:8px;'>
+      <p style='color:#7c3aed;font-size:0.85rem;margin:0;'>💡 可以放兩個篩選器（例如「行政區」＋「月份」），交叉找出想看的資料。</p>
     </div>
   </div>
 </div>"""
     },
     {
         'id': 17,
-        'chapter': '第三章：視覺化設計',
+        'chapter': '第三章：製作互動儀表板',
+        'title': '美化、分享與下載',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>美化、分享與下載</h2>
+<div style='display:grid;grid-template-columns:repeat(3,1fr);gap:14px;'>
+  <div style='background:#eff6ff;padding:14px;border-radius:10px;'>
+    <h3 style='color:#1e40af;font-size:0.95rem;margin-bottom:8px;'>🎨 美化</h3>
+    <ul style='color:#374151;font-size:0.85rem;padding-left:16px;margin:0;line-height:1.7;'>
+      <li>格式 → 主題，統一字型與配色</li>
+      <li>檢視 → 隱藏格線</li>
+      <li>最上方加大標題、資料來源與更新日期</li>
+      <li>圖表大小一致、上下左右對齊</li>
+    </ul>
+  </div>
+  <div style='background:#f0fdf4;padding:14px;border-radius:10px;'>
+    <h3 style='color:#15803d;font-size:0.95rem;margin-bottom:8px;'>🔗 分享</h3>
+    <ul style='color:#374151;font-size:0.85rem;padding-left:16px;margin:0;line-height:1.7;'>
+      <li>共用 → 一般存取權設為「檢視者」</li>
+      <li>別人只能看、能操作篩選器，不會改到資料</li>
+      <li>不要把含個資的資料公開分享</li>
+    </ul>
+  </div>
+  <div style='background:#fdf4ff;padding:14px;border-radius:10px;'>
+    <h3 style='color:#7c3aed;font-size:0.95rem;margin-bottom:8px;'>📄 下載與放進報告</h3>
+    <ul style='color:#374151;font-size:0.85rem;padding-left:16px;margin:0;line-height:1.7;'>
+      <li>檔案 → 下載 → PDF，選「儀表板」工作表</li>
+      <li>單張圖表：點圖表右上角 ⋮ → 下載 PNG</li>
+      <li>期末報告的圖表就可以從這裡來</li>
+    </ul>
+  </div>
+</div>
+<div style='background:#fff7ed;padding:12px;border-radius:8px;margin-top:14px;border:1px solid #fdba74;'>
+  <p style='color:#9a3412;font-size:0.9rem;margin:0;'>🚀 想挑戰更進階的儀表板工具，可以自己試試 Google 的 Looker Studio，它可以直接連接你的 Google 試算表。</p>
+</div>"""
+    },
+    {
+        'id': 18,
+        'chapter': '第三章：製作互動儀表板',
         'title': '🎯 第三章 隨堂測驗',
         'bg': 'purple',
         'quiz': 'q3',
@@ -777,11 +660,11 @@ SLIDES = [
 <div style='text-align:center;padding:20px;'>
   <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
   <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第三章 隨堂測驗</h2>
-  <p style='color:#e9d5ff;font-size:1.1rem;'>視覺化設計 ── 2 道題目，點擊作答！</p>
+  <p style='color:#e9d5ff;font-size:1.1rem;'>製作互動儀表板 ── 2 道題目，點擊作答！</p>
 </div>"""
     },
     {
-        'id': 18,
+        'id': 19,
         'chapter': '第四章：課程總回顧',
         'title': '十週學習地圖',
         'bg': 'white',
@@ -879,7 +762,7 @@ SLIDES = [
       <div style='display:flex;align-items:center;gap:8px;'>
         <span style='background:#fff;color:#1e40af;padding:2px 10px;border-radius:4px;font-size:0.8rem;font-weight:700;'>W10</span>
         <div>
-          <p style='font-weight:700;color:#fff;font-size:0.85rem;margin:0;'>Power BI 與期末總結 🎓</p>
+          <p style='font-weight:700;color:#fff;font-size:0.85rem;margin:0;'>試算表儀表板與期末總結 🎓</p>
           <p style='color:#bfdbfe;font-size:0.75rem;margin:0;'>儀表板設計/十週回顧/期末展示</p>
         </div>
       </div>
@@ -888,7 +771,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 19,
+        'id': 20,
         'chapter': '第四章：課程總回顧',
         'title': '數位公民素養架構',
         'bg': 'white',
@@ -924,7 +807,7 @@ SLIDES = [
     <ul style='color:#374151;font-size:0.8rem;list-style:none;padding:0;text-align:left;'>
       <li>✅ Google Workspace</li>
       <li>✅ Excel 資料分析</li>
-      <li>✅ Power BI 儀表板</li>
+      <li>✅ Google 試算表儀表板</li>
       <li>✅ AI 工具應用</li>
     </ul>
   </div>
@@ -934,7 +817,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 20,
+        'id': 21,
         'chapter': '第四章：課程總回顧',
         'title': '科技與社會的連結',
         'bg': 'white',
@@ -958,7 +841,7 @@ SLIDES = [
           <p style='color:#374151;margin:0;'><strong style='color:#0369a1;'>網路（W6）</strong> → 基礎讓 <strong style='color:#0d9488;'>IoT（W7）</strong> 得以運作</p>
         </div>
         <div style='background:#fff;padding:8px;border-radius:6px;'>
-          <p style='color:#374151;margin:0;'><strong style='color:#ca8a04;'>資料清理（W8）</strong> → Excel 分析 <strong style='color:#65a30d;'>（W9）</strong> → Power BI <strong style='color:#1e40af;'>（W10）</strong></p>
+          <p style='color:#374151;margin:0;'><strong style='color:#ca8a04;'>資料清理（W8）</strong> → Excel 分析 <strong style='color:#65a30d;'>（W9）</strong> → 試算表儀表板 <strong style='color:#1e40af;'>（W10）</strong></p>
         </div>
       </div>
     </div>
@@ -981,7 +864,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 21,
+        'id': 22,
         'chapter': '第四章：課程總回顧',
         'title': 'AI 時代的學習策略',
         'bg': 'white',
@@ -1034,7 +917,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 22,
+        'id': 23,
         'chapter': '第四章：課程總回顧',
         'title': '🎯 第四章 隨堂測驗',
         'bg': 'purple',
@@ -1049,7 +932,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 23,
+        'id': 24,
         'chapter': '期末展示',
         'title': '期末個人報告：城市科技與人類社會的關係',
         'bg': 'white',
@@ -1080,7 +963,7 @@ SLIDES = [
       <ul style='font-size:.8rem;color:#374151;margin:0;padding-left:18px;line-height:1.7;'>
         <li><strong>個人</strong>完成，一人一份</li>
         <li>資料分析請用<strong>政府開放資料</strong>（data.gov.tw、臺北市資料大平臺…）</li>
-        <li>至少 <strong>2 張圖表</strong>（Excel、Google 試算表或 Power BI 製作）</li>
+        <li>至少 <strong>2 張圖表</strong>（Excel 或 Google 試算表製作）</li>
         <li>依<strong>前言、正文、結論、參考資料</strong>四段撰寫，A4 約 <strong>3–6 頁</strong></li>
         <li>參考資料要寫清楚，不引用論壇、問答或聊天網站</li>
         <li>有使用 AI 請附 <strong>AI 使用聲明</strong>（工具＋Prompt＋日期）</li>
@@ -1095,7 +978,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 24,
+        'id': 25,
         'chapter': '期末展示',
         'title': '報告四段架構：每一段要寫什麼',
         'bg': 'white',
@@ -1130,7 +1013,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 25,
+        'id': 26,
         'chapter': '期末展示',
         'title': '期末報告：時程與評分',
         'bg': 'white',
@@ -1180,7 +1063,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 26,
+        'id': 27,
         'chapter': '期末展示',
         'title': '感謝與祝福',
         'bg': 'navy',

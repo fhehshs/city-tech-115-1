@@ -1088,7 +1088,7 @@ SLIDES = [
   </div>
 </div>
 <div style='background:rgba(255,255,255,0.1);padding:12px;border-radius:8px;margin-top:15px;text-align:center;'>
-  <p style='color:#bfdbfe;font-size:0.95rem;margin:0;'>最後一週：<strong style='color:#fff;'>Power BI 與期末總結</strong> ── 儀表板設計、十週課程回顧</p>
+  <p style='color:#bfdbfe;font-size:0.95rem;margin:0;'>最後一週：<strong style='color:#fff;'>Google 試算表儀表板與期末總結</strong> ── 儀表板設計、十週課程回顧</p>
 </div>"""
     }
 ]

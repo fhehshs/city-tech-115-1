@@ -1215,49 +1215,34 @@ _ch09 = {
     },
 }
 
-# ── Ch10：Power BI 與期末總結 ─────────────────────────────────────────
+# ── Ch10：Google 試算表儀表板與期末總結 ─────────────────────────────────────────
 
 _ch10 = {
     2: {
-        # ✅ 已驗證：Microsoft Power BI 官方「What is Power BI?」
-        'video': _vid_both(
-            'yKTSLffVGbk',
-            'Power BI 是什麼 教學 入門 儀表板 中文',
-            'What is Power BI?（Microsoft Power BI 官方）',
-            desc='想看中文完整教學？',
-            search_title='▶ Power BI 中文入門教學搜尋',
-        ),
-        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：台積電用 Power BI 管理全球供應鏈</h4>\n  <p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0;'>台積電在全球有數百個供應商，每天產生數百萬筆採購、庫存、品質數據。Power BI 儀表板讓採購主管在同一個畫面看到：全球庫存水位、交期達成率、品質不良率。以前要開 10 個 Excel 花 2 小時整理，現在開 Power BI 即時更新，<strong>節省 80% 報表時間</strong>。</p>\n</div>",
-    },
-    4: {
-        'html_append': "\n<div style='background:linear-gradient(135deg,#faf5ff,#ede9fe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #8b5cf6;'>\n  <h4 style='color:#6d28d9;font-size:.85rem;font-weight:700;margin:0 0 8px;'>📊 數據說話：Power BI 在台灣的滲透率</h4>\n  <div style='display:grid;grid-template-columns:repeat(4,1fr);gap:8px;'><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>🏭</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>製造業</p><p style='font-size:.75rem;color:#2563eb;font-weight:600;margin:0;'>55% 已導入 BI 工具</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>🏦</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>金融業</p><p style='font-size:.75rem;color:#16a34a;font-weight:600;margin:0;'>72% 使用資料儀表板</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>🛒</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>零售業</p><p style='font-size:.75rem;color:#d97706;font-weight:600;margin:0;'>即時庫存 × 銷售分析</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>💰</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>節省成本</p><p style='font-size:.75rem;color:#8b5cf6;font-weight:600;margin:0;'>平均減少 35% 報表人力</p></div></div><p style='font-size:.75rem;color:#374151;margin:8px 0 0;'>來源：IDC 台灣企業資料分析調查 2024</p>\n</div>",
+        'video': _vid_search('Google 試算表 儀表板 製作 教學', '▶ Google 試算表儀表板教學影片', '在 YouTube 搜尋 Google 試算表儀表板的中文教學'),
     },
     6: {
         'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：一張好的儀表板長什麼樣？</h4>\n  <div style='font-size:.82rem;color:#374151;'><div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;'><div style='background:#f0fdf4;padding:8px;border-radius:8px;border-top:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;font-size:.8rem;margin:0 0 4px;'>✅ 好的設計</p><p style='font-size:.75rem;margin:0;'>3 秒內看懂主要結論<br>顏色不超過 3 種<br>最重要數字放左上角<br>KPI 一眼比較達標/未達標</p></div><div style='background:#fef2f2;padding:8px;border-radius:8px;border-top:3px solid #ef4444;'><p style='font-weight:700;color:#dc2626;font-size:.8rem;margin:0 0 4px;'>❌ 常見錯誤</p><p style='font-size:.75rem;margin:0;'>塞滿 20 個圖表<br>3D 圓餅圖讓人看不懂比例<br>顏色太多造成混亂<br>沒有時間軸脈絡</p></div></div></div>\n</div>",
     },
     9: {
-        # ✅ 已驗證：簡單實驗室「Power BI 教學入門｜從零開始做出銷售儀表板」（2025，中文）
-        'video': _vid_both(
-            'rAupdv0I_Us',
-            'Power BI 連接資料 教學 中文',
-            'Power BI 教學入門｜從零做出銷售儀表板（簡單實驗室）',
-            desc='想比較不同教學風格？',
-            search_title='▶ 更多 Power BI 中文教學',
-        ),
+        'video': _vid_search('Google 試算表 匯入 CSV 教學', '▶ Google 試算表匯入 CSV 教學', '在 YouTube 搜尋匯入 CSV 開放資料的教學'),
     },
-    19: {
+    16: {
+        'video': _vid_search('Google 試算表 交叉分析篩選器 教學', '▶ 交叉分析篩選器教學影片', '在 YouTube 搜尋交叉分析篩選器的中文教學'),
+    },
+    20: {
         'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：你是幾星級的數位公民？</h4>\n  <div style='font-size:.82rem;color:#374151;'><div style='display:flex;flex-direction:column;gap:6px;'><div style='background:#fef9c3;padding:8px 12px;border-radius:8px;border-left:3px solid #f59e0b;'><p style='font-weight:700;color:#92400e;margin:0 0 2px;'>⭐ 初級：會用工具</p><p style='font-size:.78rem;margin:0;'>Office、Google Workspace、手機 App 基本操作</p></div><div style='background:#dcfce7;padding:8px 12px;border-radius:8px;border-left:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;margin:0 0 2px;'>⭐⭐ 中級：能創造價值</p><p style='font-size:.78rem;margin:0;'>資料分析、視覺化、自動化流程、資訊判讀</p></div><div style='background:#dbeafe;padding:8px 12px;border-radius:8px;border-left:3px solid #3b82f6;'><p style='font-weight:700;color:#1d4ed8;margin:0 0 2px;'>⭐⭐⭐ 高級：懂倫理與影響</p><p style='font-size:.78rem;margin:0;'>理解 AI 偏見、個資保護、數位落差、科技社會責任</p></div></div></div>\n</div>",
     },
-    21: {
+    22: {
         'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：AI 不會取代你，懂 AI 的人才會</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><p style='margin:0 0 8px;'>2025 WEF（世界經濟論壇）報告：未來 5 年，<strong>85% 的工作會被 AI 改變</strong>，但只有 <strong>14%</strong> 工作會完全消失。</p><p style='font-weight:700;margin:0 0 6px;'>AI 時代最需要的技能：</p><div style='display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:.78rem;'><div style='background:#fff;padding:7px;border-radius:6px;'>🎯 <strong>提問力</strong>：懂得給 AI 好的 Prompt</div><div style='background:#fff;padding:7px;border-radius:6px;'>🔍 <strong>判斷力</strong>：驗證 AI 輸出是否正確</div><div style='background:#fff;padding:7px;border-radius:6px;'>🤝 <strong>溝通力</strong>：AI 無法替代人際關係</div><div style='background:#fff;padding:7px;border-radius:6px;'>🎨 <strong>創意力</strong>：定義問題比解題更重要</div></div></div>\n</div>",
     },
-    26: {
-        'html_append': _ref('Power BI 與後續學習資源', [
-            ('📊', 'Microsoft Power BI（免費）', 'https://powerbi.microsoft.com/zh-tw/', '個人版完全免費'),
-            ('🎓', 'Microsoft Learn — Power BI', 'https://learn.microsoft.com/zh-tw/training/', '官方免費中文課程'),
-            ('🏆', 'PL-300 認證考試', 'https://learn.microsoft.com/zh-tw/certifications/exams/pl-300', '學生半價考證照'),
+    27: {
+        'html_append': _ref('資料儀表板與後續學習資源', [
+            ('📗', 'Google 試算表說明中心', 'https://support.google.com/docs/', '圖表、樞紐分析表、篩選器官方說明'),
+            ('🧮', 'Google 試算表函數清單', 'https://support.google.com/docs/table/25273', 'QUERY、FILTER、SORT 等函數'),
+            ('🇹🇼', '政府資料開放平臺 data.gov.tw', 'https://data.gov.tw/', '找儀表板與期末報告的資料'),
+            ('📊', 'Looker Studio', 'https://lookerstudio.google.com/', '進階挑戰：連接 Google 試算表做儀表板'),
             ('🌱', 'Kaggle 資料科學競賽', 'https://www.kaggle.com/', '免費練習資料集'),
-            ('📚', 'Google 數據分析專業認證', 'https://www.coursera.org/professional-certificates/google-data-analytics', 'Coursera 熱門課程'),
         ]),
     },
 }
