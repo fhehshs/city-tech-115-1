@@ -44,7 +44,7 @@ QUIZZES = {
                 'explain': 'COUNTIF(範圍, 條件) 計算「符合條件的格子有幾個」。SUM 是加總、COUNT 只算有數字的格子數，IF 一次只判斷一格。',
             },
             {
-                'q': 'A 欄是縣市、B 欄是出生數。要加總「臺北市」所有月份的出生數，應該用？',
+                'q': 'A 欄是縣市、B 欄是出生數，同一個縣市有很多列（各鄉鎮）。要加總「臺北市」的出生數，應該用？',
                 'options': ['=SUMIF(A:A,"臺北市",B:B)', '=COUNTIF(A:A,"臺北市")', '=SUM(A:A,B:B)', '=AVERAGE(B:B)'],
                 'answer': 0,
                 'explain': 'SUMIF(條件範圍, 條件, 加總範圍)：在 A 欄找「臺北市」，把同一列 B 欄的數字加起來。COUNTIF 只會算出臺北市出現幾次。',
@@ -61,7 +61,7 @@ QUIZZES = {
         'title': '第三章 隨堂測驗',
         'questions': [
             {
-                'q': '想把 幾千列「各鄉鎮、各月份」的出生資料，變成「每個縣市一列的總數表」，最快的方法是？',
+                'q': '想把幾千列「各鄉鎮、各年齡、各性別」的出生資料，變成「每個縣市一列的總數表」，最快的方法是？',
                 'options': ['一格一格手動加', '插入 → 樞紐分析表，列放「縣市」、值放「出生數」加總', '把字體放大', '刪掉其他縣市'],
                 'answer': 1,
                 'explain': '樞紐分析表專門做「分組彙總」：選好要分組的欄位（列）和要計算的欄位（值），幾秒就完成，而且不會改到原始資料。',
@@ -84,7 +84,7 @@ QUIZZES = {
         'title': '第四章 隨堂測驗',
         'questions': [
             {
-                'q': '想呈現「2016 到 2024 年全國出生數的變化」，最適合哪一種圖？',
+                'q': '想呈現「2017 到 2025 年全國出生數的變化」，最適合哪一種圖？',
                 'options': ['圓餅圖', '折線圖', '散佈圖', '雷達圖'],
                 'answer': 1,
                 'explain': '「隨時間變化」用折線圖最清楚。圓餅圖用來看比例，散佈圖用來看兩個數值之間的關係。',
@@ -165,9 +165,9 @@ C3 = '第三章：排序、篩選與樞紐分析表'
 C4 = '第四章：圖表與趨勢線'
 C5 = '個人練習'
 
-# 全國出生數（內政部戶政司公布，約數，單位：萬人）
-_BIRTHS = [(2016, 20.8), (2017, 19.4), (2018, 18.2), (2019, 17.8), (2020, 16.5),
-           (2021, 15.4), (2022, 13.9), (2023, 13.6), (2024, 13.5)]
+# 全國出生數（內政部戶政司「嬰兒出生數按性別、生母單一年齡分(按登記)」106–114 年 CSV 加總）
+_BIRTHS = [(2017, 193844), (2018, 181601), (2019, 177767), (2020, 165249), (2021, 153820),
+           (2022, 138986), (2023, 135571), (2024, 134856), (2025, 107812)]
 
 SLIDES = [
     _slide(1, '封面', '用 Google 試算表分析開放資料', """
@@ -216,7 +216,7 @@ SLIDES = [
     )),
     _slide(4, C1, '開放資料常見格式：CSV 與 JSON', "<h2 class='slide-title'>開放資料常見格式：CSV 與 JSON</h2>" + _two(
         _box('📄 CSV：逗號分隔值', "欄位之間用<strong>逗號</strong>隔開、每筆資料<strong>換一行</strong>。用記事本打開長這樣："
-             "<pre style='background:#fff;padding:10px;border-radius:6px;font-size:0.8rem;margin:8px 0;'>年,縣市,出生數\n2024,臺北市,15xxx\n2024,新北市,24xxx</pre>"
+             "<pre style='background:#fff;padding:10px;border-radius:6px;font-size:0.8rem;margin:8px 0;'>統計年度,按照別,區域別,生母年齡,出生者性別,嬰兒出生數\n114,按登記日期分,新北市板橋區,18歲,男,2\n114,按登記日期分,新北市板橋區,19歲,男,2</pre>"
              "✅ 試算表直接開啟　⚠️ 欄位很多、很多空白時逗號很難對齊"),
         _box('🧩 JSON：{屬性 : 值}', "每筆資料用大括號包起來，<strong>屬性</strong>就像欄位名稱："
              "<pre style='background:#fff;padding:10px;border-radius:6px;font-size:0.8rem;margin:8px 0;'>{\"縣市\": \"臺北市\",\n \"出生數\": 15000}</pre>"
@@ -257,7 +257,7 @@ SLIDES = [
     _slide(8, C2, '函數怎麼寫：SUM、AVERAGE、MAX、MIN', "<h2 class='slide-title'>函數怎麼寫：SUM、AVERAGE、MAX、MIN</h2>" + _two(
         _box('📌 函數的語法', "<div style='background:#fff;padding:10px;border-radius:6px;text-align:center;font-family:monospace;font-size:1.05rem;color:#1e40af;font-weight:700;'>=函數名稱(範圍或條件)</div>"
              "<ul style='padding-left:18px;margin:10px 0 0;'><li>一定用 <strong>=</strong> 開頭</li><li>輸入 =SU 就會跳出提示，按 Tab 補完</li><li>文字條件要加雙引號，例如 \"臺北市\"</li></ul>") +
-        _box('📋 範例資料：2024 各縣市出生數（B2:B23）', "A 欄＝縣市、B 欄＝出生數，共 22 個縣市", bg='#f8fafc', color='#475569'),
+        _box('📋 範例資料：114 年（2025）各縣市出生數（B2:B23）', "A 欄＝縣市、B 欄＝出生數，共 22 個縣市", bg='#f8fafc', color='#475569'),
         _box('🧮 四個最常用的函數', _table(['想知道', '公式'], [
             ['全國總共出生多少人', _code('=SUM(B2:B23)')],
             ['平均每個縣市', _code('=AVERAGE(B2:B23)')],
@@ -280,17 +280,17 @@ SLIDES = [
              bg='#fefce8', color='#a16207')
     )),
     _slide(10, C2, '條件加總：SUMIF 與 COUNTIFS', "<h2 class='slide-title'>條件加總：SUMIF 與 COUNTIFS</h2>"
-        "<p style='color:#374151;font-size:0.9rem;margin-bottom:12px;'>下載的原始資料通常是「<strong>每個縣市、每個月一列</strong>」，同一個縣市會出現 12 次。這時候就需要「有條件的加總」。</p>" + _two(
+        "<p style='color:#374151;font-size:0.9rem;margin-bottom:12px;'>下載的原始資料是「<strong>每個鄉鎮市區 × 生母年齡 × 性別一列</strong>」，同一個縣市會出現上千次。這時候就需要「有條件的加總」。</p>" + _two(
         _box('➕ SUMIF(條件範圍, 條件, 加總範圍)', _code('=SUMIF(B:B,"臺北市",D:D)') +
-             "<p style='margin:8px 0 0;'>在 B 欄（縣市）找「臺北市」，把同一列 D 欄（出生數）全部加起來 → 臺北市一整年的出生數。</p>"),
-        _box('🎯 多個條件：COUNTIFS、SUMIFS', _code('=SUMIFS(D:D,B:B,"臺北市",C:C,"1月")') +
-             "<p style='margin:8px 0 0;'>同時符合「臺北市」和「1 月」才加總。<br>注意 SUMIF<strong>S</strong> 的加總範圍放在<strong>最前面</strong>。</p>",
+             "<p style='margin:8px 0 0;'>在 B 欄（縣市）找「臺北市」，把同一列 D 欄（出生數）全部加起來 → 臺北市全部鄉鎮的出生數。</p>"),
+        _box('🎯 多個條件：COUNTIFS、SUMIFS', _code('=SUMIFS(D:D,B:B,"臺北市",C:C,"男")') +
+             "<p style='margin:8px 0 0;'>同時符合「臺北市」和「男」才加總 → 臺北市男嬰人數。<br>注意 SUMIF<strong>S</strong> 的加總範圍放在<strong>最前面</strong>。</p>",
              bg='#f0fdf4', color='#15803d')
     ) + "<div style='background:#f1f5f9;padding:10px 14px;border-radius:8px;font-size:0.85rem;color:#374151;'>🤔 22 個縣市要寫 22 次 SUMIF？太慢了——第三章的<strong>樞紐分析表</strong>一次搞定。</div>"),
     _slide(11, C2, 'IF：讓試算表幫你判斷', "<h2 class='slide-title'>IF：讓試算表幫你判斷</h2>" + _two(
         _box('🔀 IF(條件, 成立時, 不成立時)', _code('=IF(B2>=10000,"萬人以上","未滿萬人")') +
              "<p style='margin:8px 0 0;'>B2 大於等於 10000 就顯示「萬人以上」，否則顯示「未滿萬人」。寫好一格，往下拉就全部完成。</p>"),
-        _box('📈 和去年比：增加還是減少？', "C 欄放 2023 年、B 欄放 2024 年：<br>" + _code('=IF(B2>C2,"增加","減少")') +
+        _box('📈 和去年比：增加還是減少？', "C 欄放 113 年、B 欄放 114 年：<br>" + _code('=IF(B2>C2,"增加","減少")') +
              "<p style='margin:8px 0 0;'>再用 " + _code('=COUNTIF(D2:D23,"增加")') + " 數出有幾個縣市出生數比去年多。</p>",
              bg='#fefce8', color='#a16207')
     )),
@@ -324,9 +324,9 @@ SLIDES = [
     )),
     _slide(15, C3, '樞紐分析表是什麼？', "<h2 class='slide-title'>樞紐分析表是什麼？</h2>"
         "<p style='color:#374151;font-size:0.9rem;margin-bottom:12px;'>把「很長的明細表」變成「分組彙總表」，<strong>不用寫公式、不會改到原始資料</strong>。</p>" + _two(
-        _box('📋 原始資料（幾千列）', _table(['年月', '縣市', '鄉鎮', '出生數'], [
-            ['113/01', '臺北市', '大安區', '…'], ['113/01', '臺北市', '信義區', '…'],
-            ['113/01', '新北市', '板橋區', '…'], ['⋮', '⋮', '⋮', '⋮'],
+        _box('📋 原始資料（幾千列）', _table(['縣市', '鄉鎮', '性別', '生母年齡組', '出生數'], [
+            ['新北市', '板橋區', '男', '25-29歲', '…'], ['新北市', '板橋區', '女', '25-29歲', '…'],
+            ['臺北市', '大安區', '男', '30-34歲', '…'], ['⋮', '⋮', '⋮', '⋮', '⋮'],
         ], font='0.78rem'), bg='#f8fafc', color='#475569'),
         _box('🗂️ 樞紐分析表（22 列）', _table(['縣市', '出生數 加總'], [
             ['新北市', '…'], ['臺中市', '…'], ['桃園市', '…'], ['⋮', '⋮'],
@@ -344,7 +344,7 @@ SLIDES = [
         _box('🔍 看表回答問題', "<ul style='padding-left:18px;margin:0;'>"
              "<li>哪個縣市出生數最多？最少？</li>"
              "<li>前 3 名加起來占全國多少？（用第二章的 $ 公式算）</li>"
-             "<li>改成列放「月份」：哪個月出生最多？</li>"
+             "<li>改成列放「生母年齡組」：媽媽在哪個年齡層生最多？</li>"
              "<li>把「篩選器」加上縣市，只看自己住的縣市</li></ul>"
              "<p style='font-size:0.8rem;color:#6b7280;margin:8px 0 0;'>💡 原始資料更新後，樞紐分析表會自動重算。</p>",
              bg='#fefce8', color='#a16207')
@@ -369,7 +369,7 @@ SLIDES = [
     _slide(19, C4, '選對圖表類型', "<h2 class='slide-title'>選對圖表類型</h2>" + _table(['圖表', '用來', '出生數資料的例子'], [
         ['📊 長條圖', '比較<strong>不同類別</strong>的大小', '各縣市出生數'],
         ['📶 直方圖', '看<strong>數值的分布</strong>（落在每個區間的數量）', '全國 368 個鄉鎮，出生數 0–100、100–200…各有幾個'],
-        ['📈 折線圖', '看<strong>隨時間的變化</strong>', '2016–2024 年全國出生數'],
+        ['📈 折線圖', '看<strong>隨時間的變化</strong>', '2017–2025 年全國出生數'],
         ['🥧 圓餅圖', '看<strong>占整體的比例</strong>（類別 5 個以內）', '六都 vs 其他縣市占全國比例'],
         ['⚬ 散佈圖', '看<strong>兩個數值的關係</strong>、找分群或異常值', '各縣市人口數 vs 出生數'],
     ]) + "<div style='display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;font-size:0.85rem;'>"
@@ -383,7 +383,7 @@ SLIDES = [
             '「自訂」：改<strong>圖表標題</strong>、<strong>軸標題</strong>、顏色',
         ])),
         _box('✅ 一張合格的圖要有', "<ul style='padding-left:18px;margin:0;'>"
-             "<li><strong>標題</strong>：說出這張圖在講什麼，例如「2024 年各縣市出生數」</li>"
+             "<li><strong>標題</strong>：說出這張圖在講什麼，例如「114 年各縣市嬰兒出生數」</li>"
              "<li><strong>軸標題與單位</strong>：人？萬人？</li>"
              "<li><strong>資料來源</strong>：內政部戶政司，政府資料開放平臺</li>"
              "<li>長條圖的 Y 軸<strong>從 0 開始</strong>，避免誇大差距（Ch08 的「資料說謊」）</li></ul>",
@@ -404,12 +404,13 @@ SLIDES = [
              bg='#faf5ff', color='#6d28d9')
     )),
     _slide(22, C4, '用趨勢線看全國出生數', "<h2 class='slide-title'>用趨勢線看全國出生數</h2>" + _two(
-        _box('📉 2016–2024 全國出生數（約，萬人）', _table(['年', '出生數'], [[str(y), f'{v}'] for y, v in _BIRTHS], font='0.8rem') +
-             "<p style='font-size:0.75rem;color:#6b7280;margin:6px 0 0;'>資料來源：內政部戶政司（2024 年 134,856 人、2023 年 135,571 人），上課以下載的資料為準。</p>",
+        _box('📉 2017–2025 全國嬰兒出生數（人）', _table(['年', '出生數'], [[str(y), f'{v:,}'] for y, v in _BIRTHS], font='0.8rem') +
+             "<p style='font-size:0.75rem;color:#6b7280;margin:6px 0 0;'>資料來源：內政部戶政司「嬰兒出生數按性別、生母單一年齡分(按登記)」，政府資料開放平臺。</p>",
              bg='#f8fafc', color='#475569'),
         _box('🔍 畫成折線圖＋趨勢線之後…', "<ul style='padding-left:18px;margin:0;'>"
-             "<li>9 年從約 20.8 萬降到 13.5 萬，<strong>幾乎每年都減少</strong></li>"
-             "<li>加上線性趨勢線，R² 會很接近 1</li>"
+             "<li>9 年從 193,844 人降到 107,812 人，<strong>每一年都減少</strong></li>"
+             "<li>線性趨勢線：平均每年約減少 9,900 人，R² ≈ 0.97，直線很貼近資料</li>"
+             "<li>但 2025 年一年就少了約 2.7 萬人，比趨勢線多很多——<strong>突然的變化要去找原因</strong></li>"
              "<li>但照直線預測，幾十年後會變 0——<strong>這合理嗎？</strong>趨勢線只是數學，解讀要加上常識</li>"
              "<li>想想看：出生數減少，城市的學校、交通、長照會受到什麼影響？→ 這就是<strong>期末報告的題目方向</strong></li></ul>",
              bg='#fefce8', color='#a16207')
