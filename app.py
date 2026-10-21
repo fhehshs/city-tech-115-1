@@ -7,7 +7,7 @@ from content.enhancements import ENHANCEMENTS
 app = Flask(__name__)
 N_CHAPTERS = 10
 # 運算思維挑戰解答版：上台解題結束後改成 True，再跑 make_static.py → push，學生才看得到
-BEBRAS_ANSWERS_RELEASED = False
+BEBRAS_ANSWERS_RELEASED = True
 
 def load_ch(n):
     if not 1 <= n <= N_CHAPTERS:

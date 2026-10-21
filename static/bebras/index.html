@@ -36,17 +36,19 @@
   .pager button { font: inherit; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--line);
     background: var(--card); color: var(--ink); cursor: pointer; }
   footer { text-align: center; color: var(--muted); font-size: 12px; padding: 0 16px 24px; }
+  footer .switch[hidden] { display: none; }
+  footer .switch { display: inline-block; font-size: 15px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
 </style>
 </head>
 <body>
 <header>
   <a class="tag" href="../../" style="color:inherit">← 課程首頁</a>
-  <h1 id="h1">運算思維挑戰 · 高一B</h1>
+  <h1 id="h1">運算思維挑戰</h1>
   <span class="tag">Bebras Senior 組 20 題（2023 全 15 題＋2022 選 5 題）· ← → 換題</span>
   <nav id="nav"></nav>
 </header>
 <main id="main"></main>
-<footer>題目與解析取自「2022、2023 國際運算思維挑戰賽 任務解析」，由 2022、2023 運算思維推動計畫製作，採 CC 姓名標示-非商業性-禁止改作 3.0 台灣授權。僅供課堂教學使用。</footer>
+<footer><a class="switch" id="switch" hidden></a><br>題目與解析取自「2022、2023 國際運算思維挑戰賽 任務解析」，由 2022、2023 運算思維推動計畫製作，採 CC 姓名標示-非商業性-禁止改作 3.0 台灣授權。僅供課堂教學使用。</footer>
 <script>
 const SHOW_ANSWERS = false;
 const LV = { 易: 'var(--easy)', 中: 'var(--mid)', 難: 'var(--hard)' };
@@ -75,6 +77,17 @@ const TASKS = [
 const pad = n => String(n).padStart(2, '0');
 const nav = document.getElementById('nav'), main = document.getElementById('main');
 if (SHOW_ANSWERS) { document.getElementById('h1').textContent = '運算思維挑戰 · 解答版'; document.title = '運算思維挑戰 解答版'; }
+
+// 頁尾的「解答版／題目版」切換連結。解答版還沒公布（檔案不存在）時，題目版不顯示連結
+const ANSWER_PAGE = 'answers.html', QUESTION_PAGE = 'index.html';
+const sw = document.getElementById('switch');
+function showSwitch() {
+  sw.href = SHOW_ANSWERS ? QUESTION_PAGE : ANSWER_PAGE;
+  sw.textContent = SHOW_ANSWERS ? '← 回題目版' : '✔ 看解答版（題目解析與資訊科學概念）';
+  sw.hidden = false;
+}
+if (SHOW_ANSWERS || location.protocol === 'file:') showSwitch();
+else fetch(ANSWER_PAGE, { method: 'HEAD' }).then(r => { if (r.ok) showSwitch(); }).catch(() => {});
 
 TASKS.forEach((t, i) => {
   const b = document.createElement('button');
