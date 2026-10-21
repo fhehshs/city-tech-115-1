@@ -6,7 +6,7 @@ CHAPTERS = [
     {'name': '第一章：認識資料儀表板', 'start': 2},
     {'name': '第二章：準備儀表板的資料', 'start': 8},
     {'name': '第三章：製作互動儀表板', 'start': 14},
-    {'name': '第四章：課程總回顧', 'start': 19},
+    {'name': '第四章：城市科技與人類社會', 'start': 19},
     {'name': '期末展示', 'start': 24},
 ]
 
@@ -21,10 +21,10 @@ QUIZZES = {
                 'explain': '儀表板（Dashboard）像汽車的儀表板：把最重要的指標（KPI）和幾張相關圖表集中在一頁，看一眼就知道現況。一張圖表只回答一個問題，儀表板則讓你同時看到多個面向。'
             },
             {
-                'q': '想在儀表板最上方顯示「全班平均分數」這個大數字，Google 試算表最適合用哪一種圖表？',
+                'q': '想在儀表板最上方顯示「全市可借車輛數」這個大數字，Google 試算表最適合用哪一種圖表？',
                 'options': ['圓餅圖', '散佈圖', '計分卡圖表', '折線圖'],
                 'answer': 2,
-                'explain': '計分卡圖表（Scorecard）專門用來顯示一個關鍵數字，還可以和基準值比較（例如比上次考試高或低多少），最適合放在儀表板最上方當 KPI。'
+                'explain': '計分卡圖表（Scorecard）專門用來顯示一個關鍵數字，還可以和基準值比較（例如比昨天同一時間多或少多少），最適合放在儀表板最上方當 KPI。'
             },
         ]
     },
@@ -66,16 +66,28 @@ QUIZZES = {
         'title': '第四章 隨堂測驗',
         'questions': [
             {
-                'q': '十週課程中，「個人資料保護法」主要在哪一週學習？',
-                'options': ['第一週：科技演進與硬體', '第六週：網際網路運作原理', '第十週：Google 試算表儀表板與期末總結', '第三週：個人資料保護與資訊倫理'],
-                'answer': 3,
-                'explain': '第三週「個人資料保護與資訊倫理」深入探討台灣個資法、Cookie、隱私權、被遺忘權等議題，與 Week 5 表單設計中的個資告知聲明互相呼應。'
+                'q': '「工業 4.0」主要整合了哪些技術，讓工廠變成「智慧工廠」？',
+                'options': ['蒸汽機與鐵路', '人工智慧、物聯網、巨量資料、雲端運算', '電話與傳真機', '只靠增加工人'],
+                'answer': 1,
+                'explain': '工業 4.0 整合 AI、IoT、巨量資料與雲端：設備、物料和人員高度互聯，製造過程即時數據化，還能自我學習與改善。'
             },
             {
-                'q': '學習完這十週課程，下列哪個能力「不屬於」你應該具備的資訊素養？',
-                'options': ['能辨識資訊安全威脅（如釣魚郵件）', '能自己製造半導體晶片', '能使用 Excel 進行基本資料分析', '能理解 AI 生成內容的著作權問題'],
+                'q': 'ATM 出現後，銀行櫃員的總人數反而沒有減少，主要原因是？',
+                'options': ['ATM 常常故障', 'ATM 取代重複的工作，銀行開了更多分行，櫃員轉做客戶關係與服務', '政府禁止裁員', '大家不會用 ATM'],
                 'answer': 1,
-                'explain': '製造半導體晶片需要高度專業的工程知識，不在本課程範圍。本課程著重「數位公民素養」：安全意識、資料分析、工具應用、法律常識。'
+                'explain': '科技常常取代的是「工作中重複的部分」，而不是整個職業。人力會轉向更需要溝通與判斷的工作——AI 時代也是一樣。'
+            },
+            {
+                'q': '在網路上看到驚人的消息，下列哪一種做法最能避免被假消息騙？',
+                'options': ['馬上轉傳給家人提醒', '看按讚數多不多', '找政府（.gov）、教育（.edu）等可靠來源，並用事實查核網站多方查證', '只要有圖片就是真的'],
+                'answer': 2,
+                'explain': '假消息傳得快又廣、造假技術越來越真、還會精準投遞給容易相信的人。要從可靠來源、多個管道確認，也可以查事實查核網站。'
+            },
+            {
+                'q': '民眾自發用開放資料做網站、監督政府預算（例如 g0v 零時政府），這屬於？',
+                'options': ['公民參與', '數位落差', '網路爬蟲', '工業 4.0'],
+                'answer': 0,
+                'explain': '公民參與是讓大家參與公共事務的決策。開放資料讓一般人也能分析政府資料、提出建議，這也是你期末報告用開放資料的意義。'
             },
         ]
     },
@@ -209,8 +221,8 @@ SLIDES = [
       <p style='color:#374151;font-size:0.85rem;margin:0;'>今天走了幾步、睡了多久，用大數字顯示，下面再用長條圖比較一週的變化——你每天都在看儀表板。</p>
     </div>
     <div style='background:#fdf4ff;padding:14px;border-radius:10px;border-left:4px solid #7c3aed;'>
-      <h3 style='color:#7c3aed;font-size:0.95rem;margin-bottom:6px;'>🏫 你自己的成績儀表板</h3>
-      <p style='color:#374151;font-size:0.85rem;margin:0;'>把 Ch09 的班級成績做成一頁：最上方是全班平均、及格率，下面是各科長條圖和分數分布，再加上「班級」篩選器。</p>
+      <h3 style='color:#7c3aed;font-size:0.95rem;margin-bottom:6px;'>🚲 這週的範例：YouBike 即時儀表板</h3>
+      <p style='color:#374151;font-size:0.85rem;margin:0;'>用臺北市資料大平臺的 YouBike 2.0 即時資料做成一頁：最上方是站點數、可借車輛，下面是各區長條圖，再加上「行政區」篩選器。</p>
     </div>
   </div>
 </div>"""
@@ -665,7 +677,7 @@ SLIDES = [
     },
     {
         'id': 19,
-        'chapter': '第四章：課程總回顧',
+        'chapter': '第四章：城市科技與人類社會',
         'title': '十週學習地圖',
         'bg': 'white',
         'quiz': None,
@@ -753,8 +765,8 @@ SLIDES = [
       <div style='display:flex;align-items:center;gap:8px;'>
         <span style='background:#65a30d;color:#fff;padding:2px 10px;border-radius:4px;font-size:0.8rem;font-weight:700;'>W9</span>
         <div>
-          <p style='font-weight:700;color:#3f6212;font-size:0.85rem;margin:0;'>資料分析實作</p>
-          <p style='color:#374151;font-size:0.75rem;margin:0;'>Excel 函數/樞紐/趨勢線</p>
+          <p style='font-weight:700;color:#3f6212;font-size:0.85rem;margin:0;'>用試算表分析開放資料</p>
+          <p style='color:#374151;font-size:0.75rem;margin:0;'>試算表函數/樞紐/趨勢線</p>
         </div>
       </div>
     </div>
@@ -772,153 +784,43 @@ SLIDES = [
     },
     {
         'id': 20,
-        'chapter': '第四章：課程總回顧',
-        'title': '數位公民素養架構',
+        'chapter': '第四章：城市科技與人類社會',
+        'title': '科技如何改變產業與工作',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>數位公民素養架構</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;margin-bottom:15px;'>
-  <div style='background:#eff6ff;padding:15px;border-radius:10px;text-align:center;'>
-    <div style='font-size:2.5rem;margin-bottom:8px;'>🛡️</div>
-    <h3 style='color:#1e40af;font-size:1rem;margin-bottom:8px;'>數位安全</h3>
-    <ul style='color:#374151;font-size:0.8rem;list-style:none;padding:0;text-align:left;'>
-      <li>✅ 識別網路詐騙</li>
-      <li>✅ 個資保護意識</li>
-      <li>✅ 密碼安全管理</li>
-      <li>✅ HTTPS 辨識</li>
-    </ul>
-  </div>
-  <div style='background:#f0fdf4;padding:15px;border-radius:10px;text-align:center;'>
-    <div style='font-size:2.5rem;margin-bottom:8px;'>⚖️</div>
-    <h3 style='color:#15803d;font-size:1rem;margin-bottom:8px;'>數位倫理與法律</h3>
-    <ul style='color:#374151;font-size:0.8rem;list-style:none;padding:0;text-align:left;'>
-      <li>✅ 著作權基本知識</li>
-      <li>✅ AI 生成內容倫理</li>
-      <li>✅ 個資法要點</li>
-      <li>✅ 數位隱私權</li>
-    </ul>
-  </div>
-  <div style='background:#fdf4ff;padding:15px;border-radius:10px;text-align:center;'>
-    <div style='font-size:2.5rem;margin-bottom:8px;'>🛠️</div>
-    <h3 style='color:#7c3aed;font-size:1rem;margin-bottom:8px;'>數位工具能力</h3>
-    <ul style='color:#374151;font-size:0.8rem;list-style:none;padding:0;text-align:left;'>
-      <li>✅ Google Workspace</li>
-      <li>✅ Excel 資料分析</li>
-      <li>✅ Google 試算表儀表板</li>
-      <li>✅ AI 工具應用</li>
-    </ul>
-  </div>
-</div>
-<div style='background:#fef9c3;padding:12px;border-radius:8px;border:1px solid #fde047;'>
-  <p style='color:#854d0e;font-size:0.9rem;margin:0;'>🌏 <strong>未來展望</strong>：數位技能已成為 21 世紀最基本的就業能力。根據麥肯錫報告，到 2030 年，台灣 50% 的工作需要中等以上的數位技能，本課程正是你邁向數位未來的第一步！</p>
-</div>"""
+<h2 class='slide-title'>科技如何改變產業與工作</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:16px;'><div><div style='background:#eff6ff;padding:12px 14px;border-radius:10px;border-left:4px solid #2563eb;margin-bottom:10px;'><h3 style='color:#1e40af;font-size:0.95rem;margin:0 0 6px;'>🏭 工業 4.0：智慧工廠</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>整合<strong>人工智慧、物聯網、巨量資料、雲端運算</strong>，三個特徵：<ol style='padding-left:18px;margin:6px 0 0;'><li>設備、物料、成品和人員<strong>高度互聯</strong></li><li>製造過程<strong>即時數據化</strong></li><li>可以<strong>自我學習與改善</strong></li></ol></div></div><div style='background:#f0fdf4;padding:12px 14px;border-radius:10px;border-left:4px solid #16a34a;margin-bottom:10px;'><h3 style='color:#15803d;font-size:0.95rem;margin:0 0 6px;'>📱 活絡的數位平台</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>平台型企業直接<strong>媒合供需雙方</strong>：Facebook、YouTube、Coursera、Google Play、Uber、foodpanda。<br>想一想：外送平台讓誰更方便？又讓誰的工作變得不穩定？</div></div></div><div><div style='background:#fff7ed;padding:12px 14px;border-radius:10px;border-left:4px solid #ea580c;margin-bottom:10px;'><h3 style='color:#c2410c;font-size:0.95rem;margin:0 0 6px;'>🏧 工作型態的改變：ATM 的故事</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>ATM 出現後，每家分行的櫃員變少，但銀行<strong>開了更多分行</strong>，櫃員總數反而沒有減少。<br>ATM 取代了重複無聊的工作，櫃員轉做<strong>經營客戶關係、提供更好的服務</strong>。</div></div><div style='background:#fdf4ff;padding:12px 14px;border-radius:10px;border-left:4px solid #7c3aed;margin-bottom:10px;'><h3 style='color:#7c3aed;font-size:0.95rem;margin:0 0 6px;'>💳 金融科技（FinTech）</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>行動支付、數位貨幣、用 AI 和大數據做理財建議的「機器人理財」，正在改變銀行與投資業。</div></div></div></div>"""
     },
     {
         'id': 21,
-        'chapter': '第四章：課程總回顧',
-        'title': '科技與社會的連結',
+        'chapter': '第四章：城市科技與人類社會',
+        'title': '科技帶來的挑戰：假消息與數位落差',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>科技與社會的連結</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🔗 各週主題如何相互連結</h3>
-      <div style='display:flex;flex-direction:column;gap:8px;font-size:0.85rem;'>
-        <div style='background:#fff;padding:8px;border-radius:6px;'>
-          <p style='color:#374151;margin:0;'><strong style='color:#1e40af;'>硬體（W1）</strong> → 運算能力支撐 <strong style='color:#7c3aed;'>AI（W2）</strong></p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;'>
-          <p style='color:#374151;margin:0;'><strong style='color:#dc2626;'>個資保護（W3）</strong> → 表單設計注意事項 <strong style='color:#ea580c;'>（W5）</strong></p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;'>
-          <p style='color:#374151;margin:0;'><strong style='color:#0369a1;'>網路（W6）</strong> → 基礎讓 <strong style='color:#0d9488;'>IoT（W7）</strong> 得以運作</p>
-        </div>
-        <div style='background:#fff;padding:8px;border-radius:6px;'>
-          <p style='color:#374151;margin:0;'><strong style='color:#ca8a04;'>資料清理（W8）</strong> → Excel 分析 <strong style='color:#65a30d;'>（W9）</strong> → 試算表儀表板 <strong style='color:#1e40af;'>（W10）</strong></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>💭 學習後的反思問題</h3>
-      <ul style='color:#374151;font-size:0.9rem;padding-left:16px;'>
-        <li>我如何保護自己的個人資料？</li>
-        <li>面對 AI 生成內容，我能辨別真偽嗎？</li>
-        <li>我的手機每天蒐集哪些關於我的資料？</li>
-        <li>數據分析如何幫助我做更好的決策？</li>
-        <li>哪些科技讓台灣社會變得更好？</li>
-      </ul>
-    </div>
-    <div style='background:#fef9c3;padding:10px;border-radius:8px;'>
-      <p style='color:#854d0e;font-size:0.85rem;margin:0;'>🎓 <strong>學習不會在今天結束</strong>：科技日新月異，本課程教你的是「如何快速學習新工具」的能力，比任何特定軟體都更有價值。</p>
-    </div>
-  </div>
-</div>"""
+<h2 class='slide-title'>科技帶來的挑戰：假消息與數位落差</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:16px;'><div><div style='background:#fef2f2;padding:12px 14px;border-radius:10px;border-left:4px solid #dc2626;margin-bottom:10px;'><h3 style='color:#dc2626;font-size:0.95rem;margin:0 0 6px;'>📰 假消息為什麼這麼多？</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'><ul style='padding-left:18px;margin:0;'><li>傳播<strong>快又廣</strong></li><li><strong>造假技術</strong>進步（AI 生成圖、深偽影片）</li><li>演算法<strong>精準投遞</strong>給容易相信的人</li></ul></div></div><div style='background:#f0fdf4;padding:12px 14px;border-radius:10px;border-left:4px solid #16a34a;margin-bottom:10px;'><h3 style='color:#15803d;font-size:0.95rem;margin:0 0 6px;'>✅ 三招查證</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'><ol style='padding-left:18px;margin:0;'><li>找<strong>官方或可靠網站</strong>：.gov 政府、.edu 教育、.org 法人組織</li><li><strong>多個管道</strong>交叉確認</li><li>查<strong>事實查核網站</strong>，如台灣事實查核中心</li></ol></div></div></div><div><div style='background:#eff6ff;padding:12px 14px;border-radius:10px;border-left:4px solid #2563eb;margin-bottom:10px;'><h3 style='color:#1e40af;font-size:0.95rem;margin:0 0 6px;'>🌉 數位落差</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>不同年齡、居住地、經濟背景的人，<strong>使用資訊科技的機會與能力</strong>不一樣。<br>例：長輩不會用行動支付、偏鄉網路慢、家裡沒有電腦可以寫作業。</div></div><div style='background:#fefce8;padding:12px 14px;border-radius:10px;border-left:4px solid #ca8a04;margin-bottom:10px;'><h3 style='color:#a16207;font-size:0.95rem;margin:0 0 6px;'>🤝 怎麼縮小落差？</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'><ul style='padding-left:18px;margin:0;'><li>臺北市為<strong>銀髮族、新住民</strong>開設數位課程，並提供經濟弱勢借用平板</li><li>教育部推動<strong>偏鄉數位應用</strong>計畫</li><li>你也可以：教家人用手機、設計長輩看得懂的介面</li></ul></div></div></div></div>"""
     },
     {
         'id': 22,
-        'chapter': '第四章：課程總回顧',
-        'title': 'AI 時代的學習策略',
+        'chapter': '第四章：城市科技與人類社會',
+        'title': '開放資料：讓市民一起參與城市',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>AI 時代的學習與就業策略</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div>
-    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:10px;'>🤖 AI 取代了什麼？</h3>
-      <div style='display:flex;flex-direction:column;gap:6px;'>
-        <div style='background:#fee2e2;padding:8px;border-radius:6px;'>
-          <p style='color:#dc2626;font-size:0.85rem;margin:0;'>❌ 簡單重複性工作（資料輸入、基礎報表）</p>
-        </div>
-        <div style='background:#fee2e2;padding:8px;border-radius:6px;'>
-          <p style='color:#dc2626;font-size:0.85rem;margin:0;'>❌ 標準化文件生成</p>
-        </div>
-        <div style='background:#fee2e2;padding:8px;border-radius:6px;'>
-          <p style='color:#dc2626;font-size:0.85rem;margin:0;'>❌ 基礎客服回覆</p>
-        </div>
-      </div>
-    </div>
-    <div style='background:#f0fdf4;padding:12px;border-radius:8px;'>
-      <h3 style='color:#15803d;font-size:0.95rem;margin-bottom:8px;'>✅ AI 難以取代的能力</h3>
-      <ul style='color:#374151;font-size:0.85rem;padding-left:16px;margin:0;'>
-        <li>批判性思考（辨識 AI 錯誤）</li>
-        <li>創意與情感連結</li>
-        <li>複雜問題解決</li>
-        <li>跨領域整合能力</li>
-      </ul>
-    </div>
-  </div>
-  <div>
-    <div style='background:#fdf4ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
-      <h3 style='color:#7c3aed;font-size:1rem;margin-bottom:10px;'>🎯 給同學的建議</h3>
-      <ul style='color:#374151;font-size:0.9rem;padding-left:16px;'>
-        <li><strong>學會與 AI 合作</strong>：善用 ChatGPT、Copilot 提升效率</li>
-        <li><strong>培養資料敏感度</strong>：看到數據，習慣問「這合理嗎？」</li>
-        <li><strong>T 型技能</strong>：廣泛知識 + 一個深度專業</li>
-        <li><strong>持續學習</strong>：科技半衰期越來越短</li>
-        <li><strong>解決問題</strong>：工具是手段，問題是目的</li>
-      </ul>
-    </div>
-    <div style='background:#fff7ed;padding:10px;border-radius:8px;'>
-      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>🌟 <strong>2030 年最需要的技能（世界經濟論壇）</strong>：分析思維、創意與創新、科技設計與程式、批判思維、解決複雜問題。</p>
-    </div>
-  </div>
-</div>"""
+<h2 class='slide-title'>開放資料：讓市民一起參與城市</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:16px;'><div><div style='background:#eff6ff;padding:12px 14px;border-radius:10px;border-left:4px solid #2563eb;margin-bottom:10px;'><h3 style='color:#1e40af;font-size:0.95rem;margin:0 0 6px;'>🔓 開放資料的好處</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>資料開放給社會大眾，<strong>任何人都可以自由、重複使用</strong>：政府更透明、企業能開發新服務（如公車 App）、學生能做研究——你這學期就用它做報告。</div></div><div style='background:#f0fdf4;padding:12px 14px;border-radius:10px;border-left:4px solid #16a34a;margin-bottom:10px;'><h3 style='color:#15803d;font-size:0.95rem;margin:0 0 6px;'>🗳️ 公民參與</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>讓大家參與公共事務的決策。例如 <strong>g0v 零時政府</strong>：一群志工用開放資料把政府預算做成看得懂的網站，讓市民一起監督。</div></div></div><div><div style='background:#fff7ed;padding:12px 14px;border-radius:10px;border-left:4px solid #ea580c;margin-bottom:10px;'><h3 style='color:#c2410c;font-size:0.95rem;margin:0 0 6px;'>🔬 公民科學</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>一般民眾參與科學研究：提出問題、蒐集資料、分析資料。例如用手機回報看到的鳥類、路殺動物或空氣品質，<strong>人多力量大</strong>，資料量是研究團隊自己做不到的。</div></div><div style='background:#fdf4ff;padding:12px 14px;border-radius:10px;border-left:4px solid #7c3aed;margin-bottom:10px;'><h3 style='color:#7c3aed;font-size:0.95rem;margin:0 0 6px;'>🔭 對未來的展望</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'><ul style='padding-left:18px;margin:0;'><li><strong>更快的運算</strong>：雲端、超級電腦、量子電腦</li><li><strong>更巨大的資料革命</strong>：IoT 讓城市每秒產生資料</li><li><strong>更精準的解決方法</strong>：用資料找出問題真正的原因</li></ul></div></div></div></div><div style='background:#fef3c7;border-left:4px solid #f59e0b;padding:10px 14px;border-radius:8px;font-size:.85rem;color:#78350f;margin-top:4px;'>💡 這三頁的每個主題，都可以是你的<strong>期末報告題目</strong>：例如「行動支付對長輩的影響」用數位落差調查資料、「YouBike 如何改變通勤」用 YouBike 開放資料。</div>"""
     },
     {
         'id': 23,
-        'chapter': '第四章：課程總回顧',
+        'chapter': '第四章：城市科技與人類社會',
         'title': '🎯 第四章 隨堂測驗',
         'bg': 'purple',
         'quiz': 'q4',
@@ -928,7 +830,7 @@ SLIDES = [
 <div style='text-align:center;padding:20px;'>
   <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
   <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第四章 隨堂測驗</h2>
-  <p style='color:#e9d5ff;font-size:1.1rem;'>課程總回顧 ── 2 道題目，點擊作答！</p>
+  <p style='color:#e9d5ff;font-size:1.1rem;'>城市科技與人類社會 ── 4 道題目，點擊作答！</p>
 </div>"""
     },
     {
@@ -963,7 +865,7 @@ SLIDES = [
       <ul style='font-size:.8rem;color:#374151;margin:0;padding-left:18px;line-height:1.7;'>
         <li><strong>個人</strong>完成，一人一份</li>
         <li>資料分析請用<strong>政府開放資料</strong>（data.gov.tw、臺北市資料大平臺…）</li>
-        <li>至少 <strong>2 張圖表</strong>（Excel 或 Google 試算表製作）</li>
+        <li>至少 <strong>2 張圖表</strong>（用 Google 試算表製作，做法同 Ch09）</li>
         <li>依<strong>前言、正文、結論、參考資料</strong>四段撰寫，A4 約 <strong>3–6 頁</strong></li>
         <li>參考資料要寫清楚，不引用論壇、問答或聊天網站</li>
         <li>有使用 AI 請附 <strong>AI 使用聲明</strong>（工具＋Prompt＋日期）</li>

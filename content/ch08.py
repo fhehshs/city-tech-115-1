@@ -55,10 +55,10 @@ QUIZZES = {
                 'explain': '缺失值處理視情況而定：若缺失不多，可用平均值/中位數插補；若大量缺失，才考慮刪除該行（列）。直接填 0 可能扭曲分析結果。'
             },
             {
-                'q': '在 Excel 中，可以用哪個功能快速找出並移除重複資料？',
-                'options': ['常用→找到並取代→刪除', '公式→UNIQUE 函數', '插入→樞紐分析表', '資料→移除重複項'],
+                'q': '在 Google 試算表中，可以用哪個功能快速找出並移除重複資料？',
+                'options': ['編輯→尋找與取代', '插入→函數→UNIQUE', '插入→樞紐分析表', '資料→資料清理→移除重複項目'],
                 'answer': 3,
-                'explain': 'Excel「資料」索引標籤下有「移除重複項」功能，可選擇哪些欄位來判斷重複，一鍵刪除重複列。'
+                'explain': 'Google 試算表「資料 → 資料清理」裡有「移除重複項目」，可以選擇用哪些欄位判斷重複，一鍵刪除重複的列。UNIQUE 函數也能列出不重複的值，但不會刪掉原始資料。'
             },
         ]
     },
@@ -499,7 +499,7 @@ SLIDES = [
       </ol>
     </div>
     <div style='background:#fef9c3;padding:10px;border-radius:8px;border:1px solid #fde047;'>
-      <p style='color:#854d0e;font-size:0.85rem;margin:0;'>💡 CSV 下載後若出現亂碼，請用 Excel 匯入功能並選擇 UTF-8 編碼。</p>
+      <p style='color:#854d0e;font-size:0.85rem;margin:0;'>💡 CSV 下載後若出現亂碼，通常是 Big5 編碼：改下載 UTF-8 版本，或用記事本另存成 UTF-8 再匯入 Google 試算表。</p>
     </div>
   </div>
   <div>
@@ -589,35 +589,35 @@ SLIDES = [
     {
         'id': 14,
         'chapter': '第三章：資料清理與處理',
-        'title': 'Excel 資料清理技巧',
+        'title': 'Google 試算表資料清理技巧',
         'bg': 'white',
         'quiz': None,
         'chart': None,
         'video': None,
         'html': """
-<h2 class='slide-title'>Excel 資料清理技巧</h2>
+<h2 class='slide-title'>Google 試算表資料清理技巧</h2>
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
   <div>
-    <h3 style='color:#374151;font-size:1rem;margin-bottom:12px;'>🛠️ 常用 Excel 清理工具</h3>
+    <h3 style='color:#374151;font-size:1rem;margin-bottom:12px;'>🛠️ 常用 Google 試算表清理工具</h3>
     <div style='display:flex;flex-direction:column;gap:8px;'>
       <div style='background:#eff6ff;padding:10px;border-radius:8px;border-left:3px solid #2563eb;'>
-        <p style='font-weight:700;color:#1e40af;font-size:0.9rem;margin:0;'>資料 → 移除重複項</p>
+        <p style='font-weight:700;color:#1e40af;font-size:0.9rem;margin:0;'>資料 → 資料清理 → 移除重複項目</p>
         <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>選定欄位，一鍵刪除重複列</p>
       </div>
       <div style='background:#f0fdf4;padding:10px;border-radius:8px;border-left:3px solid #16a34a;'>
         <p style='font-weight:700;color:#15803d;font-size:0.9rem;margin:0;'>TRIM() 函數</p>
-        <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>移除文字前後多餘空格：=TRIM(A1)</p>
+        <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>移除前後多餘空格：=TRIM(A1)，或 資料 → 資料清理 → 刪除空白字元</p>
       </div>
       <div style='background:#fff7ed;padding:10px;border-radius:8px;border-left:3px solid #ea580c;'>
         <p style='font-weight:700;color:#ea580c;font-size:0.9rem;margin:0;'>UPPER() / LOWER() / PROPER()</p>
         <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>統一大小寫：PROPER("john doe") → "John Doe"</p>
       </div>
       <div style='background:#fdf4ff;padding:10px;border-radius:8px;border-left:3px solid #7c3aed;'>
-        <p style='font-weight:700;color:#7c3aed;font-size:0.9rem;margin:0;'>資料 → 文字到欄</p>
+        <p style='font-weight:700;color:#7c3aed;font-size:0.9rem;margin:0;'>資料 → 將文字分割成不同欄</p>
         <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>將「姓名,電話」一欄拆成兩欄</p>
       </div>
       <div style='background:#fef9c3;padding:10px;border-radius:8px;border-left:3px solid #ca8a04;'>
-        <p style='font-weight:700;color:#854d0e;font-size:0.9rem;margin:0;'>條件式格式設定 → 突出顯示規則</p>
+        <p style='font-weight:700;color:#854d0e;font-size:0.9rem;margin:0;'>格式 → 條件式格式設定</p>
         <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>快速標記異常值（如成績 &gt; 100）</p>
       </div>
     </div>
@@ -1039,7 +1039,7 @@ SLIDES = [
   </div>
 </div>
 <div style='background:rgba(255,255,255,0.1);padding:12px;border-radius:8px;margin-top:15px;text-align:center;'>
-  <p style='color:#bfdbfe;font-size:0.95rem;margin:0;'>下週預告：<strong style='color:#fff;'>資料分析實作</strong> ── Excel 函數、樞紐分析表、趨勢線與預測</p>
+  <p style='color:#bfdbfe;font-size:0.95rem;margin:0;'>下週預告：<strong style='color:#fff;'>用 Google 試算表分析開放資料</strong> ── 匯入 CSV、基本函數、樞紐分析表、圖表與趨勢線</p>
 </div>"""
     }
 ]

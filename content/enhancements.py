@@ -1186,32 +1186,45 @@ _ch08 = {
 # ── Ch09：資料分析實作 ─────────────────────────────────────────
 
 _ch09 = {
-    3: {
-        'video': {'type': 'search', 'query': 'Excel 函數 SUM AVERAGE COUNTIF 基礎教學 中文', 'title': '▶ Excel 最常用函數實作教學', 'desc': '快速學會試算表基礎函數'},
+    6: {
+        'video': _vid_search('Google 試算表 匯入 CSV 開放資料 教學', '▶ Google 試算表匯入 CSV 教學', '在 YouTube 搜尋匯入 CSV 的中文教學'),
     },
-    4: {
-        'html_append': '\n<div style=\'background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;\'>\n  <h4 style=\'color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;\'>💡 生活實例：期末成績單的實際用途</h4>\n  <div style=\'font-size:.82rem;color:#374151;line-height:1.6;\'><p style=\'margin:0 0 6px;\'>假設班上 30 人成績已輸入試算表，你可以用一個公式回答：</p><div style=\'display:flex;flex-direction:column;gap:5px;\'><div style=\'background:#dbeafe;padding:7px 10px;border-radius:6px;\'><code style=\'color:#1d4ed8;\'>=COUNTIF(B2:B31,">=60")</code> → 及格人數</div><div style=\'background:#dbeafe;padding:7px 10px;border-radius:6px;\'><code style=\'color:#1d4ed8;\'>=COUNTIF(B2:B31,">=90")</code> → 優秀人數（90分以上）</div><div style=\'background:#dcfce7;padding:7px 10px;border-radius:6px;\'><code style=\'color:#15803d;\'>=SUMIF(C2:C31,"男",B2:B31)</code> → 男生總分（計算平均用）</div></div></div>\n</div>',
+    8: {
+        'video': _vid_search('Google 試算表 SUM AVERAGE COUNTIF 基礎教學', '▶ Google 試算表基本函數教學', '在 YouTube 搜尋基本函數的中文教學'),
     },
-    9: {
-        # ✅ 已驗證：Excel Campus - Jon「Excel Vlookup Tutorial - Everything You Need To Know」
-        'video': _vid_both(
-            'd3BYVQ6xIE4',
-            'VLOOKUP 函數 教學 Excel 中文 實例',
-            'Excel VLOOKUP Tutorial（Excel Campus，可開自動中文字幕）',
-            desc='想找中文教學？點下方搜尋',
-            search_title='▶ VLOOKUP 中文教學搜尋',
-        ),
-        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：VLOOKUP 的最強使用場景</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><p style='margin:0 0 6px;'>📋 <strong>情境</strong>：你有 300 個學號，要從另一張表找出對應的姓名和班級</p><p style='margin:0 0 6px;'>手動複製貼上：需要 <strong>300 個步驟</strong>，容易出錯</p><p style='margin:0;'>用 VLOOKUP：<code style='color:#1d4ed8;background:#dbeafe;padding:2px 6px;border-radius:4px;'>=VLOOKUP(A2,學生名冊!$A:$C,2,0)</code> → <strong>1 個公式向下拉，30 秒完成</strong></p></div>\n</div>",
+    10: {
+        'html_append': _reveal(
+            'A 欄是縣市、B 欄是月份、C 欄是出生數。要算「新北市全年出生數」，公式怎麼寫？',
+            'SUMIF(條件範圍, 條件, 加總範圍)',
+            '<code>=SUMIF(A:A,"新北市",C:C)</code>：在 A 欄找「新北市」，把同一列 C 欄加起來。'),
     },
-    13: {
-        'video': {'type': 'search', 'query': '樞紐分析表 Excel 教學 入門 實例 中文', 'title': '▶ 樞紐分析表 5 分鐘入門', 'desc': '快速掌握樞紐分析表的核心操作'},
-        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：老闆要每月業績報表，你怎麼做？</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><p style='margin:0 0 4px;'>原始資料：12,000 筆銷售記錄（日期、產品、業務員、金額）</p><p style='margin:0 0 4px;color:#dc2626;'>😓 手動整理：要用 SUMIF 一個一個算，花 3 小時</p><p style='margin:0;color:#15803d;font-weight:600;'>✅ 樞紐分析表：拖拉 3 個欄位，10 秒看到每月每業務的業績表</p></div>\n</div>",
+    12: {
+        'html_append': _quiz_click(
+            "D2 輸入 =C2/C$24 後往下拉到 D5，D5 的公式是？",
+            ["=C5/C$24", "=C5/C$27", "=C2/C$24", "=D5/D$27"],
+            0,
+            "C2 沒有 $，會跟著往下變成 C5；C$24 的列號被 $ 鎖住，所以一直是 C$24。"),
     },
-    19: {
-        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：用趨勢線預測明年成績</h4>\n  <p style='font-size:.82rem;color:#374151;line-height:1.6;margin:0 0 8px;'>如果你有過去 5 年學測平均分數的資料，加上趨勢線後，Excel 可以用 <code style='color:#6d28d9;background:#ede9fe;padding:1px 5px;border-radius:3px;'>FORECAST</code> 函數預測明年的分數走向。</p><p style='font-size:.82rem;color:#374151;margin:0;'>企業用同樣方法預測下季業績、庫存需求、電力用量。資料 + 趨勢線 = 讓過去的數字預測未來。</p>\n</div>",
+    16: {
+        'video': _vid_search('Google 試算表 樞紐分析表 教學 入門', '▶ Google 試算表樞紐分析表入門', '在 YouTube 搜尋樞紐分析表的中文教學'),
     },
     21: {
-        'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：相關不等於因果！</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><p style='margin:0 0 8px;font-weight:700;'>📈 以下相關係數都很高，但邏輯上沒有因果關係：</p><div style='display:flex;flex-direction:column;gap:5px;'><div style='background:#fef9c3;padding:7px 10px;border-radius:6px;border-left:2px solid #f59e0b;'>🍦 夏天冰淇淋銷量 vs 溺水人數（r = 0.97）→ 真正原因：夏天</div><div style='background:#fef9c3;padding:7px 10px;border-radius:6px;border-left:2px solid #f59e0b;'>📽️ 尼可拉斯凱吉電影數 vs 游泳池溺水數（r = 0.87）</div><div style='background:#fef9c3;padding:7px 10px;border-radius:6px;border-left:2px solid #f59e0b;'>🧀 起司消費量 vs 被棉被悶死人數（r = 0.95）</div></div><p style='color:#d97706;font-weight:700;margin:8px 0 0;'>⚠️ 看到高相關時，永遠問：「有沒有第三個變數在作怪？」</p></div>\n</div>",
+        'video': _vid_search('Google 試算表 散佈圖 趨勢線 R平方 教學', '▶ 趨勢線與 R² 教學', '在 YouTube 搜尋 Google 試算表趨勢線的教學'),
+    },
+    22: {
+        'html_append': """
+<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>
+  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 想一想：相關不等於因果！</h4>
+  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><div style='display:flex;flex-direction:column;gap:5px;'><div style='background:#fef9c3;padding:7px 10px;border-radius:6px;border-left:2px solid #f59e0b;'>🍦 夏天冰淇淋銷量和溺水人數一起增加 → 真正原因：天氣熱</div><div style='background:#fef9c3;padding:7px 10px;border-radius:6px;border-left:2px solid #f59e0b;'>👶 出生數和某商品銷量都逐年下降 → 不代表商品讓人少生小孩</div></div><p style='color:#d97706;font-weight:700;margin:8px 0 0;'>⚠️ 看到兩個數字一起變化時，先問：「有沒有第三個因素在影響？」</p></div>
+</div>""",
+    },
+    25: {
+        'html_append': _ref('用 Google 試算表分析開放資料 — 延伸閱讀', [
+            ('🇹🇼', '政府資料開放平臺 data.gov.tw', 'https://data.gov.tw/', '搜尋「嬰兒出生數」等資料集'),
+            ('🏙️', '臺北市資料大平臺', 'https://data.taipei/', '臺北市的交通、人口、環境資料'),
+            ('📗', 'Google 試算表說明中心', 'https://support.google.com/docs/', '匯入、圖表、樞紐分析表官方說明'),
+            ('🧮', 'Google 試算表函數清單', 'https://support.google.com/docs/table/25273', '官方函數字典'),
+        ]),
     },
 }
 
@@ -1231,10 +1244,20 @@ _ch10 = {
         'video': _vid_search('Google 試算表 交叉分析篩選器 教學', '▶ 交叉分析篩選器教學影片', '在 YouTube 搜尋交叉分析篩選器的中文教學'),
     },
     20: {
-        'html_append': "\n<div style='background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #3b82f6;'>\n  <h4 style='color:#1d4ed8;font-size:.85rem;font-weight:700;margin:0 0 8px;'>💡 生活實例：你是幾星級的數位公民？</h4>\n  <div style='font-size:.82rem;color:#374151;'><div style='display:flex;flex-direction:column;gap:6px;'><div style='background:#fef9c3;padding:8px 12px;border-radius:8px;border-left:3px solid #f59e0b;'><p style='font-weight:700;color:#92400e;margin:0 0 2px;'>⭐ 初級：會用工具</p><p style='font-size:.78rem;margin:0;'>Office、Google Workspace、手機 App 基本操作</p></div><div style='background:#dcfce7;padding:8px 12px;border-radius:8px;border-left:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;margin:0 0 2px;'>⭐⭐ 中級：能創造價值</p><p style='font-size:.78rem;margin:0;'>資料分析、視覺化、自動化流程、資訊判讀</p></div><div style='background:#dbeafe;padding:8px 12px;border-radius:8px;border-left:3px solid #3b82f6;'><p style='font-weight:700;color:#1d4ed8;margin:0 0 2px;'>⭐⭐⭐ 高級：懂倫理與影響</p><p style='font-size:.78rem;margin:0;'>理解 AI 偏見、個資保護、數位落差、科技社會責任</p></div></div></div>\n</div>",
+        'video': _vid_search('工業4.0 智慧工廠 介紹', '▶ 工業 4.0 與智慧工廠影片', '在 YouTube 搜尋工業 4.0 的中文介紹'),
+    },
+    21: {
+        'html_append': _reveal(
+            '朋友傳來「某地今晚起停水三天」的截圖，你會怎麼確認真假？',
+            '想想可靠來源和多方查證',
+            '先到自來水事業處或市政府官網（.gov.tw）看公告，再看新聞有沒有報導，也可以到台灣事實查核中心搜尋。確認之前先不要轉傳。'),
     },
     22: {
-        'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：AI 不會取代你，懂 AI 的人才會</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><p style='margin:0 0 8px;'>2025 WEF（世界經濟論壇）報告：未來 5 年，<strong>85% 的工作會被 AI 改變</strong>，但只有 <strong>14%</strong> 工作會完全消失。</p><p style='font-weight:700;margin:0 0 6px;'>AI 時代最需要的技能：</p><div style='display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:.78rem;'><div style='background:#fff;padding:7px;border-radius:6px;'>🎯 <strong>提問力</strong>：懂得給 AI 好的 Prompt</div><div style='background:#fff;padding:7px;border-radius:6px;'>🔍 <strong>判斷力</strong>：驗證 AI 輸出是否正確</div><div style='background:#fff;padding:7px;border-radius:6px;'>🤝 <strong>溝通力</strong>：AI 無法替代人際關係</div><div style='background:#fff;padding:7px;border-radius:6px;'>🎨 <strong>創意力</strong>：定義問題比解題更重要</div></div></div>\n</div>",
+        'html_append': _ref('城市科技與人類社會 — 延伸閱讀', [
+            ('🗳️', 'g0v 零時政府', 'https://g0v.tw/', '公民科技社群與專案'),
+            ('🔍', '台灣事實查核中心', 'https://tfc-taiwan.org.tw/', '查證網路謠言'),
+            ('🇹🇼', '政府資料開放平臺', 'https://data.gov.tw/', '找期末報告的資料'),
+        ]),
     },
     27: {
         'html_append': _ref('資料儀表板與後續學習資源', [
@@ -1247,7 +1270,7 @@ _ch10 = {
     },
 }
 
-# ── 為 Ch07/Ch08/Ch09 追加章末延伸閱讀與 Ch09 VLOOKUP 互動練習 ─────────
+# ── 為 Ch07/Ch08 追加章末延伸閱讀 ─────────
 _ch07[24] = {
     'html_append': _ref('新興科技 — 延伸閱讀', [
         ('🏙️', '台北市智慧城市', 'https://smartcity.taipei/', '台灣智慧城市案例'),
@@ -1264,36 +1287,6 @@ _ch08[24] = {
         ('🎨', 'Flourish 免費視覺化工具', 'https://flourish.studio/', '做動態圖表超好用'),
     ]),
 }
-_ch09[24] = {
-    'html_append': _ref('資料分析實作 — 延伸閱讀', [
-        ('📗', 'Excel 官方教學', 'https://support.microsoft.com/zh-tw/excel', '所有函數說明'),
-        ('🎓', 'ExcelJet 函數速查', 'https://exceljet.net/', '英文但範例超豐富'),
-        ('📺', 'PAPAYA 電腦教室（YouTube）', 'https://www.youtube.com/@papayaclass', '中文 Excel 教學'),
-        ('🧮', 'Google 試算表函數清單', 'https://support.google.com/docs/table/25273', '官方函數字典'),
-    ]),
-}
-# Ch9 slide 9：VLOOKUP 之後加入互動練習題
-_ch09[9] = {
-    # ✅ 已驗證：Excel Campus - Jon「Excel Vlookup Tutorial」
-    'video': _vid_both(
-        'd3BYVQ6xIE4',
-        'VLOOKUP 函數 教學 Excel 中文 實例',
-        'Excel VLOOKUP Tutorial（Excel Campus，可開自動中文字幕）',
-        desc='想找中文教學？點下方搜尋',
-        search_title='▶ VLOOKUP 中文教學搜尋',
-    ),
-    'html_append': _ch09[9]['html_append'] + _quiz_click(
-        "公式 =VLOOKUP(A2, 資料!$A$2:$C$100, 3, 0) 意思是？",
-        ["找 A2 的值，回傳第 3 列",
-         "在「資料」工作表 A 欄找 A2，找到後回傳同一列的「第 3 欄」，需完全符合",
-         "把 A2 到 A100 的第 3 欄相加",
-         "把 3 個欄位複製到 A2"],
-        1,
-        "VLOOKUP(要找的值, 查詢範圍, 回傳第幾欄, 精確符合?)。"
-        "$ 是絕對參照，往下拉公式時範圍不會跑掉；最後參數 0（或 FALSE）代表要精確符合。"
-    ),
-}
-
 # ── 總彙整 ─────────────────────────────────────────────────────────────
 
 ENHANCEMENTS = {
