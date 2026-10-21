@@ -3,7 +3,7 @@
 """把 Flask 課程網站匯出成靜態網頁（docs/），供 GitHub Pages 使用。
 用法：python make_static.py   （之後內容有更新，重跑一次再 push 即可）"""
 import json, os, re, shutil
-from app import app, load_ch, apply_enhancements, N_CHAPTERS
+from app import app, load_ch, apply_enhancements, N_CHAPTERS, BEBRAS_ANSWERS_RELEASED
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'docs')
 
@@ -19,6 +19,13 @@ def main():
         shutil.rmtree(static_dst, ignore_errors=True)
         shutil.copytree(static_src, static_dst,
                         ignore=shutil.ignore_patterns('*.png', '.DS_Store', 'Thumbs.db'))
+        # 運算思維挑戰解答版（answers.html 與解析圖 aXX_n.jpg）公布前不放上網
+        if not BEBRAS_ANSWERS_RELEASED:
+            bebras = os.path.join(static_dst, 'bebras')
+            for root, _, files in os.walk(bebras):
+                for f in files:
+                    if f == 'answers.html' or re.fullmatch(r'a\d\d_\d+\.jpg', f):
+                        os.remove(os.path.join(root, f))
 
     # 首頁
     html = client.get('/').get_data(as_text=True)

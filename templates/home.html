@@ -180,6 +180,27 @@ footer{
 <div class="chapters">
   <div class="section-label">📖 課程章節</div>
   <div class="grid" id="grid"></div>
+
+  <div class="section-label" style="margin-top:36px">📎 附錄</div>
+  <div class="grid">
+    <div class="ch-card available">
+      <div class="avail-dot"></div>
+      <div class="ch-badge badge-6">🧩</div>
+      <div class="ch-num">附錄</div>
+      <div class="ch-title">運算思維挑戰</div>
+      <div class="ch-topics">
+        <span class="ch-topic">Bebras 國際運算思維挑戰賽</span>
+        <span class="ch-topic">20 題模擬</span>
+        <span class="ch-topic">上台解題</span>
+      </div>
+      <div class="ch-footer" style="justify-content:flex-start;gap:8px">
+        <a class="ch-btn" href="static/bebras/index.html" target="_blank" rel="noopener">▶ 挑戰題目</a>
+        {% if bebras_answers %}
+        <a class="ch-btn" href="static/bebras/answers.html" target="_blank" rel="noopener" style="background:var(--purple)">✔ 解答與解析</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 </div>
 
 

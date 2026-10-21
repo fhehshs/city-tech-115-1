@@ -6,6 +6,8 @@ from content.enhancements import ENHANCEMENTS
 
 app = Flask(__name__)
 N_CHAPTERS = 10
+# 運算思維挑戰解答版：上台解題結束後改成 True，再跑 make_static.py → push，學生才看得到
+BEBRAS_ANSWERS_RELEASED = False
 
 def load_ch(n):
     if not 1 <= n <= N_CHAPTERS:
@@ -36,7 +38,7 @@ def apply_enhancements(slides, chapter_n):
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', bebras_answers=BEBRAS_ANSWERS_RELEASED)
 
 @app.route('/rubric')
 def rubric():
