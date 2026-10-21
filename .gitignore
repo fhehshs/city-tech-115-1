@@ -11,7 +11,3 @@ test_write.txt
 # 教學圖 PNG 原檔（過大），只用壓縮後的 .jpg
 static/img/*.png
 _舊檔備份/
-
-# 運算思維挑戰解答版：repo 是公開的，只留在本機（公布時由 make_static.py 複製到 docs/）
-static/bebras/answers.html
-static/bebras/img/a[0-9][0-9]_*.jpg
