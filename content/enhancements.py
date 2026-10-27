@@ -1125,11 +1125,11 @@ _ch07 = {
             search_title='▶ 雲端運算中文教學搜尋',
         ),
     },
-    18: {
+    21: {
         'video': {'type': 'search', 'query': '量子電腦 原理 量子位元 教學 中文 淺顯易懂', 'title': '▶ 量子電腦是什麼？', 'desc': '用簡單比喻理解量子電腦原理'},
         'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：量子電腦 vs 一般電腦</h4>\n  <div style='display:grid;grid-template-columns:repeat(4,1fr);gap:8px;'><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>💻</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>一般電腦</p><p style='font-size:.75rem;color:#6b7280;font-weight:600;margin:0;'>位元：0 或 1</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>⚛️</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>量子電腦</p><p style='font-size:.75rem;color:#8b5cf6;font-weight:600;margin:0;'>量子位元：0+1 疊加</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>🔐</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>破解 RSA</p><p style='font-size:.75rem;color:#dc2626;font-weight:600;margin:0;'>一般：宇宙年齡也算不完</p></div><div style='background:#fff;padding:8px 10px;border-radius:8px;text-align:center;'><div style='font-size:1.4rem;'>⚡</div><p style='font-size:.72rem;font-weight:700;color:#374151;margin:4px 0 2px;'>量子電腦</p><p style='font-size:.75rem;color:#d97706;font-weight:600;margin:0;'>2048-bit RSA：數小時</p></div></div><p style='font-size:.75rem;color:#374151;margin:8px 0 0;'>Google 2023 年量子電腦用 <strong>200 秒</strong>完成傳統電腦需 47 年的計算</p>\n</div>",
     },
-    19: {
+    22: {
         'html_append': "\n<div style='background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:14px 16px;margin-top:14px;border-left:4px solid #22c55e;'>\n  <h4 style='color:#15803d;font-size:.85rem;font-weight:700;margin:0 0 8px;'>🚀 創新應用：台北的智慧城市計畫</h4>\n  <div style='font-size:.82rem;color:#374151;line-height:1.6;'><div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;'><div style='background:#fff;padding:8px;border-radius:8px;border-top:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;margin:0 0 4px;'>🚦 智慧交通</p><p style='font-size:.78rem;margin:0;'>AI 即時調整號誌時序，尖峰時段車流量降低 15%</p></div><div style='background:#fff;padding:8px;border-radius:8px;border-top:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;margin:0 0 4px;'>♻️ 智慧垃圾桶</p><p style='font-size:.78rem;margin:0;'>感測滿載度，清運路線優化，減少 30% 油耗</p></div><div style='background:#fff;padding:8px;border-radius:8px;border-top:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;margin:0 0 4px;'>💧 漏水偵測</p><p style='font-size:.78rem;margin:0;'>AI 分析管線聲音，提早發現水管破裂，每年省數億元</p></div><div style='background:#fff;padding:8px;border-radius:8px;border-top:3px solid #22c55e;'><p style='font-weight:700;color:#15803d;margin:0 0 4px;'>🌡️ 熱島效應</p><p style='font-size:.78rem;margin:0;'>感測器全市佈建，找出熱點種樹降溫</p></div></div></div>\n</div>",
     },
 }
@@ -1271,7 +1271,7 @@ _ch10 = {
 }
 
 # ── 為 Ch07/Ch08 追加章末延伸閱讀 ─────────
-_ch07[24] = {
+_ch07[27] = {
     'html_append': _ref('新興科技 — 延伸閱讀', [
         ('🏙️', '台北市智慧城市', 'https://smartcity.taipei/', '台灣智慧城市案例'),
         ('🌍', 'IBM 量子電腦體驗（免費）', 'https://quantum.ibm.com/', '線上寫量子程式'),

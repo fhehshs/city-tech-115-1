@@ -6,8 +6,8 @@ CHAPTERS = [
     {'name': '第一章：物聯網 IoT', 'start': 2},
     {'name': '第二章：AIoT 智慧應用', 'start': 8},
     {'name': '第三章：雲端運算', 'start': 14},
-    {'name': '第四章：量子電腦與智慧城市', 'start': 19},
-    {'name': '銜接：開放資料', 'start': 23},
+    {'name': '第四章：量子電腦與智慧城市', 'start': 22},
+    {'name': '銜接：開放資料', 'start': 26},
 ]
 
 QUIZZES = {
@@ -59,6 +59,12 @@ QUIZZES = {
                 'options': ['IaaS（基礎設施即服務）', 'PaaS（平台即服務）', 'SaaS（軟體即服務）', '私有雲'],
                 'answer': 2,
                 'explain': 'SaaS（Software as a Service）是直接使用完整軟體，不需安裝與維護，例如 Gmail、Google Docs、LINE。IaaS 提供虛擬機等硬體資源，PaaS 提供開發平台。'
+            },
+            {
+                'q': '小明用 Google 協作平台做了學習網站並設為公開，但同學說網站裡嵌入的簡報顯示「需要存取權」。最可能的原因是？',
+                'options': ['網站還沒按「發布」', '簡報檔本身的共用設定沒有開放給同學', '協作平台不支援嵌入簡報', '同學的瀏覽器版本太舊'],
+                'answer': 1,
+                'explain': '網站公開不等於裡面的雲端檔案公開。嵌入的文件、簡報要在雲端硬碟另外設定「知道連結的人可檢視」（或校內可檢視），訪客才能看到。'
             },
         ]
     },
@@ -725,6 +731,155 @@ SLIDES = [
     {
         'id': 16,
         'chapter': '第三章：雲端運算',
+        'title': 'Google 協作平台是什麼？',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>Google 協作平台（Google Sites）</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#eff6ff;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#1e40af;font-size:1rem;margin-bottom:8px;'>🌐 不用寫程式的架站工具</h3>
+      <p style='color:#374151;font-size:0.9rem;margin:0;'>用瀏覽器<strong>拖拉排版</strong>就能做出網站，存在 Google 雲端，手機、電腦都能看。它就是一種 <strong style='color:#16a34a;'>SaaS</strong>：主機、網址、維護全由 Google 負責。</p>
+    </div>
+    <h3 style='color:#374151;font-size:1rem;margin-bottom:10px;'>☁️ 雲端協作的特色</h3>
+    <div style='display:flex;flex-direction:column;gap:8px;'>
+      <div style='background:#f0fdf4;padding:10px;border-radius:8px;border-left:3px solid #16a34a;'>
+        <p style='font-weight:700;color:#16a34a;font-size:0.9rem;margin:0;'>👥 多人同時編輯</p>
+        <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>加入「協作者」就能一起做小組專題網站</p>
+      </div>
+      <div style='background:#fff7ed;padding:10px;border-radius:8px;border-left:3px solid #ea580c;'>
+        <p style='font-weight:700;color:#ea580c;font-size:0.9rem;margin:0;'>🧩 嵌入雲端檔案</p>
+        <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>文件、簡報、試算表、表單、YouTube 直接放進頁面；原檔一改，網站自動更新</p>
+      </div>
+      <div style='background:#fdf4ff;padding:10px;border-radius:8px;border-left:3px solid #7c3aed;'>
+        <p style='font-weight:700;color:#7c3aed;font-size:0.9rem;margin:0;'>🕓 版本紀錄＋權限控管</p>
+        <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>改壞了可以還原；可設定只給校內看或公開</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div style='background:#f9fafb;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e5e7eb;'>
+      <h3 style='color:#374151;font-size:1rem;margin-bottom:10px;'>📂 雲端硬碟資料夾 vs 協作平台</h3>
+      <table style='width:100%;border-collapse:collapse;font-size:0.85rem;'>
+        <tr style='background:#374151;color:#fff;'>
+          <th style='padding:6px;'></th><th style='padding:6px;'>資料夾</th><th style='padding:6px;'>協作平台</th>
+        </tr>
+        <tr><td style='padding:6px;color:#374151;font-weight:700;'>呈現</td><td style='padding:6px;color:#374151;'>一堆檔名</td><td style='padding:6px;color:#374151;'>有標題、說明、分頁</td></tr>
+        <tr style='background:#f1f5f9;'><td style='padding:6px;color:#374151;font-weight:700;'>瀏覽</td><td style='padding:6px;color:#374151;'>要一個個點開</td><td style='padding:6px;color:#374151;'>內容直接顯示在頁面</td></tr>
+        <tr><td style='padding:6px;color:#374151;font-weight:700;'>適合</td><td style='padding:6px;color:#374151;'>存檔、備份</td><td style='padding:6px;color:#374151;'>整理、展示、分享</td></tr>
+      </table>
+    </div>
+    <div style='background:#fef9c3;padding:12px;border-radius:8px;'>
+      <p style='color:#854d0e;font-size:0.85rem;margin:0 0 6px;font-weight:700;'>💡 常見用途</p>
+      <ul style='color:#854d0e;font-size:0.85rem;padding-left:16px;margin:0;'>
+        <li>個人學習網站：筆記、作業、作品集</li>
+        <li>學習歷程素材庫：先整理好，之後挑選上傳</li>
+        <li>小組專題、社團、班級網站</li>
+      </ul>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 17,
+        'chapter': '第三章：雲端運算',
+        'title': '動手做：建立我的學習網站',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>動手做：建立我的學習網站</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div style='display:flex;flex-direction:column;gap:8px;'>
+    <div style='background:#eff6ff;padding:10px;border-radius:8px;border-left:3px solid #2563eb;'>
+      <p style='font-weight:700;color:#1e40af;font-size:0.9rem;margin:0;'>① 登入建立</p>
+      <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>用<strong>學校帳號</strong>登入 <strong>sites.google.com</strong> → 按「＋」空白網站<br>（或雲端硬碟 → 新增 → 更多 → Google 協作平台）</p>
+    </div>
+    <div style='background:#eff6ff;padding:10px;border-radius:8px;border-left:3px solid #2563eb;'>
+      <p style='font-weight:700;color:#1e40af;font-size:0.9rem;margin:0;'>② 命名＋選主題</p>
+      <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>左上角填檔案名稱、頁首填網站名稱（例：<strong>小明的學習基地</strong>）；右側「主題」選配色字型</p>
+    </div>
+    <div style='background:#eff6ff;padding:10px;border-radius:8px;border-left:3px solid #2563eb;'>
+      <p style='font-weight:700;color:#1e40af;font-size:0.9rem;margin:0;'>③ 規劃頁面</p>
+      <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>右側「頁面」→「＋」新增頁面；可拖曳成子頁面</p>
+    </div>
+    <div style='background:#eff6ff;padding:10px;border-radius:8px;border-left:3px solid #2563eb;'>
+      <p style='font-weight:700;color:#1e40af;font-size:0.9rem;margin:0;'>④ 插入內容</p>
+      <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>右側「插入」：文字方塊、圖片、版面配置、<strong>雲端硬碟</strong>檔案、文件／簡報、YouTube</p>
+    </div>
+    <div style='background:#eff6ff;padding:10px;border-radius:8px;border-left:3px solid #2563eb;'>
+      <p style='font-weight:700;color:#1e40af;font-size:0.9rem;margin:0;'>⑤ 發布</p>
+      <p style='color:#374151;font-size:0.8rem;margin:4px 0 0;'>右上「發布」→ 設定網址 → 選誰能看 → 按「預覽」確認手機版也正常</p>
+    </div>
+  </div>
+  <div>
+    <div style='background:#f9fafb;padding:15px;border-radius:10px;margin-bottom:12px;border:1px solid #e5e7eb;'>
+      <h3 style='color:#374151;font-size:1rem;margin-bottom:10px;'>🗂️ 建議的頁面架構</h3>
+      <ul style='color:#374151;font-size:0.85rem;padding-left:16px;margin:0;line-height:1.7;'>
+        <li><strong>首頁</strong>：網站介紹、最新更新</li>
+        <li><strong>關於我</strong>：興趣、目標（不放個資）</li>
+        <li><strong>學科筆記</strong>：各科一個子頁面</li>
+        <li><strong>作品集</strong>：報告、簡報、專題成果</li>
+        <li><strong>學習反思</strong>：每次作品寫 3 句心得</li>
+      </ul>
+    </div>
+    <div style='background:#fef2f2;padding:12px;border-radius:8px;border:1px solid #fca5a5;'>
+      <p style='color:#991b1b;font-size:0.85rem;margin:0 0 6px;font-weight:700;'>⚠️ 最常踩的雷：嵌入的檔案別人打不開</p>
+      <p style='color:#374151;font-size:0.8rem;margin:0;'>網站公開<strong>不代表</strong>裡面的雲端檔案也公開！要到雲端硬碟把檔案的共用設定改成「知道連結的人可檢視」（或校內可檢視），訪客才看得到。</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 18,
+        'chapter': '第三章：雲端運算',
+        'title': '實作任務：個人學習網站',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<h2 class='slide-title'>🛠️ 實作任務：我的個人學習網站</h2>
+<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
+  <div>
+    <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#15803d;font-size:1rem;margin-bottom:10px;'>✅ 完成檢核表</h3>
+      <ul style='color:#374151;font-size:0.85rem;padding-left:18px;margin:0;line-height:1.8;'>
+        <li>網站名稱與主題已設定</li>
+        <li>至少 <strong>4 個頁面</strong>（首頁、關於我、學科筆記、作品集）</li>
+        <li>至少嵌入 <strong>1 個雲端檔案</strong>（例：本課程的分組報告）</li>
+        <li>至少 <strong>1 張圖片</strong>（自己拍攝或註明來源）</li>
+        <li>作品附上 <strong>學習反思</strong>（學到什麼、遇到什麼困難）</li>
+        <li>已發布，並用無痕視窗測試能正常瀏覽</li>
+      </ul>
+    </div>
+    <div style='background:#eff6ff;padding:12px;border-radius:8px;'>
+      <p style='color:#1e40af;font-size:0.85rem;margin:0;'>📮 <strong>繳交</strong>：交「已發布的網址」，不是編輯網址<br><span style='font-size:0.8rem;color:#374151;'>✔ sites.google.com/…/網站名稱　✘ sites.google.com/d/…/edit</span></p>
+    </div>
+  </div>
+  <div>
+    <div style='background:#fef2f2;padding:15px;border-radius:10px;margin-bottom:12px;'>
+      <h3 style='color:#b91c1c;font-size:1rem;margin-bottom:8px;'>🔒 隱私與版權</h3>
+      <ul style='color:#374151;font-size:0.85rem;padding-left:16px;margin:0;line-height:1.7;'>
+        <li>不放：身分證字號、電話、住址、學號</li>
+        <li>照片中有同學，先問過對方同意</li>
+        <li>圖片用自己拍的、或 CC 授權並標示來源</li>
+        <li>「協作者」只加信任的人，他們能改整個網站</li>
+      </ul>
+    </div>
+    <div style='background:#fef9c3;padding:12px;border-radius:8px;'>
+      <p style='color:#854d0e;font-size:0.85rem;margin:0;'>🌱 <strong>持續經營</strong>：這個網站可以用到高三。每學期把新作品放上去，申請大學整理學習歷程時，素材早就分類好了！</p>
+    </div>
+  </div>
+</div>"""
+    },
+    {
+        'id': 19,
+        'chapter': '第三章：雲端運算',
         'title': '無伺服器運算與 AI 雲端服務',
         'bg': 'white',
         'quiz': None,
@@ -772,7 +927,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 17,
+        'id': 20,
         'chapter': '第三章：雲端運算',
         'title': '🎯 第三章 隨堂測驗',
         'bg': 'purple',
@@ -783,11 +938,11 @@ SLIDES = [
 <div style='text-align:center;padding:20px;'>
   <div style='font-size:56px;margin-bottom:15px;'>🎯</div>
   <h2 style='color:#fff;font-size:2rem;font-weight:800;margin-bottom:10px;'>第三章 隨堂測驗</h2>
-  <p style='color:#e9d5ff;font-size:1.1rem;'>雲端運算 ── 2 道題目，點擊作答！</p>
+  <p style='color:#e9d5ff;font-size:1.1rem;'>雲端運算 ── 3 道題目，點擊作答！</p>
 </div>"""
     },
     {
-        'id': 18,
+        'id': 21,
         'chapter': '第四章：量子電腦與智慧城市',
         'title': '量子電腦',
         'bg': 'white',
@@ -829,7 +984,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 19,
+        'id': 22,
         'chapter': '第四章：量子電腦與智慧城市',
         'title': '智慧城市',
         'bg': 'white',
@@ -882,7 +1037,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 20,
+        'id': 23,
         'chapter': '第四章：量子電腦與智慧城市',
         'title': '智慧城市的隱私爭議',
         'bg': 'white',
@@ -924,7 +1079,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 21,
+        'id': 24,
         'chapter': '第四章：量子電腦與智慧城市',
         'title': '元宇宙與數位孿生',
         'bg': 'white',
@@ -964,7 +1119,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 22,
+        'id': 25,
         'chapter': '第四章：量子電腦與智慧城市',
         'title': '🎯 第四章 隨堂測驗',
         'bg': 'purple',
@@ -979,7 +1134,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 23,
+        'id': 26,
         'chapter': '銜接：開放資料',
         'title': '智慧城市的燃料：開放資料',
         'bg': 'teal',
@@ -1030,7 +1185,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 24,
+        'id': 27,
         'chapter': '銜接：開放資料',
         'title': '本週重點回顧',
         'bg': 'navy',
@@ -1062,6 +1217,7 @@ SLIDES = [
       <li>IaaS/PaaS/SaaS 三層服務模式</li>
       <li>公有雲成本低，私有雲安全高</li>
       <li>資料主權是全球重要議題</li>
+      <li>協作平台：免寫程式建立個人學習網站</li>
     </ul>
   </div>
   <div style='background:rgba(255,255,255,0.12);padding:14px;border-radius:10px;'>
