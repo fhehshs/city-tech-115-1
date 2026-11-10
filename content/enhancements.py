@@ -1240,29 +1240,29 @@ _ch10 = {
     9: {
         'video': _vid_search('Google 試算表 匯入 CSV 教學', '▶ Google 試算表匯入 CSV 教學', '在 YouTube 搜尋匯入 CSV 開放資料的教學'),
     },
-    16: {
+    15: {
         'video': _vid_search('Google 試算表 交叉分析篩選器 教學', '▶ 交叉分析篩選器教學影片', '在 YouTube 搜尋交叉分析篩選器的中文教學'),
     },
-    20: {
+    19: {
         'video': _vid_search('工業4.0 智慧工廠 介紹', '▶ 工業 4.0 與智慧工廠影片', '在 YouTube 搜尋工業 4.0 的中文介紹'),
     },
-    21: {
+    20: {
         'html_append': _reveal(
             '朋友傳來「某地今晚起停水三天」的截圖，你會怎麼確認真假？',
             '想想可靠來源和多方查證',
             '先到自來水事業處或市政府官網（.gov.tw）看公告，再看新聞有沒有報導，也可以到台灣事實查核中心搜尋。確認之前先不要轉傳。'),
     },
-    22: {
+    21: {
         'html_append': _ref('城市科技與人類社會 — 延伸閱讀', [
             ('🗳️', 'g0v 零時政府', 'https://g0v.tw/', '公民科技社群與專案'),
             ('🔍', '台灣事實查核中心', 'https://tfc-taiwan.org.tw/', '查證網路謠言'),
             ('🇹🇼', '政府資料開放平臺', 'https://data.gov.tw/', '找期末報告的資料'),
         ]),
     },
-    27: {
+    26: {
         'html_append': _ref('資料儀表板與後續學習資源', [
             ('📗', 'Google 試算表說明中心', 'https://support.google.com/docs/', '圖表、樞紐分析表、篩選器官方說明'),
-            ('🧮', 'Google 試算表函數清單', 'https://support.google.com/docs/table/25273', 'QUERY、FILTER、SORT 等函數'),
+            ('🧮', 'Google 試算表函數清單', 'https://support.google.com/docs/table/25273', 'SUM、AVERAGE、COUNTIF 等常用函數'),
             ('🇹🇼', '政府資料開放平臺 data.gov.tw', 'https://data.gov.tw/', '找儀表板與期末報告的資料'),
             ('📊', 'Looker Studio', 'https://lookerstudio.google.com/', '進階挑戰：連接 Google 試算表做儀表板'),
             ('🌱', 'Kaggle 資料科學競賽', 'https://www.kaggle.com/', '免費練習資料集'),

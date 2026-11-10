@@ -5,9 +5,9 @@ CHAPTERS = [
     {'name': '封面', 'start': 1},
     {'name': '第一章：認識資料儀表板', 'start': 2},
     {'name': '第二章：準備儀表板的資料', 'start': 8},
-    {'name': '第三章：製作互動儀表板', 'start': 14},
-    {'name': '第四章：城市科技與人類社會', 'start': 19},
-    {'name': '期末展示', 'start': 24},
+    {'name': '第三章：製作互動儀表板', 'start': 13},
+    {'name': '第四章：城市科技與人類社會', 'start': 18},
+    {'name': '期末展示', 'start': 23},
 ]
 
 QUIZZES = {
@@ -38,10 +38,10 @@ QUIZZES = {
                 'explain': '圖表、樞紐分析表和篩選器都需要「乾淨的表格」：一列一筆、一欄一種資料、第一列是標題。合併儲存格、空白列、中間的小計列都會讓統計結果出錯。'
             },
             {
-                'q': '=QUERY(A1:D100, "select B, sum(D) group by B") 這個公式在做什麼？',
-                'options': ['把 B 欄和 D 欄相乘', '刪除 B 欄重複的資料', '依 B 欄分組，計算每一組 D 欄的總和', '把 A1:D100 排序'],
-                'answer': 2,
-                'explain': 'QUERY 函數可以用類似資料庫的語法整理資料：select 選欄位、sum 加總、group by 分組。這一行的效果和「列＝B 欄、值＝D 欄加總」的樞紐分析表一樣。'
+                'q': '想用樞紐分析表算出「每個行政區的借車次數總和」，應該怎麼設定？',
+                'options': ['列：借車次數　值：行政區（COUNTA）', '列：行政區　值：借車次數（SUM）', '列：站點　值：行政區（SUM）', '不用設定，插入後會自動算好'],
+                'answer': 1,
+                'explain': '「要分組的類別」放在列（行政區），「要計算的數字」放在值，並選 SUM 加總（借車次數）。想知道每區有幾站，可以再加一個值：站點（COUNTA）。'
             },
         ]
     },
@@ -444,40 +444,6 @@ SLIDES = [
     {
         'id': 11,
         'chapter': '第二章：準備儀表板的資料',
-        'title': 'QUERY、FILTER、SORT 函數',
-        'bg': 'white',
-        'quiz': None,
-        'chart': None,
-        'video': None,
-        'html': """
-<h2 class='slide-title'>用函數整理資料：QUERY、FILTER、SORT</h2>
-<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;'>
-  <div style='display:flex;flex-direction:column;gap:10px;'>
-    <div style='background:#eff6ff;padding:12px;border-radius:8px;'>
-      <p style='color:#1e40af;font-weight:700;font-size:0.9rem;margin:0 0 6px;'>QUERY：分組加總（像樞紐分析表）</p>
-      <div style='background:#fff;padding:8px;border-radius:6px;font-family:monospace;font-size:0.78rem;color:#1e40af;'>=QUERY(資料!A1:F200, "select C, sum(E) group by C order by sum(E) desc", 1)</div>
-      <p style='color:#374151;font-size:0.8rem;margin:6px 0 0;'>依 C 欄（行政區）分組，加總 E 欄（借車次數），由大到小排列。</p>
-    </div>
-    <div style='background:#f0fdf4;padding:12px;border-radius:8px;'>
-      <p style='color:#15803d;font-weight:700;font-size:0.9rem;margin:0 0 6px;'>FILTER：只留下符合條件的資料</p>
-      <div style='background:#fff;padding:8px;border-radius:6px;font-family:monospace;font-size:0.78rem;color:#15803d;'>=FILTER(資料!A2:F200, 資料!C2:C200="大安區")</div>
-    </div>
-  </div>
-  <div style='display:flex;flex-direction:column;gap:10px;'>
-    <div style='background:#fdf4ff;padding:12px;border-radius:8px;'>
-      <p style='color:#7c3aed;font-weight:700;font-size:0.9rem;margin:0 0 6px;'>SORT：排序（找前幾名）</p>
-      <div style='background:#fff;padding:8px;border-radius:6px;font-family:monospace;font-size:0.78rem;color:#7c3aed;'>=SORT(資料!B2:E200, 4, FALSE)</div>
-      <p style='color:#374151;font-size:0.8rem;margin:6px 0 0;'>依範圍內第 4 欄由大到小排序；搭配 ARRAY_CONSTRAIN 可只取前 5 名。</p>
-    </div>
-    <div style='background:#fff7ed;padding:12px;border-radius:8px;'>
-      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>💡 這些函數的結果會<strong>跟著原始資料自動更新</strong>，很適合當儀表板圖表的資料來源。不熟也沒關係，用樞紐分析表一樣做得到。</p>
-    </div>
-  </div>
-</div>"""
-    },
-    {
-        'id': 12,
-        'chapter': '第二章：準備儀表板的資料',
         'title': '規劃三個工作表',
         'bg': 'white',
         'quiz': None,
@@ -495,7 +461,7 @@ SLIDES = [
   <div style='background:#f0fdf4;padding:15px;border-radius:12px;text-align:center;border:2px solid #16a34a;'>
     <div style='font-size:2rem;'>🧮</div>
     <h3 style='color:#15803d;font-size:1rem;margin:6px 0;'>計算</h3>
-    <p style='color:#374151;font-size:0.8rem;margin:0;'>KPI 公式、樞紐分析表<br>QUERY 的結果</p>
+    <p style='color:#374151;font-size:0.8rem;margin:0;'>KPI 公式<br>樞紐分析表</p>
   </div>
   <div style='font-size:1.6rem;color:#64748b;'>→</div>
   <div style='background:#fdf4ff;padding:15px;border-radius:12px;text-align:center;border:2px solid #7c3aed;'>
@@ -509,7 +475,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 13,
+        'id': 12,
         'chapter': '第二章：準備儀表板的資料',
         'title': '🎯 第二章 隨堂測驗',
         'bg': 'purple',
@@ -524,7 +490,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 14,
+        'id': 13,
         'chapter': '第三章：製作互動儀表板',
         'title': '選對圖表類型',
         'bg': 'white',
@@ -549,7 +515,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 15,
+        'id': 14,
         'chapter': '第三章：製作互動儀表板',
         'title': '插入圖表與計分卡',
         'bg': 'white',
@@ -573,7 +539,7 @@ SLIDES = [
     <div style='background:#f0fdf4;padding:15px;border-radius:10px;margin-bottom:12px;'>
       <h3 style='color:#15803d;font-size:1rem;margin-bottom:8px;'>📊 一般圖表</h3>
       <ul style='color:#374151;font-size:0.88rem;padding-left:16px;margin:0;line-height:1.7;'>
-        <li>選取樞紐分析表或 QUERY 結果 → 插入 → 圖表</li>
+        <li>選取樞紐分析表 → 插入 → 圖表</li>
         <li>圖表編輯器「設定」選類型、「自訂」改標題與軸標</li>
         <li>剪下圖表，貼到「儀表板」工作表排版</li>
       </ul>
@@ -585,7 +551,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 16,
+        'id': 15,
         'chapter': '第三章：製作互動儀表板',
         'title': '交叉分析篩選器：讓儀表板動起來',
         'bg': 'white',
@@ -611,7 +577,7 @@ SLIDES = [
       <p style='color:#374151;font-size:0.88rem;margin:0;'>使用<strong>同一個資料範圍</strong>的圖表和樞紐分析表，會一起只顯示「大安區」的資料。這就是儀表板的「互動」。</p>
     </div>
     <div style='background:#fff7ed;padding:10px;border-radius:8px;margin-bottom:10px;'>
-      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>⚠️ 用公式（QUERY、SUM）算出來的 KPI 不會被篩選器影響；想讓 KPI 也連動，可以改用計分卡圖表直接讀原始資料範圍。</p>
+      <p style='color:#9a3412;font-size:0.85rem;margin:0;'>⚠️ 用公式（SUM、AVERAGE）算出來的 KPI 不會被篩選器影響；想讓 KPI 也連動，可以改用計分卡圖表直接讀原始資料範圍。</p>
     </div>
     <div style='background:#fdf4ff;padding:10px;border-radius:8px;'>
       <p style='color:#7c3aed;font-size:0.85rem;margin:0;'>💡 可以放兩個篩選器（例如「行政區」＋「月份」），交叉找出想看的資料。</p>
@@ -620,7 +586,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 17,
+        'id': 16,
         'chapter': '第三章：製作互動儀表板',
         'title': '美化、分享與下載',
         'bg': 'white',
@@ -661,7 +627,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 18,
+        'id': 17,
         'chapter': '第三章：製作互動儀表板',
         'title': '🎯 第三章 隨堂測驗',
         'bg': 'purple',
@@ -676,7 +642,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 19,
+        'id': 18,
         'chapter': '第四章：城市科技與人類社會',
         'title': '十週學習地圖',
         'bg': 'white',
@@ -783,7 +749,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 20,
+        'id': 19,
         'chapter': '第四章：城市科技與人類社會',
         'title': '科技如何改變產業與工作',
         'bg': 'white',
@@ -795,7 +761,7 @@ SLIDES = [
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:16px;'><div><div style='background:#eff6ff;padding:12px 14px;border-radius:10px;border-left:4px solid #2563eb;margin-bottom:10px;'><h3 style='color:#1e40af;font-size:0.95rem;margin:0 0 6px;'>🏭 工業 4.0：智慧工廠</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>整合<strong>人工智慧、物聯網、巨量資料、雲端運算</strong>，三個特徵：<ol style='padding-left:18px;margin:6px 0 0;'><li>設備、物料、成品和人員<strong>高度互聯</strong></li><li>製造過程<strong>即時數據化</strong></li><li>可以<strong>自我學習與改善</strong></li></ol></div></div><div style='background:#f0fdf4;padding:12px 14px;border-radius:10px;border-left:4px solid #16a34a;margin-bottom:10px;'><h3 style='color:#15803d;font-size:0.95rem;margin:0 0 6px;'>📱 活絡的數位平台</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>平台型企業直接<strong>媒合供需雙方</strong>：Facebook、YouTube、Coursera、Google Play、Uber、foodpanda。<br>想一想：外送平台讓誰更方便？又讓誰的工作變得不穩定？</div></div></div><div><div style='background:#fff7ed;padding:12px 14px;border-radius:10px;border-left:4px solid #ea580c;margin-bottom:10px;'><h3 style='color:#c2410c;font-size:0.95rem;margin:0 0 6px;'>🏧 工作型態的改變：ATM 的故事</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>ATM 出現後，每家分行的櫃員變少，但銀行<strong>開了更多分行</strong>，櫃員總數反而沒有減少。<br>ATM 取代了重複無聊的工作，櫃員轉做<strong>經營客戶關係、提供更好的服務</strong>。</div></div><div style='background:#fdf4ff;padding:12px 14px;border-radius:10px;border-left:4px solid #7c3aed;margin-bottom:10px;'><h3 style='color:#7c3aed;font-size:0.95rem;margin:0 0 6px;'>💳 金融科技（FinTech）</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>行動支付、數位貨幣、用 AI 和大數據做理財建議的「機器人理財」，正在改變銀行與投資業。</div></div></div></div>"""
     },
     {
-        'id': 21,
+        'id': 20,
         'chapter': '第四章：城市科技與人類社會',
         'title': '科技帶來的挑戰：假消息與數位落差',
         'bg': 'white',
@@ -807,7 +773,7 @@ SLIDES = [
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:16px;'><div><div style='background:#fef2f2;padding:12px 14px;border-radius:10px;border-left:4px solid #dc2626;margin-bottom:10px;'><h3 style='color:#dc2626;font-size:0.95rem;margin:0 0 6px;'>📰 假消息為什麼這麼多？</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'><ul style='padding-left:18px;margin:0;'><li>傳播<strong>快又廣</strong></li><li><strong>造假技術</strong>進步（AI 生成圖、深偽影片）</li><li>演算法<strong>精準投遞</strong>給容易相信的人</li></ul></div></div><div style='background:#f0fdf4;padding:12px 14px;border-radius:10px;border-left:4px solid #16a34a;margin-bottom:10px;'><h3 style='color:#15803d;font-size:0.95rem;margin:0 0 6px;'>✅ 三招查證</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'><ol style='padding-left:18px;margin:0;'><li>找<strong>官方或可靠網站</strong>：.gov 政府、.edu 教育、.org 法人組織</li><li><strong>多個管道</strong>交叉確認</li><li>查<strong>事實查核網站</strong>，如台灣事實查核中心</li></ol></div></div></div><div><div style='background:#eff6ff;padding:12px 14px;border-radius:10px;border-left:4px solid #2563eb;margin-bottom:10px;'><h3 style='color:#1e40af;font-size:0.95rem;margin:0 0 6px;'>🌉 數位落差</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>不同年齡、居住地、經濟背景的人，<strong>使用資訊科技的機會與能力</strong>不一樣。<br>例：長輩不會用行動支付、偏鄉網路慢、家裡沒有電腦可以寫作業。</div></div><div style='background:#fefce8;padding:12px 14px;border-radius:10px;border-left:4px solid #ca8a04;margin-bottom:10px;'><h3 style='color:#a16207;font-size:0.95rem;margin:0 0 6px;'>🤝 怎麼縮小落差？</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'><ul style='padding-left:18px;margin:0;'><li>臺北市為<strong>銀髮族、新住民</strong>開設數位課程，並提供經濟弱勢借用平板</li><li>教育部推動<strong>偏鄉數位應用</strong>計畫</li><li>你也可以：教家人用手機、設計長輩看得懂的介面</li></ul></div></div></div></div>"""
     },
     {
-        'id': 22,
+        'id': 21,
         'chapter': '第四章：城市科技與人類社會',
         'title': '開放資料：讓市民一起參與城市',
         'bg': 'white',
@@ -819,7 +785,7 @@ SLIDES = [
 <div style='display:grid;grid-template-columns:1fr 1fr;gap:16px;'><div><div style='background:#eff6ff;padding:12px 14px;border-radius:10px;border-left:4px solid #2563eb;margin-bottom:10px;'><h3 style='color:#1e40af;font-size:0.95rem;margin:0 0 6px;'>🔓 開放資料的好處</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>資料開放給社會大眾，<strong>任何人都可以自由、重複使用</strong>：政府更透明、企業能開發新服務（如公車 App）、學生能做研究——你這學期就用它做報告。</div></div><div style='background:#f0fdf4;padding:12px 14px;border-radius:10px;border-left:4px solid #16a34a;margin-bottom:10px;'><h3 style='color:#15803d;font-size:0.95rem;margin:0 0 6px;'>🗳️ 公民參與</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>讓大家參與公共事務的決策。例如 <strong>g0v 零時政府</strong>：一群志工用開放資料把政府預算做成看得懂的網站，讓市民一起監督。</div></div></div><div><div style='background:#fff7ed;padding:12px 14px;border-radius:10px;border-left:4px solid #ea580c;margin-bottom:10px;'><h3 style='color:#c2410c;font-size:0.95rem;margin:0 0 6px;'>🔬 公民科學</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'>一般民眾參與科學研究：提出問題、蒐集資料、分析資料。例如用手機回報看到的鳥類、路殺動物或空氣品質，<strong>人多力量大</strong>，資料量是研究團隊自己做不到的。</div></div><div style='background:#fdf4ff;padding:12px 14px;border-radius:10px;border-left:4px solid #7c3aed;margin-bottom:10px;'><h3 style='color:#7c3aed;font-size:0.95rem;margin:0 0 6px;'>🔭 對未來的展望</h3><div style='color:#374151;font-size:0.84rem;line-height:1.6;'><ul style='padding-left:18px;margin:0;'><li><strong>更快的運算</strong>：雲端、超級電腦、量子電腦</li><li><strong>更巨大的資料革命</strong>：IoT 讓城市每秒產生資料</li><li><strong>更精準的解決方法</strong>：用資料找出問題真正的原因</li></ul></div></div></div></div><div style='background:#fef3c7;border-left:4px solid #f59e0b;padding:10px 14px;border-radius:8px;font-size:.85rem;color:#78350f;margin-top:4px;'>💡 這三頁的每個主題，都可以是你的<strong>期末報告題目</strong>：例如「行動支付對長輩的影響」用數位落差調查資料、「YouBike 如何改變通勤」用 YouBike 開放資料。</div>"""
     },
     {
-        'id': 23,
+        'id': 22,
         'chapter': '第四章：城市科技與人類社會',
         'title': '🎯 第四章 隨堂測驗',
         'bg': 'purple',
@@ -834,7 +800,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 24,
+        'id': 23,
         'chapter': '期末展示',
         'title': '期末個人報告：城市科技與人類社會的關係',
         'bg': 'white',
@@ -880,7 +846,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 25,
+        'id': 24,
         'chapter': '期末展示',
         'title': '報告四段架構：每一段要寫什麼',
         'bg': 'white',
@@ -915,7 +881,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 26,
+        'id': 25,
         'chapter': '期末展示',
         'title': '期末報告：時程與評分',
         'bg': 'white',
@@ -965,7 +931,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 27,
+        'id': 26,
         'chapter': '期末展示',
         'title': '感謝與祝福',
         'bg': 'navy',
