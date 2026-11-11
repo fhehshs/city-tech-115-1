@@ -1259,7 +1259,7 @@ _ch10 = {
             ('🇹🇼', '政府資料開放平臺', 'https://data.gov.tw/', '找期末報告的資料'),
         ]),
     },
-    26: {
+    27: {
         'html_append': _ref('資料儀表板與後續學習資源', [
             ('📗', 'Google 試算表說明中心', 'https://support.google.com/docs/', '圖表、樞紐分析表、篩選器官方說明'),
             ('🧮', 'Google 試算表函數清單', 'https://support.google.com/docs/table/25273', 'SUM、AVERAGE、COUNTIF 等常用函數'),

@@ -810,7 +810,7 @@ SLIDES = [
         'html': """
 <div class='slide-inner'>
   <h2 class='slide-title'>🎓 期末個人報告：城市科技與人類社會的關係</h2>
-  <p class='slide-desc'>用 Ch08–Ch10 學的<strong>開放資料分析與視覺化</strong>，寫一份有資料、有圖表、有自己看法的書面報告</p>
+  <p class='slide-desc'>用 Ch08–Ch10 學的<strong>開放資料分析與視覺化</strong>，加上 Ch05 學的<strong>小論文排版</strong>，寫一份有資料、有圖表、有自己看法的書面報告</p>
 
   <div class='card-grid-2' style='margin-bottom:10px;'>
     <div style='background:#eff6ff;border-radius:10px;padding:12px 14px;border-top:4px solid #3b82f6;'>
@@ -833,6 +833,7 @@ SLIDES = [
         <li>資料分析請用<strong>政府開放資料</strong>（data.gov.tw、臺北市資料大平臺…）</li>
         <li>至少 <strong>2 張圖表</strong>（用 Google 試算表製作，做法同 Ch09）</li>
         <li>依<strong>前言、正文、結論、參考資料</strong>四段撰寫，A4 約 <strong>3–6 頁</strong></li>
+        <li>依 <strong>Ch05 排版</strong>：標題樣式＋自動目錄、頁首頁碼、圖表編號、APA 參考文獻</li>
         <li>參考資料要寫清楚，不引用論壇、問答或聊天網站</li>
         <li>有使用 AI 請附 <strong>AI 使用聲明</strong>（工具＋Prompt＋日期）</li>
       </ul>
@@ -863,10 +864,11 @@ SLIDES = [
       <tr><th style='width:20%;'>段落</th><th>要寫什麼</th><th style='width:12%;text-align:center;'>配分</th></tr>
     </thead>
     <tbody>
-      <tr><td><strong>壹、前言</strong></td><td>研究動機（為什麼想研究這個）、研究目的（想知道什麼）、研究方法（用了哪份開放資料、用什麼工具分析）</td><td style='text-align:center;'>30%</td></tr>
-      <tr class='tr-highlight'><td><strong>貳、正文</strong></td><td>問題探討、資料分析結果、資料視覺化（圖表＋文字解讀），並引用、彙整相關資料</td><td style='text-align:center;'>40%</td></tr>
+      <tr><td><strong>壹、前言</strong></td><td>研究動機（為什麼想研究這個）、研究目的（想知道什麼）、研究方法（用了哪份開放資料、用什麼工具分析）</td><td style='text-align:center;'>25%</td></tr>
+      <tr class='tr-highlight'><td><strong>貳、正文</strong></td><td>問題探討、資料分析結果、資料視覺化（圖表＋文字解讀），並引用、彙整相關資料</td><td style='text-align:center;'>35%</td></tr>
       <tr><td><strong>參、結論</strong></td><td>提出你對研究結果的看法，結論要和研究目的、正文互相呼應；說明未來值得進一步研究的方向</td><td style='text-align:center;'>15%</td></tr>
       <tr class='tr-highlight'><td><strong>肆、參考資料</strong></td><td>列出引用的資料與開放資料集；最好引用可信度較高的來源（.gov／.edu／新聞媒體）</td><td style='text-align:center;'>5%</td></tr>
+      <tr><td><strong>格式與排版</strong></td><td>標題樣式＋自動目錄、頁首頁碼、圖表編號與圖說、APA 參考文獻（下一頁）</td><td style='text-align:center;'>10%</td></tr>
     </tbody>
   </table>
 
@@ -875,13 +877,50 @@ SLIDES = [
       📊 <strong>圖表小提醒</strong>：每張圖都要有標題和資料來源，文字要說明「這張圖告訴我們什麼」
     </div>
     <div style='background:#faf5ff;border-radius:8px;padding:8px 12px;font-size:.78rem;color:#581c87;'>
-      🚀 <strong>下學期預告</strong>：第二學期的程式專題，會再挑戰完整的小論文格式
+      🚀 <strong>下學期預告</strong>：這次先用上 Ch05 的排版，第二學期的程式專題再挑戰完整的小論文六大架構
     </div>
   </div>
 </div>"""
     },
     {
         'id': 25,
+        'chapter': '期末展示',
+        'title': '排版檢核：用上 Ch05 的小論文排版',
+        'bg': 'white',
+        'quiz': None,
+        'chart': None,
+        'video': None,
+        'html': """
+<div class='slide-inner'>
+  <h2 class='slide-title'>📐 排版檢核：用上 Ch05 的小論文排版（10 分）</h2>
+  <p class='slide-desc'>4 項都做到 10 分、3 項 8 分、2 項 6 分；忘了怎麼做，回 Ch05 第二章、第四章複習</p>
+
+  <div class='card-grid-2' style='margin-bottom:10px;'>
+    <div style='background:#eff6ff;border-radius:10px;padding:10px 14px;border-top:4px solid #3b82f6;'>
+      <p style='font-weight:700;color:#1e40af;margin:0 0 6px;font-size:.88rem;'>① 標題樣式＋自動目錄</p>
+      <p style='font-size:.78rem;color:#374151;margin:0;line-height:1.6;'>「壹、前言」等四段標題套<strong>標題 1</strong>（Ctrl + Alt + 1），小標題套標題 2。<br>Docs：插入 → 目錄。目錄空空的＝標題沒套樣式。</p>
+    </div>
+    <div style='background:#f0fdf4;border-radius:10px;padding:10px 14px;border-top:4px solid #22c55e;'>
+      <p style='font-weight:700;color:#166534;margin:0 0 6px;font-size:.88rem;'>② 頁首＋頁碼</p>
+      <p style='font-size:.78rem;color:#374151;margin:0;line-height:1.6;'>頁首寫<strong>報告題目</strong>，每一頁都要有；頁尾放頁碼。<br>Docs：插入 → 頁首和頁尾、插入 → 頁碼。</p>
+    </div>
+    <div style='background:#fff7ed;border-radius:10px;padding:10px 14px;border-top:4px solid #f97316;'>
+      <p style='font-weight:700;color:#9a3412;margin:0 0 6px;font-size:.88rem;'>③ 圖表編號與圖說</p>
+      <p style='font-size:.78rem;color:#374151;margin:0;line-height:1.6;'><strong>圖說在圖下</strong>、<strong>表說在表上</strong>：「圖 1　臺北市各區 YouBike 借車次數（資料來源：臺北市資料大平臺）」。<br>內文寫「如圖 1 所示…」來解讀圖表。</p>
+    </div>
+    <div style='background:#faf5ff;border-radius:10px;padding:10px 14px;border-top:4px solid #8b5cf6;'>
+      <p style='font-weight:700;color:#6b21a8;margin:0 0 6px;font-size:.88rem;'>④ APA 參考文獻＋內文引註</p>
+      <p style='font-size:.78rem;color:#374151;margin:0;line-height:1.6;'>臺北市政府交通局（2025）。<em>YouBike 2.0 臺北市公共自行車即時資訊</em>。取自 https://data.taipei<br>內文：「…借車次數最多（臺北市政府交通局，2025）」。</p>
+    </div>
+  </div>
+
+  <div style='background:#fef3c7;border-left:4px solid #f59e0b;padding:8px 12px;border-radius:8px;font-size:.8rem;color:#78350f;'>
+    ✅ <strong>交出去前</strong>：匯出 PDF 後打開來看一次——目錄、頁首、頁碼、圖說都還在嗎？（Ch05：Word / Docs 匯出 PDF）
+  </div>
+</div>"""
+    },
+    {
+        'id': 26,
         'chapter': '期末展示',
         'title': '期末報告：時程與評分',
         'bg': 'white',
@@ -914,10 +953,11 @@ SLIDES = [
         <thead class='table-header'><tr><th>評分項目</th><th style='width:20%;text-align:center;'>分數</th></tr></thead>
         <tbody>
           <tr><td colspan='2' style='background:#dbeafe;font-weight:700;color:#1e40af;'>📄 書面報告 90 分</td></tr>
-          <tr><td>前言（動機、目的、方法）</td><td style='text-align:center;'>30</td></tr>
-          <tr class='tr-highlight'><td>正文（問題探討、資料分析、視覺化、引用彙整）</td><td style='text-align:center;'>40</td></tr>
+          <tr><td>前言（動機、目的、方法）</td><td style='text-align:center;'>25</td></tr>
+          <tr class='tr-highlight'><td>正文（問題探討、資料分析、視覺化、引用彙整）</td><td style='text-align:center;'>35</td></tr>
           <tr><td>結論（看法、未來研究方向）</td><td style='text-align:center;'>15</td></tr>
           <tr class='tr-highlight'><td>參考資料</td><td style='text-align:center;'>5</td></tr>
+          <tr><td>格式與排版（Ch05）</td><td style='text-align:center;'>10</td></tr>
           <tr><td colspan='2' style='background:#ede9fe;font-weight:700;color:#6b21a8;'>🎤 口頭發表 10 分</td></tr>
           <tr><td>上台 3 分鐘（老師評分，參考同學互評）</td><td style='text-align:center;'>10</td></tr>
         </tbody>
@@ -931,7 +971,7 @@ SLIDES = [
 </div>"""
     },
     {
-        'id': 26,
+        'id': 27,
         'chapter': '期末展示',
         'title': '感謝與祝福',
         'bg': 'navy',
